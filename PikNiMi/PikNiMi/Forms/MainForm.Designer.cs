@@ -1,5 +1,5 @@
 ﻿
-namespace PikNiMi
+namespace PikNiMi.Forms
 {
     partial class MainForm
     {
@@ -30,20 +30,20 @@ namespace PikNiMi
         private void InitializeComponent()
         {
             this.tableUpperLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.productTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.addNewProductButton = new System.Windows.Forms.Button();
             this.updateProductButton = new System.Windows.Forms.Button();
+            this.addNewProductButton = new System.Windows.Forms.Button();
             this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.searchButton = new System.Windows.Forms.Button();
             this.cancelSearchButton = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.productTypeComboBox = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableBottomLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.Historybutton = new System.Windows.Forms.Button();
-            this.AddNewProductTypeButton = new System.Windows.Forms.Button();
-            this.discountButton = new System.Windows.Forms.Button();
-            this.dateTextBox = new System.Windows.Forms.TextBox();
-            this.countFullOrderDiscountButton = new System.Windows.Forms.Button();
             this.tripExpensesTextBox = new System.Windows.Forms.TextBox();
+            this.discountButton = new System.Windows.Forms.Button();
+            this.AddNewProductTypeButton = new System.Windows.Forms.Button();
+            this.Historybutton = new System.Windows.Forms.Button();
+            this.countFullOrderDiscountButton = new System.Windows.Forms.Button();
+            this.dateTextBox = new System.Windows.Forms.TextBox();
             this.tableUpperLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableBottomLayoutPanel.SuspendLayout();
@@ -73,14 +73,18 @@ namespace PikNiMi
             this.tableUpperLayoutPanel.Size = new System.Drawing.Size(800, 100);
             this.tableUpperLayoutPanel.TabIndex = 0;
             // 
-            // productTypeComboBox
+            // updateProductButton
             // 
-            this.productTypeComboBox.FormattingEnabled = true;
-            this.productTypeComboBox.Location = new System.Drawing.Point(195, 3);
-            this.productTypeComboBox.Name = "productTypeComboBox";
-            this.productTypeComboBox.Size = new System.Drawing.Size(314, 21);
-            this.productTypeComboBox.TabIndex = 0;
-            this.productTypeComboBox.TabStop = false;
+            this.updateProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.updateProductButton.Location = new System.Drawing.Point(99, 3);
+            this.updateProductButton.Name = "updateProductButton";
+            this.updateProductButton.Size = new System.Drawing.Size(90, 44);
+            this.updateProductButton.TabIndex = 2;
+            this.updateProductButton.TabStop = false;
+            this.updateProductButton.Text = "Atnaujinti produktą";
+            this.updateProductButton.UseVisualStyleBackColor = true;
             // 
             // addNewProductButton
             // 
@@ -95,19 +99,6 @@ namespace PikNiMi
             this.addNewProductButton.Text = "Pridėti naują produktą";
             this.addNewProductButton.UseVisualStyleBackColor = true;
             // 
-            // updateProductButton
-            // 
-            this.updateProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateProductButton.Location = new System.Drawing.Point(99, 3);
-            this.updateProductButton.Name = "updateProductButton";
-            this.updateProductButton.Size = new System.Drawing.Size(90, 44);
-            this.updateProductButton.TabIndex = 2;
-            this.updateProductButton.TabStop = false;
-            this.updateProductButton.Text = "Atnaujinti produktą";
-            this.updateProductButton.UseVisualStyleBackColor = true;
-            // 
             // searchTextBox
             // 
             this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -118,6 +109,19 @@ namespace PikNiMi
             this.searchTextBox.Size = new System.Drawing.Size(90, 20);
             this.searchTextBox.TabIndex = 3;
             this.searchTextBox.TabStop = false;
+            // 
+            // cancelSearchButton
+            // 
+            this.cancelSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelSearchButton.Location = new System.Drawing.Point(707, 3);
+            this.cancelSearchButton.Name = "cancelSearchButton";
+            this.cancelSearchButton.Size = new System.Drawing.Size(90, 44);
+            this.cancelSearchButton.TabIndex = 5;
+            this.cancelSearchButton.TabStop = false;
+            this.cancelSearchButton.Text = "atšaukti";
+            this.cancelSearchButton.UseVisualStyleBackColor = true;
             // 
             // searchButton
             // 
@@ -132,18 +136,15 @@ namespace PikNiMi
             this.searchButton.Text = "ieškoti";
             this.searchButton.UseVisualStyleBackColor = true;
             // 
-            // cancelSearchButton
+            // productTypeComboBox
             // 
-            this.cancelSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelSearchButton.Location = new System.Drawing.Point(707, 3);
-            this.cancelSearchButton.Name = "cancelSearchButton";
-            this.cancelSearchButton.Size = new System.Drawing.Size(90, 44);
-            this.cancelSearchButton.TabIndex = 5;
-            this.cancelSearchButton.TabStop = false;
-            this.cancelSearchButton.Text = "atšaukti";
-            this.cancelSearchButton.UseVisualStyleBackColor = true;
+            this.productTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.productTypeComboBox.FormattingEnabled = true;
+            this.productTypeComboBox.Location = new System.Drawing.Point(195, 3);
+            this.productTypeComboBox.Name = "productTypeComboBox";
+            this.productTypeComboBox.Size = new System.Drawing.Size(314, 21);
+            this.productTypeComboBox.TabIndex = 0;
+            this.productTypeComboBox.TabStop = false;
             // 
             // dataGridView1
             // 
@@ -181,31 +182,16 @@ namespace PikNiMi
             this.tableBottomLayoutPanel.Size = new System.Drawing.Size(800, 74);
             this.tableBottomLayoutPanel.TabIndex = 2;
             // 
-            // Historybutton
+            // tripExpensesTextBox
             // 
-            this.Historybutton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tripExpensesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Historybutton.Location = new System.Drawing.Point(3, 3);
-            this.Historybutton.Name = "Historybutton";
-            this.Historybutton.Size = new System.Drawing.Size(127, 31);
-            this.Historybutton.TabIndex = 6;
-            this.Historybutton.TabStop = false;
-            this.Historybutton.Text = "Istorija";
-            this.Historybutton.UseVisualStyleBackColor = true;
-            // 
-            // AddNewProductTypeButton
-            // 
-            this.AddNewProductTypeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddNewProductTypeButton.Location = new System.Drawing.Point(136, 3);
-            this.AddNewProductTypeButton.Name = "AddNewProductTypeButton";
-            this.AddNewProductTypeButton.Size = new System.Drawing.Size(127, 31);
-            this.AddNewProductTypeButton.TabIndex = 7;
-            this.AddNewProductTypeButton.TabStop = false;
-            this.AddNewProductTypeButton.Text = "Naujas produkto tipas";
-            this.AddNewProductTypeButton.UseVisualStyleBackColor = true;
+            this.tripExpensesTextBox.Location = new System.Drawing.Point(535, 3);
+            this.tripExpensesTextBox.Name = "tripExpensesTextBox";
+            this.tripExpensesTextBox.Size = new System.Drawing.Size(127, 20);
+            this.tripExpensesTextBox.TabIndex = 10;
+            this.tripExpensesTextBox.TabStop = false;
             // 
             // discountButton
             // 
@@ -220,16 +206,31 @@ namespace PikNiMi
             this.discountButton.Text = "Nuolaidos";
             this.discountButton.UseVisualStyleBackColor = true;
             // 
-            // dateTextBox
+            // AddNewProductTypeButton
             // 
-            this.dateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.AddNewProductTypeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTextBox.Location = new System.Drawing.Point(402, 3);
-            this.dateTextBox.Name = "dateTextBox";
-            this.dateTextBox.Size = new System.Drawing.Size(127, 20);
-            this.dateTextBox.TabIndex = 6;
-            this.dateTextBox.TabStop = false;
+            this.AddNewProductTypeButton.Location = new System.Drawing.Point(136, 3);
+            this.AddNewProductTypeButton.Name = "AddNewProductTypeButton";
+            this.AddNewProductTypeButton.Size = new System.Drawing.Size(127, 31);
+            this.AddNewProductTypeButton.TabIndex = 7;
+            this.AddNewProductTypeButton.TabStop = false;
+            this.AddNewProductTypeButton.Text = "Naujas produkto tipas";
+            this.AddNewProductTypeButton.UseVisualStyleBackColor = true;
+            // 
+            // Historybutton
+            // 
+            this.Historybutton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Historybutton.Location = new System.Drawing.Point(3, 3);
+            this.Historybutton.Name = "Historybutton";
+            this.Historybutton.Size = new System.Drawing.Size(127, 31);
+            this.Historybutton.TabIndex = 6;
+            this.Historybutton.TabStop = false;
+            this.Historybutton.Text = "Istorija";
+            this.Historybutton.UseVisualStyleBackColor = true;
             // 
             // countFullOrderDiscountButton
             // 
@@ -244,16 +245,16 @@ namespace PikNiMi
             this.countFullOrderDiscountButton.Text = "Skaičiuoti savikainą";
             this.countFullOrderDiscountButton.UseVisualStyleBackColor = true;
             // 
-            // tripExpensesTextBox
+            // dateTextBox
             // 
-            this.tripExpensesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tripExpensesTextBox.Location = new System.Drawing.Point(535, 3);
-            this.tripExpensesTextBox.Name = "tripExpensesTextBox";
-            this.tripExpensesTextBox.Size = new System.Drawing.Size(127, 20);
-            this.tripExpensesTextBox.TabIndex = 10;
-            this.tripExpensesTextBox.TabStop = false;
+            this.dateTextBox.Location = new System.Drawing.Point(402, 3);
+            this.dateTextBox.Name = "dateTextBox";
+            this.dateTextBox.Size = new System.Drawing.Size(127, 20);
+            this.dateTextBox.TabIndex = 6;
+            this.dateTextBox.TabStop = false;
             // 
             // MainForm
             // 
@@ -265,6 +266,7 @@ namespace PikNiMi
             this.Controls.Add(this.tableUpperLayoutPanel);
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tableUpperLayoutPanel.ResumeLayout(false);
             this.tableUpperLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
