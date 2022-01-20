@@ -5,7 +5,7 @@ namespace PikNiMi.Repository.SqlLite
 {
     public static class SqlLiteCreateTableCommands
     {
-        public static Dictionary<string, string> CreateTables()
+        public static Dictionary<string, string> GetTablesCommand()
         {
             string fullProductInfoTable = "FullProductInfoTable";
             string createFullProductInfoTable = 

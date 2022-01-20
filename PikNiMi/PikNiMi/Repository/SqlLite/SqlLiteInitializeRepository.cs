@@ -6,6 +6,7 @@ namespace PikNiMi.Repository.SqlLite
 {
     public class SqlLiteInitializeRepository : IRepositoryCreate
     {
+       
         public void InitializeDatabaseIfNotExists()
         {
             if (File.Exists(SqlLiteDataBaseConfiguration.DatabaseFile))
@@ -31,12 +32,22 @@ namespace PikNiMi.Repository.SqlLite
 
         public void DropAllTablesCommand()
         {
-            throw new System.NotImplementedException();
+            var allTableCommands = SqlLiteCreateTableCommands.GetTablesCommand();
+
+            foreach (var tableCommand in allTableCommands)
+            {
+                DropTable(tableCommand.Key);
+            }
         }
 
         public void CreateAllTablesCommand()
         {
-            throw new System.NotImplementedException();
+            var allTableCommands = SqlLiteCreateTableCommands.GetTablesCommand();
+
+            foreach (var tableCommand in allTableCommands)
+            {
+                CreateTable(tableCommand.Value);
+            }
         }
 
         #region PrivateCustomMethods
@@ -56,9 +67,30 @@ namespace PikNiMi.Repository.SqlLite
             }
         }
 
+        private void DropTable(string tableName)
+        {
+            using (var dbConnection = new SQLiteConnection(SqlLiteDataBaseConfiguration.ConnectionString))
+            {
+                dbConnection.Open();
+                string dropTableQuery = $"DROP TABLE IF EXISTS [{tableName}]";
+                SQLiteCommand tableCommand = new SQLiteCommand(dropTableQuery, dbConnection);
+                tableCommand.ExecuteNonQuery();
+            }
+        }
+
+        private void CreateTable(string tableCommand)
+        {
+            using (var dbConnection = new SQLiteConnection(SqlLiteDataBaseConfiguration.ConnectionString))
+            {
+                dbConnection.Open();
+                SQLiteCommand sqLiteCommand = new SQLiteCommand(tableCommand, dbConnection);
+                sqLiteCommand.ExecuteNonQuery();
+            }
+        }
+
 
         #endregion
 
-       
+
     }
 }

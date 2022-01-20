@@ -10,5 +10,16 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass
         {
             _repositoryCreate = repositoryCreate;
         }
+
+        public void CreateRepositoryFile()
+        {
+            _repositoryCreate.InitializeDatabaseIfNotExists();
+        }
+
+        public void CreateRepositoryTable()
+        {
+            _repositoryCreate.DropAllTablesCommand();
+            _repositoryCreate.CreateAllTablesCommand();
+        }
     }
 }
