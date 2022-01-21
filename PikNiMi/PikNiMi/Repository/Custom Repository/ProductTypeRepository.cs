@@ -8,7 +8,7 @@ namespace PikNiMi.Repository.Custom_Repository
         {
             "Suknelė", "Sijonas", "Palaidinė", "Megztukas", "Kelnės", "Džinsai", "Kepurė", "Šalikas",
             "Diržas", "Aksesuaras", "Kojinės", "Apatinis trikotažas", "Striukė", "Paltas", "Tunika",
-            "Kardiganas", "Džemperis"
+            "Kardiganas", "Džemperis", "Pasirinkti tipą..."
         };
 
     }

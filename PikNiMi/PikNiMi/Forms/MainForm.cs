@@ -8,33 +8,47 @@ namespace PikNiMi.Forms
     public partial class MainForm : Form
     {
         private readonly TextBoxFormService _textBoxFormService;
+        private readonly ProductTypeComboBoxService _productTypeService;
+
         public MainForm()
         {
             InitializeComponent();
+
             _textBoxFormService = new TextBoxFormService();
+            _productTypeService = new ProductTypeComboBoxService();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.Text = @"PikNiMi Sandėlis";
             SetTextBoxLength();
             SetDefaultTextBoxesTextValue();
+            _productTypeService.SetProductTypeCustomValues(productTypeComboBox);
         }
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
-            //button logic in future
+
         }
 
         private void searchTextBox_GotFocus(object sender, EventArgs e)
         {
-            string searchTextBoxText = _textBoxFormService.DisableTextBoxText(searchTextBox.Text, FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder);
-            searchTextBox.Text = searchTextBoxText;
+            SetSpecificTextToTextBoxWhenGotFocus(FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder, searchTextBox);
         }
 
         private void searchTextBox_LostFocus(object sender, EventArgs e)
         {
-           string searchTextBoxText = _textBoxFormService.SetTextBoxTextForEmptyOrWhiteSpaceText(searchTextBox.Text, FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder);
-           searchTextBox.Text = searchTextBoxText;
+            SetSpecificTextToTextBoxWhenLostFocus(FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder, searchTextBox);
+        }
+
+        private void tripExpensesTextBox_GotFocus(object sender, EventArgs e)
+        {
+            SetSpecificTextToTextBoxWhenGotFocus(FormTextBoxDefaultTexts.TripExpensesTextBoxPlaceHolder, tripExpensesTextBox);
+        }
+
+        private void tripExpensesTextBox_LostFocus(object sender, EventArgs e)
+        {
+            SetSpecificTextToTextBoxWhenLostFocus(FormTextBoxDefaultTexts.TripExpensesTextBoxPlaceHolder, tripExpensesTextBox);
         }
 
         #region CustomPrivateMethods
@@ -53,7 +67,21 @@ namespace PikNiMi.Forms
             tripExpensesTextBox.Text = FormTextBoxDefaultTexts.TripExpensesTextBoxPlaceHolder;
         }
 
+        private void SetSpecificTextToTextBoxWhenGotFocus(string specificText, TextBox textBox)
+        {
+            string textBoxText = _textBoxFormService.DisableTextBoxText(textBox.Text, specificText);
+            textBox.Text = textBoxText;
+        }
+
+        private void SetSpecificTextToTextBoxWhenLostFocus(string specificText, TextBox textBox)
+        {
+            string textBoxText = _textBoxFormService.SetTextBoxTextForEmptyOrWhiteSpaceText(textBox.Text, specificText);
+            textBox.Text = textBoxText;
+        }
+
         #endregion
-        
+
+
+       
     }
 }
