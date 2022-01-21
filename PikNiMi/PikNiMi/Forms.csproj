@@ -71,6 +71,7 @@
     <Compile Include="Repository\Custom Repository\ProductTypeRepository.cs" />
     <Compile Include="Repository\DependencyInjectionRepositoryClass\RepositoryCreate.cs" />
     <Compile Include="Repository\DependencyInjectionRepositoryClass\RepositoryQueryCalls.cs" />
+    <Compile Include="Repository\SqlLite\FakeRepository.cs" />
     <Compile Include="Repository\SqlLite\SqlLiteDataBaseConfiguration.cs" />
     <Compile Include="Repository\SqlLite\SqlLiteInitializeRepository.cs" />
     <Compile Include="Repository\SqlLite\SqlLiteCreateTableCommands.cs" />
