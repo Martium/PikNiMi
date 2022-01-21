@@ -9,6 +9,7 @@ namespace PikNiMi.Forms
     {
         private readonly TextBoxFormService _textBoxFormService;
         private readonly ProductTypeComboBoxService _productTypeService;
+        private readonly ProductDataGridViewService _productDataGridViewService;
 
         public MainForm()
         {
@@ -16,6 +17,7 @@ namespace PikNiMi.Forms
 
             _textBoxFormService = new TextBoxFormService();
             _productTypeService = new ProductTypeComboBoxService();
+            _productDataGridViewService = new ProductDataGridViewService();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -24,6 +26,7 @@ namespace PikNiMi.Forms
             SetTextBoxLength();
             SetDefaultTextBoxesTextValue();
             _productTypeService.SetProductTypeCustomValues(productTypeComboBox);
+            _productDataGridViewService.LoadFullProductInfo(productDataGridView);
         }
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
