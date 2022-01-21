@@ -1,5 +1,5 @@
-﻿using System.Windows.Forms;
-using PikNiMi.Interface.RepositoryInterface;
+﻿using System.Threading.Tasks;
+using System.Windows.Forms;
 using PikNiMi.Models;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass;
 using PikNiMi.Repository.SqlLite;
@@ -15,13 +15,13 @@ namespace PikNiMi.Forms.Service
             _repositoryQueryCalls = new RepositoryQueryCalls(new SqlLiteRepositoryQueryCalls());
         }
 
-        public DataGridView LoadFullProductInfo(DataGridView productDataGridView)
+        public async Task<DataGridView> LoadFullProductInfo(DataGridView productDataGridView)
         {
             var bidingSourceProductModel = new FullProductInfoModel();
             BindingSource productBidingSource = new BindingSource {bidingSourceProductModel};
-            productBidingSource.DataSource = _repositoryQueryCalls.GetAllOfFullProductInfo();
+            productBidingSource.DataSource = await _repositoryQueryCalls.GetAllOfFullProductInfo();
             productDataGridView.DataSource = productBidingSource;
-            return productDataGridView;
+            return  productDataGridView;
         }
     }
 }

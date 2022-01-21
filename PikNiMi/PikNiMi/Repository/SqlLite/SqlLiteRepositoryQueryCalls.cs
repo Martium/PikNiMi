@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Threading.Tasks;
 using Dapper;
@@ -26,18 +27,19 @@ namespace PikNiMi.Repository.SqlLite
             return getExistingServiceQuery;
         }
 
-        public async Task<IEnumerable<Task<FullProductInfoModel>>> GetAllOfFullProductInfo()
+        public async Task<IEnumerable<FullProductInfoModel>> GetAllOfFullProductInfo()
         {
             using (_dbConnection)
             {
                 _dbConnection.Open();
 
-                string getAllCommand = SqlLiteRepositoryQueryCalls.GetFullProductInfo();
+                string getAllCommand = GetFullProductInfo();
 
-                Task<IEnumerable<Task<FullProductInfoModel>>> getExistingInfo =
-                    _dbConnection.QueryAsync<Task<FullProductInfoModel>>(getAllCommand);
+                Task<IEnumerable<FullProductInfoModel>> getExistingInfo =
+                    _dbConnection.QueryAsync<FullProductInfoModel>(getAllCommand);
+                var response = await getExistingInfo;
 
-                return await getExistingInfo;
+                return response;
             }
         }
     }

@@ -20,13 +20,15 @@ namespace PikNiMi.Forms
             _productDataGridViewService = new ProductDataGridViewService();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private async void MainForm_Load(object sender, EventArgs e)
         {
             this.Text = @"PikNiMi Sandėlis";
             SetTextBoxLength();
             SetDefaultTextBoxesTextValue();
             _productTypeService.SetProductTypeCustomValues(productTypeComboBox);
-            _productDataGridViewService.LoadFullProductInfo(productDataGridView);
+            SetButtonsControl(false);
+             await _productDataGridViewService.LoadFullProductInfo(productDataGridView);
+            SetButtonsControl(true);
         }
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
@@ -80,6 +82,20 @@ namespace PikNiMi.Forms
         {
             string textBoxText = _textBoxFormService.SetTextBoxTextForEmptyOrWhiteSpaceText(textBox.Text, specificText);
             textBox.Text = textBoxText;
+        }
+
+        private void SetButtonsControl(bool isAllowed)
+        {
+            addNewProductButton.Enabled = isAllowed;
+            updateProductButton.Enabled = isAllowed;
+
+            searchButton.Enabled = isAllowed;
+            cancelSearchButton.Enabled = isAllowed;
+
+            Historybutton.Enabled = isAllowed;
+            AddNewProductTypeButton.Enabled = isAllowed;
+            discountButton.Enabled = isAllowed;
+            countFullOrderDiscountButton.Enabled = isAllowed;
         }
 
         #endregion
