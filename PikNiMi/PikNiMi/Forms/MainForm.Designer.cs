@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace PikNiMi.Forms
 {
     partial class MainForm
@@ -109,6 +111,9 @@ namespace PikNiMi.Forms
             this.searchTextBox.Size = new System.Drawing.Size(90, 20);
             this.searchTextBox.TabIndex = 3;
             this.searchTextBox.TabStop = false;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            this.searchTextBox.GotFocus += new System.EventHandler(this.searchTextBox_GotFocus);
+            this.searchTextBox.LostFocus += new System.EventHandler(this.searchTextBox_LostFocus);
             // 
             // cancelSearchButton
             // 
