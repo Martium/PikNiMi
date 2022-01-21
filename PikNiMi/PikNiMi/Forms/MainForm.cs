@@ -26,9 +26,9 @@ namespace PikNiMi.Forms
             SetTextBoxLength();
             SetDefaultTextBoxesTextValue();
             _productTypeService.SetProductTypeCustomValues(productTypeComboBox);
-            SetButtonsControl(false);
+            SetAllButtonsControl(false);
              await _productDataGridViewService.LoadFullProductInfo(productDataGridView);
-            SetButtonsControl(true);
+            SetAllButtonsControl(true);
         }
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
@@ -84,7 +84,7 @@ namespace PikNiMi.Forms
             textBox.Text = textBoxText;
         }
 
-        private void SetButtonsControl(bool isAllowed)
+        private void SetAllButtonsControl(bool isAllowed)
         {
             addNewProductButton.Enabled = isAllowed;
             updateProductButton.Enabled = isAllowed;

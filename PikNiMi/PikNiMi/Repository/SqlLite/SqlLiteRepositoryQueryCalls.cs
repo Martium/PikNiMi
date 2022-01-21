@@ -11,21 +11,12 @@ namespace PikNiMi.Repository.SqlLite
     public class SqlLiteRepositoryQueryCalls : IRepositoryQueryCalls
     {
         private static SQLiteConnection _dbConnection;
-        private const string FullProductInfoTable = "FullProductInfoTable";
 
         public SqlLiteRepositoryQueryCalls()
         {
             _dbConnection = new SQLiteConnection(SqlLiteDataBaseConfiguration.ConnectionString);
         }
-        public static string GetFullProductInfo()
-        {
-            string getExistingServiceQuery =
-                $@"
-                    SELECT * FROM {FullProductInfoTable}
-                ";
-
-            return getExistingServiceQuery;
-        }
+        
 
         public async Task<IEnumerable<FullProductInfoModel>> GetAllOfFullProductInfo()
         {
@@ -33,7 +24,7 @@ namespace PikNiMi.Repository.SqlLite
             {
                 _dbConnection.Open();
 
-                string getAllCommand = GetFullProductInfo();
+                string getAllCommand = SqlLiteQueryToDataBaseCommands.GetAllOfFullProductInfoCommand();
 
                 Task<IEnumerable<FullProductInfoModel>> getExistingInfo =
                     _dbConnection.QueryAsync<FullProductInfoModel>(getAllCommand);
