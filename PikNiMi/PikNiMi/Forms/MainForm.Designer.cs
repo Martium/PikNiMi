@@ -140,6 +140,7 @@ namespace PikNiMi.Forms
             this.searchButton.TabStop = false;
             this.searchButton.Text = "ieškoti";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // productTypeComboBox
             // 

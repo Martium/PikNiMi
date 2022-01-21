@@ -7,6 +7,9 @@ namespace PikNiMi.Interface.RepositoryInterface
     public interface IRepositoryQueryCalls
     {
         Task<IEnumerable<FullProductInfoModel>> GetAllOfFullProductInfo();
+
+        Task<IEnumerable<FullProductInfoModel>> GetAllOfProductInfoBySearchPhraseAndProductType(
+            string searchPhrase, string productType);
     }
 
 }

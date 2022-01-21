@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PikNiMi.Repository.SqlLite
+﻿namespace PikNiMi.Repository.SqlLite
 {
     public static class SqlLiteQueryToDataBaseCommands
     {
@@ -18,7 +16,7 @@ namespace PikNiMi.Repository.SqlLite
             return getExistingServiceQuery;
         }
 
-        public static string SearchFullProductInfoBySearchRequest(string search, string productType)
+        public static string SearchFullProductInfoBySearchRequest(string searchPhrase, string productType)
         {
             string searchQuery;
 
@@ -27,12 +25,19 @@ namespace PikNiMi.Repository.SqlLite
                 searchQuery = 
                     $@"
                         SELECT * FROM {FullProductInfoTable}
-                        WHERE * LIKE '%{search}%'
+                        WHERE LIKE '%{searchPhrase}%'
                         ORDER BY {FullProductInfoTableShort}.ProductId DESC;
                     ";
             }
+            else
+            {
+                searchQuery = 
+                    $@"
+                        SELECT * FROM {FullProductInfoTable}
+                        WHERE * LIKE '%{searchPhrase}%' AND {FullProductInfoTableShort}.ProductType = '{productType}'
+                    ";
+            }
 
-            searchQuery = string.Empty;
 
             return searchQuery;
         }

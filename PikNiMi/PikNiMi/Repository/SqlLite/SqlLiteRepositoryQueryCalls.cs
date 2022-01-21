@@ -10,25 +10,37 @@ namespace PikNiMi.Repository.SqlLite
 {
     public class SqlLiteRepositoryQueryCalls : IRepositoryQueryCalls
     {
-        private static SQLiteConnection _dbConnection;
-
-        public SqlLiteRepositoryQueryCalls()
-        {
-            _dbConnection = new SQLiteConnection(SqlLiteDataBaseConfiguration.ConnectionString);
-        }
-        
+        private static readonly string ConnectionString = SqlLiteDataBaseConfiguration.ConnectionString;
 
         public async Task<IEnumerable<FullProductInfoModel>> GetAllOfFullProductInfo()
         {
-            using (_dbConnection)
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
             {
-                _dbConnection.Open();
+                dbConnection.Open();
 
                 string getAllCommand = SqlLiteQueryToDataBaseCommands.GetAllOfFullProductInfoCommand();
 
                 Task<IEnumerable<FullProductInfoModel>> getExistingInfo =
-                    _dbConnection.QueryAsync<FullProductInfoModel>(getAllCommand);
+                    dbConnection.QueryAsync<FullProductInfoModel>(getAllCommand);
                 var response = await getExistingInfo;
+
+                return response;
+            }
+        }
+
+        public async Task<IEnumerable<FullProductInfoModel>> GetAllOfProductInfoBySearchPhraseAndProductType(
+            string searchPhrase, string productType)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string searchTypeCommand =
+                    SqlLiteQueryToDataBaseCommands.SearchFullProductInfoBySearchRequest(searchPhrase, productType);
+
+                Task<IEnumerable<FullProductInfoModel>> existingInfo =
+                    dbConnection.QueryAsync<FullProductInfoModel>(searchTypeCommand);
+                var response = await existingInfo;
 
                 return response;
             }

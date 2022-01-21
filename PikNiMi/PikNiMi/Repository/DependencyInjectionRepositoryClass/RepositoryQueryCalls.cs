@@ -20,5 +20,11 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass
             return await getInfo;
         }
 
+        public async Task<IEnumerable<FullProductInfoModel>> GetAllOfProductInfoBySearchPhraseAndProductType(string searchPhrase, string productType)
+        {
+            var getInfo = _repository.GetAllOfProductInfoBySearchPhraseAndProductType(searchPhrase, productType);
+            return await getInfo;
+        }
+
     }
 }

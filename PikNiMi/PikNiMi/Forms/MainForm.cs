@@ -56,6 +56,12 @@ namespace PikNiMi.Forms
             SetSpecificTextToTextBoxWhenLostFocus(FormTextBoxDefaultTexts.TripExpensesTextBoxPlaceHolder, tripExpensesTextBox);
         }
 
+        private async void searchButton_Click(object sender, EventArgs e)
+        {
+            await _productDataGridViewService.LoadFullProductInfoBySearchPhraseAndProductType(searchTextBox.Text,
+                productTypeComboBox.Text, productDataGridView);
+        }
+
         #region CustomPrivateMethods
 
         private void SetTextBoxLength()
@@ -99,8 +105,5 @@ namespace PikNiMi.Forms
         }
 
         #endregion
-
-
-       
     }
 }
