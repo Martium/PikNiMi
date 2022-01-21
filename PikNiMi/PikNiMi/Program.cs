@@ -16,11 +16,13 @@ namespace PikNiMi
         private const string AppUuid = "9c973b26-7a07-11ec-90d6-0242ac120003";
 
         private static RepositoryCreate _repositoryCreate;
+        private static FakeRepository _fakeRepository;
 
         [STAThread]
         static void Main()
         {
             _repositoryCreate = new RepositoryCreate(new SqlLiteInitializeRepository());
+            _fakeRepository = new FakeRepository();
 
             using (Mutex mutex = new Mutex(false, "Global\\" + AppUuid))
             {
@@ -49,6 +51,7 @@ namespace PikNiMi
             {
                 _repositoryCreate.CreateRepositoryFile();
                 _repositoryCreate.CreateRepositoryTable();
+                _fakeRepository.FillTestingInfoForProduct();
 
                 isDatabaseInitialize = true;
             }
