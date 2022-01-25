@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Threading.Tasks;
 using Dapper;
@@ -28,7 +27,7 @@ namespace PikNiMi.Repository.SqlLite
             }
         }
 
-        public async Task<IEnumerable<FullProductInfoModel>> GetAllOfProductInfoBySearchPhraseAndProductType(
+        public Task<IEnumerable<FullProductInfoModel>> GetAllOfProductInfoBySearchPhraseAndProductType(
             string searchPhrase, string productType)
         {
             using (var dbConnection = new SQLiteConnection(ConnectionString))
@@ -40,7 +39,7 @@ namespace PikNiMi.Repository.SqlLite
 
                 Task<IEnumerable<FullProductInfoModel>> existingInfo =
                     dbConnection.QueryAsync<FullProductInfoModel>(searchTypeCommand);
-                var response = await existingInfo;
+                var response =  existingInfo;
 
                 return response;
             }

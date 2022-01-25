@@ -18,7 +18,7 @@ namespace PikNiMi.Forms.Service
         private BindingSource SetBidingSourceForProductDataGridView()
         {
             var bidingSourceProductModel = new FullProductInfoModel();
-            BindingSource productBidingSource = new BindingSource { bidingSourceProductModel };
+            BindingSource productBidingSource = new BindingSource {bidingSourceProductModel};
             return productBidingSource;
         }
 
