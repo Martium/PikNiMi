@@ -1,6 +1,6 @@
 ﻿using PikNiMi.Interface.RepositoryInterface;
 
-namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
+namespace PikNiMi.Repository.DependencyInjectionRepositoryClass
 {
     public class RepositoryCreate 
     {

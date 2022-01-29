@@ -32,22 +32,22 @@ namespace PikNiMi.Forms
         private void InitializeComponent()
         {
             this.tableUpperLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.UpdateProductButton = new System.Windows.Forms.Button();
-            this.AddNewProductButton = new System.Windows.Forms.Button();
-            this.SearchTextBox = new System.Windows.Forms.TextBox();
-            this.CancelSearchButton = new System.Windows.Forms.Button();
-            this.SearchButton = new System.Windows.Forms.Button();
-            this.ProductTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.ProductDataGridView = new System.Windows.Forms.DataGridView();
+            this.updateProductButton = new System.Windows.Forms.Button();
+            this.addNewProductButton = new System.Windows.Forms.Button();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.cancelSearchButton = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.productTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.productDataGridView = new System.Windows.Forms.DataGridView();
             this.tableBottomLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.TripExpensesTextBox = new System.Windows.Forms.TextBox();
-            this.DiscountButton = new System.Windows.Forms.Button();
+            this.tripExpensesTextBox = new System.Windows.Forms.TextBox();
+            this.discountButton = new System.Windows.Forms.Button();
             this.AddNewProductTypeButton = new System.Windows.Forms.Button();
             this.Historybutton = new System.Windows.Forms.Button();
-            this.CountFullOrderDiscountButton = new System.Windows.Forms.Button();
-            this.DateTextBox = new System.Windows.Forms.TextBox();
+            this.countFullOrderDiscountButton = new System.Windows.Forms.Button();
+            this.dateTextBox = new System.Windows.Forms.TextBox();
             this.tableUpperLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).BeginInit();
             this.tableBottomLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,12 +60,12 @@ namespace PikNiMi.Forms
             this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
             this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
             this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableUpperLayoutPanel.Controls.Add(this.UpdateProductButton, 1, 0);
-            this.tableUpperLayoutPanel.Controls.Add(this.AddNewProductButton, 0, 0);
-            this.tableUpperLayoutPanel.Controls.Add(this.SearchTextBox, 3, 0);
-            this.tableUpperLayoutPanel.Controls.Add(this.CancelSearchButton, 5, 0);
-            this.tableUpperLayoutPanel.Controls.Add(this.SearchButton, 4, 0);
-            this.tableUpperLayoutPanel.Controls.Add(this.ProductTypeComboBox, 2, 0);
+            this.tableUpperLayoutPanel.Controls.Add(this.updateProductButton, 1, 0);
+            this.tableUpperLayoutPanel.Controls.Add(this.addNewProductButton, 0, 0);
+            this.tableUpperLayoutPanel.Controls.Add(this.searchTextBox, 3, 0);
+            this.tableUpperLayoutPanel.Controls.Add(this.cancelSearchButton, 5, 0);
+            this.tableUpperLayoutPanel.Controls.Add(this.searchButton, 4, 0);
+            this.tableUpperLayoutPanel.Controls.Add(this.productTypeComboBox, 2, 0);
             this.tableUpperLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableUpperLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableUpperLayoutPanel.Name = "tableUpperLayoutPanel";
@@ -75,98 +75,93 @@ namespace PikNiMi.Forms
             this.tableUpperLayoutPanel.Size = new System.Drawing.Size(800, 100);
             this.tableUpperLayoutPanel.TabIndex = 0;
             // 
-            // UpdateProductButton
+            // updateProductButton
             // 
-            this.UpdateProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.updateProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateProductButton.Location = new System.Drawing.Point(99, 3);
-            this.UpdateProductButton.Name = "UpdateProductButton";
-            this.UpdateProductButton.Size = new System.Drawing.Size(90, 44);
-            this.UpdateProductButton.TabIndex = 2;
-            this.UpdateProductButton.TabStop = false;
-            this.UpdateProductButton.Text = "Atnaujinti produktą";
-            this.UpdateProductButton.UseVisualStyleBackColor = true;
+            this.updateProductButton.Location = new System.Drawing.Point(99, 3);
+            this.updateProductButton.Name = "updateProductButton";
+            this.updateProductButton.Size = new System.Drawing.Size(90, 44);
+            this.updateProductButton.TabIndex = 2;
+            this.updateProductButton.TabStop = false;
+            this.updateProductButton.Text = "Atnaujinti produktą";
+            this.updateProductButton.UseVisualStyleBackColor = true;
             // 
-            // AddNewProductButton
+            // addNewProductButton
             // 
-            this.AddNewProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.addNewProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddNewProductButton.Location = new System.Drawing.Point(3, 3);
-            this.AddNewProductButton.Name = "AddNewProductButton";
-            this.AddNewProductButton.Size = new System.Drawing.Size(90, 44);
-            this.AddNewProductButton.TabIndex = 1;
-            this.AddNewProductButton.TabStop = false;
-            this.AddNewProductButton.Text = "Pridėti naują produktą";
-            this.AddNewProductButton.UseVisualStyleBackColor = true;
+            this.addNewProductButton.Location = new System.Drawing.Point(3, 3);
+            this.addNewProductButton.Name = "addNewProductButton";
+            this.addNewProductButton.Size = new System.Drawing.Size(90, 44);
+            this.addNewProductButton.TabIndex = 1;
+            this.addNewProductButton.TabStop = false;
+            this.addNewProductButton.Text = "Pridėti naują produktą";
+            this.addNewProductButton.UseVisualStyleBackColor = true;
             // 
-            // SearchTextBox
+            // searchTextBox
             // 
-            this.SearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchTextBox.Location = new System.Drawing.Point(515, 3);
-            this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(90, 20);
-            this.SearchTextBox.TabIndex = 3;
-            this.SearchTextBox.TabStop = false;
-            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
-            this.SearchTextBox.GotFocus += new System.EventHandler(this.SearchTextBox_GotFocus);
-            this.SearchTextBox.LostFocus += new System.EventHandler(this.SearchTextBox_LostFocus);
+            this.searchTextBox.Location = new System.Drawing.Point(515, 3);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(90, 20);
+            this.searchTextBox.TabIndex = 3;
+            this.searchTextBox.TabStop = false;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            this.searchTextBox.GotFocus += new System.EventHandler(this.searchTextBox_GotFocus);
+            this.searchTextBox.LostFocus += new System.EventHandler(this.searchTextBox_LostFocus);
             // 
-            // CancelSearchButton
+            // cancelSearchButton
             // 
-            this.CancelSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.cancelSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CancelSearchButton.Location = new System.Drawing.Point(707, 3);
-            this.CancelSearchButton.Name = "CancelSearchButton";
-            this.CancelSearchButton.Size = new System.Drawing.Size(90, 44);
-            this.CancelSearchButton.TabIndex = 5;
-            this.CancelSearchButton.TabStop = false;
-            this.CancelSearchButton.Text = "atšaukti";
-            this.CancelSearchButton.UseVisualStyleBackColor = true;
+            this.cancelSearchButton.Location = new System.Drawing.Point(707, 3);
+            this.cancelSearchButton.Name = "cancelSearchButton";
+            this.cancelSearchButton.Size = new System.Drawing.Size(90, 44);
+            this.cancelSearchButton.TabIndex = 5;
+            this.cancelSearchButton.TabStop = false;
+            this.cancelSearchButton.Text = "atšaukti";
+            this.cancelSearchButton.UseVisualStyleBackColor = true;
             // 
-            // SearchButton
+            // searchButton
             // 
-            this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchButton.Location = new System.Drawing.Point(611, 3);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(90, 44);
-            this.SearchButton.TabIndex = 4;
-            this.SearchButton.TabStop = false;
-            this.SearchButton.Text = "ieškoti";
-            this.SearchButton.UseVisualStyleBackColor = true;
-            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            this.searchButton.Location = new System.Drawing.Point(611, 3);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(90, 44);
+            this.searchButton.TabIndex = 4;
+            this.searchButton.TabStop = false;
+            this.searchButton.Text = "ieškoti";
+            this.searchButton.UseVisualStyleBackColor = true;
             // 
-            // ProductTypeComboBox
+            // productTypeComboBox
             // 
-            this.ProductTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ProductTypeComboBox.FormattingEnabled = true;
-            this.ProductTypeComboBox.Location = new System.Drawing.Point(195, 3);
-            this.ProductTypeComboBox.Name = "ProductTypeComboBox";
-            this.ProductTypeComboBox.Size = new System.Drawing.Size(314, 21);
-            this.ProductTypeComboBox.TabIndex = 0;
-            this.ProductTypeComboBox.TabStop = false;
+            this.productTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.productTypeComboBox.FormattingEnabled = true;
+            this.productTypeComboBox.Location = new System.Drawing.Point(195, 3);
+            this.productTypeComboBox.Name = "productTypeComboBox";
+            this.productTypeComboBox.Size = new System.Drawing.Size(314, 21);
+            this.productTypeComboBox.TabIndex = 0;
+            this.productTypeComboBox.TabStop = false;
             // 
-            // ProductDataGridView
+            // productDataGridView
             // 
-            this.ProductDataGridView.AllowUserToAddRows = false;
-            this.ProductDataGridView.AllowUserToDeleteRows = false;
-            this.ProductDataGridView.AllowUserToResizeColumns = false;
-            this.ProductDataGridView.AllowUserToResizeRows = false;
-            this.ProductDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.productDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ProductDataGridView.Location = new System.Drawing.Point(3, 106);
-            this.ProductDataGridView.Name = "ProductDataGridView";
-            this.ProductDataGridView.Size = new System.Drawing.Size(794, 264);
-            this.ProductDataGridView.TabIndex = 1;
-            this.ProductDataGridView.TabStop = false;
+            this.productDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.productDataGridView.Location = new System.Drawing.Point(3, 106);
+            this.productDataGridView.Name = "productDataGridView";
+            this.productDataGridView.Size = new System.Drawing.Size(794, 264);
+            this.productDataGridView.TabIndex = 1;
+            this.productDataGridView.TabStop = false;
             // 
             // tableBottomLayoutPanel
             // 
@@ -177,12 +172,12 @@ namespace PikNiMi.Forms
             this.tableBottomLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableBottomLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableBottomLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableBottomLayoutPanel.Controls.Add(this.TripExpensesTextBox, 4, 0);
-            this.tableBottomLayoutPanel.Controls.Add(this.DiscountButton, 2, 0);
+            this.tableBottomLayoutPanel.Controls.Add(this.tripExpensesTextBox, 4, 0);
+            this.tableBottomLayoutPanel.Controls.Add(this.discountButton, 2, 0);
             this.tableBottomLayoutPanel.Controls.Add(this.AddNewProductTypeButton, 1, 0);
             this.tableBottomLayoutPanel.Controls.Add(this.Historybutton, 0, 0);
-            this.tableBottomLayoutPanel.Controls.Add(this.CountFullOrderDiscountButton, 5, 0);
-            this.tableBottomLayoutPanel.Controls.Add(this.DateTextBox, 3, 0);
+            this.tableBottomLayoutPanel.Controls.Add(this.countFullOrderDiscountButton, 5, 0);
+            this.tableBottomLayoutPanel.Controls.Add(this.dateTextBox, 3, 0);
             this.tableBottomLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableBottomLayoutPanel.Location = new System.Drawing.Point(0, 376);
             this.tableBottomLayoutPanel.Name = "tableBottomLayoutPanel";
@@ -192,31 +187,31 @@ namespace PikNiMi.Forms
             this.tableBottomLayoutPanel.Size = new System.Drawing.Size(800, 74);
             this.tableBottomLayoutPanel.TabIndex = 2;
             // 
-            // TripExpensesTextBox
+            // tripExpensesTextBox
             // 
-            this.TripExpensesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tripExpensesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TripExpensesTextBox.Location = new System.Drawing.Point(535, 3);
-            this.TripExpensesTextBox.Name = "TripExpensesTextBox";
-            this.TripExpensesTextBox.Size = new System.Drawing.Size(127, 20);
-            this.TripExpensesTextBox.TabIndex = 10;
-            this.TripExpensesTextBox.TabStop = false;
-            this.TripExpensesTextBox.GotFocus += new System.EventHandler(this.TripExpensesTextBox_GotFocus);
-            this.TripExpensesTextBox.LostFocus += new System.EventHandler(this.TripExpensesTextBox_LostFocus);
+            this.tripExpensesTextBox.Location = new System.Drawing.Point(535, 3);
+            this.tripExpensesTextBox.Name = "tripExpensesTextBox";
+            this.tripExpensesTextBox.Size = new System.Drawing.Size(127, 20);
+            this.tripExpensesTextBox.TabIndex = 10;
+            this.tripExpensesTextBox.TabStop = false;
+            this.tripExpensesTextBox.GotFocus += new System.EventHandler(this.tripExpensesTextBox_GotFocus);
+            this.tripExpensesTextBox.LostFocus += new System.EventHandler(this.tripExpensesTextBox_LostFocus);
             // 
-            // DiscountButton
+            // discountButton
             // 
-            this.DiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.discountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DiscountButton.Location = new System.Drawing.Point(269, 3);
-            this.DiscountButton.Name = "DiscountButton";
-            this.DiscountButton.Size = new System.Drawing.Size(127, 31);
-            this.DiscountButton.TabIndex = 8;
-            this.DiscountButton.TabStop = false;
-            this.DiscountButton.Text = "Nuolaidos";
-            this.DiscountButton.UseVisualStyleBackColor = true;
+            this.discountButton.Location = new System.Drawing.Point(269, 3);
+            this.discountButton.Name = "discountButton";
+            this.discountButton.Size = new System.Drawing.Size(127, 31);
+            this.discountButton.TabIndex = 8;
+            this.discountButton.TabStop = false;
+            this.discountButton.Text = "Nuolaidos";
+            this.discountButton.UseVisualStyleBackColor = true;
             // 
             // AddNewProductTypeButton
             // 
@@ -244,29 +239,29 @@ namespace PikNiMi.Forms
             this.Historybutton.Text = "Istorija";
             this.Historybutton.UseVisualStyleBackColor = true;
             // 
-            // CountFullOrderDiscountButton
+            // countFullOrderDiscountButton
             // 
-            this.CountFullOrderDiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.countFullOrderDiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CountFullOrderDiscountButton.Location = new System.Drawing.Point(668, 3);
-            this.CountFullOrderDiscountButton.Name = "CountFullOrderDiscountButton";
-            this.CountFullOrderDiscountButton.Size = new System.Drawing.Size(129, 31);
-            this.CountFullOrderDiscountButton.TabIndex = 9;
-            this.CountFullOrderDiscountButton.TabStop = false;
-            this.CountFullOrderDiscountButton.Text = "Skaičiuoti savikainą";
-            this.CountFullOrderDiscountButton.UseVisualStyleBackColor = true;
+            this.countFullOrderDiscountButton.Location = new System.Drawing.Point(668, 3);
+            this.countFullOrderDiscountButton.Name = "countFullOrderDiscountButton";
+            this.countFullOrderDiscountButton.Size = new System.Drawing.Size(129, 31);
+            this.countFullOrderDiscountButton.TabIndex = 9;
+            this.countFullOrderDiscountButton.TabStop = false;
+            this.countFullOrderDiscountButton.Text = "Skaičiuoti savikainą";
+            this.countFullOrderDiscountButton.UseVisualStyleBackColor = true;
             // 
-            // DateTextBox
+            // dateTextBox
             // 
-            this.DateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DateTextBox.Location = new System.Drawing.Point(402, 3);
-            this.DateTextBox.Name = "DateTextBox";
-            this.DateTextBox.Size = new System.Drawing.Size(127, 20);
-            this.DateTextBox.TabIndex = 6;
-            this.DateTextBox.TabStop = false;
+            this.dateTextBox.Location = new System.Drawing.Point(402, 3);
+            this.dateTextBox.Name = "dateTextBox";
+            this.dateTextBox.Size = new System.Drawing.Size(127, 20);
+            this.dateTextBox.TabIndex = 6;
+            this.dateTextBox.TabStop = false;
             // 
             // MainForm
             // 
@@ -274,14 +269,14 @@ namespace PikNiMi.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableBottomLayoutPanel);
-            this.Controls.Add(this.ProductDataGridView);
+            this.Controls.Add(this.productDataGridView);
             this.Controls.Add(this.tableUpperLayoutPanel);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tableUpperLayoutPanel.ResumeLayout(false);
             this.tableUpperLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).EndInit();
             this.tableBottomLayoutPanel.ResumeLayout(false);
             this.tableBottomLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -291,20 +286,20 @@ namespace PikNiMi.Forms
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableUpperLayoutPanel;
-        private System.Windows.Forms.ComboBox ProductTypeComboBox;
-        private System.Windows.Forms.Button AddNewProductButton;
-        private System.Windows.Forms.Button UpdateProductButton;
-        private System.Windows.Forms.TextBox SearchTextBox;
-        private System.Windows.Forms.Button CancelSearchButton;
-        private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.DataGridView ProductDataGridView;
+        private System.Windows.Forms.ComboBox productTypeComboBox;
+        private System.Windows.Forms.Button addNewProductButton;
+        private System.Windows.Forms.Button updateProductButton;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.Button cancelSearchButton;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.DataGridView productDataGridView;
         private System.Windows.Forms.TableLayoutPanel tableBottomLayoutPanel;
-        private System.Windows.Forms.Button CountFullOrderDiscountButton;
-        private System.Windows.Forms.TextBox DateTextBox;
-        private System.Windows.Forms.Button DiscountButton;
+        private System.Windows.Forms.Button countFullOrderDiscountButton;
+        private System.Windows.Forms.TextBox dateTextBox;
+        private System.Windows.Forms.Button discountButton;
         private System.Windows.Forms.Button AddNewProductTypeButton;
         private System.Windows.Forms.Button Historybutton;
-        private System.Windows.Forms.TextBox TripExpensesTextBox;
+        private System.Windows.Forms.TextBox tripExpensesTextBox;
     }
 }
 
