@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using PikNiMi.Models;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass;
+using PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository;
+using PikNiMi.Repository.DependencyInjectionRepositoryClass.Service;
 using PikNiMi.Repository.SqlLite;
 
 namespace PikNiMi.Forms.Service
@@ -9,9 +11,12 @@ namespace PikNiMi.Forms.Service
     public class ProductDataGridViewService
     {
         private readonly RepositoryQueryCalls _repositoryQueryCalls;
+        private readonly NumberService _numberService;
 
         public ProductDataGridViewService()
         {
+            _numberService = new NumberService(new InvariantCultureNumberService());
+            // try make attribute in ctor of dataGridView when implement search basic
             _repositoryQueryCalls = new RepositoryQueryCalls(new SqlLiteRepositoryQueryCalls());
         }
 
@@ -20,6 +25,35 @@ namespace PikNiMi.Forms.Service
             var bidingSourceProductModel = new FullProductInfoModel();
             BindingSource productBidingSource = new BindingSource {bidingSourceProductModel};
             return productBidingSource;
+        }
+
+        private FullProductInfoModel GetAllInfoFromRow(DataGridView productDataGridView, int row)
+        {
+            FullProductInfoModel productInfoModel = new FullProductInfoModel()
+            {
+                ProductId = _numberService.ParseStringToNumber(GetCellValue(productDataGridView, row, 0)),
+                ProductReceiptDate = GetCellValue(productDataGridView, row, 1),
+                ProductType = GetCellValue(productDataGridView, row, 2),
+
+                ProductDescription = GetCellValue(productDataGridView, row, 3),
+                ProductColor = GetCellValue(productDataGridView, row, 4),
+                ProductSize = GetCellValue(productDataGridView, row, 5),
+                ProductCare = GetCellValue(productDataGridView, row, 6),
+                ProductMadeStuff = GetCellValue(productDataGridView, row, 7),
+                ProductBuyLocation = GetCellValue(productDataGridView, row, 8),
+
+                ProductQuantity = _numberService.TryParseStringToNumberOrNull(GetCellValue(productDataGridView, row, 9)),
+                ProductQuantityLeft = _numberService.TryParseStringToNumberOrNull(GetCellValue(productDataGridView, row, 10)),
+
+
+            };
+
+            return productInfoModel;
+        }
+
+        private string GetCellValue(DataGridView productDataGridView, int row, int cell)
+        {
+            return productDataGridView.Rows[row].Cells[cell].Value.ToString();
         }
 
         public async Task<DataGridView> LoadFullProductInfo(DataGridView productDataGridView)
@@ -40,6 +74,8 @@ namespace PikNiMi.Forms.Service
             productDataGridView.DataSource = productBidingSource;
             return productDataGridView;
         }
+
+        
         
     }
 }

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using PikNiMi.Interface.RepositoryInterface;
 using PikNiMi.Models;
 
-namespace PikNiMi.Repository.DependencyInjectionRepositoryClass
+namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
 {
     public class RepositoryQueryCalls
     {

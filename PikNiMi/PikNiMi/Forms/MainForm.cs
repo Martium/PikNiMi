@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using PikNiMi.Forms.Constants;
 using PikNiMi.Forms.Service;
+using PikNiMi.Models;
 
 namespace PikNiMi.Forms
 {
@@ -10,6 +12,8 @@ namespace PikNiMi.Forms
         private readonly TextBoxFormService _textBoxFormService;
         private readonly ProductTypeComboBoxService _productTypeService;
         private readonly ProductDataGridViewService _productDataGridViewService;
+        private List<FullProductInfoModel> _fullProductInfo;
+
 
         public MainForm()
         {
@@ -18,6 +22,7 @@ namespace PikNiMi.Forms
             _textBoxFormService = new TextBoxFormService();
             _productTypeService = new ProductTypeComboBoxService();
             _productDataGridViewService = new ProductDataGridViewService();
+            _fullProductInfo = new List<FullProductInfoModel>();
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -27,8 +32,9 @@ namespace PikNiMi.Forms
             SetDefaultTextBoxesTextValue();
             _productTypeService.SetProductTypeCustomValues(ProductTypeComboBox);
             SetAllButtonsControl(false);
-             await _productDataGridViewService.LoadFullProductInfo(productDataGridView);
+             await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
             SetAllButtonsControl(true);
+            FillLastLoadInfoToList();
         }
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
@@ -103,6 +109,34 @@ namespace PikNiMi.Forms
             CountFullOrderDiscountButton.Enabled = isAllowed;
         }
 
+        private void FillLastLoadInfoToList()
+        {
+            int rowCount = ProductDataGridView.Rows.Count;
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                FullProductInfoModel productInfoModel = new FullProductInfoModel()
+                {
+                    ProductId = int.Parse(ProductDataGridView.Rows[i].Cells[0].Value.ToString()),
+                    ProductReceiptDate = ProductDataGridView.Rows[i].Cells[1].Value.ToString(),
+                    ProductType = ProductDataGridView.Rows[i].Cells[2].Value.ToString(),
+
+                    ProductDescription = ProductDataGridView.Rows[i].Cells[3].Value.ToString(),
+                    ProductColor = ProductDataGridView.Rows[i].Cells[4].Value.ToString(),
+                    ProductSize = ProductDataGridView.Rows[i].Cells[5].Value.ToString(),
+                    ProductCare = ProductDataGridView.Rows[i].Cells[6].Value.ToString(),
+                    ProductMadeStuff = ProductDataGridView.Rows[i].Cells[7].Value.ToString(),
+                    ProductBuyLocation = ProductDataGridView.Rows[i].Cells[8].Value.ToString()
+
+
+                };
+
+                _fullProductInfo.Add(productInfoModel);
+            }
+
+        }
+
         #endregion
+       
     }
 }

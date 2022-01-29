@@ -38,7 +38,7 @@ namespace PikNiMi.Forms
             this.CancelSearchButton = new System.Windows.Forms.Button();
             this.SearchButton = new System.Windows.Forms.Button();
             this.ProductTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.productDataGridView = new System.Windows.Forms.DataGridView();
+            this.ProductDataGridView = new System.Windows.Forms.DataGridView();
             this.tableBottomLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.TripExpensesTextBox = new System.Windows.Forms.TextBox();
             this.DiscountButton = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@ namespace PikNiMi.Forms
             this.CountFullOrderDiscountButton = new System.Windows.Forms.Button();
             this.DateTextBox = new System.Windows.Forms.TextBox();
             this.tableUpperLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).BeginInit();
             this.tableBottomLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,17 +152,21 @@ namespace PikNiMi.Forms
             this.ProductTypeComboBox.TabIndex = 0;
             this.ProductTypeComboBox.TabStop = false;
             // 
-            // productDataGridView
+            // ProductDataGridView
             // 
-            this.productDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ProductDataGridView.AllowUserToAddRows = false;
+            this.ProductDataGridView.AllowUserToDeleteRows = false;
+            this.ProductDataGridView.AllowUserToResizeColumns = false;
+            this.ProductDataGridView.AllowUserToResizeRows = false;
+            this.ProductDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.productDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.productDataGridView.Location = new System.Drawing.Point(3, 106);
-            this.productDataGridView.Name = "productDataGridView";
-            this.productDataGridView.Size = new System.Drawing.Size(794, 264);
-            this.productDataGridView.TabIndex = 1;
-            this.productDataGridView.TabStop = false;
+            this.ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductDataGridView.Location = new System.Drawing.Point(3, 106);
+            this.ProductDataGridView.Name = "ProductDataGridView";
+            this.ProductDataGridView.Size = new System.Drawing.Size(794, 264);
+            this.ProductDataGridView.TabIndex = 1;
+            this.ProductDataGridView.TabStop = false;
             // 
             // tableBottomLayoutPanel
             // 
@@ -270,14 +274,14 @@ namespace PikNiMi.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableBottomLayoutPanel);
-            this.Controls.Add(this.productDataGridView);
+            this.Controls.Add(this.ProductDataGridView);
             this.Controls.Add(this.tableUpperLayoutPanel);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tableUpperLayoutPanel.ResumeLayout(false);
             this.tableUpperLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).EndInit();
             this.tableBottomLayoutPanel.ResumeLayout(false);
             this.tableBottomLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -293,7 +297,7 @@ namespace PikNiMi.Forms
         private System.Windows.Forms.TextBox SearchTextBox;
         private System.Windows.Forms.Button CancelSearchButton;
         private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.DataGridView productDataGridView;
+        private System.Windows.Forms.DataGridView ProductDataGridView;
         private System.Windows.Forms.TableLayoutPanel tableBottomLayoutPanel;
         private System.Windows.Forms.Button CountFullOrderDiscountButton;
         private System.Windows.Forms.TextBox DateTextBox;
