@@ -36,7 +36,7 @@ namespace PikNiMi.Forms.Service
 
         public double? TryParseStringToDoubleNumberOrNull(string text)
         {
-            string changeCommaToDot = ChangeCommaToDot(text);
+            string changeCommaToDot = text != null ? ChangeCommaToDot(text) : null;
 
             double? numberOrNull;
 

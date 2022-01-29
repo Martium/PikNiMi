@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Forms;
 using PikNiMi.Models;
-using PikNiMi.Repository.DependencyInjectionRepositoryClass;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass.Service;
 using PikNiMi.Repository.SqlLite;
@@ -44,8 +43,15 @@ namespace PikNiMi.Forms.Service
 
                 ProductQuantity = _numberService.TryParseStringToNumberOrNull(GetCellValue(productDataGridView, row, 9)),
                 ProductQuantityLeft = _numberService.TryParseStringToNumberOrNull(GetCellValue(productDataGridView, row, 10)),
-
-
+                ProductOriginalUnitPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 11)),
+                ProductQuantityPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 12)),
+                ProductUnitPriceInEuro = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 13)),
+                ProductQuantityPriceInEuro = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 14)),
+                TripExpenses = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 15)),
+                ProductExpensesCostPrice = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 16)),
+                ProductSoldPrice = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 17)),
+                ProductSold = _numberService.TryParseStringToNumberOrNull(GetCellValue(productDataGridView, row, 18)),
+                ProductProfit = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 19))
             };
 
             return productInfoModel;
@@ -53,7 +59,18 @@ namespace PikNiMi.Forms.Service
 
         private string GetCellValue(DataGridView productDataGridView, int row, int cell)
         {
-            return productDataGridView.Rows[row].Cells[cell].Value.ToString();
+            string cellValue;
+
+            if (productDataGridView.Rows[row].Cells[cell].Value != null)
+            {
+                cellValue = productDataGridView.Rows[row].Cells[cell].Value.ToString();
+            }
+            else
+            {
+                cellValue = null;
+            }
+
+            return cellValue;
         }
 
         public async Task<DataGridView> LoadFullProductInfo(DataGridView productDataGridView)
@@ -62,6 +79,7 @@ namespace PikNiMi.Forms.Service
             productBidingSource.DataSource = await _repositoryQueryCalls.GetAllOfFullProductInfo();
             productDataGridView.DataSource = productBidingSource;
             //Change header size and text to LT introduceMethod
+
             return  productDataGridView;
         }
 
