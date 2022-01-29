@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormTextBoxTests\TextBoxFormServiceUnitTests.cs" />
-    <Compile Include="NumberService\NumberServiceUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
