@@ -7,13 +7,38 @@ namespace UnitTests.NumberService
     public class NumberServiceUnitTests
     {
         private readonly PikNiMi.Repository.DependencyInjectionRepositoryClass.Service.NumberService _numberService;
+        private const string ExpectedNumberError = "Expected number but you get null";
+
         public NumberServiceUnitTests()
         {
             _numberService =
                 new PikNiMi.Repository.DependencyInjectionRepositoryClass.Service.NumberService(
                     new InvariantCultureNumberService());
         }
-        
+
+        [TestMethod]
+        public void TryParseStringToNumberOrNull_ParseToNumberOrNull_CaseOneReturnNumberCaseTwoReturnNull()
+        {
+            string caseOnePassedNumber = "1";
+            string caseTwoPassedNotNumber = "not number";
+
+            int caseOneExpectedResult = 1;
+
+            int? caseOneActualResult = _numberService.TryParseStringToNumberOrNull(caseOnePassedNumber);
+            int? caseTwoActualResult = _numberService.TryParseStringToNumberOrNull(caseTwoPassedNotNumber);
+
+            if (caseOneActualResult.HasValue)
+            {
+                Assert.AreEqual(caseOneExpectedResult, caseOneActualResult.Value);
+            }
+            else
+            {
+                Assert.Fail(ExpectedNumberError);
+            }
+
+            Assert.IsNull(caseTwoActualResult);
+        }
+
 
         [TestMethod]
         public void TryParseStringToDoubleNumberOrNull_ParseToNumberOrNull_CaseOneReturnNumberCaseTwoReturnNull()
@@ -33,27 +58,25 @@ namespace UnitTests.NumberService
 
             double? caseTwoIsNullResult = _numberService.TryParseStringToDoubleNumberOrNull(caseTwoNotNumberPassed);
 
-            if (firstValueCaseOneActualResult != null)
+            if (firstValueCaseOneActualResult.HasValue)
             {
                 Assert.AreEqual(caseOneExpectedResult, firstValueCaseOneActualResult.Value);
             }
             else
             {
-                Assert.Fail();
+                Assert.Fail(ExpectedNumberError);
             }
 
-            if (secondValueCaseOneActualResult != null)
+            if (secondValueCaseOneActualResult.HasValue)
             {
                 Assert.AreEqual(caseOneExpectedResult, secondValueCaseOneActualResult.Value);
             }
             else
             {
-                Assert.Fail();
+                Assert.Fail(ExpectedNumberError);
             }
 
             Assert.IsNull(caseTwoIsNullResult);
-
-
         }
     }
 }
