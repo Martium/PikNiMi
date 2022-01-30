@@ -95,6 +95,19 @@ namespace PikNiMi.Forms
             SetAllButtonsControl(true);
         }
 
+        private void ProductTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchButton_Click(this, new EventArgs());
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SearchButton_Click(this, new EventArgs());
+            }
+        }
+
         #region CustomPrivateMethods
 
         private void SetTextBoxLength()
@@ -148,8 +161,9 @@ namespace PikNiMi.Forms
             _productDataGridViewService.LoadLastInfo(ProductDataGridView, _lastProductsInfo);
         }
 
-        #endregion
 
+
+        #endregion
        
     }
 }
