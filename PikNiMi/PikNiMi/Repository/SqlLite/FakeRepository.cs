@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SQLite;
-using System.Xml;
 
 namespace PikNiMi.Repository.SqlLite
 {
@@ -8,7 +7,7 @@ namespace PikNiMi.Repository.SqlLite
     {
         private const string FullProductInfoTable = "FullProductInfoTable";
 
-        private string[] _firstAllInfo =
+        private readonly string[] _firstAllInfo =
         {
             "2022-02-22",
             "Suknelė",
@@ -31,7 +30,7 @@ namespace PikNiMi.Repository.SqlLite
             "0.95"
         };
 
-        private string[] _secondAllInfo =
+        private readonly string[] _secondAllInfo =
         {
             "2022-02-22",
             "Džinsai",
@@ -54,7 +53,7 @@ namespace PikNiMi.Repository.SqlLite
             "NULL"
         };
 
-        private string[] _thirdAllInfo =
+        private readonly string[] _thirdAllInfo =
         {
             "2022-02-22",
             "Džemperis",
@@ -80,6 +79,7 @@ namespace PikNiMi.Repository.SqlLite
         private string ImplementSearchData(string[] allInfo)
         {
             string searchFormat = string.Empty;
+
             foreach (var info in allInfo)
             {
                 searchFormat += $"{info} + {Environment.NewLine} ";

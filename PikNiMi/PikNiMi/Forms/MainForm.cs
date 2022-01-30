@@ -37,9 +37,12 @@ namespace PikNiMi.Forms
             FillLastLoadInfoToList();
         }
 
-        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        private async void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(SearchTextBox.Text))
+            {
+                await _productDataGridViewService.LoadFullProductInfoBySearchPhrase(ProductDataGridView, SearchTextBox.Text);
+            }
         }
 
         private void SearchTextBox_GotFocus(object sender, EventArgs e)

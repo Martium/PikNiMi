@@ -42,5 +42,20 @@ namespace PikNiMi.Repository.SqlLite
                 return existingInfo;
             }
         }
+
+        public Task<IEnumerable<FullProductInfoModel>> GetAllInfoBySearchPhrase(string searchPhrase)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string searchCommand = SqlLiteQueryToDataBaseCommands.SearchBySearchPhraseAllInfo(searchPhrase);
+
+                Task<IEnumerable<FullProductInfoModel>> existingInfo =
+                    dbConnection.QueryAsync<FullProductInfoModel>(searchCommand);
+
+                return existingInfo;
+            }
+        }
     }
 }
