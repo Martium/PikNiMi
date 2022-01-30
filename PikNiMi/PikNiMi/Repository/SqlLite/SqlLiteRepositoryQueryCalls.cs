@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Threading.Tasks;
 using Dapper;
@@ -50,6 +51,22 @@ namespace PikNiMi.Repository.SqlLite
                 dbConnection.Open();
 
                 string searchCommand = SqlLiteQueryToDataBaseCommands.SearchBySearchPhraseAllInfo(searchPhrase);
+
+                Task<IEnumerable<FullProductInfoModel>> existingInfo =
+                    dbConnection.QueryAsync<FullProductInfoModel>(searchCommand);
+
+                return existingInfo;
+            }
+        }
+
+        public Task<IEnumerable<FullProductInfoModel>> GetAllInfoBySearchAndProductType(string searchPhrase, string productType)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string searchCommand =
+                    SqlLiteQueryToDataBaseCommands.SearchInfoByProductTypeAndSearchPhrase(productType, searchPhrase);
 
                 Task<IEnumerable<FullProductInfoModel>> existingInfo =
                     dbConnection.QueryAsync<FullProductInfoModel>(searchCommand);

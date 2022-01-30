@@ -3,10 +3,10 @@
     public static class SqlLiteQueryToDataBaseCommands
     {
         private const string FullProductInfoTable = "FullProductInfoTable FPIT";
-        private const string FullProductInfoTableShort = "FPIT";
 
         private const string ProductId = "FPIT.ProductId";
-       // private static readonly string ProductTypeNone = "Pasirinkti tipą...";
+        private const string ProductType = "FPIT.ProductType";
+        private const string Search = "FPIT.Search";
 
         public static string GetAllOfFullProductInfoCommand()
         {
@@ -24,7 +24,7 @@
             string searchQuery =
                 $@"
                          SELECT * FROM {FullProductInfoTable}
-                        WHERE {FullProductInfoTableShort}.ProductType = '{productType}'
+                        WHERE {ProductType} = '{productType}'
                         ORDER BY {ProductId} DESC;
                 ";
 
@@ -36,7 +36,19 @@
             string searchQuery = 
                 $@"
                      SELECT * FROM {FullProductInfoTable}
-                     WHERE {FullProductInfoTableShort}.Search LIKE '%{searchPhrase}%'
+                     WHERE {Search} LIKE '%{searchPhrase}%'
+                     ORDER BY {ProductId} DESC;
+                ";
+
+            return searchQuery;
+        }
+
+        public static string SearchInfoByProductTypeAndSearchPhrase(string productType, string searchPhrase)
+        {
+            string searchQuery =
+                $@"
+                     SELECT * FROM {FullProductInfoTable}
+                     WHERE {Search} LIKE '%{searchPhrase}%' AND {ProductType} = '{productType}'
                      ORDER BY {ProductId} DESC;
                 ";
 

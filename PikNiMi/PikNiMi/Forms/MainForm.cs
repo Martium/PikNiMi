@@ -34,7 +34,6 @@ namespace PikNiMi.Forms
             SetAllButtonsControl(false);
              await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
             SetAllButtonsControl(true);
-            FillLastLoadInfoToList();
         }
 
         private async void SearchTextBox_TextChanged(object sender, EventArgs e)
@@ -67,15 +66,30 @@ namespace PikNiMi.Forms
 
         private async void SearchButton_Click(object sender, EventArgs e)
         {
-            if (_productDataGridViewService != null)
-               await _productDataGridViewService.LoadFullProductInfoBySearchPhraseAndProductType(SearchTextBox.Text,
-                    ProductTypeComboBox.Text, ProductDataGridView);
+            if (ProductTypeComboBox.Text == FormTextBoxDefaultTexts.ProductTypeComboBoxDefaultText)
+            {
+                //message box pasirinkite produkto tipą
+            }
+            else if (SearchTextBox.Text == FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder)
+            {
+                SetAllButtonsControl(false);
+                await _productDataGridViewService.LoadFullProductInfoBySelectedProductType(ProductTypeComboBox.Text, ProductDataGridView);
+                SetAllButtonsControl(true);
+            }
+            else
+            {
+                SetAllButtonsControl(false);
+                await _productDataGridViewService.LoadFullProductInfoBySearchPhraseAndProductType(ProductDataGridView,
+                    searchPhrase: SearchTextBox.Text, productType: ProductTypeComboBox.Text);
+                SetAllButtonsControl(true);
+            }
         }
 
         private async void CancelSearchButton_Click(object sender, EventArgs e)
         {
             SetAllButtonsControl(false);
             await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
+            SearchTextBox.Text = FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder;
             SetAllButtonsControl(true);
         }
 

@@ -109,8 +109,7 @@ namespace PikNiMi.Forms.Service
             return  productDataGridView;
         }
 
-        public async Task<DataGridView> LoadFullProductInfoBySearchPhraseAndProductType(string searchPhrase,
-            string productType, DataGridView productDataGridView)
+        public async Task<DataGridView> LoadFullProductInfoBySelectedProductType(string productType, DataGridView productDataGridView)
         {
             var productBidingSource = SetBidingSourceForProductDataGridView();
             productBidingSource.DataSource =
@@ -124,6 +123,16 @@ namespace PikNiMi.Forms.Service
         {
             var productBidingSource = SetBidingSourceForProductDataGridView();
             productBidingSource.DataSource = await _repositoryQueryCalls.GetAllInfoBySearchPhrase(searchPhrase);
+            productDataGridView.DataSource = productBidingSource;
+            return productDataGridView;
+        }
+
+        public async Task<DataGridView> LoadFullProductInfoBySearchPhraseAndProductType(DataGridView productDataGridView,
+            string searchPhrase, string productType)
+        {
+            var productBidingSource = SetBidingSourceForProductDataGridView();
+            productBidingSource.DataSource =
+                await _repositoryQueryCalls.GetAllInfoBySearchAndProductType(searchPhrase, productType);
             productDataGridView.DataSource = productBidingSource;
             return productDataGridView;
         }
