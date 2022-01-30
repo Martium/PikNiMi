@@ -34,7 +34,7 @@ namespace PikNiMi.Repository.SqlLite
                 dbConnection.Open();
 
                 string searchTypeCommand =
-                    SqlLiteQueryToDataBaseCommands.SearchByFullProductInfo(productType);
+                    SqlLiteQueryToDataBaseCommands.SearchBySpecificProductType(productType);
 
                 Task<IEnumerable<FullProductInfoModel>> existingInfo =
                     dbConnection.QueryAsync<FullProductInfoModel>(searchTypeCommand);

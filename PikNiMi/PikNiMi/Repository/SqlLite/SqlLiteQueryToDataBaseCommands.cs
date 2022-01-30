@@ -16,7 +16,7 @@
             return getExistingServiceQuery;
         }
 
-        public static string SearchByFullProductInfo(string productType)
+        public static string SearchBySpecificProductType(string productType)
         {
             string searchQuery =
                 $@"
@@ -24,6 +24,13 @@
                         WHERE {FullProductInfoTableShort}.ProductType = '{productType}'
                         ORDER BY {FullProductInfoTableShort}.ProductId DESC;
                 ";
+
+            return searchQuery;
+        }
+
+        public static string SearchBySearchPhraseAllInfo(string searchPhrase)
+        {
+            string searchQuery = "";
 
             return searchQuery;
         }
