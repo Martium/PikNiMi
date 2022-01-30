@@ -100,6 +100,7 @@ namespace PikNiMi.Forms
             this.AddNewProductButton.TabStop = false;
             this.AddNewProductButton.Text = "Pridėti naują produktą";
             this.AddNewProductButton.UseVisualStyleBackColor = true;
+            this.AddNewProductButton.Click += new System.EventHandler(this.AddNewProductButton_Click);
             // 
             // SearchTextBox
             // 

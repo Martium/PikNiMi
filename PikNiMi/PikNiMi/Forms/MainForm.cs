@@ -108,6 +108,20 @@ namespace PikNiMi.Forms
             }
         }
 
+        private void AddNewProductButton_Click(object sender, EventArgs e)
+        {
+            OpenFormOrClosed(new ProductForm());
+        }
+
+        private async void AnotherForm_Closed(object sender, EventArgs e)
+        {
+            this.Show();
+            SetDefaultTextBoxesTextValue();
+            SetAllButtonsControl(false);
+            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
+            SetAllButtonsControl(true);
+        }
+
         #region CustomPrivateMethods
 
         private void SetTextBoxLength()
@@ -161,9 +175,27 @@ namespace PikNiMi.Forms
             _productDataGridViewService.LoadLastInfo(ProductDataGridView, _lastProductsInfo);
         }
 
+        private void OpenFormOrClosed(Form form)
+        {
+            form.Closed += AnotherForm_Closed;
+            HideListOfProductsFullInfoForm(form);
+        }
+        private void HideListOfProductsFullInfoForm(Form form)
+        {
+            this.Hide();
+            form.Show();
+
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                form.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+
+
 
 
         #endregion
-       
+
     }
 }
