@@ -40,7 +40,9 @@ namespace PikNiMi.Forms
         {
             if (!string.IsNullOrWhiteSpace(SearchTextBox.Text))
             {
+                SetAllButtonsControl(false);
                 await _productDataGridViewService.LoadFullProductInfoBySearchPhrase(ProductDataGridView, SearchTextBox.Text);
+                SetAllButtonsControl(true);
             }
         }
 
