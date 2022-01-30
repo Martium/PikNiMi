@@ -4,7 +4,7 @@
     {
         private const string FullProductInfoTable = "FullProductInfoTable FPIT";
         private const string FullProductInfoTableShort = "FPIT";
-        private static readonly string ProductTypeNone = "Pasirinkti tipą...";
+       // private static readonly string ProductTypeNone = "Pasirinkti tipą...";
 
         public static string GetAllOfFullProductInfoCommand()
         {
@@ -16,28 +16,14 @@
             return getExistingServiceQuery;
         }
 
-        public static string SearchFullProductInfoBySearchRequest(string searchPhrase, string productType)
+        public static string SearchByFullProductInfo(string productType)
         {
-            string searchQuery;
-
-            if (productType == ProductTypeNone)
-            {
-                searchQuery = 
-                    $@"
-                        SELECT * FROM {FullProductInfoTable}
-                        WHERE LIKE '%{searchPhrase}%'
+            string searchQuery =
+                $@"
+                         SELECT * FROM {FullProductInfoTable}
+                        WHERE {FullProductInfoTableShort}.ProductType = '{productType}'
                         ORDER BY {FullProductInfoTableShort}.ProductId DESC;
-                    ";
-            }
-            else
-            {
-                searchQuery = 
-                    $@"
-                        SELECT * FROM {FullProductInfoTable}
-                        WHERE * LIKE '%{searchPhrase}%' AND {FullProductInfoTableShort}.ProductType = '{productType}'
-                    ";
-            }
-
+                ";
 
             return searchQuery;
         }

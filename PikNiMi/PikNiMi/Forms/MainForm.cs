@@ -12,7 +12,7 @@ namespace PikNiMi.Forms
         private readonly TextBoxFormService _textBoxFormService;
         private readonly ProductTypeComboBoxService _productTypeService;
         private readonly ProductDataGridViewService _productDataGridViewService;
-        private List<FullProductInfoModel> _fullProductInfo;
+        private List<FullProductInfoModel> _lastProductsInfo;
 
 
         public MainForm()
@@ -22,7 +22,7 @@ namespace PikNiMi.Forms
             _textBoxFormService = new TextBoxFormService();
             _productTypeService = new ProductTypeComboBoxService();
             _productDataGridViewService = new ProductDataGridViewService();
-            _fullProductInfo = new List<FullProductInfoModel>();
+            _lastProductsInfo = new List<FullProductInfoModel>();
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -62,9 +62,18 @@ namespace PikNiMi.Forms
             SetSpecificTextToTextBoxWhenLostFocus(FormTextBoxDefaultTexts.TripExpensesTextBoxPlaceHolder, TripExpensesTextBox);
         }
 
-        private void SearchButton_Click(object sender, EventArgs e)
+        private async void SearchButton_Click(object sender, EventArgs e)
         {
-          
+            if (_productDataGridViewService != null)
+               await _productDataGridViewService.LoadFullProductInfoBySearchPhraseAndProductType(SearchTextBox.Text,
+                    ProductTypeComboBox.Text, ProductDataGridView);
+        }
+
+        private async void CancelSearchButton_Click(object sender, EventArgs e)
+        {
+            SetAllButtonsControl(false);
+            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
+            SetAllButtonsControl(true);
         }
 
         #region CustomPrivateMethods
@@ -111,32 +120,17 @@ namespace PikNiMi.Forms
 
         private void FillLastLoadInfoToList()
         {
-            int rowCount = ProductDataGridView.Rows.Count;
+            _lastProductsInfo.Clear();
+            _lastProductsInfo = _productDataGridViewService.GetLastLoadInfoFromDataGridView(ProductDataGridView);
+        }
 
-            for (int i = 0; i < rowCount; i++)
-            {
-                FullProductInfoModel productInfoModel = new FullProductInfoModel()
-                {
-                    ProductId = int.Parse(ProductDataGridView.Rows[i].Cells[0].Value.ToString()),
-                    ProductReceiptDate = ProductDataGridView.Rows[i].Cells[1].Value.ToString(),
-                    ProductType = ProductDataGridView.Rows[i].Cells[2].Value.ToString(),
-
-                    ProductDescription = ProductDataGridView.Rows[i].Cells[3].Value.ToString(),
-                    ProductColor = ProductDataGridView.Rows[i].Cells[4].Value.ToString(),
-                    ProductSize = ProductDataGridView.Rows[i].Cells[5].Value.ToString(),
-                    ProductCare = ProductDataGridView.Rows[i].Cells[6].Value.ToString(),
-                    ProductMadeStuff = ProductDataGridView.Rows[i].Cells[7].Value.ToString(),
-                    ProductBuyLocation = ProductDataGridView.Rows[i].Cells[8].Value.ToString()
-
-
-                };
-
-                _fullProductInfo.Add(productInfoModel);
-            }
-
+        private void LoadLastInfoFromListToProductDataGridView()
+        {
+            _productDataGridViewService.LoadLastInfo(ProductDataGridView, _lastProductsInfo);
         }
 
         #endregion
+
        
     }
 }

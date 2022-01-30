@@ -27,21 +27,19 @@ namespace PikNiMi.Repository.SqlLite
             }
         }
 
-        public Task<IEnumerable<FullProductInfoModel>> GetAllOfProductInfoBySearchPhraseAndProductType(
-            string searchPhrase, string productType)
+        public Task<IEnumerable<FullProductInfoModel>> GetAllOfProductInfoBySelectedProductType(string productType)
         {
             using (var dbConnection = new SQLiteConnection(ConnectionString))
             {
                 dbConnection.Open();
 
                 string searchTypeCommand =
-                    SqlLiteQueryToDataBaseCommands.SearchFullProductInfoBySearchRequest(searchPhrase, productType);
+                    SqlLiteQueryToDataBaseCommands.SearchByFullProductInfo(productType);
 
                 Task<IEnumerable<FullProductInfoModel>> existingInfo =
                     dbConnection.QueryAsync<FullProductInfoModel>(searchTypeCommand);
-                var response =  existingInfo;
 
-                return response;
+                return existingInfo;
             }
         }
     }

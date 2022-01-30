@@ -127,6 +127,7 @@ namespace PikNiMi.Forms
             this.CancelSearchButton.TabStop = false;
             this.CancelSearchButton.Text = "atšaukti";
             this.CancelSearchButton.UseVisualStyleBackColor = true;
+            this.CancelSearchButton.Click += new System.EventHandler(this.CancelSearchButton_Click);
             // 
             // SearchButton
             // 

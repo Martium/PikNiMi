@@ -8,8 +8,7 @@ namespace PikNiMi.Interface.RepositoryInterface
     {
         Task<IEnumerable<FullProductInfoModel>> GetAllOfFullProductInfo();
 
-        Task<IEnumerable<FullProductInfoModel>> GetAllOfProductInfoBySearchPhraseAndProductType(
-            string searchPhrase, string productType);
+        Task<IEnumerable<FullProductInfoModel>> GetAllOfProductInfoBySelectedProductType(string productType);
     }
 
 }
