@@ -82,7 +82,7 @@ namespace PikNiMi.Repository.SqlLite
             string searchFormat = string.Empty;
             foreach (var info in allInfo)
             {
-                searchFormat += $"{info} + {Environment.NewLine}";
+                searchFormat += $"{info} + {Environment.NewLine} ";
             }
 
             return searchFormat;
