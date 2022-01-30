@@ -38,6 +38,8 @@ namespace PikNiMi.Repository.SqlLite
                     [ProductSold] [Integer] NULL,
                     [ProductProfit] [Numeric] NULL,
 
+                    [Search] [nvarchar] (3000) NOT NULL,
+                    
                     UNIQUE (ProductId)
                 );
             ";
@@ -49,5 +51,6 @@ namespace PikNiMi.Repository.SqlLite
 
             return tableCommands;
         }
+
     }
 }

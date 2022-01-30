@@ -113,6 +113,7 @@ namespace PikNiMi.Forms
             this.SearchTextBox.TabStop = false;
             this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
             this.SearchTextBox.GotFocus += new System.EventHandler(this.SearchTextBox_GotFocus);
+            this.SearchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchTextBox_KeyDown);
             this.SearchTextBox.LostFocus += new System.EventHandler(this.SearchTextBox_LostFocus);
             // 
             // CancelSearchButton
@@ -127,6 +128,7 @@ namespace PikNiMi.Forms
             this.CancelSearchButton.TabStop = false;
             this.CancelSearchButton.Text = "atšaukti";
             this.CancelSearchButton.UseVisualStyleBackColor = true;
+            this.CancelSearchButton.Click += new System.EventHandler(this.CancelSearchButton_Click);
             // 
             // SearchButton
             // 
@@ -151,6 +153,7 @@ namespace PikNiMi.Forms
             this.ProductTypeComboBox.Size = new System.Drawing.Size(314, 21);
             this.ProductTypeComboBox.TabIndex = 0;
             this.ProductTypeComboBox.TabStop = false;
+            this.ProductTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.ProductTypeComboBox_SelectedIndexChanged);
             // 
             // ProductDataGridView
             // 

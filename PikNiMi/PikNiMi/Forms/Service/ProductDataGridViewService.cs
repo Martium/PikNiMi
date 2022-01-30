@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using PikNiMi.Models;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository;
@@ -73,6 +74,31 @@ namespace PikNiMi.Forms.Service
             return cellValue;
         }
 
+        public List<FullProductInfoModel> GetLastLoadInfoFromDataGridView(DataGridView productDataGridView)
+        {
+            var lastLoadInfo = new List<FullProductInfoModel>();
+
+            int rowCount = productDataGridView.RowCount;
+
+            for (int row = 0; row < rowCount; row++)
+            {
+                var fullRowInfo = GetAllInfoFromRow(productDataGridView, row);
+
+                lastLoadInfo.Add(fullRowInfo);
+            }
+
+            return lastLoadInfo;
+        }
+
+        public DataGridView LoadLastInfo(DataGridView productDataGridView, List<FullProductInfoModel> lastProductInfo)
+        {
+            var productBidingSource = SetBidingSourceForProductDataGridView();
+            productBidingSource.DataSource = lastProductInfo;
+            productDataGridView.DataSource = productBidingSource;
+
+            return productDataGridView;
+        }
+
         public async Task<DataGridView> LoadFullProductInfo(DataGridView productDataGridView)
         {
             var productBidingSource = SetBidingSourceForProductDataGridView();
@@ -83,12 +109,30 @@ namespace PikNiMi.Forms.Service
             return  productDataGridView;
         }
 
-        public async Task<DataGridView> LoadFullProductInfoBySearchPhraseAndProductType(string searchPhrase,
-            string productType, DataGridView productDataGridView)
+        public async Task<DataGridView> LoadFullProductInfoBySelectedProductType(string productType, DataGridView productDataGridView)
         {
             var productBidingSource = SetBidingSourceForProductDataGridView();
             productBidingSource.DataSource =
-                await _repositoryQueryCalls.GetAllOfProductInfoBySearchPhraseAndProductType(searchPhrase, productType);
+                await _repositoryQueryCalls.GetAllOfProductInfoBySelectedProductType(productType);
+            productDataGridView.DataSource = productBidingSource;
+            return productDataGridView;
+        }
+
+        public async Task<DataGridView> LoadFullProductInfoBySearchPhrase(DataGridView productDataGridView,
+            string searchPhrase)
+        {
+            var productBidingSource = SetBidingSourceForProductDataGridView();
+            productBidingSource.DataSource = await _repositoryQueryCalls.GetAllInfoBySearchPhrase(searchPhrase);
+            productDataGridView.DataSource = productBidingSource;
+            return productDataGridView;
+        }
+
+        public async Task<DataGridView> LoadFullProductInfoBySearchPhraseAndProductType(DataGridView productDataGridView,
+            string searchPhrase, string productType)
+        {
+            var productBidingSource = SetBidingSourceForProductDataGridView();
+            productBidingSource.DataSource =
+                await _repositoryQueryCalls.GetAllInfoBySearchAndProductType(searchPhrase, productType);
             productDataGridView.DataSource = productBidingSource;
             return productDataGridView;
         }

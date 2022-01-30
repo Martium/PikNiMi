@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Threading.Tasks;
 using Dapper;
@@ -27,21 +28,50 @@ namespace PikNiMi.Repository.SqlLite
             }
         }
 
-        public Task<IEnumerable<FullProductInfoModel>> GetAllOfProductInfoBySearchPhraseAndProductType(
-            string searchPhrase, string productType)
+        public Task<IEnumerable<FullProductInfoModel>> GetAllOfProductInfoBySelectedProductType(string productType)
         {
             using (var dbConnection = new SQLiteConnection(ConnectionString))
             {
                 dbConnection.Open();
 
                 string searchTypeCommand =
-                    SqlLiteQueryToDataBaseCommands.SearchFullProductInfoBySearchRequest(searchPhrase, productType);
+                    SqlLiteQueryToDataBaseCommands.SearchBySpecificProductType(productType);
 
                 Task<IEnumerable<FullProductInfoModel>> existingInfo =
                     dbConnection.QueryAsync<FullProductInfoModel>(searchTypeCommand);
-                var response =  existingInfo;
 
-                return response;
+                return existingInfo;
+            }
+        }
+
+        public Task<IEnumerable<FullProductInfoModel>> GetAllInfoBySearchPhrase(string searchPhrase)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string searchCommand = SqlLiteQueryToDataBaseCommands.SearchBySearchPhraseAllInfo(searchPhrase);
+
+                Task<IEnumerable<FullProductInfoModel>> existingInfo =
+                    dbConnection.QueryAsync<FullProductInfoModel>(searchCommand);
+
+                return existingInfo;
+            }
+        }
+
+        public Task<IEnumerable<FullProductInfoModel>> GetAllInfoBySearchAndProductType(string searchPhrase, string productType)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string searchCommand =
+                    SqlLiteQueryToDataBaseCommands.SearchInfoByProductTypeAndSearchPhrase(productType, searchPhrase);
+
+                Task<IEnumerable<FullProductInfoModel>> existingInfo =
+                    dbConnection.QueryAsync<FullProductInfoModel>(searchCommand);
+
+                return existingInfo;
             }
         }
     }

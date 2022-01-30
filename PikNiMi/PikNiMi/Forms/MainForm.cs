@@ -12,7 +12,7 @@ namespace PikNiMi.Forms
         private readonly TextBoxFormService _textBoxFormService;
         private readonly ProductTypeComboBoxService _productTypeService;
         private readonly ProductDataGridViewService _productDataGridViewService;
-        private List<FullProductInfoModel> _fullProductInfo;
+        private List<FullProductInfoModel> _lastProductsInfo;
 
 
         public MainForm()
@@ -22,7 +22,7 @@ namespace PikNiMi.Forms
             _textBoxFormService = new TextBoxFormService();
             _productTypeService = new ProductTypeComboBoxService();
             _productDataGridViewService = new ProductDataGridViewService();
-            _fullProductInfo = new List<FullProductInfoModel>();
+            _lastProductsInfo = new List<FullProductInfoModel>();
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -34,12 +34,16 @@ namespace PikNiMi.Forms
             SetAllButtonsControl(false);
              await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
             SetAllButtonsControl(true);
-            FillLastLoadInfoToList();
         }
 
-        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        private async void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(SearchTextBox.Text))
+            {
+                SetAllButtonsControl(false);
+                await _productDataGridViewService.LoadFullProductInfoBySearchPhrase(ProductDataGridView, SearchTextBox.Text);
+                SetAllButtonsControl(true);
+            }
         }
 
         private void SearchTextBox_GotFocus(object sender, EventArgs e)
@@ -62,9 +66,46 @@ namespace PikNiMi.Forms
             SetSpecificTextToTextBoxWhenLostFocus(FormTextBoxDefaultTexts.TripExpensesTextBoxPlaceHolder, TripExpensesTextBox);
         }
 
-        private void SearchButton_Click(object sender, EventArgs e)
+        private async void SearchButton_Click(object sender, EventArgs e)
         {
-          
+            if (ProductTypeComboBox.Text == FormTextBoxDefaultTexts.ProductTypeComboBoxDefaultText)
+            {
+                //message box pasirinkite produkto tipą
+            }
+            else if (SearchTextBox.Text == FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder)
+            {
+                SetAllButtonsControl(false);
+                await _productDataGridViewService.LoadFullProductInfoBySelectedProductType(ProductTypeComboBox.Text, ProductDataGridView);
+                SetAllButtonsControl(true);
+            }
+            else
+            {
+                SetAllButtonsControl(false);
+                await _productDataGridViewService.LoadFullProductInfoBySearchPhraseAndProductType(ProductDataGridView,
+                    searchPhrase: SearchTextBox.Text, productType: ProductTypeComboBox.Text);
+                SetAllButtonsControl(true);
+            }
+        }
+
+        private async void CancelSearchButton_Click(object sender, EventArgs e)
+        {
+            SetAllButtonsControl(false);
+            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
+            SearchTextBox.Text = FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder;
+            SetAllButtonsControl(true);
+        }
+
+        private void ProductTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchButton_Click(this, new EventArgs());
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SearchButton_Click(this, new EventArgs());
+            }
         }
 
         #region CustomPrivateMethods
@@ -111,30 +152,16 @@ namespace PikNiMi.Forms
 
         private void FillLastLoadInfoToList()
         {
-            int rowCount = ProductDataGridView.Rows.Count;
-
-            for (int i = 0; i < rowCount; i++)
-            {
-                FullProductInfoModel productInfoModel = new FullProductInfoModel()
-                {
-                    ProductId = int.Parse(ProductDataGridView.Rows[i].Cells[0].Value.ToString()),
-                    ProductReceiptDate = ProductDataGridView.Rows[i].Cells[1].Value.ToString(),
-                    ProductType = ProductDataGridView.Rows[i].Cells[2].Value.ToString(),
-
-                    ProductDescription = ProductDataGridView.Rows[i].Cells[3].Value.ToString(),
-                    ProductColor = ProductDataGridView.Rows[i].Cells[4].Value.ToString(),
-                    ProductSize = ProductDataGridView.Rows[i].Cells[5].Value.ToString(),
-                    ProductCare = ProductDataGridView.Rows[i].Cells[6].Value.ToString(),
-                    ProductMadeStuff = ProductDataGridView.Rows[i].Cells[7].Value.ToString(),
-                    ProductBuyLocation = ProductDataGridView.Rows[i].Cells[8].Value.ToString()
-
-
-                };
-
-                _fullProductInfo.Add(productInfoModel);
-            }
-
+            _lastProductsInfo.Clear();
+            _lastProductsInfo = _productDataGridViewService.GetLastLoadInfoFromDataGridView(ProductDataGridView);
         }
+
+        private void LoadLastInfoFromListToProductDataGridView()
+        {
+            _productDataGridViewService.LoadLastInfo(ProductDataGridView, _lastProductsInfo);
+        }
+
+
 
         #endregion
        

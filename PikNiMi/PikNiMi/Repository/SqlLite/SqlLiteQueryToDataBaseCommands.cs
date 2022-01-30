@@ -3,41 +3,54 @@
     public static class SqlLiteQueryToDataBaseCommands
     {
         private const string FullProductInfoTable = "FullProductInfoTable FPIT";
-        private const string FullProductInfoTableShort = "FPIT";
-        private static readonly string ProductTypeNone = "Pasirinkti tipą...";
+
+        private const string ProductId = "FPIT.ProductId";
+        private const string ProductType = "FPIT.ProductType";
+        private const string Search = "FPIT.Search";
 
         public static string GetAllOfFullProductInfoCommand()
         {
             string getExistingServiceQuery =
                 $@"
                     SELECT * FROM {FullProductInfoTable}
+                    ORDER BY {ProductId} DESC;
                 ";
 
             return getExistingServiceQuery;
         }
 
-        public static string SearchFullProductInfoBySearchRequest(string searchPhrase, string productType)
+        public static string SearchBySpecificProductType(string productType)
         {
-            string searchQuery;
+            string searchQuery =
+                $@"
+                         SELECT * FROM {FullProductInfoTable}
+                        WHERE {ProductType} = '{productType}'
+                        ORDER BY {ProductId} DESC;
+                ";
 
-            if (productType == ProductTypeNone)
-            {
-                searchQuery = 
-                    $@"
-                        SELECT * FROM {FullProductInfoTable}
-                        WHERE LIKE '%{searchPhrase}%'
-                        ORDER BY {FullProductInfoTableShort}.ProductId DESC;
-                    ";
-            }
-            else
-            {
-                searchQuery = 
-                    $@"
-                        SELECT * FROM {FullProductInfoTable}
-                        WHERE * LIKE '%{searchPhrase}%' AND {FullProductInfoTableShort}.ProductType = '{productType}'
-                    ";
-            }
+            return searchQuery;
+        }
 
+        public static string SearchBySearchPhraseAllInfo(string searchPhrase)
+        {
+            string searchQuery = 
+                $@"
+                     SELECT * FROM {FullProductInfoTable}
+                     WHERE {Search} LIKE '%{searchPhrase}%'
+                     ORDER BY {ProductId} DESC;
+                ";
+
+            return searchQuery;
+        }
+
+        public static string SearchInfoByProductTypeAndSearchPhrase(string productType, string searchPhrase)
+        {
+            string searchQuery =
+                $@"
+                     SELECT * FROM {FullProductInfoTable}
+                     WHERE {Search} LIKE '%{searchPhrase}%' AND {ProductType} = '{productType}'
+                     ORDER BY {ProductId} DESC;
+                ";
 
             return searchQuery;
         }
