@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PikNiMi.Forms.Constants;
 using PikNiMi.Models;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass.Service;
@@ -16,8 +17,28 @@ namespace PikNiMi.Forms.Service
         public ProductDataGridViewService()
         {
             _numberService = new NumberService(new InvariantCultureNumberService());
-            // try make attribute in ctor of dataGridView when implement search basic
             _repositoryQueryCalls = new RepositoryQueryCalls(new SqlLiteRepositoryQueryCalls());
+        }
+
+        public DataGridView SetFullRowSelectMode(DataGridView productDataGridView)
+        {
+            productDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            return productDataGridView;
+        }
+
+        public DataGridView SetAutoFontSizeColumnsAndRows(DataGridView productDataGridView, bool isMaximized)
+        {
+            if (isMaximized)
+            {
+                productDataGridView.Font = FormFontConstants.MaximizedFontSize;
+            }
+            else
+            {
+                productDataGridView.Font = FormFontConstants.DefaultFontSize;
+            }
+            productDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            productDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            return productDataGridView;
         }
 
         private BindingSource SetBidingSourceForProductDataGridView()
@@ -138,8 +159,6 @@ namespace PikNiMi.Forms.Service
             productDataGridView.DataSource = productBidingSource;
             return productDataGridView;
         }
-
-        
         
     }
 }

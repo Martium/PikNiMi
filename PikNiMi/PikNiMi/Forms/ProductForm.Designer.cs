@@ -127,6 +127,7 @@ namespace PikNiMi.Forms
             this.TableLayoutPanel.Controls.Add(this.textBox19, 1, 18);
             this.TableLayoutPanel.Controls.Add(this.textBox20, 1, 19);
             this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TableLayoutPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.TableLayoutPanel.Name = "TableLayoutPanel";
             this.TableLayoutPanel.RowCount = 20;
@@ -582,6 +583,8 @@ namespace PikNiMi.Forms
             this.Controls.Add(this.TableLayoutPanel);
             this.Name = "ProductForm";
             this.Text = "ProductForm";
+            this.Load += new System.EventHandler(this.ProductForm_Load);
+            this.Resize += new System.EventHandler(this.ProductForm_Resize);
             this.TableLayoutPanel.ResumeLayout(false);
             this.TableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);

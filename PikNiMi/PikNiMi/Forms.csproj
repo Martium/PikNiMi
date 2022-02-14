@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Constants\FormFontConstants.cs" />
     <Compile Include="Forms\Constants\FormTextBoxDefaultTexts.cs" />
     <Compile Include="Forms\Constants\TextBoxLength.cs" />
     <Compile Include="Forms\ProductForm.cs">

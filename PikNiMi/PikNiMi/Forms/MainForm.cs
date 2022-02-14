@@ -14,7 +14,6 @@ namespace PikNiMi.Forms
         private readonly ProductDataGridViewService _productDataGridViewService;
         private List<FullProductInfoModel> _lastProductsInfo;
 
-
         public MainForm()
         {
             InitializeComponent();
@@ -34,12 +33,30 @@ namespace PikNiMi.Forms
             SetAllButtonsControl(false);
              await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
             SetAllButtonsControl(true);
-            FillLastLoadInfoToList();
+            SetDataGridViewConstantControl();
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                tableUpperLayoutPanel.Font = FormFontConstants.MaximizedFontSize;
+                tableBottomLayoutPanel.Font = FormFontConstants.MaximizedFontSize;
+
+                _productDataGridViewService.SetAutoFontSizeColumnsAndRows(ProductDataGridView, true);
+            }
+            else
+            {
+                tableUpperLayoutPanel.Font = FormFontConstants.DefaultFontSize;
+                tableBottomLayoutPanel.Font = FormFontConstants.DefaultFontSize;
+
+                _productDataGridViewService.SetAutoFontSizeColumnsAndRows(ProductDataGridView, false);
+            }
         }
 
         private async void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(SearchTextBox.Text))
+            if (!string.IsNullOrWhiteSpace(SearchTextBox.Text) && SearchTextBox.Text != FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder)
             {
                 SetAllButtonsControl(false);
                 await _productDataGridViewService.LoadFullProductInfoBySearchPhrase(ProductDataGridView, SearchTextBox.Text);
@@ -91,8 +108,8 @@ namespace PikNiMi.Forms
         private async void CancelSearchButton_Click(object sender, EventArgs e)
         {
             SetAllButtonsControl(false);
-            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
             SearchTextBox.Text = FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder;
+            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
             SetAllButtonsControl(true);
         }
 
@@ -176,6 +193,12 @@ namespace PikNiMi.Forms
             _productDataGridViewService.LoadLastInfo(ProductDataGridView, _lastProductsInfo);
         }
 
+        private void SetDataGridViewConstantControl()
+        {
+            _productDataGridViewService.SetFullRowSelectMode(ProductDataGridView);
+            _productDataGridViewService.SetAutoFontSizeColumnsAndRows(ProductDataGridView, false);
+        }
+
         private void OpenFormOrClosed(Form form)
         {
             form.Closed += AnotherForm_Closed;
@@ -192,11 +215,7 @@ namespace PikNiMi.Forms
             }
         }
 
-
-
-
-
         #endregion
-
+       
     }
 }

@@ -26,6 +26,7 @@ namespace PikNiMi.Repository.SqlLite
             "0.2",
             "1.25",
             "2",
+            "2.42",
             "1",
             "0.95"
         };
@@ -49,6 +50,7 @@ namespace PikNiMi.Repository.SqlLite
             "0.2",
             "1.25",
             "2",
+            "2.42",
             "1",
             "NULL"
         };
@@ -72,6 +74,7 @@ namespace PikNiMi.Repository.SqlLite
             "0.2",
             "1.25",
             "2",
+            "2.42",
             "1",
             "0.95"
         };

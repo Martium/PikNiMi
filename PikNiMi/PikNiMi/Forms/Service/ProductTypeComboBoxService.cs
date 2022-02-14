@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using PikNiMi.Forms.Constants;
 using PikNiMi.Repository.Custom_Repository;
 
 namespace PikNiMi.Forms.Service
@@ -12,8 +13,8 @@ namespace PikNiMi.Forms.Service
 
             comboBox.BindingContext = new BindingContext();
             comboBox.DataSource = customProductTypes;
-            comboBox.DisplayMember = "Pasirinkti tipą...";
-            comboBox.SelectedItem = "Pasirinkti tipą...";
+            comboBox.DisplayMember = FormTextBoxDefaultTexts.ProductTypeComboBoxDefaultText;
+            comboBox.SelectedItem = FormTextBoxDefaultTexts.ProductTypeComboBoxDefaultText;
 
             return comboBox;
         }

@@ -54,12 +54,12 @@ namespace PikNiMi.Forms
             // tableUpperLayoutPanel
             // 
             this.tableUpperLayoutPanel.ColumnCount = 6;
-            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.91545F));
+            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.91546F));
+            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.42272F));
+            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.91546F));
+            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.91546F));
+            this.tableUpperLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.91546F));
             this.tableUpperLayoutPanel.Controls.Add(this.UpdateProductButton, 1, 0);
             this.tableUpperLayoutPanel.Controls.Add(this.AddNewProductButton, 0, 0);
             this.tableUpperLayoutPanel.Controls.Add(this.SearchTextBox, 3, 0);
@@ -80,9 +80,10 @@ namespace PikNiMi.Forms
             this.UpdateProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateProductButton.Location = new System.Drawing.Point(99, 3);
+            this.UpdateProductButton.AutoSize = true;
+            this.UpdateProductButton.Location = new System.Drawing.Point(130, 3);
             this.UpdateProductButton.Name = "UpdateProductButton";
-            this.UpdateProductButton.Size = new System.Drawing.Size(90, 44);
+            this.UpdateProductButton.Size = new System.Drawing.Size(121, 44);
             this.UpdateProductButton.TabIndex = 2;
             this.UpdateProductButton.TabStop = false;
             this.UpdateProductButton.Text = "Atnaujinti produktą";
@@ -93,9 +94,10 @@ namespace PikNiMi.Forms
             this.AddNewProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddNewProductButton.AutoSize = true;
             this.AddNewProductButton.Location = new System.Drawing.Point(3, 3);
             this.AddNewProductButton.Name = "AddNewProductButton";
-            this.AddNewProductButton.Size = new System.Drawing.Size(90, 44);
+            this.AddNewProductButton.Size = new System.Drawing.Size(121, 44);
             this.AddNewProductButton.TabIndex = 1;
             this.AddNewProductButton.TabStop = false;
             this.AddNewProductButton.Text = "Pridėti naują produktą";
@@ -107,9 +109,9 @@ namespace PikNiMi.Forms
             this.SearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchTextBox.Location = new System.Drawing.Point(515, 3);
+            this.SearchTextBox.Location = new System.Drawing.Point(420, 3);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(90, 20);
+            this.SearchTextBox.Size = new System.Drawing.Size(121, 20);
             this.SearchTextBox.TabIndex = 3;
             this.SearchTextBox.TabStop = false;
             this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
@@ -122,9 +124,10 @@ namespace PikNiMi.Forms
             this.CancelSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CancelSearchButton.Location = new System.Drawing.Point(707, 3);
+            this.CancelSearchButton.AutoSize = true;
+            this.CancelSearchButton.Location = new System.Drawing.Point(674, 3);
             this.CancelSearchButton.Name = "CancelSearchButton";
-            this.CancelSearchButton.Size = new System.Drawing.Size(90, 44);
+            this.CancelSearchButton.Size = new System.Drawing.Size(123, 44);
             this.CancelSearchButton.TabIndex = 5;
             this.CancelSearchButton.TabStop = false;
             this.CancelSearchButton.Text = "atšaukti";
@@ -136,9 +139,10 @@ namespace PikNiMi.Forms
             this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchButton.Location = new System.Drawing.Point(611, 3);
+            this.SearchButton.AutoSize = true;
+            this.SearchButton.Location = new System.Drawing.Point(547, 3);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(90, 44);
+            this.SearchButton.Size = new System.Drawing.Size(121, 44);
             this.SearchButton.TabIndex = 4;
             this.SearchButton.TabStop = false;
             this.SearchButton.Text = "ieškoti";
@@ -147,11 +151,14 @@ namespace PikNiMi.Forms
             // 
             // ProductTypeComboBox
             // 
+            this.ProductTypeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ProductTypeComboBox.FormattingEnabled = true;
-            this.ProductTypeComboBox.Location = new System.Drawing.Point(195, 3);
+            this.ProductTypeComboBox.Location = new System.Drawing.Point(257, 3);
             this.ProductTypeComboBox.Name = "ProductTypeComboBox";
-            this.ProductTypeComboBox.Size = new System.Drawing.Size(314, 21);
+            this.ProductTypeComboBox.Size = new System.Drawing.Size(157, 21);
             this.ProductTypeComboBox.TabIndex = 0;
             this.ProductTypeComboBox.TabStop = false;
             this.ProductTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.ProductTypeComboBox_SelectedIndexChanged);
@@ -167,7 +174,9 @@ namespace PikNiMi.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductDataGridView.Location = new System.Drawing.Point(3, 106);
+            this.ProductDataGridView.MultiSelect = false;
             this.ProductDataGridView.Name = "ProductDataGridView";
+            this.ProductDataGridView.ReadOnly = true;
             this.ProductDataGridView.Size = new System.Drawing.Size(794, 264);
             this.ProductDataGridView.TabIndex = 1;
             this.ProductDataGridView.TabStop = false;
@@ -190,7 +199,7 @@ namespace PikNiMi.Forms
             this.tableBottomLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableBottomLayoutPanel.Location = new System.Drawing.Point(0, 376);
             this.tableBottomLayoutPanel.Name = "tableBottomLayoutPanel";
-            this.tableBottomLayoutPanel.RowCount = 2;
+            this.tableBottomLayoutPanel.RowCount = 1;
             this.tableBottomLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableBottomLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableBottomLayoutPanel.Size = new System.Drawing.Size(800, 74);
@@ -216,7 +225,7 @@ namespace PikNiMi.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DiscountButton.Location = new System.Drawing.Point(269, 3);
             this.DiscountButton.Name = "DiscountButton";
-            this.DiscountButton.Size = new System.Drawing.Size(127, 31);
+            this.DiscountButton.Size = new System.Drawing.Size(127, 68);
             this.DiscountButton.TabIndex = 8;
             this.DiscountButton.TabStop = false;
             this.DiscountButton.Text = "Nuolaidos";
@@ -227,12 +236,13 @@ namespace PikNiMi.Forms
             this.AddNewProductTypeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddNewProductTypeButton.AutoSize = true;
             this.AddNewProductTypeButton.Location = new System.Drawing.Point(136, 3);
             this.AddNewProductTypeButton.Name = "AddNewProductTypeButton";
-            this.AddNewProductTypeButton.Size = new System.Drawing.Size(127, 31);
+            this.AddNewProductTypeButton.Size = new System.Drawing.Size(127, 68);
             this.AddNewProductTypeButton.TabIndex = 7;
             this.AddNewProductTypeButton.TabStop = false;
-            this.AddNewProductTypeButton.Text = "Naujas produkto tipas";
+            this.AddNewProductTypeButton.Text = "Naujas produkto\r\ntipas";
             this.AddNewProductTypeButton.UseVisualStyleBackColor = true;
             // 
             // Historybutton
@@ -240,9 +250,10 @@ namespace PikNiMi.Forms
             this.Historybutton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Historybutton.AutoSize = true;
             this.Historybutton.Location = new System.Drawing.Point(3, 3);
             this.Historybutton.Name = "Historybutton";
-            this.Historybutton.Size = new System.Drawing.Size(127, 31);
+            this.Historybutton.Size = new System.Drawing.Size(127, 68);
             this.Historybutton.TabIndex = 6;
             this.Historybutton.TabStop = false;
             this.Historybutton.Text = "Istorija";
@@ -253,9 +264,10 @@ namespace PikNiMi.Forms
             this.CountFullOrderDiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.CountFullOrderDiscountButton.AutoSize = true;
             this.CountFullOrderDiscountButton.Location = new System.Drawing.Point(668, 3);
             this.CountFullOrderDiscountButton.Name = "CountFullOrderDiscountButton";
-            this.CountFullOrderDiscountButton.Size = new System.Drawing.Size(129, 31);
+            this.CountFullOrderDiscountButton.Size = new System.Drawing.Size(129, 68);
             this.CountFullOrderDiscountButton.TabIndex = 9;
             this.CountFullOrderDiscountButton.TabStop = false;
             this.CountFullOrderDiscountButton.Text = "Skaičiuoti savikainą";
@@ -283,6 +295,7 @@ namespace PikNiMi.Forms
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.tableUpperLayoutPanel.ResumeLayout(false);
             this.tableUpperLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).EndInit();
