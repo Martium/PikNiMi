@@ -1,6 +1,4 @@
-﻿using System.Security.Permissions;
-
-namespace PikNiMi.Forms.Constants
+﻿namespace PikNiMi.Forms.Constants
 {
     public static class TextBoxLength
     {

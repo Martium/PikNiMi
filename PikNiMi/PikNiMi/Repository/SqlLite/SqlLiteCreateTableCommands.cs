@@ -35,8 +35,10 @@ namespace PikNiMi.Repository.SqlLite
                     [ProductExpensesCostPrice] [Numeric] NULL,
                     
                     [ProductSoldPrice] [Numeric] NULL,
+                    [ProductSoldPriceWithPvm] [Numeric] NULL,
                     [ProductSold] [Integer] NULL,
                     [ProductProfit] [Numeric] NULL,
+                    [Discount] [Numeric] NULL,
 
                     [Search] [nvarchar] (3000) NOT NULL,
                     

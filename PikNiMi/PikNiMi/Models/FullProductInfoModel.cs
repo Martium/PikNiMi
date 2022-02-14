@@ -23,7 +23,9 @@
         public double? TripExpenses { get; set; }
         public double? ProductExpensesCostPrice { get; set; }
         public double? ProductSoldPrice { get; set; }
+        public double? ProductSoldPriceWithPvm { get; set; }
         public int? ProductSold { get; set; }
         public double? ProductProfit { get; set; }
+        public double? Discount { get; set; }
     }
 }

@@ -34,6 +34,7 @@ namespace PikNiMi.Forms
             SetAllButtonsControl(false);
              await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
             SetAllButtonsControl(true);
+            FillLastLoadInfoToList();
         }
 
         private async void SearchTextBox_TextChanged(object sender, EventArgs e)

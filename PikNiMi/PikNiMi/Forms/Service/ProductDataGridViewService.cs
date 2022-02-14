@@ -51,8 +51,10 @@ namespace PikNiMi.Forms.Service
                 TripExpenses = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 15)),
                 ProductExpensesCostPrice = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 16)),
                 ProductSoldPrice = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 17)),
-                ProductSold = _numberService.TryParseStringToNumberOrNull(GetCellValue(productDataGridView, row, 18)),
-                ProductProfit = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 19))
+                ProductSoldPriceWithPvm = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView,row, 18)),
+                ProductSold = _numberService.TryParseStringToNumberOrNull(GetCellValue(productDataGridView, row, 19)),
+                ProductProfit = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 20)),
+                Discount = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 21))
             };
 
             return productInfoModel;
