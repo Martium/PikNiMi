@@ -89,5 +89,125 @@ namespace PikNiMi.TranslationsToAnotherLanguages
         {
             return "Skaičiuoti savikainą";
         }
+
+        public string SetProductReceiptDateInfoLabelText()
+        {
+            return "Data";
+        }
+
+        public string SetProductDescriptionInfoLabelText()
+        {
+            return "Aprašymas";
+        }
+
+        public string SetProductColorInfoLabelText()
+        {
+            return "Spalva";
+        }
+
+        public string SetProductSizeInfoLabelText()
+        {
+            return "Dydis";
+        }
+
+        public string SetProductCareInfoLabelText()
+        {
+            return "Priežiūra";
+        }
+
+        public string SetProductMadeStuffInfoLabelText()
+        {
+            return "Sudėtis";
+        }
+
+        public string SetProductMadeInInfoLabelText()
+        {
+            return "Pagaminta";
+        }
+
+        public string SetProductQuantityInfoLabelText()
+        {
+            return "Kiekis";
+        }
+
+        public string SetProductQuantityLeftInfoLabelText()
+        {
+            return "Likutis";
+        }
+
+        public string SetProductOriginalUnitPriceAtOriginalCurrencyInfoLabelText()
+        {
+            return "Vnt. Kaina Kt. Valiuta";
+        }
+
+        public string SetProductQuantityPriceAtOriginalCurrencyInfoLabelText()
+        {
+            return "Kiekio Kaina Kt. Valiuta";
+        }
+
+        public string SetProductUnitPriceInEuroInfoLabelText()
+        {
+            return "Vnt. Kaina EUR";
+        }
+
+        public string SetProductQuantityPriceInEuroInfoLabelText()
+        {
+            return "Kiekio Kaina EUR";
+        }
+
+        public string SetTripExpensesInfoLabelText()
+        {
+            return "Kelionės išlaidos";
+        }
+
+        public string SetProductExpensesCostPriceInfoLabelText()
+        {
+            return "Produkto Išlaidos";
+        }
+
+        public string SetProductSoldPriceInfoLabelText()
+        {
+            return "Pardavimo Kaina";
+        }
+
+        public string SetProductPvmInfoLabelText()
+        {
+            return "PVM";
+        }
+
+        public string SetProductSoldPriceWithPvmInfoLabelText()
+        {
+            return "Pardavimo Kaina + PVM";
+        }
+
+        public string SetProductSoldInfoLabelText()
+        {
+            return "Produkto Parduota";
+        }
+
+        public string SetProductProfitInfoLabelText()
+        {
+            return "Pelnas";
+        }
+
+        public string SetDiscountInfoLabelText()
+        {
+            return "Nuolaidos";
+        }
+
+        public string SetProductTypeInfoLabelText()
+        {
+            return "Produkto Tipas";
+        }
+
+        public string SetProductWantProfitInfoLabelText()
+        {
+            return "Norimas Pelnas";
+        }
+
+        public string SetTextBoxResizeButtonText()
+        {
+            return "Peržiūra";
+        }
     }
 }
