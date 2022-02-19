@@ -11,7 +11,7 @@
         public string ProductSize { get; set; }
         public string ProductCare { get; set; }
         public string ProductMadeStuff { get; set; }
-        public string ProductBuyLocation { get; set; }
+        public string ProductMadeIn { get; set; }
 
         public int? ProductQuantity { get; set; }
         public int? ProductQuantityLeft { get; set; }
@@ -23,6 +23,8 @@
         public double? TripExpenses { get; set; }
         public double? ProductExpensesCostPrice { get; set; }
         public double? ProductSoldPrice { get; set; }
+
+        // introduce just pvm prop
         public double? ProductSoldPriceWithPvm { get; set; }
         public int? ProductSold { get; set; }
         public double? ProductProfit { get; set; }

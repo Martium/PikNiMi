@@ -10,7 +10,7 @@
         public static int ProductMadeStuff => 100;
         public static int ProductType => 100;
 
-        public static int ProductBuyLocation => 60;
+        public static int ProductBuyIn => 60;
         public static int ProductSearchText => 100;
         public static int NumberLength => 9;
 

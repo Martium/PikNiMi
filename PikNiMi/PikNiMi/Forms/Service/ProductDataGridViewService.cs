@@ -61,7 +61,7 @@ namespace PikNiMi.Forms.Service
                 ProductSize = GetCellValue(productDataGridView, row, 5),
                 ProductCare = GetCellValue(productDataGridView, row, 6),
                 ProductMadeStuff = GetCellValue(productDataGridView, row, 7),
-                ProductBuyLocation = GetCellValue(productDataGridView, row, 8),
+                ProductMadeIn = GetCellValue(productDataGridView, row, 8),
 
                 ProductQuantity = _numberService.TryParseStringToNumberOrNull(GetCellValue(productDataGridView, row, 9)),
                 ProductQuantityLeft = _numberService.TryParseStringToNumberOrNull(GetCellValue(productDataGridView, row, 10)),

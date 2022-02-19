@@ -10,6 +10,5 @@ namespace PikNiMi.Repository.Custom_Repository
             "Diržas", "Aksesuaras", "Kojinės", "Apatinis trikotažas", "Striukė", "Paltas", "Tunika",
             "Kardiganas", "Džemperis", "Pasirinkti tipą..."
         };
-
     }
 }
