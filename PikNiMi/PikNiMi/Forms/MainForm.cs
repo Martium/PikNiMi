@@ -1,32 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using PikNiMi.Enums;
 using PikNiMi.Forms.Constants;
 using PikNiMi.Forms.Service;
 using PikNiMi.Models;
+using PikNiMi.TranslationsToAnotherLanguages;
 
 namespace PikNiMi.Forms
 {
     public partial class MainForm : Form
     {
+        private readonly LanguageTranslator _languageTranslator;
+
         private readonly TextBoxFormService _textBoxFormService;
         private readonly ProductTypeComboBoxService _productTypeService;
         private readonly ProductDataGridViewService _productDataGridViewService;
+
+
         private List<FullProductInfoModel> _lastProductsInfo;
 
         public MainForm()
         {
             InitializeComponent();
 
+            _languageTranslator = new LanguageTranslator(new TextTranslationsToLithuaniaLanguage());
             _textBoxFormService = new TextBoxFormService();
-            _productTypeService = new ProductTypeComboBoxService();
+            _productTypeService = new ProductTypeComboBoxService(_languageTranslator);
             _productDataGridViewService = new ProductDataGridViewService();
+
             _lastProductsInfo = new List<FullProductInfoModel>();
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            this.Text = @"PikNiMi Sandėlis";
+            SetLanguageText();
             SetTextBoxLength();
             SetDefaultTextBoxesTextValue();
             _productTypeService.SetProductTypeCustomValues(ProductTypeComboBox);
@@ -56,7 +64,7 @@ namespace PikNiMi.Forms
 
         private async void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(SearchTextBox.Text) && SearchTextBox.Text != FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder)
+            if (!string.IsNullOrWhiteSpace(SearchTextBox.Text) && SearchTextBox.Text != _languageTranslator.SetSearchTextBoxPlaceHolder())
             {
                 SetAllButtonsControl(false);
                 await _productDataGridViewService.LoadFullProductInfoBySearchPhrase(ProductDataGridView, SearchTextBox.Text);
@@ -66,31 +74,31 @@ namespace PikNiMi.Forms
 
         private void SearchTextBox_GotFocus(object sender, EventArgs e)
         {
-            SetSpecificTextToTextBoxWhenGotFocus(FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder, SearchTextBox);
+            SetSpecificTextToTextBoxWhenGotFocus(_languageTranslator.SetSearchTextBoxPlaceHolder(), SearchTextBox);
         }
 
         private void SearchTextBox_LostFocus(object sender, EventArgs e)
         {
-            SetSpecificTextToTextBoxWhenLostFocus(FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder, SearchTextBox);
+            SetSpecificTextToTextBoxWhenLostFocus(_languageTranslator.SetSearchTextBoxPlaceHolder(), SearchTextBox);
         }
 
         private void TripExpensesTextBox_GotFocus(object sender, EventArgs e)
         {
-            SetSpecificTextToTextBoxWhenGotFocus(FormTextBoxDefaultTexts.TripExpensesTextBoxPlaceHolder, TripExpensesTextBox);
+            SetSpecificTextToTextBoxWhenGotFocus(_languageTranslator.SetTripExpensesTextBoxPlaceHolder(), TripExpensesTextBox);
         }
 
         private void TripExpensesTextBox_LostFocus(object sender, EventArgs e)
         {
-            SetSpecificTextToTextBoxWhenLostFocus(FormTextBoxDefaultTexts.TripExpensesTextBoxPlaceHolder, TripExpensesTextBox);
+            SetSpecificTextToTextBoxWhenLostFocus(_languageTranslator.SetTripExpensesTextBoxPlaceHolder(), TripExpensesTextBox);
         }
 
         private async void SearchButton_Click(object sender, EventArgs e)
         {
-            if (ProductTypeComboBox.Text == FormTextBoxDefaultTexts.ProductTypeComboBoxDefaultText)
+            if (ProductTypeComboBox.Text == _languageTranslator.SetProductTypeComboBoxDefaultText())
             {
                 //message box pasirinkite produkto tipą
             }
-            else if (SearchTextBox.Text == FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder)
+            else if (SearchTextBox.Text == _languageTranslator.SetSearchTextBoxPlaceHolder())
             {
                 SetAllButtonsControl(false);
                 await _productDataGridViewService.LoadFullProductInfoBySelectedProductType(ProductTypeComboBox.Text, ProductDataGridView);
@@ -108,7 +116,7 @@ namespace PikNiMi.Forms
         private async void CancelSearchButton_Click(object sender, EventArgs e)
         {
             SetAllButtonsControl(false);
-            SearchTextBox.Text = FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder;
+            SearchTextBox.Text = _languageTranslator.SetSearchTextBoxPlaceHolder();
             await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
             SetAllButtonsControl(true);
         }
@@ -128,7 +136,7 @@ namespace PikNiMi.Forms
 
         private void AddNewProductButton_Click(object sender, EventArgs e)
         {
-            OpenFormOrClosed(new ProductForm());
+            OpenNewForm(new ProductForm());
         }
 
         private async void AnotherForm_Closed(object sender, EventArgs e)
@@ -151,9 +159,9 @@ namespace PikNiMi.Forms
 
         private void SetDefaultTextBoxesTextValue()
         {
-            SearchTextBox.Text = FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder;
+            SearchTextBox.Text = _languageTranslator.SetSearchTextBoxPlaceHolder();
             DateTextBox.Text = FormTextBoxDefaultTexts.DateToday;
-            TripExpensesTextBox.Text = FormTextBoxDefaultTexts.TripExpensesTextBoxPlaceHolder;
+            TripExpensesTextBox.Text = _languageTranslator.SetTripExpensesTextBoxPlaceHolder();
         }
 
         private void SetSpecificTextToTextBoxWhenGotFocus(string specificText, TextBox textBox)
@@ -199,11 +207,12 @@ namespace PikNiMi.Forms
             _productDataGridViewService.SetAutoFontSizeColumnsAndRows(ProductDataGridView, false);
         }
 
-        private void OpenFormOrClosed(Form form)
+        private void OpenNewForm(Form form)
         {
             form.Closed += AnotherForm_Closed;
             HideListOfProductsFullInfoForm(form);
         }
+
         private void HideListOfProductsFullInfoForm(Form form)
         {
             this.Hide();
@@ -213,6 +222,20 @@ namespace PikNiMi.Forms
             {
                 form.WindowState = FormWindowState.Maximized;
             }
+        }
+
+        private void SetLanguageText()
+        {
+            this.Text = _languageTranslator.FormHeaderText(FormHeaderTextTypeEnum.MainForm);
+
+            AddNewProductButton.Text = _languageTranslator.SetAddNewProductButtonText();
+            UpdateProductButton.Text = _languageTranslator.SetUpdateProductButtonText();
+            SearchButton.Text = _languageTranslator.SetSearchButtonText();
+            CancelSearchButton.Text = _languageTranslator.SetCancelSearchButtonText();
+            Historybutton.Text = _languageTranslator.SetHistoryButtonText();
+            AddNewProductTypeButton.Text = _languageTranslator.SetAddNewProductTypeButtonText();
+            DiscountButton.Text = _languageTranslator.SetDiscountButtonText();
+            CountFullOrderDiscountButton.Text = _languageTranslator.SetCountFullOrderDiscountButtonText();
         }
 
         #endregion

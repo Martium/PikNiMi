@@ -1,5 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
 using System.Windows.Forms;
+using PikNiMi.Enums;
 using PikNiMi.Forms.Constants;
 
 namespace PikNiMi.Forms
@@ -21,6 +22,37 @@ namespace PikNiMi.Forms
             TableLayoutPanel.Font = WindowState == FormWindowState.Maximized ? FormFontConstants.MaximizedFontSize : FormFontConstants.DefaultFontSize;
         }
 
-        
+        private void ProductDescriptionTextBoxResizeButton_Click(object sender, System.EventArgs e)
+        {
+            OpenNewForm(new TextBoxResizeForm());
+        }
+
+        private void AnotherForm_Closed(object sender, EventArgs e)
+        {
+            this.Show();
+
+            //load last data update new data
+        }
+
+        #region Heplers
+
+        private void OpenNewForm(Form form)
+        {
+            form.Closed += AnotherForm_Closed;
+            HideProductForm(form);
+        }
+
+        private void HideProductForm(Form form)
+        {
+            this.Hide();
+            form.Show();
+
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                form.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        #endregion
     }
 }

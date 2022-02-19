@@ -1,24 +1,27 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PikNiMi.Forms.Constants;
 using PikNiMi.Forms.Service;
+using PikNiMi.TranslationsToAnotherLanguages;
 
 namespace UnitTests.FormTextBoxTests
 {
     [TestClass]
     public class TextBoxFormServiceUnitTests
     {
+        private readonly LanguageTranslator _languageTranslator;
         private readonly TextBoxFormService _textBoxFormService;
 
         public TextBoxFormServiceUnitTests()
         {
             _textBoxFormService = new TextBoxFormService();
+            _languageTranslator = new LanguageTranslator(new TextTranslationsToLithuaniaLanguage());
         }
 
         [TestMethod]
         public void DisableTextBoxText_DisableTextWhenEqualOrLeaveSameText_MakeStringEmptyOrLeaveSameText()
         {
-            string firstTestTextBoxText = FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder;
-            string defaultTextValue = FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder;
+            string firstTestTextBoxText = _languageTranslator.SetSearchTextBoxPlaceHolder();
+            string defaultTextValue = _languageTranslator.SetSearchTextBoxPlaceHolder();
             string firstTestExpectedValue = string.Empty;
 
             string secondTestTextBoxText = "something";
@@ -34,7 +37,7 @@ namespace UnitTests.FormTextBoxTests
         public void
             SetTextBoxTextForEmptyOrWhiteSpaceText_ReturnSpecificTextToTextBoxTextWhenEmpty_ReturnSpecificTextIfEmptyOrWhiteSpace()
         {
-            string specificText = FormTextBoxDefaultTexts.SearchTextBoxPlaceHolder;
+            string specificText = _languageTranslator.SetSearchTextBoxPlaceHolder();
 
             string firstTestTextBoxText = string.Empty;
             string firstTestExpectedResult = specificText;

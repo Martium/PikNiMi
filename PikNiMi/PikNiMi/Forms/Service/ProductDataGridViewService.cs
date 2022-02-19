@@ -72,10 +72,11 @@ namespace PikNiMi.Forms.Service
                 TripExpenses = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 15)),
                 ProductExpensesCostPrice = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 16)),
                 ProductSoldPrice = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 17)),
-                ProductSoldPriceWithPvm = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView,row, 18)),
-                ProductSold = _numberService.TryParseStringToNumberOrNull(GetCellValue(productDataGridView, row, 19)),
-                ProductProfit = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 20)),
-                Discount = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 21))
+                ProductPvm = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 18)),
+                ProductSoldPriceWithPvm = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView,row, 19)),
+                ProductSold = _numberService.TryParseStringToNumberOrNull(GetCellValue(productDataGridView, row, 20)),
+                ProductProfit = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 21)),
+                Discount = _numberService.TryParseStringToDoubleNumberOrNull(GetCellValue(productDataGridView, row, 22))
             };
 
             return productInfoModel;

@@ -23,8 +23,7 @@
         public double? TripExpenses { get; set; }
         public double? ProductExpensesCostPrice { get; set; }
         public double? ProductSoldPrice { get; set; }
-
-        // introduce just pvm prop
+        public double? ProductPvm { get; set; }
         public double? ProductSoldPriceWithPvm { get; set; }
         public int? ProductSold { get; set; }
         public double? ProductProfit { get; set; }

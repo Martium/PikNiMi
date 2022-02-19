@@ -14,8 +14,5 @@
         public static int ProductSearchText => 100;
         public static int NumberLength => 9;
 
-
-
-
     }
 }
