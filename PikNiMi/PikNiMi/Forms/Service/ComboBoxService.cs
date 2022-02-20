@@ -3,11 +3,11 @@ using PikNiMi.Forms.Constants;
 
 namespace PikNiMi.Forms.Service
 {
-    public class ProductTypeComboBoxService
+    public class ComboBoxService
     {
         private readonly LanguageTranslator _languageTranslator;
 
-        public ProductTypeComboBoxService(LanguageTranslator languageTranslator)
+        public ComboBoxService(LanguageTranslator languageTranslator)
         {
             _languageTranslator = languageTranslator;
         }

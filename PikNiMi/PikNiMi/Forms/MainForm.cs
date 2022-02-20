@@ -14,7 +14,7 @@ namespace PikNiMi.Forms
         private readonly LanguageTranslator _languageTranslator;
 
         private readonly TextBoxFormService _textBoxFormService;
-        private readonly ProductTypeComboBoxService _productTypeService;
+        private readonly ComboBoxService _comboBoxService;
         private readonly ProductDataGridViewService _productDataGridViewService;
 
 
@@ -26,7 +26,7 @@ namespace PikNiMi.Forms
 
             _languageTranslator = new LanguageTranslator(new TextTranslationsToLithuaniaLanguage());
             _textBoxFormService = new TextBoxFormService();
-            _productTypeService = new ProductTypeComboBoxService(_languageTranslator);
+            _comboBoxService = new ComboBoxService(_languageTranslator);
             _productDataGridViewService = new ProductDataGridViewService();
 
             _lastProductsInfo = new List<FullProductInfoModel>();
@@ -37,7 +37,7 @@ namespace PikNiMi.Forms
             SetLanguageText();
             SetTextBoxLength();
             SetDefaultTextBoxesTextValue();
-            _productTypeService.SetProductTypeCustomValues(ProductTypeComboBox);
+            _comboBoxService.SetProductTypeCustomValues(ProductTypeComboBox);
             SetAllButtonsControl(false);
              await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
             SetAllButtonsControl(true);

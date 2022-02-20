@@ -21,7 +21,7 @@ namespace PikNiMi.Repository.SqlLite
                     [ProductCare] [nvarchar] ({TextBoxLength.ProductCare}) NULL,
                     [ProductMadeStuff] [nvarchar] ({TextBoxLength.ProductMadeStuff}) NULL,
 
-                    [ProductMadeIn] [nvarchar] ({TextBoxLength.ProductBuyIn}) NULL,
+                    [ProductMadeIn] [nvarchar] ({TextBoxLength.ProductMadeIn}) NULL,
                     [ProductQuantity] [Integer] NULL,
                     [ProductQuantityLeft] [Integer] NULL,
                     

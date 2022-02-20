@@ -71,7 +71,7 @@
     </Compile>
     <Compile Include="Forms\Service\InvariantCultureNumberService.cs" />
     <Compile Include="Forms\Service\ProductDataGridViewService.cs" />
-    <Compile Include="Forms\Service\ProductTypeComboBoxService.cs" />
+    <Compile Include="Forms\Service\ComboBoxService.cs" />
     <Compile Include="Forms\Service\TextBoxFormService.cs" />
     <Compile Include="Forms\TextBoxResizeForm.cs">
       <SubType>Form</SubType>

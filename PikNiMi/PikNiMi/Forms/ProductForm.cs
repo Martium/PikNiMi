@@ -17,6 +17,8 @@ namespace PikNiMi.Forms
         private readonly RepositoryQueryCalls _repositoryQueryCalls;
         private readonly NumberService _numberService;
 
+        private readonly ComboBoxService _comboBoxService;
+
         public ProductForm()
         {
             InitializeComponent();
@@ -24,12 +26,16 @@ namespace PikNiMi.Forms
             _languageTranslator = new LanguageTranslator(new TextTranslationsToLithuaniaLanguage());
             _repositoryQueryCalls = new RepositoryQueryCalls(new SqlLiteRepositoryQueryCalls());
             _numberService = new NumberService(new InvariantCultureNumberService());
+
+            _comboBoxService = new ComboBoxService(_languageTranslator);
         }
 
         private void ProductForm_Load(object sender, EventArgs e)
         {
             TableLayoutPanel.Font = FormFontConstants.DefaultFontSize;
+            SetTextBoxLength();
             SetLanguageText();
+            PopulateComboBoxInfo();
         }
 
         private void ProductForm_Resize(object sender, EventArgs e)
@@ -105,7 +111,6 @@ namespace PikNiMi.Forms
                 DiscountTextBox.Text
             };
 
-            //disable buttons
             SetButtonControl(false);
 
             Task<int> taskAffectedRows = _repositoryQueryCalls.CreateNewFullProductInfo(fullProductInfo, search);
@@ -115,7 +120,6 @@ namespace PikNiMi.Forms
                MessageBox.Show(@"bingo");
             }
             SetButtonControl(true);
-            // enable buttons
         }
 
         #region Heplers
@@ -175,6 +179,39 @@ namespace PikNiMi.Forms
             ProductDescriptionTextBoxResizeButton.Text = _languageTranslator.SetTextBoxResizeButtonText();
             SaveButton.Text = _languageTranslator.SetSaveButtonText();
 
+        }
+
+        private void PopulateComboBoxInfo()
+        {
+            _comboBoxService.SetProductTypeCustomValues(ProductTypeComboBox);
+        }
+
+        private void SetTextBoxLength()
+        {
+            ProductReceiptDateTextBox.MaxLength = TextBoxLength.ProductDate;
+            ProductDescriptionTextBox.MaxLength = TextBoxLength.ProductDescription;
+            ProductColorTextBox.MaxLength = TextBoxLength.ProductColor;
+            ProductSizeTextBox.MaxLength = TextBoxLength.ProductSize;
+            ProductCareTextBox.MaxLength = TextBoxLength.ProductCare;
+            ProductMadeStuffTextBox.MaxLength = TextBoxLength.ProductMadeStuff;
+            ProductMadeInTextBox.MaxLength = TextBoxLength.ProductMadeIn;
+
+            ProductQuantityTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductQuantityLeftTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductOriginalUnitPriceAtOriginalCurrencyTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductQuantityPriceAtOriginalCurrencyTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductUnitPriceInEuroTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductQuantityPriceInEuroTextBox.MaxLength = TextBoxLength.NumberLength;
+            TripExpensesTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductExpensesCostPriceTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductSoldPriceTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductPvmTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductSoldPriceWithPvmTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductSoldTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductProfitTextBox.MaxLength = TextBoxLength.NumberLength;
+            DiscountTextBox.MaxLength = TextBoxLength.NumberLength;
+            ProductWantProfitTextBox.MaxLength = TextBoxLength.NumberLength;
+            MoneyCourseTextBox.MaxLength = TextBoxLength.NumberLength;
         }
 
         #endregion
