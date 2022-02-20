@@ -24,8 +24,8 @@ namespace UnitTests.NumberService
 
             int caseOneExpectedResult = 1;
 
-            int? caseOneActualResult = _numberService.TryParseStringToNumberOrNull(caseOnePassedNumber);
-            int? caseTwoActualResult = _numberService.TryParseStringToNumberOrNull(caseTwoPassedNotNumber);
+            int? caseOneActualResult = _numberService.TryParseStringToNumberOrZero(caseOnePassedNumber);
+            int? caseTwoActualResult = _numberService.TryParseStringToNumberOrZero(caseTwoPassedNotNumber);
 
             if (caseOneActualResult.HasValue)
             {
@@ -51,12 +51,12 @@ namespace UnitTests.NumberService
             string caseTwoNotNumberPassed = "not number";
 
             double? firstValueCaseOneActualResult =
-                _numberService.TryParseStringToDoubleNumberOrNull(firstValueCaseOnePassedWithComma);
+                _numberService.TryParseStringToDoubleNumberOrZero(firstValueCaseOnePassedWithComma);
 
             double? secondValueCaseOneActualResult =
-                _numberService.TryParseStringToDoubleNumberOrNull(secondValueCaseOnePassedWithDot);
+                _numberService.TryParseStringToDoubleNumberOrZero(secondValueCaseOnePassedWithDot);
 
-            double? caseTwoIsNullResult = _numberService.TryParseStringToDoubleNumberOrNull(caseTwoNotNumberPassed);
+            double? caseTwoIsNullResult = _numberService.TryParseStringToDoubleNumberOrZero(caseTwoNotNumberPassed);
 
             if (firstValueCaseOneActualResult.HasValue)
             {

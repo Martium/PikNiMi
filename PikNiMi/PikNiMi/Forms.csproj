@@ -91,7 +91,6 @@
     <Compile Include="Models\FullProductInfoModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Custom Repository\ProductTypeRepository.cs" />
     <Compile Include="Repository\DependencyInjectionRepositoryClass\Service\NumberService.cs" />
     <Compile Include="Repository\DependencyInjectionRepositoryClass\Repository\RepositoryCreate.cs" />
     <Compile Include="Repository\DependencyInjectionRepositoryClass\Repository\RepositoryQueryCalls.cs" />

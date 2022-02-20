@@ -82,6 +82,7 @@ namespace PikNiMi.Forms
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.MoneyCourseInfoLabel = new System.Windows.Forms.Label();
             this.MoneyCourseTextBox = new System.Windows.Forms.TextBox();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.TableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,6 +147,7 @@ namespace PikNiMi.Forms
             this.TableLayoutPanel.Controls.Add(this.comboBox4, 3, 6);
             this.TableLayoutPanel.Controls.Add(this.MoneyCourseInfoLabel, 4, 1);
             this.TableLayoutPanel.Controls.Add(this.MoneyCourseTextBox, 5, 1);
+            this.TableLayoutPanel.Controls.Add(this.SaveButton, 5, 20);
             this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayoutPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
@@ -701,6 +703,17 @@ namespace PikNiMi.Forms
             this.MoneyCourseTextBox.Size = new System.Drawing.Size(143, 20);
             this.MoneyCourseTextBox.TabIndex = 70;
             // 
+            // SaveButton
+            // 
+            this.SaveButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SaveButton.Location = new System.Drawing.Point(718, 523);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(143, 26);
+            this.SaveButton.TabIndex = 71;
+            this.SaveButton.Text = "SaveButton";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -772,5 +785,6 @@ namespace PikNiMi.Forms
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label MoneyCourseInfoLabel;
         private System.Windows.Forms.TextBox MoneyCourseTextBox;
+        private System.Windows.Forms.Button SaveButton;
     }
 }

@@ -43,5 +43,6 @@ namespace PikNiMi.Interface
         string SetProductWantProfitInfoLabelText();
         string SetTextBoxResizeButtonText();
         string SetMoneyCourseText();
+        string SetSaveButtonText();
     }
 }

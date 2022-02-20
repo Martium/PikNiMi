@@ -1,6 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using PikNiMi.Forms.Constants;
+using PikNiMi.Forms.Service;
+using PikNiMi.Models;
+using PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository;
+using PikNiMi.Repository.DependencyInjectionRepositoryClass.Service;
+using PikNiMi.Repository.SqlLite;
 using PikNiMi.TranslationsToAnotherLanguages;
 
 namespace PikNiMi.Forms
@@ -8,11 +14,16 @@ namespace PikNiMi.Forms
     public partial class ProductForm : Form
     {
         private readonly LanguageTranslator _languageTranslator;
+        private readonly RepositoryQueryCalls _repositoryQueryCalls;
+        private readonly NumberService _numberService;
+
         public ProductForm()
         {
             InitializeComponent();
 
-            _languageTranslator = new LanguageTranslator( new TextTranslationsToLithuaniaLanguage());
+            _languageTranslator = new LanguageTranslator(new TextTranslationsToLithuaniaLanguage());
+            _repositoryQueryCalls = new RepositoryQueryCalls(new SqlLiteRepositoryQueryCalls());
+            _numberService = new NumberService(new InvariantCultureNumberService());
         }
 
         private void ProductForm_Load(object sender, EventArgs e)
@@ -38,6 +49,75 @@ namespace PikNiMi.Forms
             //load last data update new data
         }
 
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            // testing passed
+            FullProductInfoModel fullProductInfo = new FullProductInfoModel()
+            {
+                ProductReceiptDate = ProductReceiptDateTextBox.Text,
+                ProductType = "Suknelė", // for testing 
+                ProductDescription = ProductDescriptionTextBox.Text,
+                ProductColor = ProductColorTextBox.Text,
+                ProductSize = ProductSizeTextBox.Text,
+                ProductCare = ProductCareTextBox.Text,
+                ProductMadeStuff = ProductMadeStuffTextBox.Text,
+                ProductMadeIn = ProductMadeInTextBox.Text,
+
+                ProductQuantity = _numberService.TryParseStringToNumberOrZero(ProductQuantityTextBox.Text),
+                ProductQuantityLeft = _numberService.TryParseStringToNumberOrZero(ProductQuantityLeftTextBox.Text),
+                ProductOriginalUnitPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrZero(ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text),
+                ProductQuantityPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrZero(ProductQuantityPriceAtOriginalCurrencyTextBox.Text),
+                ProductUnitPriceInEuro = _numberService.TryParseStringToDoubleNumberOrZero(ProductUnitPriceInEuroTextBox.Text),
+                ProductQuantityPriceInEuro = _numberService.TryParseStringToDoubleNumberOrZero(ProductQuantityPriceInEuroTextBox.Text),
+                TripExpenses = _numberService.TryParseStringToDoubleNumberOrZero(TripExpensesTextBox.Text),
+                ProductExpensesCostPrice = _numberService.TryParseStringToDoubleNumberOrZero(ProductExpensesCostPriceTextBox.Text),
+                ProductSoldPrice = _numberService.TryParseStringToDoubleNumberOrZero(ProductSoldPriceTextBox.Text),
+                ProductPvm = _numberService.TryParseStringToDoubleNumberOrZero(ProductPvmTextBox.Text),
+                ProductSoldPriceWithPvm = _numberService.TryParseStringToDoubleNumberOrZero(ProductSoldPriceWithPvmTextBox.Text),
+                ProductSold = _numberService.TryParseStringToNumberOrZero(ProductSoldTextBox.Text),
+                ProductProfit = _numberService.TryParseStringToDoubleNumberOrZero(ProductProfitTextBox.Text),
+                Discount = _numberService.TryParseStringToDoubleNumberOrZero(DiscountTextBox.Text)
+            };
+
+            string[] search =
+            {
+                ProductReceiptDateTextBox.Text,
+                ProductTypeComboBox.Text,
+                ProductDescriptionTextBox.Text,
+                ProductColorTextBox.Text,
+                ProductSizeTextBox.Text,
+                ProductCareTextBox.Text,
+                ProductMadeStuffTextBox.Text,
+                ProductMadeInTextBox.Text,
+                ProductQuantityTextBox.Text,
+                ProductQuantityLeftTextBox.Text,
+                ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text,
+                ProductQuantityPriceAtOriginalCurrencyTextBox.Text,
+                ProductUnitPriceInEuroTextBox.Text,
+                ProductQuantityPriceInEuroTextBox.Text,
+                TripExpensesTextBox.Text,
+                ProductExpensesCostPriceTextBox.Text,
+                ProductSoldPriceTextBox.Text,
+                ProductPvmTextBox.Text,
+                ProductSoldPriceWithPvmTextBox.Text,
+                ProductSoldTextBox.Text,
+                ProductProfitTextBox.Text,
+                DiscountTextBox.Text
+            };
+
+            //disable buttons
+            SetButtonControl(false);
+
+            Task<int> taskAffectedRows = _repositoryQueryCalls.CreateNewFullProductInfo(fullProductInfo, search);
+
+            if (taskAffectedRows.IsCompleted)
+            {
+               MessageBox.Show(@"bingo");
+            }
+            SetButtonControl(true);
+            // enable buttons
+        }
+
         #region Heplers
 
         private void OpenNewForm(Form form)
@@ -55,6 +135,12 @@ namespace PikNiMi.Forms
             {
                 form.WindowState = FormWindowState.Maximized;
             }
+        }
+
+        private void SetButtonControl(bool isAllowed)
+        {
+            ProductDescriptionTextBoxResizeButton.Enabled = isAllowed;
+            SaveButton.Enabled = isAllowed;
         }
 
         private void SetLanguageText()
@@ -87,9 +173,11 @@ namespace PikNiMi.Forms
             MoneyCourseInfoLabel.Text = _languageTranslator.SetMoneyCourseText();
 
             ProductDescriptionTextBoxResizeButton.Text = _languageTranslator.SetTextBoxResizeButtonText();
+            SaveButton.Text = _languageTranslator.SetSaveButtonText();
 
         }
 
         #endregion
+        
     }
 }

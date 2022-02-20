@@ -18,9 +18,9 @@ namespace PikNiMi.Forms.Service
             return int.Parse(text);
         }
 
-        public int? TryParseStringToNumberOrNull(string text)
+        public int TryParseStringToNumberOrDefault(string text)
         {
-            int? numberOrNull;
+            int numberOrNull;
 
             if (int.TryParse(text, out int number))
             {
@@ -28,17 +28,17 @@ namespace PikNiMi.Forms.Service
             }
             else
             {
-                numberOrNull = null;
+                numberOrNull = default;
             }
 
             return numberOrNull;
         }
 
-        public double? TryParseStringToDoubleNumberOrNull(string text)
+        public double TryParseStringToDoubleNumberOrDefault(string text)
         {
             string changeCommaToDot = text != null ? ChangeCommaToDot(text) : null;
 
-            double? numberOrNull;
+            double numberOrNull;
 
             if (double.TryParse(changeCommaToDot, _numberStyles, _cultureInfo ,out double number))
             {
@@ -46,10 +46,11 @@ namespace PikNiMi.Forms.Service
             }
             else
             {
-                numberOrNull = null;
+                numberOrNull = default;
             }
 
             return numberOrNull;
         }
+
     }
 }

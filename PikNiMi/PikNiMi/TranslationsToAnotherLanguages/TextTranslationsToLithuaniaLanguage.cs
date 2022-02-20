@@ -214,5 +214,10 @@ namespace PikNiMi.TranslationsToAnotherLanguages
         {
             return "Kursas";
         }
+
+        public string SetSaveButtonText()
+        {
+            return "Išsaugoti";
+        }
     }
 }

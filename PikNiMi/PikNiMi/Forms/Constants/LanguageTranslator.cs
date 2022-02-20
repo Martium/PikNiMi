@@ -202,5 +202,10 @@ namespace PikNiMi.Forms.Constants
         {
             return _languageTranslator.SetMoneyCourseText();
         }
+
+        public string SetSaveButtonText()
+        {
+            return _languageTranslator.SetSaveButtonText();
+        }
     }
 }
