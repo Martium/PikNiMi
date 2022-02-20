@@ -51,8 +51,6 @@ namespace PikNiMi.Forms
         private void AnotherForm_Closed(object sender, EventArgs e)
         {
             this.Show();
-
-            //load last data update new data
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -61,7 +59,7 @@ namespace PikNiMi.Forms
             FullProductInfoModel fullProductInfo = new FullProductInfoModel()
             {
                 ProductReceiptDate = ProductReceiptDateTextBox.Text,
-                ProductType = "Suknelė", // for testing 
+                ProductType = SetProductTypeTextForSavingInDataBase(),
                 ProductDescription = ProductDescriptionTextBox.Text,
                 ProductColor = ProductColorTextBox.Text,
                 ProductSize = ProductSizeTextBox.Text,
@@ -212,6 +210,24 @@ namespace PikNiMi.Forms
             DiscountTextBox.MaxLength = TextBoxLength.NumberLength;
             ProductWantProfitTextBox.MaxLength = TextBoxLength.NumberLength;
             MoneyCourseTextBox.MaxLength = TextBoxLength.NumberLength;
+        }
+
+        private string SetProductTypeTextForSavingInDataBase()
+        {
+            string newText;
+
+            string defaultProductTypeValue = _languageTranslator.SetProductTypeComboBoxDefaultText();
+
+            if (defaultProductTypeValue == ProductTypeComboBox.Text)
+            {
+                newText = _languageTranslator.SetNotChooseText();
+            }
+            else
+            {
+                newText = ProductTypeComboBox.Text;
+            }
+
+            return newText;
         }
 
         #endregion

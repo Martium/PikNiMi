@@ -207,5 +207,10 @@ namespace PikNiMi.Forms.Constants
         {
             return _languageTranslator.SetSaveButtonText();
         }
+
+        public string SetNotChooseText()
+        {
+            return _languageTranslator.SetNotChooseText();
+        }
     }
 }

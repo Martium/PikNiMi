@@ -19,6 +19,11 @@ namespace PikNiMi.TranslationsToAnotherLanguages
             return productType;
         }
 
+        public string LoadProductTypeDefaultValue()
+        {
+            return "Pasirinkti tipą...";
+        }
+
         public string SetFormHeaderText(FormHeaderTextTypeEnum formHeaderTextType)
         {
             string text;
@@ -218,6 +223,11 @@ namespace PikNiMi.TranslationsToAnotherLanguages
         public string SetSaveButtonText()
         {
             return "Išsaugoti";
+        }
+
+        public string SetNotChooseText()
+        {
+            return "Nepasirinkta";
         }
     }
 }

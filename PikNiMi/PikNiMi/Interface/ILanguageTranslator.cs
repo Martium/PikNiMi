@@ -6,6 +6,7 @@ namespace PikNiMi.Interface
     public interface ILanguageTranslator
     {
         List<string> LoadProductTypeDefaultList();
+        string LoadProductTypeDefaultValue();
         string SetFormHeaderText(FormHeaderTextTypeEnum formHeaderTextType);
         string SetProductTypeComboBoxDefaultText();
         string SetSearchTextBoxPlaceHolder();
@@ -44,5 +45,6 @@ namespace PikNiMi.Interface
         string SetTextBoxResizeButtonText();
         string SetMoneyCourseText();
         string SetSaveButtonText();
+        string SetNotChooseText();
     }
 }
