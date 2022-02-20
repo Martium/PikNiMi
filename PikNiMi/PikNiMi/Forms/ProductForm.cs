@@ -18,7 +18,7 @@ namespace PikNiMi.Forms
         private void ProductForm_Load(object sender, EventArgs e)
         {
             TableLayoutPanel.Font = FormFontConstants.DefaultFontSize;
-            SetLanguage();
+            SetLanguageText();
         }
 
         private void ProductForm_Resize(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace PikNiMi.Forms
             }
         }
 
-        private void SetLanguage()
+        private void SetLanguageText()
         {
             ProductReceiptDateInfoLabel.Text = _languageTranslator.SetProductReceiptDateInfoLabelText();
             ProductDescriptionInfoLabel.Text = _languageTranslator.SetProductDescriptionInfoLabelText();
@@ -84,9 +84,10 @@ namespace PikNiMi.Forms
             DiscountInfoLabel.Text = _languageTranslator.SetDiscountInfoLabelText();
             ProductTypeInfoLabel.Text = _languageTranslator.SetProductTypeInfoLabelText();
             ProductWantProfitInfoLabel.Text = _languageTranslator.SetProductWantProfitInfoLabelText();
+            MoneyCourseInfoLabel.Text = _languageTranslator.SetMoneyCourseText();
 
             ProductDescriptionTextBoxResizeButton.Text = _languageTranslator.SetTextBoxResizeButtonText();
-            // set all other button text 
+
         }
 
         #endregion

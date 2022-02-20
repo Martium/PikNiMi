@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-using PikNiMi.Enums;
+using PikNiMi.Forms.Constants;
 
 namespace PikNiMi.Forms
 {
@@ -15,6 +15,11 @@ namespace PikNiMi.Forms
             
         }
 
+        private void TextBoxResizeForm_Resize(object sender, System.EventArgs e)
+        {
+            TableLayoutPanel.Font = WindowState == FormWindowState.Maximized ? FormFontConstants.MaximizedFontSize : FormFontConstants.DefaultFontSize;
+        }
+
         #region Helpers
 
         private void SetFormTextHeader()
@@ -23,5 +28,6 @@ namespace PikNiMi.Forms
         }
 
         #endregion
+       
     }
 }

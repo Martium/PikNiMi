@@ -51,50 +51,37 @@ namespace PikNiMi.Forms
             this.ProductSoldInfoLabel = new System.Windows.Forms.Label();
             this.ProductProfitInfoLabel = new System.Windows.Forms.Label();
             this.ProductTypeInfoLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.ProductTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.ProductReceiptDateTextBox = new System.Windows.Forms.TextBox();
+            this.ProductDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.ProductColorTextBox = new System.Windows.Forms.TextBox();
+            this.ProductSizeTextBox = new System.Windows.Forms.TextBox();
+            this.ProductCareTextBox = new System.Windows.Forms.TextBox();
+            this.ProductMadeStuffTextBox = new System.Windows.Forms.TextBox();
+            this.ProductMadeInTextBox = new System.Windows.Forms.TextBox();
+            this.ProductQuantityTextBox = new System.Windows.Forms.TextBox();
+            this.ProductQuantityLeftTextBox = new System.Windows.Forms.TextBox();
+            this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox = new System.Windows.Forms.TextBox();
+            this.ProductQuantityPriceAtOriginalCurrencyTextBox = new System.Windows.Forms.TextBox();
+            this.ProductUnitPriceInEuroTextBox = new System.Windows.Forms.TextBox();
+            this.ProductQuantityPriceInEuroTextBox = new System.Windows.Forms.TextBox();
+            this.TripExpensesTextBox = new System.Windows.Forms.TextBox();
+            this.ProductExpensesCostPriceTextBox = new System.Windows.Forms.TextBox();
+            this.ProductSoldPriceTextBox = new System.Windows.Forms.TextBox();
+            this.ProductPvmTextBox = new System.Windows.Forms.TextBox();
+            this.ProductSoldPriceWithPvmTextBox = new System.Windows.Forms.TextBox();
+            this.ProductSoldTextBox = new System.Windows.Forms.TextBox();
+            this.ProductProfitTextBox = new System.Windows.Forms.TextBox();
             this.ProductDescriptionTextBoxResizeButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
             this.ProductWantProfitInfoLabel = new System.Windows.Forms.Label();
-            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.ProductWantProfitTextBox = new System.Windows.Forms.TextBox();
             this.DiscountInfoLabel = new System.Windows.Forms.Label();
-            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.DiscountTextBox = new System.Windows.Forms.TextBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.MoneyCourseInfoLabel = new System.Windows.Forms.Label();
+            this.MoneyCourseTextBox = new System.Windows.Forms.TextBox();
             this.TableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,50 +115,37 @@ namespace PikNiMi.Forms
             this.TableLayoutPanel.Controls.Add(this.ProductSoldInfoLabel, 0, 18);
             this.TableLayoutPanel.Controls.Add(this.ProductProfitInfoLabel, 0, 19);
             this.TableLayoutPanel.Controls.Add(this.ProductTypeInfoLabel, 2, 0);
-            this.TableLayoutPanel.Controls.Add(this.comboBox1, 3, 0);
-            this.TableLayoutPanel.Controls.Add(this.textBox1, 1, 0);
-            this.TableLayoutPanel.Controls.Add(this.textBox2, 1, 1);
-            this.TableLayoutPanel.Controls.Add(this.textBox3, 1, 2);
-            this.TableLayoutPanel.Controls.Add(this.textBox4, 1, 3);
-            this.TableLayoutPanel.Controls.Add(this.textBox5, 1, 4);
-            this.TableLayoutPanel.Controls.Add(this.textBox6, 1, 5);
-            this.TableLayoutPanel.Controls.Add(this.textBox7, 1, 6);
-            this.TableLayoutPanel.Controls.Add(this.textBox8, 1, 7);
-            this.TableLayoutPanel.Controls.Add(this.textBox9, 1, 8);
-            this.TableLayoutPanel.Controls.Add(this.textBox10, 1, 9);
-            this.TableLayoutPanel.Controls.Add(this.textBox11, 1, 10);
-            this.TableLayoutPanel.Controls.Add(this.textBox12, 1, 11);
-            this.TableLayoutPanel.Controls.Add(this.textBox13, 1, 12);
-            this.TableLayoutPanel.Controls.Add(this.textBox14, 1, 13);
-            this.TableLayoutPanel.Controls.Add(this.textBox15, 1, 14);
-            this.TableLayoutPanel.Controls.Add(this.textBox16, 1, 15);
-            this.TableLayoutPanel.Controls.Add(this.textBox17, 1, 16);
-            this.TableLayoutPanel.Controls.Add(this.textBox18, 1, 17);
-            this.TableLayoutPanel.Controls.Add(this.textBox19, 1, 18);
-            this.TableLayoutPanel.Controls.Add(this.textBox20, 1, 19);
+            this.TableLayoutPanel.Controls.Add(this.ProductTypeComboBox, 3, 0);
+            this.TableLayoutPanel.Controls.Add(this.ProductReceiptDateTextBox, 1, 0);
+            this.TableLayoutPanel.Controls.Add(this.ProductDescriptionTextBox, 1, 1);
+            this.TableLayoutPanel.Controls.Add(this.ProductColorTextBox, 1, 2);
+            this.TableLayoutPanel.Controls.Add(this.ProductSizeTextBox, 1, 3);
+            this.TableLayoutPanel.Controls.Add(this.ProductCareTextBox, 1, 4);
+            this.TableLayoutPanel.Controls.Add(this.ProductMadeStuffTextBox, 1, 5);
+            this.TableLayoutPanel.Controls.Add(this.ProductMadeInTextBox, 1, 6);
+            this.TableLayoutPanel.Controls.Add(this.ProductQuantityTextBox, 1, 7);
+            this.TableLayoutPanel.Controls.Add(this.ProductQuantityLeftTextBox, 1, 8);
+            this.TableLayoutPanel.Controls.Add(this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox, 1, 9);
+            this.TableLayoutPanel.Controls.Add(this.ProductQuantityPriceAtOriginalCurrencyTextBox, 1, 10);
+            this.TableLayoutPanel.Controls.Add(this.ProductUnitPriceInEuroTextBox, 1, 11);
+            this.TableLayoutPanel.Controls.Add(this.ProductQuantityPriceInEuroTextBox, 1, 12);
+            this.TableLayoutPanel.Controls.Add(this.TripExpensesTextBox, 1, 13);
+            this.TableLayoutPanel.Controls.Add(this.ProductExpensesCostPriceTextBox, 1, 14);
+            this.TableLayoutPanel.Controls.Add(this.ProductSoldPriceTextBox, 1, 15);
+            this.TableLayoutPanel.Controls.Add(this.ProductPvmTextBox, 1, 16);
+            this.TableLayoutPanel.Controls.Add(this.ProductSoldPriceWithPvmTextBox, 1, 17);
+            this.TableLayoutPanel.Controls.Add(this.ProductSoldTextBox, 1, 18);
+            this.TableLayoutPanel.Controls.Add(this.ProductProfitTextBox, 1, 19);
             this.TableLayoutPanel.Controls.Add(this.ProductDescriptionTextBoxResizeButton, 2, 1);
-            this.TableLayoutPanel.Controls.Add(this.button2, 2, 2);
-            this.TableLayoutPanel.Controls.Add(this.button3, 2, 3);
-            this.TableLayoutPanel.Controls.Add(this.button4, 2, 4);
-            this.TableLayoutPanel.Controls.Add(this.button5, 2, 5);
-            this.TableLayoutPanel.Controls.Add(this.button6, 2, 6);
-            this.TableLayoutPanel.Controls.Add(this.button7, 2, 7);
-            this.TableLayoutPanel.Controls.Add(this.button8, 2, 8);
-            this.TableLayoutPanel.Controls.Add(this.button9, 2, 9);
-            this.TableLayoutPanel.Controls.Add(this.button10, 2, 10);
-            this.TableLayoutPanel.Controls.Add(this.button11, 2, 11);
-            this.TableLayoutPanel.Controls.Add(this.button12, 2, 12);
-            this.TableLayoutPanel.Controls.Add(this.button13, 2, 13);
-            this.TableLayoutPanel.Controls.Add(this.button14, 2, 14);
-            this.TableLayoutPanel.Controls.Add(this.button15, 2, 15);
-            this.TableLayoutPanel.Controls.Add(this.button16, 2, 16);
-            this.TableLayoutPanel.Controls.Add(this.button17, 2, 17);
-            this.TableLayoutPanel.Controls.Add(this.button18, 2, 18);
-            this.TableLayoutPanel.Controls.Add(this.button19, 2, 19);
             this.TableLayoutPanel.Controls.Add(this.ProductWantProfitInfoLabel, 4, 0);
-            this.TableLayoutPanel.Controls.Add(this.textBox21, 5, 0);
+            this.TableLayoutPanel.Controls.Add(this.ProductWantProfitTextBox, 5, 0);
             this.TableLayoutPanel.Controls.Add(this.DiscountInfoLabel, 0, 20);
-            this.TableLayoutPanel.Controls.Add(this.textBox22, 1, 20);
+            this.TableLayoutPanel.Controls.Add(this.DiscountTextBox, 1, 20);
+            this.TableLayoutPanel.Controls.Add(this.comboBox2, 3, 3);
+            this.TableLayoutPanel.Controls.Add(this.comboBox3, 3, 4);
+            this.TableLayoutPanel.Controls.Add(this.comboBox4, 3, 6);
+            this.TableLayoutPanel.Controls.Add(this.MoneyCourseInfoLabel, 4, 1);
+            this.TableLayoutPanel.Controls.Add(this.MoneyCourseTextBox, 5, 1);
             this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayoutPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
@@ -453,174 +427,176 @@ namespace PikNiMi.Forms
             this.ProductTypeInfoLabel.TabIndex = 21;
             this.ProductTypeInfoLabel.Text = "Produkto Tipas";
             // 
-            // comboBox1
+            // ProductTypeComboBox
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(432, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(137, 21);
-            this.comboBox1.TabIndex = 22;
+            this.ProductTypeComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ProductTypeComboBox.FormattingEnabled = true;
+            this.ProductTypeComboBox.Location = new System.Drawing.Point(432, 3);
+            this.ProductTypeComboBox.Name = "ProductTypeComboBox";
+            this.ProductTypeComboBox.Size = new System.Drawing.Size(137, 21);
+            this.ProductTypeComboBox.TabIndex = 22;
+            this.ProductTypeComboBox.TabStop = false;
             // 
-            // textBox1
+            // ProductReceiptDateTextBox
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(146, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(137, 20);
-            this.textBox1.TabIndex = 23;
+            this.ProductReceiptDateTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductReceiptDateTextBox.Location = new System.Drawing.Point(146, 3);
+            this.ProductReceiptDateTextBox.Name = "ProductReceiptDateTextBox";
+            this.ProductReceiptDateTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductReceiptDateTextBox.TabIndex = 23;
             // 
-            // textBox2
+            // ProductDescriptionTextBox
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(146, 29);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(137, 20);
-            this.textBox2.TabIndex = 24;
+            this.ProductDescriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductDescriptionTextBox.Location = new System.Drawing.Point(146, 29);
+            this.ProductDescriptionTextBox.Name = "ProductDescriptionTextBox";
+            this.ProductDescriptionTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductDescriptionTextBox.TabIndex = 24;
             // 
-            // textBox3
+            // ProductColorTextBox
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(146, 55);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(137, 20);
-            this.textBox3.TabIndex = 25;
+            this.ProductColorTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductColorTextBox.Location = new System.Drawing.Point(146, 55);
+            this.ProductColorTextBox.Name = "ProductColorTextBox";
+            this.ProductColorTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductColorTextBox.TabIndex = 25;
             // 
-            // textBox4
+            // ProductSizeTextBox
             // 
-            this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(146, 81);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(137, 20);
-            this.textBox4.TabIndex = 26;
+            this.ProductSizeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductSizeTextBox.Location = new System.Drawing.Point(146, 81);
+            this.ProductSizeTextBox.Name = "ProductSizeTextBox";
+            this.ProductSizeTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductSizeTextBox.TabIndex = 26;
             // 
-            // textBox5
+            // ProductCareTextBox
             // 
-            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox5.Location = new System.Drawing.Point(146, 107);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(137, 20);
-            this.textBox5.TabIndex = 27;
+            this.ProductCareTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductCareTextBox.Location = new System.Drawing.Point(146, 107);
+            this.ProductCareTextBox.Name = "ProductCareTextBox";
+            this.ProductCareTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductCareTextBox.TabIndex = 27;
             // 
-            // textBox6
+            // ProductMadeStuffTextBox
             // 
-            this.textBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox6.Location = new System.Drawing.Point(146, 133);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(137, 20);
-            this.textBox6.TabIndex = 28;
+            this.ProductMadeStuffTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductMadeStuffTextBox.Location = new System.Drawing.Point(146, 133);
+            this.ProductMadeStuffTextBox.Name = "ProductMadeStuffTextBox";
+            this.ProductMadeStuffTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductMadeStuffTextBox.TabIndex = 28;
             // 
-            // textBox7
+            // ProductMadeInTextBox
             // 
-            this.textBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox7.Location = new System.Drawing.Point(146, 159);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(137, 20);
-            this.textBox7.TabIndex = 29;
+            this.ProductMadeInTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductMadeInTextBox.Location = new System.Drawing.Point(146, 159);
+            this.ProductMadeInTextBox.Name = "ProductMadeInTextBox";
+            this.ProductMadeInTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductMadeInTextBox.TabIndex = 29;
             // 
-            // textBox8
+            // ProductQuantityTextBox
             // 
-            this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox8.Location = new System.Drawing.Point(146, 185);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(137, 20);
-            this.textBox8.TabIndex = 30;
+            this.ProductQuantityTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductQuantityTextBox.Location = new System.Drawing.Point(146, 185);
+            this.ProductQuantityTextBox.Name = "ProductQuantityTextBox";
+            this.ProductQuantityTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductQuantityTextBox.TabIndex = 30;
             // 
-            // textBox9
+            // ProductQuantityLeftTextBox
             // 
-            this.textBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox9.Location = new System.Drawing.Point(146, 211);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(137, 20);
-            this.textBox9.TabIndex = 31;
+            this.ProductQuantityLeftTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductQuantityLeftTextBox.Location = new System.Drawing.Point(146, 211);
+            this.ProductQuantityLeftTextBox.Name = "ProductQuantityLeftTextBox";
+            this.ProductQuantityLeftTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductQuantityLeftTextBox.TabIndex = 31;
             // 
-            // textBox10
+            // ProductOriginalUnitPriceAtOriginalCurrencyTextBox
             // 
-            this.textBox10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox10.Location = new System.Drawing.Point(146, 237);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(137, 20);
-            this.textBox10.TabIndex = 32;
+            this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Location = new System.Drawing.Point(146, 237);
+            this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Name = "ProductOriginalUnitPriceAtOriginalCurrencyTextBox";
+            this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox.TabIndex = 32;
             // 
-            // textBox11
+            // ProductQuantityPriceAtOriginalCurrencyTextBox
             // 
-            this.textBox11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox11.Location = new System.Drawing.Point(146, 263);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(137, 20);
-            this.textBox11.TabIndex = 33;
+            this.ProductQuantityPriceAtOriginalCurrencyTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductQuantityPriceAtOriginalCurrencyTextBox.Location = new System.Drawing.Point(146, 263);
+            this.ProductQuantityPriceAtOriginalCurrencyTextBox.Name = "ProductQuantityPriceAtOriginalCurrencyTextBox";
+            this.ProductQuantityPriceAtOriginalCurrencyTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductQuantityPriceAtOriginalCurrencyTextBox.TabIndex = 33;
             // 
-            // textBox12
+            // ProductUnitPriceInEuroTextBox
             // 
-            this.textBox12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox12.Location = new System.Drawing.Point(146, 289);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(137, 20);
-            this.textBox12.TabIndex = 34;
+            this.ProductUnitPriceInEuroTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductUnitPriceInEuroTextBox.Location = new System.Drawing.Point(146, 289);
+            this.ProductUnitPriceInEuroTextBox.Name = "ProductUnitPriceInEuroTextBox";
+            this.ProductUnitPriceInEuroTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductUnitPriceInEuroTextBox.TabIndex = 34;
             // 
-            // textBox13
+            // ProductQuantityPriceInEuroTextBox
             // 
-            this.textBox13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox13.Location = new System.Drawing.Point(146, 315);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(137, 20);
-            this.textBox13.TabIndex = 35;
+            this.ProductQuantityPriceInEuroTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductQuantityPriceInEuroTextBox.Location = new System.Drawing.Point(146, 315);
+            this.ProductQuantityPriceInEuroTextBox.Name = "ProductQuantityPriceInEuroTextBox";
+            this.ProductQuantityPriceInEuroTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductQuantityPriceInEuroTextBox.TabIndex = 35;
             // 
-            // textBox14
+            // TripExpensesTextBox
             // 
-            this.textBox14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox14.Location = new System.Drawing.Point(146, 341);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(137, 20);
-            this.textBox14.TabIndex = 36;
+            this.TripExpensesTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TripExpensesTextBox.Location = new System.Drawing.Point(146, 341);
+            this.TripExpensesTextBox.Name = "TripExpensesTextBox";
+            this.TripExpensesTextBox.Size = new System.Drawing.Size(137, 20);
+            this.TripExpensesTextBox.TabIndex = 36;
             // 
-            // textBox15
+            // ProductExpensesCostPriceTextBox
             // 
-            this.textBox15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox15.Location = new System.Drawing.Point(146, 367);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(137, 20);
-            this.textBox15.TabIndex = 37;
+            this.ProductExpensesCostPriceTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductExpensesCostPriceTextBox.Location = new System.Drawing.Point(146, 367);
+            this.ProductExpensesCostPriceTextBox.Name = "ProductExpensesCostPriceTextBox";
+            this.ProductExpensesCostPriceTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductExpensesCostPriceTextBox.TabIndex = 37;
             // 
-            // textBox16
+            // ProductSoldPriceTextBox
             // 
-            this.textBox16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox16.Location = new System.Drawing.Point(146, 393);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(137, 20);
-            this.textBox16.TabIndex = 38;
+            this.ProductSoldPriceTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductSoldPriceTextBox.Location = new System.Drawing.Point(146, 393);
+            this.ProductSoldPriceTextBox.Name = "ProductSoldPriceTextBox";
+            this.ProductSoldPriceTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductSoldPriceTextBox.TabIndex = 38;
             // 
-            // textBox17
+            // ProductPvmTextBox
             // 
-            this.textBox17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox17.Location = new System.Drawing.Point(146, 419);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(137, 20);
-            this.textBox17.TabIndex = 39;
+            this.ProductPvmTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductPvmTextBox.Location = new System.Drawing.Point(146, 419);
+            this.ProductPvmTextBox.Name = "ProductPvmTextBox";
+            this.ProductPvmTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductPvmTextBox.TabIndex = 39;
             // 
-            // textBox18
+            // ProductSoldPriceWithPvmTextBox
             // 
-            this.textBox18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox18.Location = new System.Drawing.Point(146, 445);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(137, 20);
-            this.textBox18.TabIndex = 40;
+            this.ProductSoldPriceWithPvmTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductSoldPriceWithPvmTextBox.Location = new System.Drawing.Point(146, 445);
+            this.ProductSoldPriceWithPvmTextBox.Name = "ProductSoldPriceWithPvmTextBox";
+            this.ProductSoldPriceWithPvmTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductSoldPriceWithPvmTextBox.TabIndex = 40;
             // 
-            // textBox19
+            // ProductSoldTextBox
             // 
-            this.textBox19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox19.Location = new System.Drawing.Point(146, 471);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(137, 20);
-            this.textBox19.TabIndex = 41;
+            this.ProductSoldTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductSoldTextBox.Location = new System.Drawing.Point(146, 471);
+            this.ProductSoldTextBox.Name = "ProductSoldTextBox";
+            this.ProductSoldTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductSoldTextBox.TabIndex = 41;
             // 
-            // textBox20
+            // ProductProfitTextBox
             // 
-            this.textBox20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox20.Location = new System.Drawing.Point(146, 497);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(137, 20);
-            this.textBox20.TabIndex = 42;
+            this.ProductProfitTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductProfitTextBox.Location = new System.Drawing.Point(146, 497);
+            this.ProductProfitTextBox.Name = "ProductProfitTextBox";
+            this.ProductProfitTextBox.Size = new System.Drawing.Size(137, 20);
+            this.ProductProfitTextBox.TabIndex = 42;
             // 
             // ProductDescriptionTextBoxResizeButton
             // 
@@ -636,240 +612,6 @@ namespace PikNiMi.Forms
             this.ProductDescriptionTextBoxResizeButton.UseVisualStyleBackColor = true;
             this.ProductDescriptionTextBoxResizeButton.Click += new System.EventHandler(this.ProductDescriptionTextBoxResizeButton_Click);
             // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(289, 55);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 20);
-            this.button2.TabIndex = 44;
-            this.button2.TabStop = false;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(289, 81);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(137, 20);
-            this.button3.TabIndex = 45;
-            this.button3.TabStop = false;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(289, 107);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(137, 20);
-            this.button4.TabIndex = 46;
-            this.button4.TabStop = false;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(289, 133);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(137, 20);
-            this.button5.TabIndex = 47;
-            this.button5.TabStop = false;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(289, 159);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(137, 20);
-            this.button6.TabIndex = 48;
-            this.button6.TabStop = false;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(289, 185);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(137, 20);
-            this.button7.TabIndex = 49;
-            this.button7.TabStop = false;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button8.Location = new System.Drawing.Point(289, 211);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(137, 20);
-            this.button8.TabIndex = 50;
-            this.button8.TabStop = false;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button9.Location = new System.Drawing.Point(289, 237);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(137, 20);
-            this.button9.TabIndex = 51;
-            this.button9.TabStop = false;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // button10
-            // 
-            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button10.Location = new System.Drawing.Point(289, 263);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(137, 20);
-            this.button10.TabIndex = 52;
-            this.button10.TabStop = false;
-            this.button10.Text = "button10";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // button11
-            // 
-            this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button11.Location = new System.Drawing.Point(289, 289);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(137, 20);
-            this.button11.TabIndex = 53;
-            this.button11.TabStop = false;
-            this.button11.Text = "button11";
-            this.button11.UseVisualStyleBackColor = true;
-            // 
-            // button12
-            // 
-            this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button12.Location = new System.Drawing.Point(289, 315);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(137, 20);
-            this.button12.TabIndex = 54;
-            this.button12.TabStop = false;
-            this.button12.Text = "button12";
-            this.button12.UseVisualStyleBackColor = true;
-            // 
-            // button13
-            // 
-            this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button13.Location = new System.Drawing.Point(289, 341);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(137, 20);
-            this.button13.TabIndex = 55;
-            this.button13.TabStop = false;
-            this.button13.Text = "button13";
-            this.button13.UseVisualStyleBackColor = true;
-            // 
-            // button14
-            // 
-            this.button14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button14.Location = new System.Drawing.Point(289, 367);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(137, 20);
-            this.button14.TabIndex = 56;
-            this.button14.TabStop = false;
-            this.button14.Text = "button14";
-            this.button14.UseVisualStyleBackColor = true;
-            // 
-            // button15
-            // 
-            this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button15.Location = new System.Drawing.Point(289, 393);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(137, 20);
-            this.button15.TabIndex = 57;
-            this.button15.TabStop = false;
-            this.button15.Text = "button15";
-            this.button15.UseVisualStyleBackColor = true;
-            // 
-            // button16
-            // 
-            this.button16.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button16.Location = new System.Drawing.Point(289, 419);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(137, 20);
-            this.button16.TabIndex = 58;
-            this.button16.TabStop = false;
-            this.button16.Text = "button16";
-            this.button16.UseVisualStyleBackColor = true;
-            // 
-            // button17
-            // 
-            this.button17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button17.Location = new System.Drawing.Point(289, 445);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(137, 20);
-            this.button17.TabIndex = 59;
-            this.button17.TabStop = false;
-            this.button17.Text = "button17";
-            this.button17.UseVisualStyleBackColor = true;
-            // 
-            // button18
-            // 
-            this.button18.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button18.Location = new System.Drawing.Point(289, 471);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(137, 20);
-            this.button18.TabIndex = 60;
-            this.button18.TabStop = false;
-            this.button18.Text = "button18";
-            this.button18.UseVisualStyleBackColor = true;
-            // 
-            // button19
-            // 
-            this.button19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button19.Location = new System.Drawing.Point(289, 497);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(137, 20);
-            this.button19.TabIndex = 61;
-            this.button19.TabStop = false;
-            this.button19.Text = "button19";
-            this.button19.UseVisualStyleBackColor = true;
-            // 
             // ProductWantProfitInfoLabel
             // 
             this.ProductWantProfitInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -882,13 +624,13 @@ namespace PikNiMi.Forms
             this.ProductWantProfitInfoLabel.TabIndex = 62;
             this.ProductWantProfitInfoLabel.Text = "Norimas Pelnas";
             // 
-            // textBox21
+            // ProductWantProfitTextBox
             // 
-            this.textBox21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox21.Location = new System.Drawing.Point(718, 3);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(143, 20);
-            this.textBox21.TabIndex = 63;
+            this.ProductWantProfitTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductWantProfitTextBox.Location = new System.Drawing.Point(718, 3);
+            this.ProductWantProfitTextBox.Name = "ProductWantProfitTextBox";
+            this.ProductWantProfitTextBox.Size = new System.Drawing.Size(143, 20);
+            this.ProductWantProfitTextBox.TabIndex = 63;
             // 
             // DiscountInfoLabel
             // 
@@ -900,13 +642,64 @@ namespace PikNiMi.Forms
             this.DiscountInfoLabel.TabIndex = 64;
             this.DiscountInfoLabel.Text = "Nuolaida";
             // 
-            // textBox22
+            // DiscountTextBox
             // 
-            this.textBox22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox22.Location = new System.Drawing.Point(146, 523);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(137, 20);
-            this.textBox22.TabIndex = 65;
+            this.DiscountTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DiscountTextBox.Location = new System.Drawing.Point(146, 523);
+            this.DiscountTextBox.Name = "DiscountTextBox";
+            this.DiscountTextBox.Size = new System.Drawing.Size(137, 20);
+            this.DiscountTextBox.TabIndex = 65;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(432, 81);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(137, 21);
+            this.comboBox2.TabIndex = 66;
+            this.comboBox2.TabStop = false;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(432, 107);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(137, 21);
+            this.comboBox3.TabIndex = 67;
+            this.comboBox3.TabStop = false;
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(432, 159);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(137, 21);
+            this.comboBox4.TabIndex = 68;
+            this.comboBox4.TabStop = false;
+            // 
+            // MoneyCourseInfoLabel
+            // 
+            this.MoneyCourseInfoLabel.AutoSize = true;
+            this.MoneyCourseInfoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MoneyCourseInfoLabel.Location = new System.Drawing.Point(575, 26);
+            this.MoneyCourseInfoLabel.Name = "MoneyCourseInfoLabel";
+            this.MoneyCourseInfoLabel.Size = new System.Drawing.Size(137, 26);
+            this.MoneyCourseInfoLabel.TabIndex = 69;
+            this.MoneyCourseInfoLabel.Text = "Money Course";
+            // 
+            // MoneyCourseTextBox
+            // 
+            this.MoneyCourseTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MoneyCourseTextBox.Location = new System.Drawing.Point(718, 29);
+            this.MoneyCourseTextBox.Name = "MoneyCourseTextBox";
+            this.MoneyCourseTextBox.Size = new System.Drawing.Size(143, 20);
+            this.MoneyCourseTextBox.TabIndex = 70;
             // 
             // ProductForm
             // 
@@ -948,49 +741,36 @@ namespace PikNiMi.Forms
         private System.Windows.Forms.Label ProductSoldInfoLabel;
         private System.Windows.Forms.Label ProductProfitInfoLabel;
         private System.Windows.Forms.Label ProductTypeInfoLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.ComboBox ProductTypeComboBox;
+        private System.Windows.Forms.TextBox ProductReceiptDateTextBox;
+        private System.Windows.Forms.TextBox ProductDescriptionTextBox;
+        private System.Windows.Forms.TextBox ProductColorTextBox;
+        private System.Windows.Forms.TextBox ProductSizeTextBox;
+        private System.Windows.Forms.TextBox ProductCareTextBox;
+        private System.Windows.Forms.TextBox ProductMadeStuffTextBox;
+        private System.Windows.Forms.TextBox ProductMadeInTextBox;
+        private System.Windows.Forms.TextBox ProductQuantityTextBox;
+        private System.Windows.Forms.TextBox ProductQuantityLeftTextBox;
+        private System.Windows.Forms.TextBox ProductOriginalUnitPriceAtOriginalCurrencyTextBox;
+        private System.Windows.Forms.TextBox ProductQuantityPriceAtOriginalCurrencyTextBox;
+        private System.Windows.Forms.TextBox ProductUnitPriceInEuroTextBox;
+        private System.Windows.Forms.TextBox ProductQuantityPriceInEuroTextBox;
+        private System.Windows.Forms.TextBox TripExpensesTextBox;
+        private System.Windows.Forms.TextBox ProductExpensesCostPriceTextBox;
+        private System.Windows.Forms.TextBox ProductSoldPriceTextBox;
+        private System.Windows.Forms.TextBox ProductPvmTextBox;
+        private System.Windows.Forms.TextBox ProductSoldPriceWithPvmTextBox;
+        private System.Windows.Forms.TextBox ProductSoldTextBox;
+        private System.Windows.Forms.TextBox ProductProfitTextBox;
         private System.Windows.Forms.Button ProductDescriptionTextBoxResizeButton;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Label ProductWantProfitInfoLabel;
-        private System.Windows.Forms.TextBox textBox21;
+        private System.Windows.Forms.TextBox ProductWantProfitTextBox;
         private System.Windows.Forms.Label DiscountInfoLabel;
-        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.TextBox DiscountTextBox;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label MoneyCourseInfoLabel;
+        private System.Windows.Forms.TextBox MoneyCourseTextBox;
     }
 }

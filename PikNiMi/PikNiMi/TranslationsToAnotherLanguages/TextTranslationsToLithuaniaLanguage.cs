@@ -209,5 +209,10 @@ namespace PikNiMi.TranslationsToAnotherLanguages
         {
             return "Peržiūra";
         }
+
+        public string SetMoneyCourseText()
+        {
+            return "Kursas";
+        }
     }
 }

@@ -3,11 +3,7 @@
     public enum FormHeaderTextTypeEnum
     {
         MainForm,
-
         ProductFormNew,
         ProductFormUpdate,
-
-        TextBoxResizeFromProductDescription
-
     }
 }

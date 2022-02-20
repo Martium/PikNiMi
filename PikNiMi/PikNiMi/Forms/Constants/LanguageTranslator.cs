@@ -197,5 +197,10 @@ namespace PikNiMi.Forms.Constants
         {
             return _languageTranslator.SetTextBoxResizeButtonText();
         }
+
+        public string SetMoneyCourseText()
+        {
+            return _languageTranslator.SetMoneyCourseText();
+        }
     }
 }
