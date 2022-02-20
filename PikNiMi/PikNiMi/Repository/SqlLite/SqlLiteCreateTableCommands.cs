@@ -47,9 +47,22 @@ namespace PikNiMi.Repository.SqlLite
                 );
             ";
 
+            string productAdditionalInfoTable = "ProductAdditionalInfo";
+            string createProductAdditionalInfoTable = 
+                $@"
+                    CREATE TABLE [{productAdditionalInfoTable}] (
+                        [Id] [Integer] NOT NULL,
+                        [ProfitWant] [Numeric] NULL,
+                        [MoneyCourse] [Numeric] NULL,
+                        FOREIGN KEY (Id) REFERENCES {fullProductInfoTable} (ProductId) ON DELETE CASCADE,
+                        UNIQUE (Id)
+                    );
+                ";
+
             var tableCommands = new Dictionary<string, string>()
             {
-                {fullProductInfoTable, createFullProductInfoTable}
+                {fullProductInfoTable, createFullProductInfoTable},
+                {productAdditionalInfoTable, createProductAdditionalInfoTable}
             };
 
             return tableCommands;

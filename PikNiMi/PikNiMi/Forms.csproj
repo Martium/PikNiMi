@@ -59,6 +59,7 @@
     <Compile Include="Forms\Constants\FormFontConstants.cs" />
     <Compile Include="Forms\Constants\LanguageTranslator.cs" />
     <Compile Include="Interface\ILanguageTranslator.cs" />
+    <Compile Include="Models\ProductAdditionalInfoModel.cs" />
     <Compile Include="TranslationsToAnotherLanguages\TextTranslationsToLithuaniaLanguage.cs" />
     <Compile Include="Forms\Constants\FormTextBoxDefaultTexts.cs" />
     <Compile Include="Forms\Constants\TextBoxLength.cs" />
