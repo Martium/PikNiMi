@@ -55,59 +55,8 @@ namespace PikNiMi.Forms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            // testing passed
-            FullProductInfoModel fullProductInfo = new FullProductInfoModel()
-            {
-                ProductReceiptDate = ProductReceiptDateTextBox.Text,
-                ProductType = SetProductTypeTextForSavingInDataBase(),
-                ProductDescription = ProductDescriptionTextBox.Text,
-                ProductColor = ProductColorTextBox.Text,
-                ProductSize = ProductSizeTextBox.Text,
-                ProductCare = ProductCareTextBox.Text,
-                ProductMadeStuff = ProductMadeStuffTextBox.Text,
-                ProductMadeIn = ProductMadeInTextBox.Text,
-
-                ProductQuantity = _numberService.TryParseStringToNumberOrZero(ProductQuantityTextBox.Text),
-                ProductQuantityLeft = _numberService.TryParseStringToNumberOrZero(ProductQuantityLeftTextBox.Text),
-                ProductOriginalUnitPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrZero(ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text),
-                ProductQuantityPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrZero(ProductQuantityPriceAtOriginalCurrencyTextBox.Text),
-                ProductUnitPriceInEuro = _numberService.TryParseStringToDoubleNumberOrZero(ProductUnitPriceInEuroTextBox.Text),
-                ProductQuantityPriceInEuro = _numberService.TryParseStringToDoubleNumberOrZero(ProductQuantityPriceInEuroTextBox.Text),
-                TripExpenses = _numberService.TryParseStringToDoubleNumberOrZero(TripExpensesTextBox.Text),
-                ProductExpensesCostPrice = _numberService.TryParseStringToDoubleNumberOrZero(ProductExpensesCostPriceTextBox.Text),
-                ProductSoldPrice = _numberService.TryParseStringToDoubleNumberOrZero(ProductSoldPriceTextBox.Text),
-                ProductPvm = _numberService.TryParseStringToDoubleNumberOrZero(ProductPvmTextBox.Text),
-                ProductSoldPriceWithPvm = _numberService.TryParseStringToDoubleNumberOrZero(ProductSoldPriceWithPvmTextBox.Text),
-                ProductSold = _numberService.TryParseStringToNumberOrZero(ProductSoldTextBox.Text),
-                ProductProfit = _numberService.TryParseStringToDoubleNumberOrZero(ProductProfitTextBox.Text),
-                Discount = _numberService.TryParseStringToDoubleNumberOrZero(DiscountTextBox.Text)
-            };
-
-            string[] search =
-            {
-                ProductReceiptDateTextBox.Text,
-                ProductTypeComboBox.Text,
-                ProductDescriptionTextBox.Text,
-                ProductColorTextBox.Text,
-                ProductSizeTextBox.Text,
-                ProductCareTextBox.Text,
-                ProductMadeStuffTextBox.Text,
-                ProductMadeInTextBox.Text,
-                ProductQuantityTextBox.Text,
-                ProductQuantityLeftTextBox.Text,
-                ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text,
-                ProductQuantityPriceAtOriginalCurrencyTextBox.Text,
-                ProductUnitPriceInEuroTextBox.Text,
-                ProductQuantityPriceInEuroTextBox.Text,
-                TripExpensesTextBox.Text,
-                ProductExpensesCostPriceTextBox.Text,
-                ProductSoldPriceTextBox.Text,
-                ProductPvmTextBox.Text,
-                ProductSoldPriceWithPvmTextBox.Text,
-                ProductSoldTextBox.Text,
-                ProductProfitTextBox.Text,
-                DiscountTextBox.Text
-            };
+            var fullProductInfo = GetInfoFromTextBoxForFullProductInfo();
+            var search = GetAllInfoForSearchInDataBase();
 
             SetButtonControl(false);
 
@@ -228,6 +177,69 @@ namespace PikNiMi.Forms
             }
 
             return newText;
+        }
+
+        private FullProductInfoModel GetInfoFromTextBoxForFullProductInfo()
+        {
+            FullProductInfoModel fullProductInfo = new FullProductInfoModel()
+            {
+                ProductReceiptDate = ProductReceiptDateTextBox.Text,
+                ProductType = SetProductTypeTextForSavingInDataBase(),
+                ProductDescription = ProductDescriptionTextBox.Text,
+                ProductColor = ProductColorTextBox.Text,
+                ProductSize = ProductSizeTextBox.Text,
+                ProductCare = ProductCareTextBox.Text,
+                ProductMadeStuff = ProductMadeStuffTextBox.Text,
+                ProductMadeIn = ProductMadeInTextBox.Text,
+
+                ProductQuantity = _numberService.TryParseStringToNumberOrZero(ProductQuantityTextBox.Text),
+                ProductQuantityLeft = _numberService.TryParseStringToNumberOrZero(ProductQuantityLeftTextBox.Text),
+                ProductOriginalUnitPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrZero(ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text),
+                ProductQuantityPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrZero(ProductQuantityPriceAtOriginalCurrencyTextBox.Text),
+                ProductUnitPriceInEuro = _numberService.TryParseStringToDoubleNumberOrZero(ProductUnitPriceInEuroTextBox.Text),
+                ProductQuantityPriceInEuro = _numberService.TryParseStringToDoubleNumberOrZero(ProductQuantityPriceInEuroTextBox.Text),
+                TripExpenses = _numberService.TryParseStringToDoubleNumberOrZero(TripExpensesTextBox.Text),
+                ProductExpensesCostPrice = _numberService.TryParseStringToDoubleNumberOrZero(ProductExpensesCostPriceTextBox.Text),
+                ProductSoldPrice = _numberService.TryParseStringToDoubleNumberOrZero(ProductSoldPriceTextBox.Text),
+                ProductPvm = _numberService.TryParseStringToDoubleNumberOrZero(ProductPvmTextBox.Text),
+                ProductSoldPriceWithPvm = _numberService.TryParseStringToDoubleNumberOrZero(ProductSoldPriceWithPvmTextBox.Text),
+                ProductSold = _numberService.TryParseStringToNumberOrZero(ProductSoldTextBox.Text),
+                ProductProfit = _numberService.TryParseStringToDoubleNumberOrZero(ProductProfitTextBox.Text),
+                Discount = _numberService.TryParseStringToDoubleNumberOrZero(DiscountTextBox.Text)
+            };
+
+            return fullProductInfo;
+        }
+
+        private string[] GetAllInfoForSearchInDataBase()
+        {
+            string[] search =
+            {
+                ProductReceiptDateTextBox.Text,
+                ProductTypeComboBox.Text,
+                ProductDescriptionTextBox.Text,
+                ProductColorTextBox.Text,
+                ProductSizeTextBox.Text,
+                ProductCareTextBox.Text,
+                ProductMadeStuffTextBox.Text,
+                ProductMadeInTextBox.Text,
+                ProductQuantityTextBox.Text,
+                ProductQuantityLeftTextBox.Text,
+                ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text,
+                ProductQuantityPriceAtOriginalCurrencyTextBox.Text,
+                ProductUnitPriceInEuroTextBox.Text,
+                ProductQuantityPriceInEuroTextBox.Text,
+                TripExpensesTextBox.Text,
+                ProductExpensesCostPriceTextBox.Text,
+                ProductSoldPriceTextBox.Text,
+                ProductPvmTextBox.Text,
+                ProductSoldPriceWithPvmTextBox.Text,
+                ProductSoldTextBox.Text,
+                ProductProfitTextBox.Text,
+                DiscountTextBox.Text
+            };
+
+            return search;
         }
 
         #endregion

@@ -58,6 +58,7 @@
     <Compile Include="Enums\LanguageEnum.cs" />
     <Compile Include="Forms\Constants\FormFontConstants.cs" />
     <Compile Include="Forms\Constants\LanguageTranslator.cs" />
+    <Compile Include="Forms\Service\MessageBoxService.cs" />
     <Compile Include="Interface\ILanguageTranslator.cs" />
     <Compile Include="Models\ProductAdditionalInfoModel.cs" />
     <Compile Include="TranslationsToAnotherLanguages\TextTranslationsToLithuaniaLanguage.cs" />
