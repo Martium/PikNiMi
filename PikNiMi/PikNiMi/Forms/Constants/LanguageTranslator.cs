@@ -18,9 +18,9 @@ namespace PikNiMi.Forms.Constants
             return _languageTranslator.LoadProductTypeDefaultList();
         }
 
-        public string FormHeaderText(FormHeaderTextTypeEnum formHeaderTextType)
+        public string FormHeaderText(MainFormTypeEnum mainFormType)
         {
-            return _languageTranslator.SetFormHeaderText(formHeaderTextType);
+            return _languageTranslator.SetFormHeaderText(mainFormType);
         }
 
         public string SetProductTypeComboBoxDefaultText()
@@ -212,5 +212,19 @@ namespace PikNiMi.Forms.Constants
         {
             return _languageTranslator.SetNotChooseText();
         }
+
+        #region MessageBoxService
+
+        public string ShowSaveNewRecordSuccessMessage()
+        {
+            return _languageTranslator.ShowSaveNewRecordSuccessMessage();
+        }
+
+        public string ShowSaveNewErrorRecordSuccessMessage()
+        {
+            return _languageTranslator.ShowSaveNewRecordErrorMessage();
+        }
+
+        #endregion
     }
 }

@@ -1,5 +1,5 @@
-﻿using PikNiMi.Forms.Constants;
-using PikNiMi.TranslationsToAnotherLanguages;
+﻿using System.Windows.Forms;
+using PikNiMi.Forms.Constants;
 
 namespace PikNiMi.Forms.Service
 {
@@ -7,11 +7,21 @@ namespace PikNiMi.Forms.Service
     {
         private readonly LanguageTranslator _languageTranslator;
 
-        public MessageBoxService()
+        public MessageBoxService(LanguageTranslator languageTranslator)
         {
-            _languageTranslator = new LanguageTranslator(new TextTranslationsToLithuaniaLanguage());
+            _languageTranslator = languageTranslator;
         }
 
-        
+        public void ShowSaveNewRecordSuccessMessage()
+        {
+            MessageBox.Show(_languageTranslator.ShowSaveNewRecordSuccessMessage());
+        }
+
+        public void ShowSaveNewRecordErrorMessage()
+        {
+            MessageBox.Show(_languageTranslator.ShowSaveNewErrorRecordSuccessMessage());
+        }
+
+
     }
 }

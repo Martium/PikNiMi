@@ -39,7 +39,7 @@ namespace PikNiMi.Forms
             SetDefaultTextBoxesTextValue();
             _comboBoxService.SetProductTypeCustomValues(ProductTypeComboBox);
             SetAllButtonsControl(false);
-             await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
+             await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView, _languageTranslator);
             SetAllButtonsControl(true);
             SetDataGridViewConstantControl();
         }
@@ -117,7 +117,7 @@ namespace PikNiMi.Forms
         {
             SetAllButtonsControl(false);
             SearchTextBox.Text = _languageTranslator.SetSearchTextBoxPlaceHolder();
-            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
+            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView, _languageTranslator);
             SetAllButtonsControl(true);
         }
 
@@ -136,7 +136,7 @@ namespace PikNiMi.Forms
 
         private void AddNewProductButton_Click(object sender, EventArgs e)
         {
-            OpenNewForm(new ProductForm());
+            OpenNewForm(new ProductForm(ProductFormTypeEnum.NewProductForm));
         }
 
         private async void AnotherForm_Closed(object sender, EventArgs e)
@@ -144,7 +144,7 @@ namespace PikNiMi.Forms
             this.Show();
             SetDefaultTextBoxesTextValue();
             SetAllButtonsControl(false);
-            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView);
+            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView, _languageTranslator);
             SetAllButtonsControl(true);
         }
 
@@ -226,7 +226,7 @@ namespace PikNiMi.Forms
 
         private void SetLanguageText()
         {
-            this.Text = _languageTranslator.FormHeaderText(FormHeaderTextTypeEnum.MainForm);
+            this.Text = _languageTranslator.FormHeaderText(MainFormTypeEnum.MainForm);
 
             AddNewProductButton.Text = _languageTranslator.SetAddNewProductButtonText();
             UpdateProductButton.Text = _languageTranslator.SetUpdateProductButtonText();

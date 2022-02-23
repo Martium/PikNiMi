@@ -98,6 +98,34 @@ namespace PikNiMi.Forms.Service
             return cellValue;
         }
 
+        private void SetFullProductInfoAllHeadersTexts(LanguageTranslator languageTranslator, DataGridView productDataGridView)
+        {
+            productDataGridView.Columns[0].HeaderText = @"Id";
+
+            productDataGridView.Columns[1].HeaderText = languageTranslator.SetProductReceiptDateInfoLabelText();
+            productDataGridView.Columns[2].HeaderText = languageTranslator.SetProductTypeInfoLabelText();
+            productDataGridView.Columns[3].HeaderText = languageTranslator.SetProductDescriptionInfoLabelText();
+            productDataGridView.Columns[4].HeaderText = languageTranslator.SetProductColorInfoLabelText();
+            productDataGridView.Columns[5].HeaderText = languageTranslator.SetProductSizeInfoLabelText();
+            productDataGridView.Columns[6].HeaderText = languageTranslator.SetProductCareInfoLabelText();
+            productDataGridView.Columns[7].HeaderText = languageTranslator.SetProductMadeStuffInfoLabelText();
+            productDataGridView.Columns[8].HeaderText = languageTranslator.SetProductMadeInInfoLabelText();
+            productDataGridView.Columns[9].HeaderText = languageTranslator.SetProductQuantityInfoLabelText();
+            productDataGridView.Columns[10].HeaderText = languageTranslator.SetProductQuantityLeftInfoLabelText();
+            productDataGridView.Columns[11].HeaderText = languageTranslator.SetProductOriginalUnitPriceAtOriginalCurrencyInfoLabelText();
+            productDataGridView.Columns[12].HeaderText = languageTranslator.SetProductQuantityPriceAtOriginalCurrencyInfoLabelText();
+            productDataGridView.Columns[13].HeaderText = languageTranslator.SetProductUnitPriceInEuroInfoLabelText();
+            productDataGridView.Columns[14].HeaderText = languageTranslator.SetProductQuantityPriceInEuroInfoLabelText();
+            productDataGridView.Columns[15].HeaderText = languageTranslator.SetTripExpensesInfoLabelText();
+            productDataGridView.Columns[16].HeaderText = languageTranslator.SetProductExpensesCostPriceInfoLabelText();
+            productDataGridView.Columns[17].HeaderText = languageTranslator.SetProductSoldPriceInfoLabelText();
+            productDataGridView.Columns[18].HeaderText = languageTranslator.SetProductPvmInfoLabelText();
+            productDataGridView.Columns[19].HeaderText = languageTranslator.SetProductSoldPriceWithPvmInfoLabelText();
+            productDataGridView.Columns[20].HeaderText = languageTranslator.SetProductSoldInfoLabelText();
+            productDataGridView.Columns[21].HeaderText = languageTranslator.SetProductProfitInfoLabelText();
+            productDataGridView.Columns[22].HeaderText = languageTranslator.SetDiscountInfoLabelText();
+        }
+
         public List<FullProductInfoModel> GetLastLoadInfoFromDataGridView(DataGridView productDataGridView)
         {
             var lastLoadInfo = new List<FullProductInfoModel>();
@@ -123,12 +151,12 @@ namespace PikNiMi.Forms.Service
             return productDataGridView;
         }
 
-        public async Task<DataGridView> LoadFullProductInfo(DataGridView productDataGridView)
+        public async Task<DataGridView> LoadFullProductInfo(DataGridView productDataGridView, LanguageTranslator languageTranslator)
         {
             var productBidingSource = SetBidingSourceForProductDataGridView();
             productBidingSource.DataSource = await _repositoryQueryCalls.GetAllOfFullProductInfo();
             productDataGridView.DataSource = productBidingSource;
-            //Change header size and text to LT introduceMethod
+            SetFullProductInfoAllHeadersTexts(languageTranslator, productDataGridView);
 
             return  productDataGridView;
         }
@@ -160,6 +188,5 @@ namespace PikNiMi.Forms.Service
             productDataGridView.DataSource = productBidingSource;
             return productDataGridView;
         }
-        
     }
 }

@@ -24,12 +24,12 @@ namespace PikNiMi.TranslationsToAnotherLanguages
             return "Pasirinkti tipą...";
         }
 
-        public string SetFormHeaderText(FormHeaderTextTypeEnum formHeaderTextType)
+        public string SetFormHeaderText(MainFormTypeEnum mainFormType)
         {
             string text;
-            switch (formHeaderTextType)
+            switch (mainFormType)
             {
-                case FormHeaderTextTypeEnum.MainForm:
+                case MainFormTypeEnum.MainForm:
                     text = @"PikNiMi Sandėlis";
                     break;
                 default:
@@ -167,7 +167,7 @@ namespace PikNiMi.TranslationsToAnotherLanguages
 
         public string SetProductExpensesCostPriceInfoLabelText()
         {
-            return "Produkto Išlaidos";
+            return "Savikaina su išlaidomis";
         }
 
         public string SetProductSoldPriceInfoLabelText()
@@ -229,5 +229,19 @@ namespace PikNiMi.TranslationsToAnotherLanguages
         {
             return "Nepasirinkta";
         }
+
+        #region MessageBoxMessage
+
+        public string ShowSaveNewRecordSuccessMessage()
+        {
+            return @"Sekmingai išsaugota";
+        }
+
+        public string ShowSaveNewRecordErrorMessage()
+        {
+            return @"Neišsaugota kreiptis į Administratorių";
+        }
+
+        #endregion
     }
 }

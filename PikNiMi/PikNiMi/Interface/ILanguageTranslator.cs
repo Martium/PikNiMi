@@ -7,7 +7,7 @@ namespace PikNiMi.Interface
     {
         List<string> LoadProductTypeDefaultList();
         string LoadProductTypeDefaultValue();
-        string SetFormHeaderText(FormHeaderTextTypeEnum formHeaderTextType);
+        string SetFormHeaderText(MainFormTypeEnum mainFormType);
         string SetProductTypeComboBoxDefaultText();
         string SetSearchTextBoxPlaceHolder();
         string SetTripExpensesTextBoxPlaceHolder();
@@ -46,5 +46,8 @@ namespace PikNiMi.Interface
         string SetMoneyCourseText();
         string SetSaveButtonText();
         string SetNotChooseText();
+
+        string ShowSaveNewRecordSuccessMessage();
+        string ShowSaveNewRecordErrorMessage();
     }
 }

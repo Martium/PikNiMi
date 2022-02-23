@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Extensions.Caching.Memory;
+using PikNiMi.Enums;
 using PikNiMi.Forms.Constants;
 using PikNiMi.Forms.Service;
 using PikNiMi.Models;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass.Service;
+using PikNiMi.Repository.MemoryCache;
 using PikNiMi.Repository.SqlLite;
 using PikNiMi.TranslationsToAnotherLanguages;
 
@@ -13,19 +16,27 @@ namespace PikNiMi.Forms
 {
     public partial class ProductForm : Form
     {
+        private readonly ProductFormTypeEnum _productFormType;
+        private TextBoxResizeFormTypeEnum _textBoxResizeFormType;
         private readonly LanguageTranslator _languageTranslator;
         private readonly RepositoryQueryCalls _repositoryQueryCalls;
         private readonly NumberService _numberService;
+        private readonly MessageBoxService _messageBoxService;
+        private readonly MemoryCacheControl _memoryCacheControl;
 
         private readonly ComboBoxService _comboBoxService;
 
-        public ProductForm()
+        public ProductForm(ProductFormTypeEnum productFormType)
         {
+            _productFormType = productFormType;
+
             InitializeComponent();
 
             _languageTranslator = new LanguageTranslator(new TextTranslationsToLithuaniaLanguage());
             _repositoryQueryCalls = new RepositoryQueryCalls(new SqlLiteRepositoryQueryCalls());
             _numberService = new NumberService(new InvariantCultureNumberService());
+            _messageBoxService = new MessageBoxService(_languageTranslator);
+            _memoryCacheControl = new MemoryCacheControl(new MemoryCache(new MemoryCacheOptions()));
 
             _comboBoxService = new ComboBoxService(_languageTranslator);
         }
@@ -45,28 +56,19 @@ namespace PikNiMi.Forms
 
         private void ProductDescriptionTextBoxResizeButton_Click(object sender, EventArgs e)
         {
-            OpenNewForm(new TextBoxResizeForm());
+            _textBoxResizeFormType = TextBoxResizeFormTypeEnum.ProductDescription;
+            OpenNewForm(new TextBoxResizeForm(_textBoxResizeFormType, ProductDescriptionTextBox.Text, _memoryCacheControl));
         }
 
         private void AnotherForm_Closed(object sender, EventArgs e)
         {
             this.Show();
+            SetTextToSpecificTextBoxAfterTextBoxResizeFormClosed(_textBoxResizeFormType);
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            var fullProductInfo = GetInfoFromTextBoxForFullProductInfo();
-            var search = GetAllInfoForSearchInDataBase();
-
-            SetButtonControl(false);
-
-            Task<int> taskAffectedRows = _repositoryQueryCalls.CreateNewFullProductInfo(fullProductInfo, search);
-
-            if (taskAffectedRows.IsCompleted)
-            {
-               MessageBox.Show(@"bingo");
-            }
-            SetButtonControl(true);
+            SaveOrUpdateRecord();
         }
 
         #region Heplers
@@ -240,6 +242,54 @@ namespace PikNiMi.Forms
             };
 
             return search;
+        }
+
+        private void ShowSaveNewOperationMessage(bool isCompleted)
+        {
+            if (isCompleted)
+            {
+                _messageBoxService.ShowSaveNewRecordSuccessMessage();
+            }
+            else
+            {
+                _messageBoxService.ShowSaveNewRecordErrorMessage();
+            }
+        }
+
+        private void SaveOrUpdateRecord()
+        {
+            var fullProductInfo = GetInfoFromTextBoxForFullProductInfo();
+            var search = GetAllInfoForSearchInDataBase();
+            SetButtonControl(false);
+
+            switch (_productFormType)
+            {
+                case ProductFormTypeEnum.NewProductForm:
+                    Task<int> taskAffectedRows = _repositoryQueryCalls.CreateNewFullProductInfo(fullProductInfo, search);
+                    ShowSaveNewOperationMessage(taskAffectedRows.IsCompleted);
+                    break;
+                case ProductFormTypeEnum.UpdateProductForm:
+                    //update Task
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            SetButtonControl(true);
+        }
+
+        private void SetTextToSpecificTextBoxAfterTextBoxResizeFormClosed(TextBoxResizeFormTypeEnum textBoxResizeFormType)
+        {
+            switch (textBoxResizeFormType)
+            {
+                case TextBoxResizeFormTypeEnum.ProductDescription:
+                    ProductDescriptionTextBox.Text = _memoryCacheControl.GetExistingStringDataFromCache("TextBoxResize");
+                    break;
+                default: 
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            _memoryCacheControl.DeleteExistingCache("TextBoxResize");
         }
 
         #endregion
