@@ -87,5 +87,20 @@ namespace PikNiMi.Repository.SqlLite
                 return newProduct;
             }
         }
+
+        public Task<int> UpdateExistingFullProductInfo(FullProductInfoModel fullProductInfo, string[] search)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string updateCommand =
+                    SqlLiteQueryToDataBaseCommands.UpdateExistingFullProductInfo(fullProductInfo, search);
+
+                var updateProduct = dbConnection.ExecuteAsync(updateCommand);
+
+                return updateProduct;
+            }
+        }
     }
 }

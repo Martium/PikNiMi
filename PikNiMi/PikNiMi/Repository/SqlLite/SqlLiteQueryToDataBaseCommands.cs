@@ -5,7 +5,8 @@ namespace PikNiMi.Repository.SqlLite
 {
     public static class SqlLiteQueryToDataBaseCommands
     {
-        private const string FullProductInfoTable = "FullProductInfoTable FPIT";
+        private const string FullProductInfoTable = "FullProductInfoTable";
+        private const string FullProductInfoTableWithShortcut = "FullProductInfoTable FPIT";
 
         private const string ProductId = "FPIT.ProductId";
         private const string ProductType = "FPIT.ProductType";
@@ -27,7 +28,7 @@ namespace PikNiMi.Repository.SqlLite
         {
             string getExistingServiceQuery =
                 $@"
-                    SELECT * FROM {FullProductInfoTable}
+                    SELECT * FROM {FullProductInfoTableWithShortcut}
                     ORDER BY {ProductId} DESC;
                 ";
 
@@ -38,7 +39,7 @@ namespace PikNiMi.Repository.SqlLite
         {
             string searchQuery =
                 $@"
-                         SELECT * FROM {FullProductInfoTable}
+                         SELECT * FROM {FullProductInfoTableWithShortcut}
                         WHERE {ProductType} = '{productType}'
                         ORDER BY {ProductId} DESC;
                 ";
@@ -50,7 +51,7 @@ namespace PikNiMi.Repository.SqlLite
         {
             string searchQuery = 
                 $@"
-                     SELECT * FROM {FullProductInfoTable}
+                     SELECT * FROM {FullProductInfoTableWithShortcut}
                      WHERE {Search} LIKE '%{searchPhrase}%'
                      ORDER BY {ProductId} DESC;
                 ";
@@ -62,7 +63,7 @@ namespace PikNiMi.Repository.SqlLite
         {
             string searchQuery =
                 $@"
-                     SELECT * FROM {FullProductInfoTable}
+                     SELECT * FROM {FullProductInfoTableWithShortcut}
                      WHERE {Search} LIKE '%{searchPhrase}%' AND {ProductType} = '{productType}'
                      ORDER BY {ProductId} DESC;
                 ";
@@ -76,7 +77,7 @@ namespace PikNiMi.Repository.SqlLite
 
             string newProductQuery = 
                 $@"
-                        INSERT INTO 'FullProductInfoTable'
+                        INSERT INTO '{FullProductInfoTable}'
                         VALUES (NULL, '{fullProductInfo.ProductReceiptDate}', '{fullProductInfo.ProductType}', '{fullProductInfo.ProductDescription}',
                                 '{fullProductInfo.ProductColor}', '{fullProductInfo.ProductSize}', '{fullProductInfo.ProductCare}',
                                 '{fullProductInfo.ProductMadeStuff}', '{fullProductInfo.ProductMadeIn}', {fullProductInfo.ProductQuantity},
@@ -90,6 +91,34 @@ namespace PikNiMi.Repository.SqlLite
                 ";
 
             return newProductQuery;
+        }
+
+        public static string UpdateExistingFullProductInfo(FullProductInfoModel fullProductInfo, string[] search)
+        {
+            string searchFormat = ImplementSearchData(search);
+
+            string updateProductQuery = 
+                $@"
+                        UPDATE '{FullProductInfoTable}'
+                        SET ProductReceiptDate = '{fullProductInfo.ProductReceiptDate}',
+                            ProductType = '{fullProductInfo.ProductType}', ProductDescription = '{fullProductInfo.ProductDescription}',
+                            ProductColor = '{fullProductInfo.ProductColor}', ProductSize = '{fullProductInfo.ProductSize}',
+                            ProductCare = '{fullProductInfo.ProductCare}', ProductMadeStuff = '{fullProductInfo.ProductMadeStuff}',
+                            ProductMadeIn = '{fullProductInfo.ProductMadeIn}', ProductQuantity = {fullProductInfo.ProductQuantity},
+                            ProductQuantityLeft = {fullProductInfo.ProductQuantityLeft}, 
+                            ProductOriginalUnitPriceAtOriginalCurrency = {fullProductInfo.ProductOriginalUnitPriceAtOriginalCurrency},
+                            ProductQuantityPriceAtOriginalCurrency = {fullProductInfo.ProductQuantityPriceAtOriginalCurrency},
+                            ProductUnitPriceInEuro = {fullProductInfo.ProductUnitPriceInEuro},
+                            ProductQuantityPriceInEuro = {fullProductInfo.ProductQuantityPriceInEuro},
+                            TripExpenses = {fullProductInfo.TripExpenses}, ProductExpensesCostPrice = {fullProductInfo.ProductExpensesCostPrice},
+                            ProductSoldPrice = {fullProductInfo.ProductSoldPrice}, ProductPvm = {fullProductInfo.ProductPvm},
+                            ProductSoldPriceWithPvm = {fullProductInfo.ProductSoldPriceWithPvm}, ProductSold = {fullProductInfo.ProductSold},
+                            ProductProfit = {fullProductInfo.ProductProfit}, Discount = {fullProductInfo.Discount},
+                            Search = '{searchFormat}'
+                        WHERE ProductId = {fullProductInfo.ProductId}
+                ";
+
+            return updateProductQuery;
         }
     }
 }

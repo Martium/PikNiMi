@@ -25,5 +25,10 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Service
         {
             return _numberService.TryParseStringToDoubleNumberOrDefault(text);
         }
+
+        public string ParseDoubleToString(double number)
+        {
+            return _numberService.ParseDoubleToString(number);
+        }
     }
 }

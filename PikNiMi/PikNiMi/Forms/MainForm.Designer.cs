@@ -88,6 +88,7 @@ namespace PikNiMi.Forms
             this.UpdateProductButton.TabStop = false;
             this.UpdateProductButton.Text = "Atnaujinti produktą";
             this.UpdateProductButton.UseVisualStyleBackColor = true;
+            this.UpdateProductButton.Click += new System.EventHandler(this.UpdateProductButton_Click);
             // 
             // AddNewProductButton
             // 

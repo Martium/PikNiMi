@@ -18,6 +18,9 @@ namespace PikNiMi.Forms
     {
         private readonly ProductFormTypeEnum _productFormType;
         private TextBoxResizeFormTypeEnum _textBoxResizeFormType;
+
+        private readonly FullProductInfoModel _productInfo;
+
         private readonly LanguageTranslator _languageTranslator;
         private readonly RepositoryQueryCalls _repositoryQueryCalls;
         private readonly NumberService _numberService;
@@ -26,9 +29,10 @@ namespace PikNiMi.Forms
 
         private readonly ComboBoxService _comboBoxService;
 
-        public ProductForm(ProductFormTypeEnum productFormType)
+        public ProductForm(ProductFormTypeEnum productFormType, FullProductInfoModel productInfo = null)
         {
             _productFormType = productFormType;
+            _productInfo = productInfo;
 
             InitializeComponent();
 
@@ -47,6 +51,7 @@ namespace PikNiMi.Forms
             SetTextBoxLength();
             SetLanguageText();
             PopulateComboBoxInfo();
+            FillTextBoxInfoIfUpdateOperation();
         }
 
         private void ProductForm_Resize(object sender, EventArgs e)
@@ -183,6 +188,8 @@ namespace PikNiMi.Forms
 
         private FullProductInfoModel GetInfoFromTextBoxForFullProductInfo()
         {
+            bool isProductIdHasValue = ProductIdTextBox.Text != string.Empty;
+
             FullProductInfoModel fullProductInfo = new FullProductInfoModel()
             {
                 ProductReceiptDate = ProductReceiptDateTextBox.Text,
@@ -209,6 +216,11 @@ namespace PikNiMi.Forms
                 ProductProfit = _numberService.TryParseStringToDoubleNumberOrZero(ProductProfitTextBox.Text),
                 Discount = _numberService.TryParseStringToDoubleNumberOrZero(DiscountTextBox.Text)
             };
+
+            if (isProductIdHasValue)
+            {
+                fullProductInfo.ProductId = int.Parse(ProductIdTextBox.Text);
+            }
 
             return fullProductInfo;
         }
@@ -265,11 +277,12 @@ namespace PikNiMi.Forms
             switch (_productFormType)
             {
                 case ProductFormTypeEnum.NewProductForm:
-                    Task<int> taskAffectedRows = _repositoryQueryCalls.CreateNewFullProductInfo(fullProductInfo, search);
-                    ShowSaveNewOperationMessage(taskAffectedRows.IsCompleted);
+                    Task<int> taskAddNew = _repositoryQueryCalls.CreateNewFullProductInfo(fullProductInfo, search);
+                    ShowSaveNewOperationMessage(taskAddNew.IsCompleted);
                     break;
                 case ProductFormTypeEnum.UpdateProductForm:
-                    //update Task
+                    var taskUpdate = _repositoryQueryCalls.UpdateExistingFullProductInfo(fullProductInfo, search);
+                    ShowSaveNewOperationMessage(taskUpdate.IsCompleted);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -290,6 +303,61 @@ namespace PikNiMi.Forms
             }
 
             _memoryCacheControl.DeleteExistingCache("TextBoxResize");
+        }
+
+        private void FillTextBoxInfoIfUpdateOperation()
+        {
+            if (_productFormType == ProductFormTypeEnum.UpdateProductForm)
+            {
+                ProductIdTextBox.Text = _productInfo.ProductId.ToString();
+                ProductReceiptDateTextBox.Text = _productInfo.ProductReceiptDate;
+                ProductTypeComboBox.Text = SetProductTypeComboBoxTextForUpdateOperation();
+                ProductDescriptionTextBox.Text = _productInfo.ProductDescription;
+                ProductColorTextBox.Text = _productInfo.ProductColor;
+                ProductSizeTextBox.Text = _productInfo.ProductSize;
+                ProductCareTextBox.Text = _productInfo.ProductCare;
+                ProductMadeStuffTextBox.Text = _productInfo.ProductMadeStuff;
+                ProductMadeInTextBox.Text = _productInfo.ProductMadeIn;
+
+                ProductQuantityTextBox.Text = _productInfo.ProductQuantity.ToString();
+                ProductQuantityLeftTextBox.Text = _productInfo.ProductQuantityLeft.ToString();
+
+                ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text =
+                    _numberService.ParseDoubleToString(_productInfo.ProductOriginalUnitPriceAtOriginalCurrency);
+                ProductQuantityPriceAtOriginalCurrencyTextBox.Text =
+                    _numberService.ParseDoubleToString(_productInfo.ProductQuantityPriceAtOriginalCurrency);
+
+                ProductUnitPriceInEuroTextBox.Text =
+                    _numberService.ParseDoubleToString(_productInfo.ProductUnitPriceInEuro);
+                ProductQuantityPriceInEuroTextBox.Text =
+                    _numberService.ParseDoubleToString(_productInfo.ProductQuantityPriceInEuro);
+                TripExpensesTextBox.Text = _numberService.ParseDoubleToString(_productInfo.TripExpenses);
+                ProductExpensesCostPriceTextBox.Text =
+                    _numberService.ParseDoubleToString(_productInfo.ProductExpensesCostPrice);
+                ProductSoldPriceTextBox.Text = _numberService.ParseDoubleToString(_productInfo.ProductSoldPrice);
+                ProductPvmTextBox.Text = _numberService.ParseDoubleToString(_productInfo.ProductPvm);
+                ProductSoldPriceWithPvmTextBox.Text =
+                    _numberService.ParseDoubleToString(_productInfo.ProductSoldPriceWithPvm);
+                ProductSoldTextBox.Text = _productInfo.ProductSold.ToString();
+                ProductProfitTextBox.Text = _numberService.ParseDoubleToString(_productInfo.ProductProfit);
+                DiscountTextBox.Text = _numberService.ParseDoubleToString(_productInfo.Discount);
+            }
+        }
+
+        private string SetProductTypeComboBoxTextForUpdateOperation()
+        {
+            string productType;
+
+            if (!ProductTypeComboBox.Items.Contains(_productInfo.ProductType))
+            {
+                productType = _languageTranslator.SetProductTypeComboBoxDefaultText();
+            }
+            else
+            {
+                productType = _productInfo.ProductType;
+            }
+
+            return productType;
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using PikNiMi.Interface.NumbersServiceInterface;
 
 namespace PikNiMi.Forms.Service
@@ -51,6 +52,13 @@ namespace PikNiMi.Forms.Service
 
             return numberOrNull;
         }
+
+        public string ParseDoubleToString(double number)
+        {
+            return number.ToString(_cultureInfo);
+        }
+
+       
 
     }
 }

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using PikNiMi.Enums;
 using PikNiMi.Forms.Constants;
 using PikNiMi.Forms.Service;
-using PikNiMi.Models;
 using PikNiMi.TranslationsToAnotherLanguages;
 
 namespace PikNiMi.Forms
@@ -18,7 +16,6 @@ namespace PikNiMi.Forms
         private readonly ProductDataGridViewService _productDataGridViewService;
 
 
-        private List<FullProductInfoModel> _lastProductsInfo;
 
         public MainForm()
         {
@@ -29,7 +26,6 @@ namespace PikNiMi.Forms
             _comboBoxService = new ComboBoxService(_languageTranslator);
             _productDataGridViewService = new ProductDataGridViewService();
 
-            _lastProductsInfo = new List<FullProductInfoModel>();
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -139,6 +135,20 @@ namespace PikNiMi.Forms
             OpenNewForm(new ProductForm(ProductFormTypeEnum.NewProductForm));
         }
 
+        private void UpdateProductButton_Click(object sender, EventArgs e)
+        {
+            if (ProductDataGridView.SelectedRows.Count == 1)
+            {
+                var allFullProductInfo = _productDataGridViewService.GetAllInfoFromSelectedRow(ProductDataGridView);
+                OpenNewForm(new ProductForm(ProductFormTypeEnum.UpdateProductForm, allFullProductInfo));
+            }
+            else
+            {
+                // message box select something 
+            }
+           
+        }
+
         private async void AnotherForm_Closed(object sender, EventArgs e)
         {
             this.Show();
@@ -190,17 +200,6 @@ namespace PikNiMi.Forms
             CountFullOrderDiscountButton.Enabled = isAllowed;
         }
 
-        private void FillLastLoadInfoToList()
-        {
-            _lastProductsInfo.Clear();
-            _lastProductsInfo = _productDataGridViewService.GetLastLoadInfoFromDataGridView(ProductDataGridView);
-        }
-
-        private void LoadLastInfoFromListToProductDataGridView()
-        {
-            _productDataGridViewService.LoadLastInfo(ProductDataGridView, _lastProductsInfo);
-        }
-
         private void SetDataGridViewConstantControl()
         {
             _productDataGridViewService.SetFullRowSelectMode(ProductDataGridView);
@@ -239,6 +238,6 @@ namespace PikNiMi.Forms
         }
 
         #endregion
-       
+        
     }
 }

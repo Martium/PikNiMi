@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Forms;
 using PikNiMi.Forms.Constants;
 using PikNiMi.Models;
@@ -48,54 +47,9 @@ namespace PikNiMi.Forms.Service
             return productBidingSource;
         }
 
-        private FullProductInfoModel GetAllInfoFromRow(DataGridView productDataGridView, int row)
+        private string GetCellValue(DataGridView productDataGridView, int cell)
         {
-            FullProductInfoModel productInfoModel = new FullProductInfoModel()
-            {
-                ProductId = _numberService.ParseStringToNumber(GetCellValue(productDataGridView, row, 0)),
-                ProductReceiptDate = GetCellValue(productDataGridView, row, 1),
-                ProductType = GetCellValue(productDataGridView, row, 2),
-
-                ProductDescription = GetCellValue(productDataGridView, row, 3),
-                ProductColor = GetCellValue(productDataGridView, row, 4),
-                ProductSize = GetCellValue(productDataGridView, row, 5),
-                ProductCare = GetCellValue(productDataGridView, row, 6),
-                ProductMadeStuff = GetCellValue(productDataGridView, row, 7),
-                ProductMadeIn = GetCellValue(productDataGridView, row, 8),
-
-                ProductQuantity = _numberService.TryParseStringToNumberOrZero(GetCellValue(productDataGridView, row, 9)),
-                ProductQuantityLeft = _numberService.TryParseStringToNumberOrZero(GetCellValue(productDataGridView, row, 10)),
-                ProductOriginalUnitPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, row, 11)),
-                ProductQuantityPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, row, 12)),
-                ProductUnitPriceInEuro = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, row, 13)),
-                ProductQuantityPriceInEuro = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, row, 14)),
-                TripExpenses = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, row, 15)),
-                ProductExpensesCostPrice = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, row, 16)),
-                ProductSoldPrice = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, row, 17)),
-                ProductPvm = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, row, 18)),
-                ProductSoldPriceWithPvm = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView,row, 19)),
-                ProductSold = _numberService.TryParseStringToNumberOrZero(GetCellValue(productDataGridView, row, 20)),
-                ProductProfit = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, row, 21)),
-                Discount = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, row, 22))
-            };
-
-            return productInfoModel;
-        }
-
-        private string GetCellValue(DataGridView productDataGridView, int row, int cell)
-        {
-            string cellValue;
-
-            if (productDataGridView.Rows[row].Cells[cell].Value != null)
-            {
-                cellValue = productDataGridView.Rows[row].Cells[cell].Value.ToString();
-            }
-            else
-            {
-                cellValue = null;
-            }
-
-            return cellValue;
+            return productDataGridView.SelectedRows[0].Cells[cell].Value.ToString();
         }
 
         private void SetFullProductInfoAllHeadersTexts(LanguageTranslator languageTranslator, DataGridView productDataGridView)
@@ -126,29 +80,38 @@ namespace PikNiMi.Forms.Service
             productDataGridView.Columns[22].HeaderText = languageTranslator.SetDiscountInfoLabelText();
         }
 
-        public List<FullProductInfoModel> GetLastLoadInfoFromDataGridView(DataGridView productDataGridView)
+        public FullProductInfoModel GetAllInfoFromSelectedRow(DataGridView productDataGridView)
         {
-            var lastLoadInfo = new List<FullProductInfoModel>();
-
-            int rowCount = productDataGridView.RowCount;
-
-            for (int row = 0; row < rowCount; row++)
+            FullProductInfoModel productInfoModel = new FullProductInfoModel()
             {
-                var fullRowInfo = GetAllInfoFromRow(productDataGridView, row);
+                ProductId = _numberService.ParseStringToNumber(GetCellValue(productDataGridView, 0)),
+                ProductReceiptDate = GetCellValue(productDataGridView, 1),
+                ProductType = GetCellValue(productDataGridView, 2),
 
-                lastLoadInfo.Add(fullRowInfo);
-            }
+                ProductDescription = GetCellValue(productDataGridView, 3),
+                ProductColor = GetCellValue(productDataGridView, 4),
+                ProductSize = GetCellValue(productDataGridView, 5),
+                ProductCare = GetCellValue(productDataGridView, 6),
+                ProductMadeStuff = GetCellValue(productDataGridView, 7),
+                ProductMadeIn = GetCellValue(productDataGridView, 8),
 
-            return lastLoadInfo;
-        }
+                ProductQuantity = _numberService.TryParseStringToNumberOrZero(GetCellValue(productDataGridView, 9)),
+                ProductQuantityLeft = _numberService.TryParseStringToNumberOrZero(GetCellValue(productDataGridView, 10)),
+                ProductOriginalUnitPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, 11)),
+                ProductQuantityPriceAtOriginalCurrency = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, 12)),
+                ProductUnitPriceInEuro = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, 13)),
+                ProductQuantityPriceInEuro = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, 14)),
+                TripExpenses = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, 15)),
+                ProductExpensesCostPrice = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, 16)),
+                ProductSoldPrice = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, 17)),
+                ProductPvm = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, 18)),
+                ProductSoldPriceWithPvm = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, 19)),
+                ProductSold = _numberService.TryParseStringToNumberOrZero(GetCellValue(productDataGridView, 20)),
+                ProductProfit = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, 21)),
+                Discount = _numberService.TryParseStringToDoubleNumberOrZero(GetCellValue(productDataGridView, 22))
+            };
 
-        public DataGridView LoadLastInfo(DataGridView productDataGridView, List<FullProductInfoModel> lastProductInfo)
-        {
-            var productBidingSource = SetBidingSourceForProductDataGridView();
-            productBidingSource.DataSource = lastProductInfo;
-            productDataGridView.DataSource = productBidingSource;
-
-            return productDataGridView;
+            return productInfoModel;
         }
 
         public async Task<DataGridView> LoadFullProductInfo(DataGridView productDataGridView, LanguageTranslator languageTranslator)
@@ -188,5 +151,6 @@ namespace PikNiMi.Forms.Service
             productDataGridView.DataSource = productBidingSource;
             return productDataGridView;
         }
+       
     }
 }
