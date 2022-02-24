@@ -188,7 +188,7 @@ namespace PikNiMi.Forms
 
         private FullProductInfoModel GetInfoFromTextBoxForFullProductInfo()
         {
-            bool isProductIdHasValue = ProductIdTextBox.Text != string.Empty;
+            bool isProductIdTextBoxHasValue = ProductIdTextBox.Text != string.Empty;
 
             FullProductInfoModel fullProductInfo = new FullProductInfoModel()
             {
@@ -217,7 +217,7 @@ namespace PikNiMi.Forms
                 Discount = _numberService.TryParseStringToDoubleNumberOrZero(DiscountTextBox.Text)
             };
 
-            if (isProductIdHasValue)
+            if (isProductIdTextBoxHasValue)
             {
                 fullProductInfo.ProductId = int.Parse(ProductIdTextBox.Text);
             }
