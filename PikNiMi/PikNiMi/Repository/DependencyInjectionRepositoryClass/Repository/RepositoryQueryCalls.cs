@@ -39,5 +39,18 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
             return getInfo;
         }
 
+        public Task<int> CreateNewFullProductInfo(FullProductInfoModel fullProductInfo,
+            string[] search)
+        {
+            var newProduct = _repository.AddNewFullProductInfo(fullProductInfo, search);
+            return newProduct;
+        }
+
+        public Task<int> UpdateExistingFullProductInfo(FullProductInfoModel fullProductInfo, string[] search)
+        {
+            var updatedProduct = _repository.UpdateExistingFullProductInfo(fullProductInfo, search);
+            return updatedProduct;
+        }
+
     }
 }

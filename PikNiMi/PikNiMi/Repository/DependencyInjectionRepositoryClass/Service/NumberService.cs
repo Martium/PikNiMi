@@ -16,14 +16,19 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Service
             return _numberService.ParseStringToNumber(text);
         }
 
-        public int? TryParseStringToNumberOrNull(string text)
+        public int TryParseStringToNumberOrZero(string text)
         {
-            return _numberService.TryParseStringToNumberOrNull(text);
+            return _numberService.TryParseStringToNumberOrDefault(text);
         }
 
-        public double? TryParseStringToDoubleNumberOrNull(string text)
+        public double TryParseStringToDoubleNumberOrZero(string text)
         {
-            return _numberService.TryParseStringToDoubleNumberOrNull(text);
+            return _numberService.TryParseStringToDoubleNumberOrDefault(text);
+        }
+
+        public string ParseDoubleToString(double number)
+        {
+            return _numberService.ParseDoubleToString(number);
         }
     }
 }

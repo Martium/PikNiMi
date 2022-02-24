@@ -11,6 +11,8 @@ namespace PikNiMi.Interface.RepositoryInterface
         Task<IEnumerable<FullProductInfoModel>> GetAllInfoBySearchPhrase(string searchPhrase);
         Task<IEnumerable<FullProductInfoModel>> GetAllInfoBySearchAndProductType(string searchPhrase,
             string productType);
+        Task<int> AddNewFullProductInfo(FullProductInfoModel fullProductInfo, string[] search);
+        Task<int> UpdateExistingFullProductInfo(FullProductInfoModel fullProductInfo, string[] search);
 
     }
 

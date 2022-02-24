@@ -21,7 +21,7 @@ namespace PikNiMi.Repository.SqlLite
                     [ProductCare] [nvarchar] ({TextBoxLength.ProductCare}) NULL,
                     [ProductMadeStuff] [nvarchar] ({TextBoxLength.ProductMadeStuff}) NULL,
 
-                    [ProductBuyLocation] [nvarchar] ({TextBoxLength.ProductBuyLocation}) NULL,
+                    [ProductMadeIn] [nvarchar] ({TextBoxLength.ProductMadeIn}) NULL,
                     [ProductQuantity] [Integer] NULL,
                     [ProductQuantityLeft] [Integer] NULL,
                     
@@ -35,8 +35,11 @@ namespace PikNiMi.Repository.SqlLite
                     [ProductExpensesCostPrice] [Numeric] NULL,
                     
                     [ProductSoldPrice] [Numeric] NULL,
+                    [ProductPvm] [Numeric] NULL,
+                    [ProductSoldPriceWithPvm] [Numeric] NULL,
                     [ProductSold] [Integer] NULL,
                     [ProductProfit] [Numeric] NULL,
+                    [Discount] [Numeric] NULL,
 
                     [Search] [nvarchar] (3000) NOT NULL,
                     
@@ -44,9 +47,22 @@ namespace PikNiMi.Repository.SqlLite
                 );
             ";
 
+            string productAdditionalInfoTable = "ProductAdditionalInfo";
+            string createProductAdditionalInfoTable = 
+                $@"
+                    CREATE TABLE [{productAdditionalInfoTable}] (
+                        [Id] [Integer] NOT NULL,
+                        [ProfitWant] [Numeric] NULL,
+                        [MoneyCourse] [Numeric] NULL,
+                        FOREIGN KEY (Id) REFERENCES {fullProductInfoTable} (ProductId) ON DELETE CASCADE,
+                        UNIQUE (Id)
+                    );
+                ";
+
             var tableCommands = new Dictionary<string, string>()
             {
-                {fullProductInfoTable, createFullProductInfoTable}
+                {fullProductInfoTable, createFullProductInfoTable},
+                {productAdditionalInfoTable, createProductAdditionalInfoTable}
             };
 
             return tableCommands;

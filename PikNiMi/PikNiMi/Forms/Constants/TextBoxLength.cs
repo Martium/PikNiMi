@@ -1,6 +1,4 @@
-﻿using System.Security.Permissions;
-
-namespace PikNiMi.Forms.Constants
+﻿namespace PikNiMi.Forms.Constants
 {
     public static class TextBoxLength
     {
@@ -12,12 +10,9 @@ namespace PikNiMi.Forms.Constants
         public static int ProductMadeStuff => 100;
         public static int ProductType => 100;
 
-        public static int ProductBuyLocation => 60;
+        public static int ProductMadeIn => 60;
         public static int ProductSearchText => 100;
         public static int NumberLength => 9;
-
-
-
 
     }
 }
