@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using PikNiMi.Interface.NumbersServiceInterface;
 
 namespace PikNiMi.Forms.Service

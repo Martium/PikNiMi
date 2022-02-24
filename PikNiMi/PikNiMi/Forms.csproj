@@ -98,9 +98,12 @@
     <Compile Include="Enums\TextBoxResizeFormTypeEnum.cs" />
     <Compile Include="Forms\Constants\FormFontConstants.cs" />
     <Compile Include="Forms\Constants\LanguageTranslator.cs" />
+    <Compile Include="Forms\Service\InvariantCultureCalculatorService.cs" />
     <Compile Include="Forms\Service\MessageBoxService.cs" />
     <Compile Include="Interface\ILanguageTranslator.cs" />
+    <Compile Include="Interface\NumbersServiceInterface\ICalculator.cs" />
     <Compile Include="Models\ProductAdditionalInfoModel.cs" />
+    <Compile Include="Repository\DependencyInjectionRepositoryClass\Service\Calculator.cs" />
     <Compile Include="Repository\MemoryCache\MemoryCacheControl.cs" />
     <Compile Include="TranslationsToAnotherLanguages\TextTranslationsToLithuaniaLanguage.cs" />
     <Compile Include="Forms\Constants\FormTextBoxDefaultTexts.cs" />
