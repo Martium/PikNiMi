@@ -22,7 +22,6 @@ namespace PikNiMi.Forms
 
         private readonly FullProductInfoModel _productInfo;
         private readonly AdditionalInfoForNewProductOperationModel _additionalInfoForNewProduct;
-       
 
         private readonly LanguageTranslator _languageTranslator;
         private readonly RepositoryQueryCalls _repositoryQueryCalls;
@@ -32,6 +31,9 @@ namespace PikNiMi.Forms
         private readonly Calculator _calculator;
 
         private readonly ComboBoxService _comboBoxService;
+
+        private string _productSoldPriceWithoutPvm = string.Empty;
+        private string _productSoldPriceWithPvm = string.Empty;
 
         public ProductForm(ProductFormTypeEnum productFormType, FullProductInfoModel productInfo = null, AdditionalInfoForNewProductOperationModel additionalInfoForNewProduct = null)
         {
@@ -526,12 +528,15 @@ namespace PikNiMi.Forms
             ProductExpensesCostPriceTextBox.Text =
                 _calculator.CountProductExpenses(productPriceInEuro: ProductUnitPriceInEuroTextBox.Text,
                     TripExpensesTextBox.Text);
+
             ProductSoldPriceTextBox.Text = _calculator.CountSoldPriceWithoutPvm(
                 productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
             ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
             ProductSoldPriceWithPvmTextBox.Text = _calculator.CountSoldPriceWithPvm(
                 productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
-
+            _productSoldPriceWithoutPvm = ProductSoldPriceTextBox.Text;
+            _productSoldPriceWithPvm = ProductSoldPriceWithPvmTextBox.Text;
+            // logic to check is from want profit or sold price 
         }
 
         #endregion

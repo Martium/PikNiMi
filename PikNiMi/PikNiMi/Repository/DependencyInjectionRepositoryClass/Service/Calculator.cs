@@ -41,5 +41,15 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Service
         {
             return _calculator.CountProductExpenses(productPriceInEuro, productTripExpenses);
         }
+
+        public string CalculateWantProfitBySoldPriceWithoutPvm(string productSoldPrice, string productExpensesCostPrice)
+        {
+            return _calculator.CalculateWantProfitBySoldPriceWithoutPvm(productSoldPrice, productExpensesCostPrice);
+        }
+
+        public string CalculateWantProfitBySoldPriceWithPvm(string productSoldPriceWithPvm, string productExpensesCostPrice)
+        {
+            return _calculator.CalculateWantProfitBySoldPriceWithPvm(productSoldPriceWithPvm, productExpensesCostPrice);
+        }
     }
 }

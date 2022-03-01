@@ -12,7 +12,7 @@ namespace PikNiMi.Forms.Service
             _numberService = new InvariantCultureNumberService();
         }
 
-        private bool ValidateGivenNumbersIsMoreThanZero(double firstNumber, double secondNumber)
+        private static bool ValidateGivenNumbersIsMoreThanZero(double firstNumber, double secondNumber)
         {
             bool isFirstMoreThanZero = firstNumber > 0;
             bool isSecondMoreThanZero = secondNumber > 0;
@@ -137,6 +137,44 @@ namespace PikNiMi.Forms.Service
             if (isBothNumberMoreThanZero)
             {
                 result = Math.Round((priceInEuro + tripExpenses), 2, MidpointRounding.ToEven);
+            }
+            else
+            {
+                result = default;
+            }
+
+            return _numberService.ParseDoubleToString(result);
+        }
+
+        public string CalculateWantProfitBySoldPriceWithoutPvm(string productSoldPrice, string productExpensesCostPrice)
+        {
+            double soldPrice = _numberService.TryParseStringToDoubleNumberOrDefault(productSoldPrice);
+            double expensesCostPrice = _numberService.TryParseStringToDoubleNumberOrDefault(productExpensesCostPrice);
+            double result;
+            bool isBothNumbersMoreThanZero = ValidateGivenNumbersIsMoreThanZero(soldPrice, expensesCostPrice);
+
+            if (isBothNumbersMoreThanZero)
+            {
+                result = soldPrice - expensesCostPrice;
+            }
+            else
+            {
+                result = default;
+            }
+
+            return _numberService.ParseDoubleToString(result);
+        }
+
+        public string CalculateWantProfitBySoldPriceWithPvm(string productSoldPriceWithPvm, string productExpensesCostPrice)
+        {
+            double soldPrice = _numberService.TryParseStringToDoubleNumberOrDefault(productSoldPriceWithPvm);
+            double expensesCostPrice = _numberService.TryParseStringToDoubleNumberOrDefault(productExpensesCostPrice);
+            double result;
+            bool isBothNumbersMoreThanZero = ValidateGivenNumbersIsMoreThanZero(soldPrice, expensesCostPrice);
+
+            if (isBothNumbersMoreThanZero)
+            {
+                result = soldPrice / 1.21 - expensesCostPrice;
             }
             else
             {
