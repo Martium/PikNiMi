@@ -22,14 +22,24 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Service
             return _calculator.ConvertUnitPriceToEuroCurrency(moneyCourse, productOriginalUnitPriceAtOriginalCurrency);
         }
 
-        public string CountSoldPriceWithoutPvm(string productWantProfit, string productUnitPriceInEuro, string productExpensesCostPrice)
+        public string CountSoldPriceWithoutPvm(string productWantProfit, string productExpensesCostPrice)
         {
-            return _calculator.CountSoldPriceWithoutPvm(productWantProfit, productUnitPriceInEuro, productExpensesCostPrice);
+            return _calculator.CountSoldPriceWithoutPvm(productWantProfit, productExpensesCostPrice);
         }
 
-        public string CountSoldPriceWithPvm(string productWantProfit, string productUnitPriceInEuro, string productExpensesCostPrice)
+        public string CountJustPvm(string productSoldPrice)
         {
-            return _calculator.CountSoldPriceWithPvm(productWantProfit, productUnitPriceInEuro, productExpensesCostPrice);
+            return _calculator.CountJustPvm(productSoldPrice);
+        }
+
+        public string CountSoldPriceWithPvm(string productWantProfit, string productExpensesCostPrice)
+        {
+            return _calculator.CountSoldPriceWithPvm(productWantProfit, productExpensesCostPrice);
+        }
+
+        public string CountProductExpenses(string productPriceInEuro, string productTripExpenses)
+        {
+            return _calculator.CountProductExpenses(productPriceInEuro, productTripExpenses);
         }
     }
 }

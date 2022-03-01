@@ -66,19 +66,18 @@ namespace PikNiMi.Forms.Service
 
         }
 
-        public string CountSoldPriceWithoutPvm(string productWantProfit, string productUnitPriceInEuro, string productExpensesCostPrice)
+        public string CountSoldPriceWithoutPvm(string productWantProfit, string productExpensesCostPrice)
         {
             double wantProfit = _numberService.TryParseStringToDoubleNumberOrDefault(productWantProfit);
-            double unitPriceInEuro = _numberService.TryParseStringToDoubleNumberOrDefault(productUnitPriceInEuro);
             double expensesCostPrice = _numberService.TryParseStringToDoubleNumberOrDefault(productExpensesCostPrice);
 
-            bool isBothNumbersMoreThanZero = ValidateGivenNumbersIsMoreThanZero(wantProfit, unitPriceInEuro);
+            bool isBothNumbersMoreThanZero = ValidateGivenNumbersIsMoreThanZero(wantProfit, expensesCostPrice);
 
             double result;
 
             if (isBothNumbersMoreThanZero)
             {
-                result = Math.Round((wantProfit + unitPriceInEuro + expensesCostPrice), 2, MidpointRounding.ToEven);
+                result = Math.Round((wantProfit + expensesCostPrice), 2, MidpointRounding.ToEven);
             }
             else
             {
@@ -88,20 +87,56 @@ namespace PikNiMi.Forms.Service
             return _numberService.ParseDoubleToString(result);
         }
 
-        public string CountSoldPriceWithPvm(string productWantProfit, string productUnitPriceInEuro, string productExpensesCostPrice)
+        public string CountSoldPriceWithPvm(string productWantProfit, string productExpensesCostPrice)
         {
             double wantProfit = _numberService.TryParseStringToDoubleNumberOrDefault(productWantProfit);
-            double unitPriceInEuro = _numberService.TryParseStringToDoubleNumberOrDefault(productUnitPriceInEuro);
             double expensesCostPrice = _numberService.TryParseStringToDoubleNumberOrDefault(productExpensesCostPrice);
 
-            bool isBothNumbersMoreThanZero = ValidateGivenNumbersIsMoreThanZero(wantProfit, unitPriceInEuro);
+            bool isBothNumbersMoreThanZero = ValidateGivenNumbersIsMoreThanZero(wantProfit, expensesCostPrice);
 
             double result;
 
             if (isBothNumbersMoreThanZero)
             {
-                result = Math.Round(((wantProfit + unitPriceInEuro + expensesCostPrice) * 1.21), 2,
+                result = Math.Round(((wantProfit + expensesCostPrice) * 1.21), 2,
                     MidpointRounding.ToEven);
+            }
+            else
+            {
+                result = default;
+            }
+
+            return _numberService.ParseDoubleToString(result);
+        }
+
+        public string CountJustPvm(string productSoldPrice)
+        {
+            double soldPrice = _numberService.TryParseStringToDoubleNumberOrDefault(productSoldPrice);
+            double result;
+
+            if (soldPrice > 0)
+            {
+                result = Math.Round((soldPrice * 0.21), 2, MidpointRounding.ToEven);
+            }
+            else
+            {
+                result = default;
+            }
+
+            return _numberService.ParseDoubleToString(result);
+        }
+
+        public string CountProductExpenses(string productPriceInEuro, string productTripExpenses)
+        {
+            double priceInEuro = _numberService.TryParseStringToDoubleNumberOrDefault(productPriceInEuro);
+            double tripExpenses = _numberService.TryParseStringToDoubleNumberOrDefault(productTripExpenses);
+
+            bool isBothNumberMoreThanZero = ValidateGivenNumbersIsMoreThanZero(priceInEuro, tripExpenses);
+            double result;
+
+            if (isBothNumberMoreThanZero)
+            {
+                result = Math.Round((priceInEuro + tripExpenses), 2, MidpointRounding.ToEven);
             }
             else
             {

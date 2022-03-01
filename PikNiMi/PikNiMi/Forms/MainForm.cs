@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using PikNiMi.Enums;
 using PikNiMi.Forms.Constants;
 using PikNiMi.Forms.Service;
+using PikNiMi.Models;
 using PikNiMi.TranslationsToAnotherLanguages;
 
 namespace PikNiMi.Forms
@@ -132,7 +133,20 @@ namespace PikNiMi.Forms
 
         private void AddNewProductButton_Click(object sender, EventArgs e)
         {
-            OpenNewForm(new ProductForm(ProductFormTypeEnum.NewProductForm));
+            if (IsDateAndMoneyCourseTextBoxFilled())
+            {
+                var additionalInfoForNewProduct = new AdditionalInfoForNewProductOperationModel()
+                {
+                    Date = DateTextBox.Text,
+                    MoneyCourse = MoneyCourseTextBox.Text
+                };
+
+                OpenNewForm(new ProductForm(ProductFormTypeEnum.NewProductForm, additionalInfoForNewProduct: additionalInfoForNewProduct));
+            }
+            else
+            {
+                //message box  please enter value to red text box 
+            }
         }
 
         private void UpdateProductButton_Click(object sender, EventArgs e)
@@ -165,6 +179,7 @@ namespace PikNiMi.Forms
             SearchTextBox.MaxLength = TextBoxLength.ProductSearchText;
             DateTextBox.MaxLength = TextBoxLength.ProductDate;
             TripExpensesTextBox.MaxLength = TextBoxLength.NumberLength;
+            MoneyCourseTextBox.MaxLength = TextBoxLength.NumberLength;
         }
 
         private void SetDefaultTextBoxesTextValue()
@@ -235,6 +250,14 @@ namespace PikNiMi.Forms
             AddNewProductTypeButton.Text = _languageTranslator.SetAddNewProductTypeButtonText();
             DiscountButton.Text = _languageTranslator.SetDiscountButtonText();
             CountFullOrderDiscountButton.Text = _languageTranslator.SetCountFullOrderDiscountButtonText();
+            MoneyCourseInfoLabel.Text = _languageTranslator.SetMoneyCourseText();
+        }
+
+        private bool IsDateAndMoneyCourseTextBoxFilled()
+        {
+            bool isNotEmpty = !string.IsNullOrWhiteSpace(DateTextBox.Text) &&
+                              !string.IsNullOrWhiteSpace(MoneyCourseTextBox.Text);
+            return isNotEmpty;
         }
 
         #endregion

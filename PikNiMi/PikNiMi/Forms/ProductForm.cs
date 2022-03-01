@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.Caching.Memory;
@@ -20,19 +21,23 @@ namespace PikNiMi.Forms
         private TextBoxResizeFormTypeEnum _textBoxResizeFormType;
 
         private readonly FullProductInfoModel _productInfo;
+        private readonly AdditionalInfoForNewProductOperationModel _additionalInfoForNewProduct;
+       
 
         private readonly LanguageTranslator _languageTranslator;
         private readonly RepositoryQueryCalls _repositoryQueryCalls;
         private readonly NumberService _numberService;
         private readonly MessageBoxService _messageBoxService;
         private readonly MemoryCacheControl _memoryCacheControl;
+        private readonly Calculator _calculator;
 
         private readonly ComboBoxService _comboBoxService;
 
-        public ProductForm(ProductFormTypeEnum productFormType, FullProductInfoModel productInfo = null)
+        public ProductForm(ProductFormTypeEnum productFormType, FullProductInfoModel productInfo = null, AdditionalInfoForNewProductOperationModel additionalInfoForNewProduct = null)
         {
             _productFormType = productFormType;
             _productInfo = productInfo;
+            _additionalInfoForNewProduct = additionalInfoForNewProduct;
 
             InitializeComponent();
 
@@ -41,6 +46,7 @@ namespace PikNiMi.Forms
             _numberService = new NumberService(new InvariantCultureNumberService());
             _messageBoxService = new MessageBoxService(_languageTranslator);
             _memoryCacheControl = new MemoryCacheControl(new MemoryCache(new MemoryCacheOptions()));
+            _calculator = new Calculator(new InvariantCultureCalculatorService());
 
             _comboBoxService = new ComboBoxService(_languageTranslator);
         }
@@ -48,10 +54,14 @@ namespace PikNiMi.Forms
         private void ProductForm_Load(object sender, EventArgs e)
         {
             TableLayoutPanel.Font = FormFontConstants.DefaultFontSize;
+
             SetTextBoxLength();
             SetLanguageText();
+            PassedAdditionalValuesForNewProductOperation();
             PopulateComboBoxInfo();
             FillTextBoxInfoIfUpdateOperation();
+            SetTextBoxColorByFormOperationForLoad();
+            this.ActiveControl = ProductDescriptionTextBox;
         }
 
         private void ProductForm_Resize(object sender, EventArgs e)
@@ -71,9 +81,30 @@ namespace PikNiMi.Forms
             SetTextToSpecificTextBoxAfterTextBoxResizeFormClosed(_textBoxResizeFormType);
         }
 
+        private void CalculateButton_Click(object sender, EventArgs e)
+        {
+            // need option to change want profit if sold price with pvm and without pwn 
+           StartAllCalculations();
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
             SaveOrUpdateRecord();
+        }
+
+        private void TextBoxControl_Enter(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox) sender;
+            textBox.SelectionStart = textBox.Text.Length;
+            int indexOfTextBox = textBox.TabIndex;
+            SetColorOfInfoLabelBySpecificTextBox(true, indexOfTextBox);
+        }
+
+        private void TextBoxControl_Leave(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox) sender;
+            int indexOfTextBox = textBox.TabIndex;
+            SetColorOfInfoLabelBySpecificTextBox(false, indexOfTextBox);
         }
 
         #region Heplers
@@ -132,7 +163,7 @@ namespace PikNiMi.Forms
 
             ProductDescriptionTextBoxResizeButton.Text = _languageTranslator.SetTextBoxResizeButtonText();
             SaveButton.Text = _languageTranslator.SetSaveButtonText();
-
+            CalculateButton.Text = _languageTranslator.SetCalculateButtonText();
         }
 
         private void PopulateComboBoxInfo()
@@ -358,6 +389,149 @@ namespace PikNiMi.Forms
             }
 
             return productType;
+        }
+
+        private static void SetSpecificTextBoxColorForEmptyText(TextBox textBox, Color color)
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.BackColor = color;
+            }
+        }
+
+        private void SetTextBoxColorByFormOperationForLoad()
+        {
+            switch (_productFormType)
+            {
+                case ProductFormTypeEnum.NewProductForm:
+                    break;
+                case ProductFormTypeEnum.UpdateProductForm:
+                    SetSpecificTextBoxColorForEmptyText(ProductQuantityTextBox, Color.Yellow);
+                    SetSpecificTextBoxColorForEmptyText(ProductOriginalUnitPriceAtOriginalCurrencyTextBox,Color.Yellow);
+                    SetSpecificTextBoxColorForEmptyText(MoneyCourseTextBox, Color.Yellow);
+                    SetSpecificTextBoxColorForEmptyText(ProductWantProfitTextBox, Color.Yellow);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void PassedAdditionalValuesForNewProductOperation()
+        {
+            if (_additionalInfoForNewProduct != null)
+            {
+                ProductReceiptDateTextBox.Text = _additionalInfoForNewProduct.Date;
+                MoneyCourseTextBox.Text = _additionalInfoForNewProduct.MoneyCourse;
+            }
+        }
+
+        private void SetColorOfInfoLabelBySpecificTextBox(bool isEntered, int indexOfTextBox)
+        {
+            switch (indexOfTextBox)
+            {
+                case 23:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductReceiptDateInfoLabel, isEntered);
+                    break;
+                case 24:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductDescriptionInfoLabel, isEntered);
+                    break;
+                case 25:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductColorInfoLabel, isEntered);
+                    break;
+                case 26:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductSizeInfoLabel, isEntered);
+                    break;
+                case 27:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductCareInfoLabel, isEntered);
+                    break;
+                case 28:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductMadeStuffInfoLabel, isEntered);
+                    break;
+                case 29:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductMadeInInfoLabel, isEntered);
+                    break;
+                case 30:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductQuantityInfoLabel, isEntered);
+                    break;
+                case 31:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductQuantityLeftInfoLabel, isEntered);
+                    break;
+                case 32:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductOriginalUnitPriceAtOriginalCurrencyInfoLabel, isEntered);
+                    break;
+                case 33:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductQuantityPriceAtOriginalCurrencyInfoLabel, isEntered);
+                    break;
+                case 34:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductUnitPriceInEuroInfoLabel, isEntered);
+                    break;
+                case 35:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductQuantityPriceInEuroInfoLabel, isEntered);
+                    break;
+                case 36:
+                    SetInfoLabelColorByEnterORLeaveTextBox(TripExpensesInfoLabel, isEntered);
+                    break;
+                case 37:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductExpensesCostPriceInfoLabel, isEntered);
+                    break;
+                case 38:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductSoldPriceInfoLabel, isEntered);
+                    break;
+                case 39:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductPvmInfoLabel, isEntered);
+                    break;
+                case 40:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductSoldPriceWithPvmInfoLabel, isEntered);
+                    break;
+                case 41:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductSoldInfoLabel, isEntered);
+                    break;
+                case 42:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductProfitInfoLabel, isEntered);
+                    break;
+                case 63:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductWantProfitInfoLabel, isEntered);
+                    break;
+                case 65:
+                    SetInfoLabelColorByEnterORLeaveTextBox(DiscountInfoLabel, isEntered);
+                    break;
+                case 70:
+                    SetInfoLabelColorByEnterORLeaveTextBox(MoneyCourseInfoLabel, isEntered);
+                    break;
+            }
+            
+        }
+
+        private void SetInfoLabelColorByEnterORLeaveTextBox(Label label, bool isEntered)
+        {
+            if (isEntered)
+            {
+                label.ForeColor = Color.Green;
+            }
+            else
+            {
+                label.ForeColor = default;
+            }
+        }
+
+        private void StartAllCalculations()
+        {
+            ProductQuantityPriceAtOriginalCurrencyTextBox.Text = _calculator.CountQuantityPrice(
+                quantity: ProductQuantityTextBox.Text, ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text);
+            ProductUnitPriceInEuroTextBox.Text = _calculator.ConvertUnitPriceToEuroCurrency(
+                moneyCourse: MoneyCourseTextBox.Text, ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text);
+            ProductQuantityPriceInEuroTextBox.Text =
+                _calculator.CountQuantityPrice(quantity: ProductQuantityTextBox.Text,
+                    ProductUnitPriceInEuroTextBox.Text);
+            ProductExpensesCostPriceTextBox.Text =
+                _calculator.CountProductExpenses(productPriceInEuro: ProductUnitPriceInEuroTextBox.Text,
+                    TripExpensesTextBox.Text);
+            ProductSoldPriceTextBox.Text = _calculator.CountSoldPriceWithoutPvm(
+                productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+            ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
+            ProductSoldPriceWithPvmTextBox.Text = _calculator.CountSoldPriceWithPvm(
+                productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+
         }
 
         #endregion

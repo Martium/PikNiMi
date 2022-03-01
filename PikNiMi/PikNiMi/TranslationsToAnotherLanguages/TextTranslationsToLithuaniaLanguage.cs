@@ -230,6 +230,11 @@ namespace PikNiMi.TranslationsToAnotherLanguages
             return "Nepasirinkta";
         }
 
+        public string SetCalculateButtonText()
+        {
+            return "Skaičiuoti";
+        }
+
         #region MessageBoxMessage
 
         public string ShowSaveNewRecordSuccessMessage()

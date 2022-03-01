@@ -213,6 +213,11 @@ namespace PikNiMi.Forms.Constants
             return _languageTranslator.SetNotChooseText();
         }
 
+        public string SetCalculateButtonText()
+        {
+            return _languageTranslator.SetCalculateButtonText();
+        }
+
         #region MessageBoxService
 
         public string ShowSaveNewRecordSuccessMessage()

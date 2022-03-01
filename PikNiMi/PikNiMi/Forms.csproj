@@ -102,6 +102,7 @@
     <Compile Include="Forms\Service\MessageBoxService.cs" />
     <Compile Include="Interface\ILanguageTranslator.cs" />
     <Compile Include="Interface\NumbersServiceInterface\ICalculator.cs" />
+    <Compile Include="Models\AdditionalInfoForNewProductOperationModel.cs" />
     <Compile Include="Models\ProductAdditionalInfoModel.cs" />
     <Compile Include="Repository\DependencyInjectionRepositoryClass\Service\Calculator.cs" />
     <Compile Include="Repository\MemoryCache\MemoryCacheControl.cs" />

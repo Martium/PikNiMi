@@ -46,6 +46,7 @@ namespace PikNiMi.Interface
         string SetMoneyCourseText();
         string SetSaveButtonText();
         string SetNotChooseText();
+        string SetCalculateButtonText();
 
         string ShowSaveNewRecordSuccessMessage();
         string ShowSaveNewRecordErrorMessage();

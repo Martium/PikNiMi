@@ -56,8 +56,5 @@ namespace PikNiMi.Forms.Service
         {
             return number.ToString(_cultureInfo);
         }
-
-       
-
     }
 }
