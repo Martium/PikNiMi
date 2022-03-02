@@ -16,6 +16,9 @@ namespace PikNiMi.Interface.RepositoryInterface
         Task<ProductAdditionalInfoModel> GetAdditionalProductInfoById(int productId);
         Task<IEnumerable<int>> GetAllFullProductinfoIdByDate(string date);
         Task<int> UpdateAllTripExpensesRowsByDate(string date, double tripExpenses);
+        Task<int> AddNewAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo);
+        Task<int> UpdateAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo);
+        Task<int> GetMaxIdFromFullProductInfo();
 
     }
 

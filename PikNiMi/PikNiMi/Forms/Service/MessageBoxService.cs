@@ -26,5 +26,10 @@ namespace PikNiMi.Forms.Service
         {
             MessageBox.Show(_languageTranslator.ShowRecordNotFoundByDateErrorMessage());
         }
+
+        public void ShowSelectRowErrorMessage()
+        {
+            MessageBox.Show(_languageTranslator.ShowSelectRowErrorMessage());
+        }
     }
 }

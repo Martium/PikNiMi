@@ -69,5 +69,23 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
             var rowsUpdate = _repository.UpdateAllTripExpensesRowsByDate(date, tripExpenses);
             return rowsUpdate;
         }
+
+        public Task<int> AddNewAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            var task = _repository.AddNewAdditionalInfoById(id, additionalInfo);
+            return task;
+        }
+
+        public Task<int> UpdateAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            var task = _repository.UpdateAdditionalInfoById(id, additionalInfo);
+            return task;
+        }
+
+        public Task<int> GetMaxIdFromFullProductInfo()
+        {
+            var task = _repository.GetMaxIdFromFullProductInfo();
+            return task;
+        }
     }
 }

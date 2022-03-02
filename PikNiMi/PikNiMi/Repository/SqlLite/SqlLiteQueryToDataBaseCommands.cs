@@ -156,6 +156,41 @@ namespace PikNiMi.Repository.SqlLite
                         SET TripExpenses = {tripExpenses}
                         WHERE ProductReceiptDate = '{date}'
                 ";
+
+            return query;
+        }
+
+        public static string AddNewAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            string query =
+                $@"
+                        INSERT INTO '{ProductAdditionalInfoTable}'
+                        VALUES ({id}, {additionalInfo.ProfitWant}, {additionalInfo.MoneyCourse})
+                ";
+            return query;
+        }
+
+        public static string UpdateAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            string query =
+                $@"
+                        UPDATE '{ProductAdditionalInfoTable}'
+                        SET ProfitWant = {additionalInfo.ProfitWant}, MoneyCourse = {additionalInfo.MoneyCourse}
+                        WHERE Id = {id}
+                ";
+
+            return query;
+        }
+
+        public static string GetMaxIdFromFullProductInfo()
+        {
+            string query =
+                $@" 
+                        SELECT      
+                        MAX ({ProductId})
+                        FROM {FullProductInfoTableWithShortcut}
+                ";
+
             return query;
         }
     }

@@ -54,6 +54,7 @@ namespace PikNiMi.Forms
         {
             TableLayoutPanel.Font = FormFontConstants.DefaultFontSize;
 
+            GetNextIdForNewProduct();
             SetTextBoxLength();
             SetLanguageText();
             PassedAdditionalValuesForNewProductOperation();
@@ -137,7 +138,13 @@ namespace PikNiMi.Forms
         private void SetButtonControl(bool isAllowed)
         {
             ProductDescriptionTextBoxResizeButton.Enabled = isAllowed;
+
             SaveButton.Enabled = isAllowed;
+
+            CalculateButton.Enabled = isAllowed;
+            CalculateBySoldPriceButton.Enabled = isAllowed;
+            CalculateBySoldPriceWithPvmButton.Enabled = isAllowed;
+            
         }
 
         private void SetLanguageText()
@@ -301,9 +308,9 @@ namespace PikNiMi.Forms
             return search;
         }
 
-        private void ShowSaveNewOperationMessage(bool isCompleted)
+        private void ShowSaveNewOperationMessage(bool isCompleted, bool isSecondCompleted)
         {
-            if (isCompleted)
+            if (isCompleted && isSecondCompleted)
             {
                 _messageBoxService.ShowSaveNewRecordSuccessMessage();
             }
@@ -315,25 +322,43 @@ namespace PikNiMi.Forms
 
         private void SaveOrUpdateRecord()
         {
+            int id = int.Parse(ProductIdTextBox.Text);
             var fullProductInfo = GetInfoFromTextBoxForFullProductInfo();
             var search = GetAllInfoForSearchInDataBase();
+            var additionalProductInfo = GetAdditionalInfo();
             SetButtonControl(false);
 
             switch (_productFormType)
             {
                 case ProductFormTypeEnum.NewProductForm:
                     Task<int> taskAddNew = _repositoryQueryCalls.CreateNewFullProductInfo(fullProductInfo, search);
-                    ShowSaveNewOperationMessage(taskAddNew.IsCompleted);
+                    Task<int> taskAddNewAdditional =
+                        _repositoryQueryCalls.AddNewAdditionalInfoById(id,
+                            additionalProductInfo);
+                    ShowSaveNewOperationMessage(taskAddNew.IsCompleted, taskAddNewAdditional.IsCompleted);
                     break;
                 case ProductFormTypeEnum.UpdateProductForm:
                     var taskUpdate = _repositoryQueryCalls.UpdateExistingFullProductInfo(fullProductInfo, search);
-                    ShowSaveNewOperationMessage(taskUpdate.IsCompleted);
+                    var taskUpdateAdditional =
+                        _repositoryQueryCalls.UpdateAdditionalInfoById(id, additionalProductInfo);
+                    ShowSaveNewOperationMessage(taskUpdate.IsCompleted, taskUpdateAdditional.IsCompleted);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            SetButtonControl(true);
+            this.Close();
+        }
+
+        private ProductAdditionalInfoModel GetAdditionalInfo()
+        {
+            var additionalInfo = new ProductAdditionalInfoModel()
+            {
+                MoneyCourse = _numberService.TryParseStringToDoubleNumberOrZero(MoneyCourseTextBox.Text),
+                ProfitWant = _numberService.TryParseStringToDoubleNumberOrZero(ProductWantProfitTextBox.Text)
+            };
+
+            return additionalInfo;
         }
 
         private void SetTextToSpecificTextBoxAfterTextBoxResizeFormClosed(TextBoxResizeFormTypeEnum textBoxResizeFormType)
@@ -427,12 +452,21 @@ namespace PikNiMi.Forms
             switch (_productFormType)
             {
                 case ProductFormTypeEnum.NewProductForm:
+                    SetSpecificTextBoxColorForEmptyText(ProductQuantityTextBox,Color.Yellow);
+                    SetSpecificTextBoxColorForEmptyText(ProductOriginalUnitPriceAtOriginalCurrencyTextBox, Color.Yellow);
+
+                    SetSpecificTextBoxColorForEmptyText(ProductWantProfitTextBox, Color.ForestGreen);
+                    SetSpecificTextBoxColorForEmptyText(ProductSoldPriceTextBox, Color.ForestGreen);
+                    SetSpecificTextBoxColorForEmptyText(ProductSoldPriceWithPvmTextBox, Color.ForestGreen);
                     break;
                 case ProductFormTypeEnum.UpdateProductForm:
                     SetSpecificTextBoxColorForEmptyText(ProductQuantityTextBox, Color.Yellow);
                     SetSpecificTextBoxColorForEmptyText(ProductOriginalUnitPriceAtOriginalCurrencyTextBox,Color.Yellow);
-                    SetSpecificTextBoxColorForEmptyText(MoneyCourseTextBox, Color.Yellow);
-                    SetSpecificTextBoxColorForEmptyText(ProductWantProfitTextBox, Color.Yellow);
+
+                    SetSpecificTextBoxColorForEmptyText(ProductWantProfitTextBox, Color.ForestGreen);
+                    SetSpecificTextBoxColorForEmptyText(MoneyCourseTextBox, Color.ForestGreen);
+                    SetSpecificTextBoxColorForEmptyText(ProductSoldPriceTextBox, Color.ForestGreen);
+                    SetSpecificTextBoxColorForEmptyText(ProductSoldPriceWithPvmTextBox, Color.ForestGreen);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -584,6 +618,26 @@ namespace PikNiMi.Forms
                 _calculator.CountSoldPriceWithoutPvm(productWantProfit: ProductWantProfitTextBox.Text,
                     ProductExpensesCostPriceTextBox.Text);
             ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
+        }
+
+        private void GetNextIdForNewProduct()
+        {
+            if (_productFormType == ProductFormTypeEnum.NewProductForm)
+            {
+                var task = _repositoryQueryCalls.GetMaxIdFromFullProductInfo();
+                int nextId;
+
+                try
+                {
+                    nextId = task.Result + 1;
+                }
+                catch
+                {
+                    nextId = 1;
+                }
+
+                ProductIdTextBox.Text = nextId.ToString();
+            }
         }
 
         #endregion

@@ -249,6 +249,11 @@ namespace PikNiMi.Forms.Constants
         {
             return _languageTranslator.ShowRecordNotFoundByDateErrorMessage();
         }
+
+        public string ShowSelectRowErrorMessage()
+        {
+            return _languageTranslator.ShowSelectRowErrorMessage();
+        }
         #endregion
     }
 }

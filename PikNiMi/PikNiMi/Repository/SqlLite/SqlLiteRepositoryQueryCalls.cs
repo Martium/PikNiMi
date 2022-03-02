@@ -144,5 +144,47 @@ namespace PikNiMi.Repository.SqlLite
                 return result;
             }
         }
+
+        public Task<int> AddNewAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string addNewCommand = SqlLiteQueryToDataBaseCommands.AddNewAdditionalInfoById(id, additionalInfo);
+
+                var result = dbConnection.ExecuteAsync(addNewCommand);
+
+                return result;
+            }
+        }
+
+        public Task<int> UpdateAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string updateNewCommand = SqlLiteQueryToDataBaseCommands.UpdateAdditionalInfoById(id, additionalInfo);
+
+                var result = dbConnection.ExecuteAsync(updateNewCommand);
+
+                return result;
+            }
+        }
+
+        public Task<int> GetMaxIdFromFullProductInfo()
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string getMaxId = SqlLiteQueryToDataBaseCommands.GetMaxIdFromFullProductInfo();
+
+                var result = dbConnection.QuerySingleAsync<int>(getMaxId);
+
+                return result;
+            }
+        }
     }
 }

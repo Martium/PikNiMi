@@ -155,7 +155,13 @@ namespace PikNiMi.Forms
             }
             else
             {
-                //message box  please enter value to red text box 
+                var additionalInfoForNewProduct = new AdditionalInfoForNewProductOperationModel()
+                {
+                    Date = DateTextBox.Text,
+                    MoneyCourse = "1"
+                };
+
+                OpenNewForm(new ProductForm(ProductFormTypeEnum.NewProductForm, additionalInfoForNewProduct: additionalInfoForNewProduct));
             }
         }
 
@@ -168,7 +174,7 @@ namespace PikNiMi.Forms
             }
             else
             {
-                // message box select something 
+                _messageBoxService.ShowSelectRowErrorMessage();
             }
            
         }

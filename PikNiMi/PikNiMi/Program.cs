@@ -28,7 +28,7 @@ namespace PikNiMi
             {
                 if (!mutex.WaitOne(0, false))
                 {
-                    // message cant open more than one application
+                    MessageBox.Show(@"Cant Open more than One PikNiMi application");
                 }
 
                 bool isDatabaseIsInitialize = CreateDataBase();

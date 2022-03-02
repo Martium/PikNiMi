@@ -267,6 +267,11 @@ namespace PikNiMi.TranslationsToAnotherLanguages
             return @"Nebuvo Rasta įrašų pagal šitą datą !";
         }
 
+        public string ShowSelectRowErrorMessage()
+        {
+            return @"Nėra pasirinktas produktas kurį galima būtų atnaujinti";
+        }
+
         #endregion
     }
 }
