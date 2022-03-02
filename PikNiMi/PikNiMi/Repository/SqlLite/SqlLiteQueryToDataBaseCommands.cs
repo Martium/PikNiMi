@@ -7,6 +7,8 @@ namespace PikNiMi.Repository.SqlLite
     {
         private const string FullProductInfoTable = "FullProductInfoTable";
         private const string FullProductInfoTableWithShortcut = "FullProductInfoTable FPIT";
+        private const string ProductAdditionalInfoTable = "ProductAdditionalInfo";
+        private const string ProductAdditionalInfoTableWithShortcut = "ProductAdditionalInfo PAI";
 
         private const string ProductId = "FPIT.ProductId";
         private const string ProductType = "FPIT.ProductType";
@@ -119,6 +121,17 @@ namespace PikNiMi.Repository.SqlLite
                 ";
 
             return updateProductQuery;
+        }
+
+        public static string GetAdditionalProductInfoById(int productId)
+        {
+            string getInfoQuery = 
+                $@"
+                        SELECT * FROM {ProductAdditionalInfoTableWithShortcut}
+                        WHERE PAI.Id = {productId}
+                ";
+
+            return getInfoQuery;
         }
     }
 }

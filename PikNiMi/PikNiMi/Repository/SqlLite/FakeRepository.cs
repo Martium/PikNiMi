@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SQLite;
+using System.Security.Cryptography.X509Certificates;
 
 namespace PikNiMi.Repository.SqlLite
 {
@@ -118,6 +119,29 @@ namespace PikNiMi.Repository.SqlLite
                 fillInvoiceTestingInfoTableCommand.ExecuteNonQuery();
             }
            
+        }
+
+        public void FillTestingAdditionalInfoForProduct()
+        {
+            using (var dbConnection = new SQLiteConnection(SqlLiteDataBaseConfiguration.ConnectionString))
+            {
+                dbConnection.Open();
+
+                string testingInfo = 
+                    $@"
+                        BEGIN TRANSACTION;
+                        INSERT INTO 'ProductAdditionalInfo'
+                        VALUES (1, 5, 4);
+                        INSERT INTO 'ProductAdditionalInfo'
+                        VALUES (2, 5, 4);
+                        INSERT INTO 'ProductAdditionalInfo'
+                        VALUES (3, 5, 4);
+                        COMMIT;
+                    ";
+
+                SQLiteCommand fillInvoiceTestingInfoTableCommand = new SQLiteCommand(testingInfo, dbConnection);
+                fillInvoiceTestingInfoTableCommand.ExecuteNonQuery();
+            }
         }
     }
 }

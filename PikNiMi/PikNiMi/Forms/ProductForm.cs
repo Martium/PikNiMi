@@ -386,6 +386,15 @@ namespace PikNiMi.Forms
                 ProductSoldTextBox.Text = _productInfo.ProductSold.ToString();
                 ProductProfitTextBox.Text = _numberService.ParseDoubleToString(_productInfo.ProductProfit);
                 DiscountTextBox.Text = _numberService.ParseDoubleToString(_productInfo.Discount);
+
+                var taskAdditionalInfo = _repositoryQueryCalls.GetAdditionalProductInfoById(_productInfo.ProductId);
+                var additionalInfo = taskAdditionalInfo.Result;
+
+                if (additionalInfo != null)
+                {
+                    MoneyCourseTextBox.Text = _numberService.ParseDoubleToString(additionalInfo.MoneyCourse);
+                    ProductWantProfitTextBox.Text = _numberService.ParseDoubleToString(additionalInfo.ProfitWant);
+                }
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Threading.Tasks;
 using Dapper;
@@ -100,6 +101,19 @@ namespace PikNiMi.Repository.SqlLite
                 var updateProduct = dbConnection.ExecuteAsync(updateCommand);
 
                 return updateProduct;
+            }
+        }
+
+        public Task<ProductAdditionalInfoModel> GetAdditionalProductInfoById(int productId)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string additionalInfoCommand = SqlLiteQueryToDataBaseCommands.GetAdditionalProductInfoById(productId);
+
+                var additionalInfo = dbConnection.QueryFirstOrDefaultAsync<ProductAdditionalInfoModel>(additionalInfoCommand);
+                return additionalInfo;
             }
         }
     }

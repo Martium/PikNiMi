@@ -52,5 +52,12 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
             return updatedProduct;
         }
 
+        public Task<ProductAdditionalInfoModel> GetAdditionalProductInfoById(int productId)
+        {
+            var additionalInfo = _repository.GetAdditionalProductInfoById(productId);
+            return additionalInfo;
+        }
+
+
     }
 }

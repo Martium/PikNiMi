@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Windows.Forms;
 using PikNiMi.Forms;
-using PikNiMi.Repository.DependencyInjectionRepositoryClass;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository;
 using PikNiMi.Repository.SqlLite;
 
@@ -52,6 +51,7 @@ namespace PikNiMi
                 _repositoryCreate.CreateRepositoryFile();
                 _repositoryCreate.CreateRepositoryTable();
                 _fakeRepository.FillTestingInfoForProduct();
+                _fakeRepository.FillTestingAdditionalInfoForProduct();
 
                 isDatabaseInitialize = true;
             }

@@ -13,7 +13,7 @@ namespace PikNiMi.Interface.RepositoryInterface
             string productType);
         Task<int> AddNewFullProductInfo(FullProductInfoModel fullProductInfo, string[] search);
         Task<int> UpdateExistingFullProductInfo(FullProductInfoModel fullProductInfo, string[] search);
-
+        Task<ProductAdditionalInfoModel> GetAdditionalProductInfoById(int productId);
     }
 
 }
