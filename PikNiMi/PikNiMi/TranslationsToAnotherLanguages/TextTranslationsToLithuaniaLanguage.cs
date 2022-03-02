@@ -212,27 +212,42 @@ namespace PikNiMi.TranslationsToAnotherLanguages
 
         public string SetTextBoxResizeButtonText()
         {
-            return "Peržiūra";
+            return @"Peržiūra";
         }
 
         public string SetMoneyCourseText()
         {
-            return "Kursas";
+            return @"Kursas";
         }
 
         public string SetSaveButtonText()
         {
-            return "Išsaugoti";
+            return @"Išsaugoti";
         }
 
         public string SetNotChooseText()
         {
-            return "Nepasirinkta";
+            return @"Nepasirinkta";
         }
 
         public string SetCalculateButtonText()
         {
-            return "Skaičiuoti";
+            return @"Skaičiuoti";
+        }
+
+        public string SetCalculateByWantProfitText()
+        {
+            return @"Norimą pelną";
+        }
+
+        public string SetCalculateBySoldPriceText()
+        {
+            return @"Pardavimo kainą";
+        }
+
+        public string SetCalculateBySoldPriceWithPvm()
+        {
+            return @"Pardavimo kainą + Pvm";
         }
 
         #region MessageBoxMessage

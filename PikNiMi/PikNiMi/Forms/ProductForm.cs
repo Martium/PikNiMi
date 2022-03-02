@@ -32,9 +32,6 @@ namespace PikNiMi.Forms
 
         private readonly ComboBoxService _comboBoxService;
 
-        private string _productSoldPriceWithoutPvm = string.Empty;
-        private string _productSoldPriceWithPvm = string.Empty;
-
         public ProductForm(ProductFormTypeEnum productFormType, FullProductInfoModel productInfo = null, AdditionalInfoForNewProductOperationModel additionalInfoForNewProduct = null)
         {
             _productFormType = productFormType;
@@ -83,10 +80,19 @@ namespace PikNiMi.Forms
             SetTextToSpecificTextBoxAfterTextBoxResizeFormClosed(_textBoxResizeFormType);
         }
 
+        private void CalculateBySoldPriceWithPvmButton_Click(object sender, EventArgs e)
+        {
+            StartAllCalculationsForSoldPriceWithPvmOption();
+        }
+
+        private void CalculateBySoldPriceButton_Click(object sender, EventArgs e)
+        {
+            StartAllCalculationsForSoldPriceOption();
+        }
+
         private void CalculateButton_Click(object sender, EventArgs e)
         {
-            // need option to change want profit if sold price with pvm and without pwn 
-           StartAllCalculations();
+            StartAllCalculationsForWantProfitOption();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -166,6 +172,12 @@ namespace PikNiMi.Forms
             ProductDescriptionTextBoxResizeButton.Text = _languageTranslator.SetTextBoxResizeButtonText();
             SaveButton.Text = _languageTranslator.SetSaveButtonText();
             CalculateButton.Text = _languageTranslator.SetCalculateButtonText();
+            CalculateBySoldPriceButton.Text = _languageTranslator.SetCalculateButtonText();
+            CalculateBySoldPriceWithPvmButton.Text = _languageTranslator.SetCalculateButtonText();
+
+            CalculateByWantProfitInfoLabel.Text = _languageTranslator.SetCalculateByWantProfitText();
+            CalculateBySoldPriceInfoLabel.Text = _languageTranslator.SetCalculateBySoldPriceText();
+            CalculateBySoldPriceWithPvmInfoLabel.Text = _languageTranslator.SetCalculateBySoldPriceWithPvm();
         }
 
         private void PopulateComboBoxInfo()
@@ -516,7 +528,7 @@ namespace PikNiMi.Forms
             }
         }
 
-        private void StartAllCalculations()
+        private void StartMainCalculations()
         {
             ProductQuantityPriceAtOriginalCurrencyTextBox.Text = _calculator.CountQuantityPrice(
                 quantity: ProductQuantityTextBox.Text, ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text);
@@ -528,18 +540,43 @@ namespace PikNiMi.Forms
             ProductExpensesCostPriceTextBox.Text =
                 _calculator.CountProductExpenses(productPriceInEuro: ProductUnitPriceInEuroTextBox.Text,
                     TripExpensesTextBox.Text);
+        }
+
+        private void StartAllCalculationsForWantProfitOption()
+        {
+            StartMainCalculations();
 
             ProductSoldPriceTextBox.Text = _calculator.CountSoldPriceWithoutPvm(
                 productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
             ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
             ProductSoldPriceWithPvmTextBox.Text = _calculator.CountSoldPriceWithPvm(
                 productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
-            _productSoldPriceWithoutPvm = ProductSoldPriceTextBox.Text;
-            _productSoldPriceWithPvm = ProductSoldPriceWithPvmTextBox.Text;
-            // logic to check is from want profit or sold price 
+        }
+
+        private void StartAllCalculationsForSoldPriceOption()
+        {
+            StartMainCalculations();
+
+            ProductWantProfitTextBox.Text =
+                _calculator.CalculateWantProfitBySoldPriceWithoutPvm(productSoldPrice: ProductSoldPriceTextBox.Text,
+                    ProductExpensesCostPriceTextBox.Text);
+            ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
+            ProductSoldPriceWithPvmTextBox.Text = _calculator.CountSoldPriceWithPvm(
+                productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+        }
+
+        private void StartAllCalculationsForSoldPriceWithPvmOption()
+        {
+            StartMainCalculations();
+
+            ProductWantProfitTextBox.Text = _calculator.CalculateWantProfitBySoldPriceWithPvm(
+                productSoldPriceWithPvm: ProductSoldPriceWithPvmTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+            ProductSoldPriceTextBox.Text =
+                _calculator.CountSoldPriceWithoutPvm(productWantProfit: ProductWantProfitTextBox.Text,
+                    ProductExpensesCostPriceTextBox.Text);
+            ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
         }
 
         #endregion
-        
     }
 }

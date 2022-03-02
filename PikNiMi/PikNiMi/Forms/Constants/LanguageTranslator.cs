@@ -230,6 +230,20 @@ namespace PikNiMi.Forms.Constants
             return _languageTranslator.ShowSaveNewRecordErrorMessage();
         }
 
+        public string SetCalculateByWantProfitText()
+        {
+            return _languageTranslator.SetCalculateByWantProfitText();
+        }
+
+        public string SetCalculateBySoldPriceText()
+        {
+            return _languageTranslator.SetCalculateBySoldPriceText();
+        }
+
+        public string SetCalculateBySoldPriceWithPvm()
+        {
+            return _languageTranslator.SetCalculateBySoldPriceWithPvm();
+        }
         #endregion
     }
 }

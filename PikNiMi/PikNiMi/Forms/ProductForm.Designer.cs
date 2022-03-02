@@ -84,8 +84,13 @@ namespace PikNiMi.Forms
             this.MoneyCourseTextBox = new System.Windows.Forms.TextBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.ProductIdTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ProductIdInfoLabel = new System.Windows.Forms.Label();
             this.CalculateButton = new System.Windows.Forms.Button();
+            this.CalculateByWantProfitInfoLabel = new System.Windows.Forms.Label();
+            this.CalculateBySoldPriceButton = new System.Windows.Forms.Button();
+            this.CalculateBySoldPriceWithPvmButton = new System.Windows.Forms.Button();
+            this.CalculateBySoldPriceInfoLabel = new System.Windows.Forms.Label();
+            this.CalculateBySoldPriceWithPvmInfoLabel = new System.Windows.Forms.Label();
             this.TableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,8 +157,13 @@ namespace PikNiMi.Forms
             this.TableLayoutPanel.Controls.Add(this.MoneyCourseTextBox, 5, 1);
             this.TableLayoutPanel.Controls.Add(this.SaveButton, 5, 20);
             this.TableLayoutPanel.Controls.Add(this.ProductIdTextBox, 5, 2);
-            this.TableLayoutPanel.Controls.Add(this.label1, 4, 2);
+            this.TableLayoutPanel.Controls.Add(this.ProductIdInfoLabel, 4, 2);
             this.TableLayoutPanel.Controls.Add(this.CalculateButton, 5, 19);
+            this.TableLayoutPanel.Controls.Add(this.CalculateByWantProfitInfoLabel, 4, 19);
+            this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceButton, 5, 18);
+            this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceWithPvmButton, 5, 17);
+            this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceInfoLabel, 4, 18);
+            this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceWithPvmInfoLabel, 4, 17);
             this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayoutPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
@@ -732,15 +742,15 @@ namespace PikNiMi.Forms
             this.ProductIdTextBox.Size = new System.Drawing.Size(143, 20);
             this.ProductIdTextBox.TabIndex = 72;
             // 
-            // label1
+            // ProductIdInfoLabel
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(575, 58);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 13);
-            this.label1.TabIndex = 73;
-            this.label1.Text = "Id";
+            this.ProductIdInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductIdInfoLabel.AutoSize = true;
+            this.ProductIdInfoLabel.Location = new System.Drawing.Point(575, 58);
+            this.ProductIdInfoLabel.Name = "ProductIdInfoLabel";
+            this.ProductIdInfoLabel.Size = new System.Drawing.Size(137, 13);
+            this.ProductIdInfoLabel.TabIndex = 73;
+            this.ProductIdInfoLabel.Text = "Id";
             // 
             // CalculateButton
             // 
@@ -752,6 +762,58 @@ namespace PikNiMi.Forms
             this.CalculateButton.Text = "Calculate";
             this.CalculateButton.UseVisualStyleBackColor = true;
             this.CalculateButton.Click += new System.EventHandler(this.CalculateButton_Click);
+            // 
+            // CalculateByWantProfitInfoLabel
+            // 
+            this.CalculateByWantProfitInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CalculateByWantProfitInfoLabel.AutoSize = true;
+            this.CalculateByWantProfitInfoLabel.Location = new System.Drawing.Point(575, 500);
+            this.CalculateByWantProfitInfoLabel.Name = "CalculateByWantProfitInfoLabel";
+            this.CalculateByWantProfitInfoLabel.Size = new System.Drawing.Size(137, 13);
+            this.CalculateByWantProfitInfoLabel.TabIndex = 75;
+            this.CalculateByWantProfitInfoLabel.Text = "By want profit";
+            // 
+            // CalculateBySoldPriceButton
+            // 
+            this.CalculateBySoldPriceButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CalculateBySoldPriceButton.Location = new System.Drawing.Point(718, 471);
+            this.CalculateBySoldPriceButton.Name = "CalculateBySoldPriceButton";
+            this.CalculateBySoldPriceButton.Size = new System.Drawing.Size(143, 20);
+            this.CalculateBySoldPriceButton.TabIndex = 76;
+            this.CalculateBySoldPriceButton.Text = "Calculate";
+            this.CalculateBySoldPriceButton.UseVisualStyleBackColor = true;
+            this.CalculateBySoldPriceButton.Click += new System.EventHandler(this.CalculateBySoldPriceButton_Click);
+            // 
+            // CalculateBySoldPriceWithPvmButton
+            // 
+            this.CalculateBySoldPriceWithPvmButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CalculateBySoldPriceWithPvmButton.Location = new System.Drawing.Point(718, 445);
+            this.CalculateBySoldPriceWithPvmButton.Name = "CalculateBySoldPriceWithPvmButton";
+            this.CalculateBySoldPriceWithPvmButton.Size = new System.Drawing.Size(143, 20);
+            this.CalculateBySoldPriceWithPvmButton.TabIndex = 77;
+            this.CalculateBySoldPriceWithPvmButton.Text = "Calculate";
+            this.CalculateBySoldPriceWithPvmButton.UseVisualStyleBackColor = true;
+            this.CalculateBySoldPriceWithPvmButton.Click += new System.EventHandler(this.CalculateBySoldPriceWithPvmButton_Click);
+            // 
+            // CalculateBySoldPriceInfoLabel
+            // 
+            this.CalculateBySoldPriceInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CalculateBySoldPriceInfoLabel.AutoSize = true;
+            this.CalculateBySoldPriceInfoLabel.Location = new System.Drawing.Point(575, 474);
+            this.CalculateBySoldPriceInfoLabel.Name = "CalculateBySoldPriceInfoLabel";
+            this.CalculateBySoldPriceInfoLabel.Size = new System.Drawing.Size(137, 13);
+            this.CalculateBySoldPriceInfoLabel.TabIndex = 78;
+            this.CalculateBySoldPriceInfoLabel.Text = "By Sold Price";
+            // 
+            // CalculateBySoldPriceWithPvmInfoLabel
+            // 
+            this.CalculateBySoldPriceWithPvmInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CalculateBySoldPriceWithPvmInfoLabel.AutoSize = true;
+            this.CalculateBySoldPriceWithPvmInfoLabel.Location = new System.Drawing.Point(575, 448);
+            this.CalculateBySoldPriceWithPvmInfoLabel.Name = "CalculateBySoldPriceWithPvmInfoLabel";
+            this.CalculateBySoldPriceWithPvmInfoLabel.Size = new System.Drawing.Size(137, 13);
+            this.CalculateBySoldPriceWithPvmInfoLabel.TabIndex = 79;
+            this.CalculateBySoldPriceWithPvmInfoLabel.Text = "By Sold Price + Pvm";
             // 
             // ProductForm
             // 
@@ -826,7 +888,12 @@ namespace PikNiMi.Forms
         private System.Windows.Forms.TextBox MoneyCourseTextBox;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.TextBox ProductIdTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ProductIdInfoLabel;
         private System.Windows.Forms.Button CalculateButton;
+        private System.Windows.Forms.Label CalculateByWantProfitInfoLabel;
+        private System.Windows.Forms.Button CalculateBySoldPriceButton;
+        private System.Windows.Forms.Button CalculateBySoldPriceWithPvmButton;
+        private System.Windows.Forms.Label CalculateBySoldPriceInfoLabel;
+        private System.Windows.Forms.Label CalculateBySoldPriceWithPvmInfoLabel;
     }
 }

@@ -47,6 +47,9 @@ namespace PikNiMi.Interface
         string SetSaveButtonText();
         string SetNotChooseText();
         string SetCalculateButtonText();
+        string SetCalculateByWantProfitText();
+        string SetCalculateBySoldPriceText();
+        string SetCalculateBySoldPriceWithPvm();
 
         string ShowSaveNewRecordSuccessMessage();
         string ShowSaveNewRecordErrorMessage();

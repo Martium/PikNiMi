@@ -155,7 +155,7 @@ namespace PikNiMi.Forms.Service
 
             if (isBothNumbersMoreThanZero)
             {
-                result = soldPrice - expensesCostPrice;
+                result = Math.Round((soldPrice - expensesCostPrice), 4, MidpointRounding.ToEven);
             }
             else
             {
@@ -174,7 +174,7 @@ namespace PikNiMi.Forms.Service
 
             if (isBothNumbersMoreThanZero)
             {
-                result = soldPrice / 1.21 - expensesCostPrice;
+                result = Math.Round((soldPrice / 1.21 - expensesCostPrice), 4, MidpointRounding.ToEven);
             }
             else
             {
