@@ -297,6 +297,7 @@ namespace PikNiMi.Forms
             this.CountFullOrderDiscountButton.TabStop = false;
             this.CountFullOrderDiscountButton.Text = "Skaičiuoti savikainą";
             this.CountFullOrderDiscountButton.UseVisualStyleBackColor = true;
+            this.CountFullOrderDiscountButton.Click += new System.EventHandler(this.CountFullOrderDiscountButton_Click);
             // 
             // DateTextBox
             // 

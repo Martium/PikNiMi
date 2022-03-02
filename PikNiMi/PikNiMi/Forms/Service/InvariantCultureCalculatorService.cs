@@ -131,17 +131,7 @@ namespace PikNiMi.Forms.Service
             double priceInEuro = _numberService.TryParseStringToDoubleNumberOrDefault(productPriceInEuro);
             double tripExpenses = _numberService.TryParseStringToDoubleNumberOrDefault(productTripExpenses);
 
-            bool isBothNumberMoreThanZero = ValidateGivenNumbersIsMoreThanZero(priceInEuro, tripExpenses);
-            double result;
-
-            if (isBothNumberMoreThanZero)
-            {
-                result = Math.Round((priceInEuro + tripExpenses), 2, MidpointRounding.ToEven);
-            }
-            else
-            {
-                result = default;
-            }
+            double result = Math.Round((priceInEuro + tripExpenses), 2, MidpointRounding.ToEven);
 
             return _numberService.ParseDoubleToString(result);
         }
@@ -150,17 +140,7 @@ namespace PikNiMi.Forms.Service
         {
             double soldPrice = _numberService.TryParseStringToDoubleNumberOrDefault(productSoldPrice);
             double expensesCostPrice = _numberService.TryParseStringToDoubleNumberOrDefault(productExpensesCostPrice);
-            double result;
-            bool isBothNumbersMoreThanZero = ValidateGivenNumbersIsMoreThanZero(soldPrice, expensesCostPrice);
-
-            if (isBothNumbersMoreThanZero)
-            {
-                result = Math.Round((soldPrice - expensesCostPrice), 4, MidpointRounding.ToEven);
-            }
-            else
-            {
-                result = default;
-            }
+            double result = Math.Round((soldPrice - expensesCostPrice), 4, MidpointRounding.ToEven);
 
             return _numberService.ParseDoubleToString(result);
         }
@@ -182,6 +162,25 @@ namespace PikNiMi.Forms.Service
             }
 
             return _numberService.ParseDoubleToString(result);
+        }
+
+        public double CalculateTripExpensesByDate(int elementsByDate, string fullTripExpenses)
+        {
+            double tripExpenses = _numberService.TryParseStringToDoubleNumberOrDefault(fullTripExpenses);
+            bool isTripExpenses = tripExpenses != 0;
+            double result;
+
+            if (isTripExpenses)
+            {
+                result = Math.Round((tripExpenses / elementsByDate), 2, MidpointRounding.ToEven);
+            }
+            else
+            {
+                result = default;
+            }
+
+            return result;
+
         }
     }
 }

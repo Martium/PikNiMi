@@ -244,6 +244,11 @@ namespace PikNiMi.Forms.Constants
         {
             return _languageTranslator.SetCalculateBySoldPriceWithPvm();
         }
+
+        public string ShowRecordNotFoundByDateErrorMessage()
+        {
+            return _languageTranslator.ShowRecordNotFoundByDateErrorMessage();
+        }
         #endregion
     }
 }

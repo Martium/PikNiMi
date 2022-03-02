@@ -133,5 +133,30 @@ namespace PikNiMi.Repository.SqlLite
 
             return getInfoQuery;
         }
+
+        public static string GetAllFullProductInfoIdByDate(string date)
+        {
+            string getIdQuery =
+                $@"
+                        SELECT
+                          {ProductId}
+                        FROM {FullProductInfoTableWithShortcut}
+                        WHERE FPIT.ProductReceiptDate = '{date}'
+                        ORDER BY {ProductId} ASC;
+                ";
+
+            return getIdQuery;
+        }
+
+        public static string UpdateFullProductInfoTripExpensesByDate(string date, double tripExpenses)
+        {
+            string query =
+                $@"
+                        UPDATE '{FullProductInfoTable}'
+                        SET TripExpenses = {tripExpenses}
+                        WHERE ProductReceiptDate = '{date}'
+                ";
+            return query;
+        }
     }
 }

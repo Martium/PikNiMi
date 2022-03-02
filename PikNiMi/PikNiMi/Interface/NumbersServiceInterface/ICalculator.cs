@@ -10,6 +10,7 @@
         string CountProductExpenses(string productPriceInEuro, string productTripExpenses);
         string CalculateWantProfitBySoldPriceWithoutPvm(string productSoldPrice, string productExpensesCostPrice);
         string CalculateWantProfitBySoldPriceWithPvm(string productSoldPriceWithPvm, string productExpensesCostPrice);
+        double CalculateTripExpensesByDate(int elementsByDate, string fullTripExpenses);
 
     }
 }

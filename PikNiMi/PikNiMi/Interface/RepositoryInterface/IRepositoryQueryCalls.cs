@@ -14,6 +14,9 @@ namespace PikNiMi.Interface.RepositoryInterface
         Task<int> AddNewFullProductInfo(FullProductInfoModel fullProductInfo, string[] search);
         Task<int> UpdateExistingFullProductInfo(FullProductInfoModel fullProductInfo, string[] search);
         Task<ProductAdditionalInfoModel> GetAdditionalProductInfoById(int productId);
+        Task<IEnumerable<int>> GetAllFullProductinfoIdByDate(string date);
+        Task<int> UpdateAllTripExpensesRowsByDate(string date, double tripExpenses);
+
     }
 
 }

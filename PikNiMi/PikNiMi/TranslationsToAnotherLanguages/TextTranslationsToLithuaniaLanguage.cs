@@ -262,6 +262,11 @@ namespace PikNiMi.TranslationsToAnotherLanguages
             return @"Neišsaugota kreiptis į Administratorių";
         }
 
+        public string ShowRecordNotFoundByDateErrorMessage()
+        {
+            return @"Nebuvo Rasta įrašų pagal šitą datą !";
+        }
+
         #endregion
     }
 }

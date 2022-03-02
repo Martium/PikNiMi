@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using PikNiMi.Enums;
 using PikNiMi.Forms.Constants;
 using PikNiMi.Forms.Service;
 using PikNiMi.Models;
+using PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository;
+using PikNiMi.Repository.DependencyInjectionRepositoryClass.Service;
+using PikNiMi.Repository.SqlLite;
 using PikNiMi.TranslationsToAnotherLanguages;
 
 namespace PikNiMi.Forms
@@ -16,7 +20,9 @@ namespace PikNiMi.Forms
         private readonly ComboBoxService _comboBoxService;
         private readonly ProductDataGridViewService _productDataGridViewService;
 
-
+        private readonly Calculator _calculator;
+        private readonly RepositoryQueryCalls _repositoryQueryCalls;
+        private readonly MessageBoxService _messageBoxService;
 
         public MainForm()
         {
@@ -26,6 +32,10 @@ namespace PikNiMi.Forms
             _textBoxFormService = new TextBoxFormService();
             _comboBoxService = new ComboBoxService(_languageTranslator);
             _productDataGridViewService = new ProductDataGridViewService();
+            _calculator = new Calculator(new InvariantCultureCalculatorService());
+            _repositoryQueryCalls = new RepositoryQueryCalls(new SqlLiteRepositoryQueryCalls());
+            _messageBoxService =
+                new MessageBoxService(new LanguageTranslator(new TextTranslationsToLithuaniaLanguage()));
 
         }
 
@@ -172,6 +182,19 @@ namespace PikNiMi.Forms
             SetAllButtonsControl(true);
         }
 
+        private async void CountFullOrderDiscountButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            using (LoadingForm loadingForm  = new LoadingForm(SetTripExpensesByDate))
+            {
+                loadingForm.ShowDialog(this);
+            }
+
+            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView, _languageTranslator);
+            this.Show();
+        }
+
         #region CustomPrivateMethods
 
         private void SetTextBoxLength()
@@ -260,7 +283,39 @@ namespace PikNiMi.Forms
             return isNotEmpty;
         }
 
+        private void SetTripExpensesByDate()
+        {
+            var taskToGetIdByDate = _repositoryQueryCalls.GetAllFullProductinfoIdByDate(DateTextBox.Text);
+            var resultOfIEnumerable = taskToGetIdByDate.Result;
+
+            var ofIEnumerable = resultOfIEnumerable as int[] ?? resultOfIEnumerable.ToArray();
+            if (ofIEnumerable.Count() != 0)
+            {
+                double tripExpenses =
+                    _calculator.CalculateTripExpensesByDate(ofIEnumerable.Count(), TripExpensesTextBox.Text);
+
+                var taskOfUpdate =
+                    _repositoryQueryCalls.UpdateAllTripExpensesRowsByDate(DateTextBox.Text, tripExpenses);
+                ShowSaveToDataBaseMessage(taskOfUpdate.IsCompleted);
+            }
+            else
+            {
+                _messageBoxService.ShowRecordNotFoundByDateErrorMessage();
+            }
+        }
+
+        private void ShowSaveToDataBaseMessage(bool isSuccess)
+        {
+            if (isSuccess)
+            {
+                _messageBoxService.ShowSaveNewRecordSuccessMessage();
+            }
+            else
+            {
+                _messageBoxService.ShowSaveNewRecordErrorMessage();
+            }
+        }
+
         #endregion
-        
     }
 }

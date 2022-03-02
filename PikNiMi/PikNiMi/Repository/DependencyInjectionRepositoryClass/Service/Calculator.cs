@@ -51,5 +51,10 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Service
         {
             return _calculator.CalculateWantProfitBySoldPriceWithPvm(productSoldPriceWithPvm, productExpensesCostPrice);
         }
+
+        public double CalculateTripExpensesByDate(int elementsByDate, string fullTripExpenses)
+        {
+            return _calculator.CalculateTripExpensesByDate(elementsByDate, fullTripExpenses);
+        }
     }
 }

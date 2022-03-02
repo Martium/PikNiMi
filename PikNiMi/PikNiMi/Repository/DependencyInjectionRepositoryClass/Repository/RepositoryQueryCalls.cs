@@ -58,6 +58,16 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
             return additionalInfo;
         }
 
+        public Task<IEnumerable<int>> GetAllFullProductinfoIdByDate(string date)
+        {
+            var allId = _repository.GetAllFullProductinfoIdByDate(date);
+            return allId;
+        }
 
+        public Task<int> UpdateAllTripExpensesRowsByDate(string date, double tripExpenses)
+        {
+            var rowsUpdate = _repository.UpdateAllTripExpensesRowsByDate(date, tripExpenses);
+            return rowsUpdate;
+        }
     }
 }

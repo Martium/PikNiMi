@@ -98,6 +98,12 @@
     <Compile Include="Enums\TextBoxResizeFormTypeEnum.cs" />
     <Compile Include="Forms\Constants\FormFontConstants.cs" />
     <Compile Include="Forms\Constants\LanguageTranslator.cs" />
+    <Compile Include="Forms\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Service\InvariantCultureCalculatorService.cs" />
     <Compile Include="Forms\Service\MessageBoxService.cs" />
     <Compile Include="Interface\ILanguageTranslator.cs" />
@@ -146,6 +152,9 @@
     <Compile Include="Repository\SqlLite\SqlLiteCreateTableCommands.cs" />
     <Compile Include="Repository\SqlLite\SqlLiteQueryToDataBaseCommands.cs" />
     <Compile Include="Repository\SqlLite\SqlLiteRepositoryQueryCalls.cs" />
+    <EmbeddedResource Include="Forms\LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
