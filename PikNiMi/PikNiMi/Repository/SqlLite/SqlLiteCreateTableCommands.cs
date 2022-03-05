@@ -54,6 +54,7 @@ namespace PikNiMi.Repository.SqlLite
                         [Id] [Integer] NOT NULL,
                         [ProfitWant] [Numeric] NULL,
                         [MoneyCourse] [Numeric] NULL,
+                        [IncludePvm] [Integer] NULL,
                         FOREIGN KEY (Id) REFERENCES {fullProductInfoTable} (ProductId) ON DELETE CASCADE,
                         UNIQUE (Id)
                     );

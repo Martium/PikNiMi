@@ -50,6 +50,7 @@ namespace PikNiMi.Interface
         string SetCalculateByWantProfitText();
         string SetCalculateBySoldPriceText();
         string SetCalculateBySoldPriceWithPvm();
+        string SetIncludePvmText();
 
         string ShowSaveNewRecordSuccessMessage();
         string ShowSaveNewRecordErrorMessage();

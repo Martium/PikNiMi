@@ -250,6 +250,11 @@ namespace PikNiMi.TranslationsToAnotherLanguages
             return @"Pardavimo kainą + Pvm";
         }
 
+        public string SetIncludePvmText()
+        {
+            return @"Taikyti Pvm";
+        }
+
         #region MessageBoxMessage
 
         public string ShowSaveNewRecordSuccessMessage()

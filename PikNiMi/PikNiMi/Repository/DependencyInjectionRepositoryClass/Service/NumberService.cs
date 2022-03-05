@@ -30,5 +30,10 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Service
         {
             return _numberService.ParseDoubleToString(number);
         }
+
+        public bool ChangeIntegerValueToBool(int value)
+        {
+            return _numberService.ChangeIntegerValueToBool(value);
+        }
     }
 }

@@ -131,11 +131,11 @@ namespace PikNiMi.Repository.SqlLite
                     $@"
                         BEGIN TRANSACTION;
                         INSERT INTO 'ProductAdditionalInfo'
-                        VALUES (1, 5, 4);
+                        VALUES (1, 5, 4, 1);
                         INSERT INTO 'ProductAdditionalInfo'
-                        VALUES (2, 5, 4);
+                        VALUES (2, 5, 4, 1);
                         INSERT INTO 'ProductAdditionalInfo'
-                        VALUES (3, 5, 4);
+                        VALUES (3, 5, 4, 0);
                         COMMIT;
                     ";
 

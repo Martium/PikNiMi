@@ -62,6 +62,7 @@ namespace PikNiMi.Forms
             FillTextBoxInfoIfUpdateOperation();
             SetTextBoxColorByFormOperationForLoad();
             this.ActiveControl = ProductDescriptionTextBox;
+            IncludePvmCheckBox_CheckedChanged(sender, new EventArgs());
         }
 
         private void ProductForm_Resize(object sender, EventArgs e)
@@ -114,6 +115,12 @@ namespace PikNiMi.Forms
             TextBox textBox = (TextBox) sender;
             int indexOfTextBox = textBox.TabIndex;
             SetColorOfInfoLabelBySpecificTextBox(false, indexOfTextBox);
+        }
+
+        private void IncludePvmCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CalculateBySoldPriceButton.Enabled = !IncludePvmCheckBox.Checked;
+            CalculateBySoldPriceWithPvmButton.Enabled = IncludePvmCheckBox.Checked;
         }
 
         #region Heplers
@@ -185,6 +192,7 @@ namespace PikNiMi.Forms
             CalculateByWantProfitInfoLabel.Text = _languageTranslator.SetCalculateByWantProfitText();
             CalculateBySoldPriceInfoLabel.Text = _languageTranslator.SetCalculateBySoldPriceText();
             CalculateBySoldPriceWithPvmInfoLabel.Text = _languageTranslator.SetCalculateBySoldPriceWithPvm();
+            IncludePvmCheckBox.Text = _languageTranslator.SetIncludePvmText();
         }
 
         private void PopulateComboBoxInfo()
@@ -419,6 +427,7 @@ namespace PikNiMi.Forms
                 {
                     MoneyCourseTextBox.Text = _numberService.ParseDoubleToString(additionalInfo.MoneyCourse);
                     ProductWantProfitTextBox.Text = _numberService.ParseDoubleToString(additionalInfo.ProfitWant);
+                    IncludePvmCheckBox.Checked = _numberService.ChangeIntegerValueToBool(additionalInfo.IncludePvm);
                 }
             }
         }

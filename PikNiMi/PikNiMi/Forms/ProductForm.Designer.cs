@@ -91,6 +91,7 @@ namespace PikNiMi.Forms
             this.CalculateBySoldPriceWithPvmButton = new System.Windows.Forms.Button();
             this.CalculateBySoldPriceInfoLabel = new System.Windows.Forms.Label();
             this.CalculateBySoldPriceWithPvmInfoLabel = new System.Windows.Forms.Label();
+            this.IncludePvmCheckBox = new System.Windows.Forms.CheckBox();
             this.TableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -164,6 +165,7 @@ namespace PikNiMi.Forms
             this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceWithPvmButton, 5, 17);
             this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceInfoLabel, 4, 18);
             this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceWithPvmInfoLabel, 4, 17);
+            this.TableLayoutPanel.Controls.Add(this.IncludePvmCheckBox, 4, 3);
             this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayoutPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
@@ -815,6 +817,18 @@ namespace PikNiMi.Forms
             this.CalculateBySoldPriceWithPvmInfoLabel.TabIndex = 79;
             this.CalculateBySoldPriceWithPvmInfoLabel.Text = "By Sold Price + Pvm";
             // 
+            // IncludePvmCheckBox
+            // 
+            this.IncludePvmCheckBox.AutoSize = true;
+            this.IncludePvmCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.IncludePvmCheckBox.Location = new System.Drawing.Point(575, 81);
+            this.IncludePvmCheckBox.Name = "IncludePvmCheckBox";
+            this.IncludePvmCheckBox.Size = new System.Drawing.Size(137, 20);
+            this.IncludePvmCheckBox.TabIndex = 80;
+            this.IncludePvmCheckBox.Text = "IncludePvm";
+            this.IncludePvmCheckBox.UseVisualStyleBackColor = true;
+            this.IncludePvmCheckBox.CheckedChanged += new System.EventHandler(this.IncludePvmCheckBox_CheckedChanged);
+            // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -895,5 +909,6 @@ namespace PikNiMi.Forms
         private System.Windows.Forms.Button CalculateBySoldPriceWithPvmButton;
         private System.Windows.Forms.Label CalculateBySoldPriceInfoLabel;
         private System.Windows.Forms.Label CalculateBySoldPriceWithPvmInfoLabel;
+        private System.Windows.Forms.CheckBox IncludePvmCheckBox;
     }
 }
