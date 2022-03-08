@@ -56,5 +56,6 @@ namespace PikNiMi.Interface
         string ShowSaveNewRecordErrorMessage();
         string ShowRecordNotFoundByDateErrorMessage();
         string ShowSelectRowErrorMessage();
+        string ShowEnteredNotNumberError();
     }
 }

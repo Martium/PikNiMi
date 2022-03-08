@@ -253,5 +253,28 @@ namespace PikNiMi.Repository.SqlLite
 
             return query;
         }
+
+        public static string AddNewProductType(string productType)
+        {
+            string query = 
+                $@"
+                        INSERT INTO 'ProductTypeTable'
+                        VALUES (NULL, '{productType}')
+                ";
+
+            return query;
+        }
+
+        public static string GetAllExistingProductType()
+        {
+            string query = 
+                $@"
+                        SELECT
+                          ProductType
+                        FROM ProductTypeTable
+                ";
+
+            return query;
+        }
     }
 }

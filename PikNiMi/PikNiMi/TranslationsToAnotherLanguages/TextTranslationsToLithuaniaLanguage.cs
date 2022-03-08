@@ -277,6 +277,12 @@ namespace PikNiMi.TranslationsToAnotherLanguages
             return @"Nėra pasirinktas produktas kurį galima būtų atnaujinti";
         }
 
+        public string ShowEnteredNotNumberError()
+        {
+            return
+                @"Raudoname(uose) langelyje(uose) tai ką įvedėte nėra skaičius(iai), nebus atlikti teisingi skaičiavimai!";
+        }
+
         #endregion
     }
 }

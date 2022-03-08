@@ -259,6 +259,11 @@ namespace PikNiMi.Forms.Constants
         {
             return _languageTranslator.ShowSelectRowErrorMessage();
         }
+
+        public string ShowEnteredNotNumberError()
+        {
+            return _languageTranslator.ShowEnteredNotNumberError();
+        }
         #endregion
     }
 }

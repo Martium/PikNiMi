@@ -7,7 +7,7 @@ namespace PikNiMi.Repository.SqlLite
     {
         public static Dictionary<string, string> GetTablesCommand()
         {
-            string fullProductInfoTable = "FullProductInfoTable";
+            const string fullProductInfoTable = "FullProductInfoTable";
             string createFullProductInfoTable = 
             $@"
                 CREATE TABLE [{fullProductInfoTable}] (
@@ -47,7 +47,7 @@ namespace PikNiMi.Repository.SqlLite
                 );
             ";
 
-            string productAdditionalInfoTable = "ProductAdditionalInfo";
+            const string productAdditionalInfoTable = "ProductAdditionalInfo";
             string createProductAdditionalInfoTable = 
                 $@"
                     CREATE TABLE [{productAdditionalInfoTable}] (
@@ -61,10 +61,22 @@ namespace PikNiMi.Repository.SqlLite
                     );
                 ";
 
+            const string productTypeTable = "ProductTypeTable";
+            string createProductTypeTable = 
+                $@"
+                    CREATE TABLE [{productTypeTable}] (
+                        [Id] [Integer] PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        [ProductType] [nvarchar] ({TextBoxLength.ProductType}) NOT NULL,
+
+                        UNIQUE (Id)
+                    );
+                ";
+
             var tableCommands = new Dictionary<string, string>()
             {
                 {fullProductInfoTable, createFullProductInfoTable},
-                {productAdditionalInfoTable, createProductAdditionalInfoTable}
+                {productAdditionalInfoTable, createProductAdditionalInfoTable},
+                {productTypeTable, createProductTypeTable}
             };
 
             return tableCommands;

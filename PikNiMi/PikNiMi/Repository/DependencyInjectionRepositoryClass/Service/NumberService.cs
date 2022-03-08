@@ -40,5 +40,10 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Service
         {
             return _numberService.ChangeBoolValueToInteger(value);
         }
+
+        public bool CheckStringIsNumber(string text)
+        {
+            return _numberService.CheckStringIsNumber(text);
+        }
     }
 }

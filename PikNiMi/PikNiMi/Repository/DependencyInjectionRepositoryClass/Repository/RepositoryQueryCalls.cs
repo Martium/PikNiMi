@@ -105,5 +105,17 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
             var task = _repository.UpdateProfitWantByDateQuickCalculation(profitWant: profitWant, id);
             return task;
         }
+
+        public Task<int> AddNewProductType(string productType)
+        {
+            var task = _repository.AddNewProductType(productType);
+            return task;
+        }
+
+        public Task<IEnumerable<string>> GetAllProductType()
+        {
+            var task = _repository.GetAllProductType();
+            return task;
+        }
     }
 }

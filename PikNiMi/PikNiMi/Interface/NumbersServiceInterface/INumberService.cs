@@ -8,5 +8,6 @@
         string ParseDoubleToString(double number);
         bool ChangeIntegerValueToBool(int value);
         int ChangeBoolValueToInteger(bool value);
+        bool CheckStringIsNumber(string text);
     }
 }

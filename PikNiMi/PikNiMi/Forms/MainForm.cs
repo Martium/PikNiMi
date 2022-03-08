@@ -186,6 +186,7 @@ namespace PikNiMi.Forms
             SetDefaultTextBoxesTextValue();
             SetAllButtonsControl(false);
             await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView, _languageTranslator);
+            _comboBoxService.SetProductTypeCustomValues(ProductTypeComboBox);
             SetAllButtonsControl(true);
         }
 
@@ -202,6 +203,11 @@ namespace PikNiMi.Forms
             await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView, _languageTranslator);
             SetAllButtonsControl(true);
             this.Show();
+        }
+
+        private void AddNewProductTypeButton_Click(object sender, EventArgs e)
+        {
+            OpenNewForm(new ProductTypeForm());
         }
 
         #region CustomPrivateMethods
@@ -243,7 +249,6 @@ namespace PikNiMi.Forms
 
             Historybutton.Enabled = isAllowed;
             AddNewProductTypeButton.Enabled = isAllowed;
-            DiscountButton.Enabled = isAllowed;
             CountFullOrderDiscountButton.Enabled = isAllowed;
         }
 
@@ -280,7 +285,6 @@ namespace PikNiMi.Forms
             CancelSearchButton.Text = _languageTranslator.SetCancelSearchButtonText();
             Historybutton.Text = _languageTranslator.SetHistoryButtonText();
             AddNewProductTypeButton.Text = _languageTranslator.SetAddNewProductTypeButtonText();
-            DiscountButton.Text = _languageTranslator.SetDiscountButtonText();
             CountFullOrderDiscountButton.Text = _languageTranslator.SetCountFullOrderCalculationButtonText();
             MoneyCourseInfoLabel.Text = _languageTranslator.SetMoneyCourseText();
         }
@@ -400,5 +404,6 @@ namespace PikNiMi.Forms
         }
 
         #endregion
+       
     }
 }

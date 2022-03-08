@@ -81,5 +81,14 @@ namespace PikNiMi.Forms.Service
 
             return number;
         }
+
+        public bool CheckStringIsNumber(string text)
+        {
+            string changeCommaToDot = text != null ? ChangeCommaToDot(text) : null;
+
+            bool isNumber = double.TryParse(changeCommaToDot, _numberStyles, _cultureInfo, out _);
+
+            return isNumber;
+        }
     }
 }

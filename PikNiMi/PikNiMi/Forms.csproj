@@ -104,6 +104,12 @@
     <Compile Include="Forms\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ProductTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProductTypeForm.Designer.cs">
+      <DependentUpon>ProductTypeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Service\InvariantCultureCalculatorService.cs" />
     <Compile Include="Forms\Service\MessageBoxService.cs" />
     <Compile Include="Interface\ILanguageTranslator.cs" />
@@ -163,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProductTypeForm.resx">
+      <DependentUpon>ProductTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TextBoxResizeForm.resx">
       <DependentUpon>TextBoxResizeForm.cs</DependentUpon>

@@ -22,6 +22,8 @@ namespace PikNiMi.Interface.RepositoryInterface
         Task<IEnumerable<FullProductInfoMainInfoForCalculationsStartModel>> GetAllInfoForCalculationFullProductInfo(string date);
         Task<int> UpdateFullProductInfoByDateQuickCalculation(FullProductInfoCalculationModel calculation);
         Task<int> UpdateProfitWantByDateQuickCalculation(double profitWant, int id);
+        Task<int> AddNewProductType(string productType);
+        Task<IEnumerable<string>> GetAllProductType();
     }
 
 }

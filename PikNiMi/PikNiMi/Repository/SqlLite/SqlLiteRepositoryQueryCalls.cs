@@ -229,5 +229,31 @@ namespace PikNiMi.Repository.SqlLite
                 return result;
             }
         }
+
+        public Task<int> AddNewProductType(string productType)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+                string command = SqlLiteQueryToDataBaseCommands.AddNewProductType(productType);
+
+                var result = dbConnection.ExecuteAsync(command);
+
+                return result;
+            }
+        }
+
+        public Task<IEnumerable<string>> GetAllProductType()
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+                string command = SqlLiteQueryToDataBaseCommands.GetAllExistingProductType();
+
+                var result = dbConnection.QueryAsync<string>(command);
+
+                return result;
+            }
+        }
     }
 }

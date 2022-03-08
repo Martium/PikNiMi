@@ -112,6 +112,7 @@ namespace PikNiMi.Forms
             textBox.SelectionStart = textBox.Text.Length;
             int indexOfTextBox = textBox.TabIndex;
             SetColorOfInfoLabelBySpecificTextBox(true, indexOfTextBox);
+            IdentifiedTextBoxForCalculationToStart(textBox, true, indexOfTextBox);
         }
 
         private void TextBoxControl_Leave(object sender, EventArgs e)
@@ -119,6 +120,7 @@ namespace PikNiMi.Forms
             TextBox textBox = (TextBox) sender;
             int indexOfTextBox = textBox.TabIndex;
             SetColorOfInfoLabelBySpecificTextBox(false, indexOfTextBox);
+            IdentifiedTextBoxForCalculationToStart(textBox, false, indexOfTextBox);
         }
 
         private void IncludePvmCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -572,18 +574,103 @@ namespace PikNiMi.Forms
                     SetInfoLabelColorByEnterORLeaveTextBox(MoneyCourseInfoLabel, isEntered);
                     break;
             }
-            
         }
 
         private void SetInfoLabelColorByEnterORLeaveTextBox(Label label, bool isEntered)
         {
             if (isEntered)
             {
-                label.ForeColor = Color.Green;
+                label.ForeColor = Color.ForestGreen;
             }
             else
             {
                 label.ForeColor = default;
+            }
+        }
+
+        private void IdentifiedTextBoxForCalculationToStart(TextBox textBox, bool isEntered, int indexOfTextBox)
+        {
+            switch (indexOfTextBox)
+            {
+                case 30:
+                    SetTextBoxForNeedCalculationColorByEnterOrLeaveTextBox(textBox, isEntered);
+                    break;
+                case 32:
+                    SetTextBoxForNeedCalculationColorByEnterOrLeaveTextBox(textBox, isEntered);
+                    break;
+                case 38:
+                    SetTextBoxForChooseOptionCalculationColorByEnterOrLeaveTextBox(textBox,isEntered);
+                    break;
+                case 40:
+                    SetTextBoxForChooseOptionCalculationColorByEnterOrLeaveTextBox(textBox, isEntered);
+                    break;
+                case 63:
+                    SetTextBoxForChooseOptionCalculationColorByEnterOrLeaveTextBox(textBox, isEntered);
+                    break;
+                case 70:
+                    SetTextBoxForNeedCalculationColorByEnterOrLeaveTextBox(textBox, isEntered);
+                    break;
+            }
+        }
+
+        private void SetTextBoxForNeedCalculationColorByEnterOrLeaveTextBox(TextBox textBox, bool isEntered)
+        {
+            if (isEntered)
+            {
+                textBox.BackColor = default;
+            }
+            else
+            {
+                SetColorIfWrongValueEnteredToTextBoxWhereNumberNeeded(textBox);
+            }
+        }
+
+        private void SetColorIfWrongValueEnteredToTextBoxWhereNumberNeeded(TextBox textBox)
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.BackColor = Color.Yellow;
+                return;
+            }
+
+            bool isNumber = _numberService.CheckStringIsNumber(textBox.Text);
+
+            if (isNumber)
+            {
+                textBox.BackColor = default;
+            }
+            else
+            {
+                textBox.BackColor = Color.Red;
+                _messageBoxService.ShowEnteredNotNumberError();
+            }
+
+        }
+
+        private void SetTextBoxForChooseOptionCalculationColorByEnterOrLeaveTextBox(TextBox textBox, bool isEntered)
+        {
+            if (isEntered)
+            {
+                textBox.BackColor = default;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.BackColor = Color.ForestGreen;
+                return;
+            }
+
+            bool isNumber = _numberService.CheckStringIsNumber(textBox.Text);
+
+            if (isNumber)
+            {
+                textBox.BackColor = default;
+            }
+            else
+            {
+                textBox.BackColor = Color.Red;
+                _messageBoxService.ShowEnteredNotNumberError();
             }
         }
 

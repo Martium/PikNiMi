@@ -31,5 +31,10 @@ namespace PikNiMi.Forms.Service
         {
             MessageBox.Show(_languageTranslator.ShowSelectRowErrorMessage());
         }
+
+        public void ShowEnteredNotNumberError()
+        {
+            MessageBox.Show(_languageTranslator.ShowEnteredNotNumberError());
+        }
     }
 }
