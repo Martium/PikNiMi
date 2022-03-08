@@ -1,8 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using PikNiMi.Enums;
 using PikNiMi.Forms.Constants;
 using PikNiMi.Forms.Service;
+using PikNiMi.Models;
+using PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository;
+using PikNiMi.Repository.DependencyInjectionRepositoryClass.Service;
+using PikNiMi.Repository.SqlLite;
 using PikNiMi.TranslationsToAnotherLanguages;
 
 namespace PikNiMi.Forms
@@ -15,7 +21,9 @@ namespace PikNiMi.Forms
         private readonly ComboBoxService _comboBoxService;
         private readonly ProductDataGridViewService _productDataGridViewService;
 
-
+        private readonly Calculator _calculator;
+        private readonly RepositoryQueryCalls _repositoryQueryCalls;
+        private readonly MessageBoxService _messageBoxService;
 
         public MainForm()
         {
@@ -25,6 +33,10 @@ namespace PikNiMi.Forms
             _textBoxFormService = new TextBoxFormService();
             _comboBoxService = new ComboBoxService(_languageTranslator);
             _productDataGridViewService = new ProductDataGridViewService();
+            _calculator = new Calculator(new InvariantCultureCalculatorService());
+            _repositoryQueryCalls = new RepositoryQueryCalls(new SqlLiteRepositoryQueryCalls());
+            _messageBoxService =
+                new MessageBoxService(new LanguageTranslator(new TextTranslationsToLithuaniaLanguage()));
 
         }
 
@@ -132,7 +144,26 @@ namespace PikNiMi.Forms
 
         private void AddNewProductButton_Click(object sender, EventArgs e)
         {
-            OpenNewForm(new ProductForm(ProductFormTypeEnum.NewProductForm));
+            if (IsDateAndMoneyCourseTextBoxFilled())
+            {
+                var additionalInfoForNewProduct = new AdditionalInfoForNewProductOperationModel()
+                {
+                    Date = DateTextBox.Text,
+                    MoneyCourse = MoneyCourseTextBox.Text
+                };
+
+                OpenNewForm(new ProductForm(ProductFormTypeEnum.NewProductForm, additionalInfoForNewProduct: additionalInfoForNewProduct));
+            }
+            else
+            {
+                var additionalInfoForNewProduct = new AdditionalInfoForNewProductOperationModel()
+                {
+                    Date = DateTextBox.Text,
+                    MoneyCourse = "1"
+                };
+
+                OpenNewForm(new ProductForm(ProductFormTypeEnum.NewProductForm, additionalInfoForNewProduct: additionalInfoForNewProduct));
+            }
         }
 
         private void UpdateProductButton_Click(object sender, EventArgs e)
@@ -144,7 +175,7 @@ namespace PikNiMi.Forms
             }
             else
             {
-                // message box select something 
+                _messageBoxService.ShowSelectRowErrorMessage();
             }
            
         }
@@ -158,6 +189,21 @@ namespace PikNiMi.Forms
             SetAllButtonsControl(true);
         }
 
+        private async void CountFullOrderDiscountButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SetAllButtonsControl(false);
+
+            using (LoadingForm loadingForm  = new LoadingForm(SetTripExpensesByDate))
+            {
+                loadingForm.ShowDialog(this);
+            }
+
+            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView, _languageTranslator);
+            SetAllButtonsControl(true);
+            this.Show();
+        }
+
         #region CustomPrivateMethods
 
         private void SetTextBoxLength()
@@ -165,6 +211,7 @@ namespace PikNiMi.Forms
             SearchTextBox.MaxLength = TextBoxLength.ProductSearchText;
             DateTextBox.MaxLength = TextBoxLength.ProductDate;
             TripExpensesTextBox.MaxLength = TextBoxLength.NumberLength;
+            MoneyCourseTextBox.MaxLength = TextBoxLength.NumberLength;
         }
 
         private void SetDefaultTextBoxesTextValue()
@@ -234,10 +281,124 @@ namespace PikNiMi.Forms
             Historybutton.Text = _languageTranslator.SetHistoryButtonText();
             AddNewProductTypeButton.Text = _languageTranslator.SetAddNewProductTypeButtonText();
             DiscountButton.Text = _languageTranslator.SetDiscountButtonText();
-            CountFullOrderDiscountButton.Text = _languageTranslator.SetCountFullOrderDiscountButtonText();
+            CountFullOrderDiscountButton.Text = _languageTranslator.SetCountFullOrderCalculationButtonText();
+            MoneyCourseInfoLabel.Text = _languageTranslator.SetMoneyCourseText();
+        }
+
+        private bool IsDateAndMoneyCourseTextBoxFilled()
+        {
+            bool isNotEmpty = !string.IsNullOrWhiteSpace(DateTextBox.Text) &&
+                              !string.IsNullOrWhiteSpace(MoneyCourseTextBox.Text);
+            return isNotEmpty;
+        }
+
+        private void SetTripExpensesByDate()
+        {
+            var taskToGetIdByDate = _repositoryQueryCalls.GetAllFullProductinfoIdByDate(DateTextBox.Text);
+            var resultOfQuantity = taskToGetIdByDate.Result.ToList();
+
+            int allQuantity = resultOfQuantity.Sum(q => q.ProductQuantity);
+
+            if (allQuantity != 0)
+            {
+                double tripExpenses =
+                    _calculator.CalculateTripExpensesByDate(allQuantity, TripExpensesTextBox.Text);
+
+                var taskOfUpdate =
+                    _repositoryQueryCalls.UpdateAllTripExpensesRowsByDate(DateTextBox.Text, tripExpenses);
+                StartFinalCalculationByDate(!taskOfUpdate.IsFaulted);
+            }
+            else
+            {
+                _messageBoxService.ShowRecordNotFoundByDateErrorMessage();
+            }
+        }
+
+        private void ShowSaveToDataBaseMessage(bool isSuccess)
+        {
+            if (isSuccess)
+            {
+                _messageBoxService.ShowSaveNewRecordSuccessMessage();
+            }
+            else
+            {
+                _messageBoxService.ShowSaveNewRecordErrorMessage();
+            }
+        }
+
+        private void StartFinalCalculationByDate(bool isTripExpensesCalculated)
+        {
+            if (!isTripExpensesCalculated)
+            {
+                _messageBoxService.ShowSaveNewRecordErrorMessage();
+                return;
+            }
+
+            var taskMainCalculationInfo = _repositoryQueryCalls.GetAllInfoForCalculationFullProductInfo(DateTextBox.Text);
+            var resultMainCalculationInfo = taskMainCalculationInfo.Result;
+            bool isAllRecordsSave = true;
+
+            if (resultMainCalculationInfo != null)
+            {
+                List<FullProductInfoMainInfoForCalculationsStartModel> mainInfoForCalculations =
+                    resultMainCalculationInfo.ToList();
+
+                var calculations = ReturnCalculationsList(mainInfoForCalculations);
+
+                foreach (var record in calculations)
+                {
+                    var taskFullProductinfoCalculationsUpdate =
+                        _repositoryQueryCalls.UpdateFullProductInfoByDateQuickCalculation(record);
+
+                    var taskUpdateProfitWant =
+                        _repositoryQueryCalls.UpdateProfitWantByDateQuickCalculation(profitWant: record.ProfitWant,
+                            record.ProductId);
+
+                    if (taskFullProductinfoCalculationsUpdate.IsFaulted && taskUpdateProfitWant.IsFaulted)
+                    {
+                        isAllRecordsSave = false;
+                    }
+                }
+
+                ShowSaveToDataBaseMessage(isAllRecordsSave);
+            }
+        }
+
+        private List<FullProductInfoCalculationModel> ReturnCalculationsList(
+            List<FullProductInfoMainInfoForCalculationsStartModel> mainInfoForCalculations)
+        {
+            List<FullProductInfoCalculationModel> calculationList = new List<FullProductInfoCalculationModel>();
+
+            foreach (var calculation in mainInfoForCalculations)
+            {
+                var taskAdditionalInfo = _repositoryQueryCalls.GetAdditionalProductInfoById(calculation.ProductId);
+                var additionalInfoResult = taskAdditionalInfo.Result;
+
+                var singleRecordInfoForCalculation = new FullProductInfoMainInfoForCalculationsStartModel()
+                {
+                    ProfitWant = additionalInfoResult.ProfitWant,
+                    MoneyCourse = additionalInfoResult.MoneyCourse,
+                    IncludePvm = additionalInfoResult.IncludePvm,
+                    CountByWantProfit = additionalInfoResult.CountByWantProfit,
+
+                    ProductId = calculation.ProductId,
+                    ProductQuantity = calculation.ProductQuantity,
+                    ProductOriginalUnitPriceAtOriginalCurrency = calculation.ProductOriginalUnitPriceAtOriginalCurrency,
+                    TripExpenses = calculation.TripExpenses,
+                    ProductExpensesCostPrice = calculation.ProductExpensesCostPrice,
+                    ProductSoldPrice = calculation.ProductSoldPrice,
+                    ProductSoldPriceWithPvm = calculation.ProductSoldPriceWithPvm,
+                    ProductSold = calculation.ProductSold,
+                    Discount = calculation.Discount,
+                    Search = calculation.Search
+                };
+
+                calculationList.Add(_calculator.MakeFullCalculationsOfSpecificProduct(singleRecordInfoForCalculation));
+            }
+
+            return calculationList;
         }
 
         #endregion
-        
     }
 }

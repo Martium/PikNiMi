@@ -73,9 +73,9 @@ namespace PikNiMi.Forms.Constants
             return _languageTranslator.SetDiscountButtonText();
         }
 
-        public string SetCountFullOrderDiscountButtonText()
+        public string SetCountFullOrderCalculationButtonText()
         {
-            return _languageTranslator.SetCountFullOrderDiscountButtonText();
+            return _languageTranslator.SetCountFullOrderCalculationButtonText();
         }
 
         public string SetProductReceiptDateInfoLabelText()
@@ -213,6 +213,16 @@ namespace PikNiMi.Forms.Constants
             return _languageTranslator.SetNotChooseText();
         }
 
+        public string SetCalculateButtonText()
+        {
+            return _languageTranslator.SetCalculateButtonText();
+        }
+
+        public string SetIncludePvmText()
+        {
+            return _languageTranslator.SetIncludePvmText();
+        }
+
         #region MessageBoxService
 
         public string ShowSaveNewRecordSuccessMessage()
@@ -225,6 +235,30 @@ namespace PikNiMi.Forms.Constants
             return _languageTranslator.ShowSaveNewRecordErrorMessage();
         }
 
+        public string SetCalculateByWantProfitText()
+        {
+            return _languageTranslator.SetCalculateByWantProfitText();
+        }
+
+        public string SetCalculateBySoldPriceText()
+        {
+            return _languageTranslator.SetCalculateBySoldPriceText();
+        }
+
+        public string SetCalculateBySoldPriceWithPvm()
+        {
+            return _languageTranslator.SetCalculateBySoldPriceWithPvm();
+        }
+
+        public string ShowRecordNotFoundByDateErrorMessage()
+        {
+            return _languageTranslator.ShowRecordNotFoundByDateErrorMessage();
+        }
+
+        public string ShowSelectRowErrorMessage()
+        {
+            return _languageTranslator.ShowSelectRowErrorMessage();
+        }
         #endregion
     }
 }

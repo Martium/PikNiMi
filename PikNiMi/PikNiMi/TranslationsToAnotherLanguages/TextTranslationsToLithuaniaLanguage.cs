@@ -90,9 +90,9 @@ namespace PikNiMi.TranslationsToAnotherLanguages
             return "Nuolaidos";
         }
 
-        public string SetCountFullOrderDiscountButtonText()
+        public string SetCountFullOrderCalculationButtonText()
         {
-            return "Skaičiuoti savikainą";
+            return "Skaičiuoti viską";
         }
 
         public string SetProductReceiptDateInfoLabelText()
@@ -212,22 +212,47 @@ namespace PikNiMi.TranslationsToAnotherLanguages
 
         public string SetTextBoxResizeButtonText()
         {
-            return "Peržiūra";
+            return @"Peržiūra";
         }
 
         public string SetMoneyCourseText()
         {
-            return "Kursas";
+            return @"Kursas";
         }
 
         public string SetSaveButtonText()
         {
-            return "Išsaugoti";
+            return @"Išsaugoti";
         }
 
         public string SetNotChooseText()
         {
-            return "Nepasirinkta";
+            return @"Nepasirinkta";
+        }
+
+        public string SetCalculateButtonText()
+        {
+            return @"Skaičiuoti";
+        }
+
+        public string SetCalculateByWantProfitText()
+        {
+            return @"Norimą pelną";
+        }
+
+        public string SetCalculateBySoldPriceText()
+        {
+            return @"Pardavimo kainą";
+        }
+
+        public string SetCalculateBySoldPriceWithPvm()
+        {
+            return @"Pardavimo kainą + Pvm";
+        }
+
+        public string SetIncludePvmText()
+        {
+            return @"Taikyti Pvm";
         }
 
         #region MessageBoxMessage
@@ -239,7 +264,17 @@ namespace PikNiMi.TranslationsToAnotherLanguages
 
         public string ShowSaveNewRecordErrorMessage()
         {
-            return @"Neišsaugota kreiptis į Administratorių";
+            return @"Neišsaugota kreiptis arba išsaugota nepilna informacija į Administratorių";
+        }
+
+        public string ShowRecordNotFoundByDateErrorMessage()
+        {
+            return @"Nebuvo Rasta įrašų pagal šitą datą !";
+        }
+
+        public string ShowSelectRowErrorMessage()
+        {
+            return @"Nėra pasirinktas produktas kurį galima būtų atnaujinti";
         }
 
         #endregion

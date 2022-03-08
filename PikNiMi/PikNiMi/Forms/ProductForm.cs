@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.Caching.Memory;
@@ -20,19 +21,23 @@ namespace PikNiMi.Forms
         private TextBoxResizeFormTypeEnum _textBoxResizeFormType;
 
         private readonly FullProductInfoModel _productInfo;
+        private readonly AdditionalInfoForNewProductOperationModel _additionalInfoForNewProduct;
 
         private readonly LanguageTranslator _languageTranslator;
         private readonly RepositoryQueryCalls _repositoryQueryCalls;
         private readonly NumberService _numberService;
         private readonly MessageBoxService _messageBoxService;
         private readonly MemoryCacheControl _memoryCacheControl;
+        private readonly Calculator _calculator;
 
         private readonly ComboBoxService _comboBoxService;
+        private bool _isCountByWantProfit;
 
-        public ProductForm(ProductFormTypeEnum productFormType, FullProductInfoModel productInfo = null)
+        public ProductForm(ProductFormTypeEnum productFormType, FullProductInfoModel productInfo = null, AdditionalInfoForNewProductOperationModel additionalInfoForNewProduct = null)
         {
             _productFormType = productFormType;
             _productInfo = productInfo;
+            _additionalInfoForNewProduct = additionalInfoForNewProduct;
 
             InitializeComponent();
 
@@ -41,6 +46,7 @@ namespace PikNiMi.Forms
             _numberService = new NumberService(new InvariantCultureNumberService());
             _messageBoxService = new MessageBoxService(_languageTranslator);
             _memoryCacheControl = new MemoryCacheControl(new MemoryCache(new MemoryCacheOptions()));
+            _calculator = new Calculator(new InvariantCultureCalculatorService());
 
             _comboBoxService = new ComboBoxService(_languageTranslator);
         }
@@ -48,10 +54,16 @@ namespace PikNiMi.Forms
         private void ProductForm_Load(object sender, EventArgs e)
         {
             TableLayoutPanel.Font = FormFontConstants.DefaultFontSize;
+
+            GetNextIdForNewProduct();
             SetTextBoxLength();
             SetLanguageText();
+            PassedAdditionalValuesForNewProductOperation();
             PopulateComboBoxInfo();
             FillTextBoxInfoIfUpdateOperation();
+            SetTextBoxColorByFormOperationForLoad();
+            this.ActiveControl = ProductDescriptionTextBox;
+            IncludePvmCheckBox_CheckedChanged(sender, new EventArgs());
         }
 
         private void ProductForm_Resize(object sender, EventArgs e)
@@ -71,9 +83,47 @@ namespace PikNiMi.Forms
             SetTextToSpecificTextBoxAfterTextBoxResizeFormClosed(_textBoxResizeFormType);
         }
 
+        private void CalculateBySoldPriceWithPvmButton_Click(object sender, EventArgs e)
+        {
+            StartAllCalculationsForSoldPriceWithPvmOption();
+            _isCountByWantProfit = false;
+        }
+
+        private void CalculateBySoldPriceButton_Click(object sender, EventArgs e)
+        {
+            StartAllCalculationsForSoldPriceOption();
+            _isCountByWantProfit = false;
+        }
+
+        private void CalculateButton_Click(object sender, EventArgs e)
+        {
+            StartAllCalculationsForWantProfitOption();
+            _isCountByWantProfit = true;
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
             SaveOrUpdateRecord();
+        }
+
+        private void TextBoxControl_Enter(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox) sender;
+            textBox.SelectionStart = textBox.Text.Length;
+            int indexOfTextBox = textBox.TabIndex;
+            SetColorOfInfoLabelBySpecificTextBox(true, indexOfTextBox);
+        }
+
+        private void TextBoxControl_Leave(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox) sender;
+            int indexOfTextBox = textBox.TabIndex;
+            SetColorOfInfoLabelBySpecificTextBox(false, indexOfTextBox);
+        }
+
+        private void IncludePvmCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CalculateBySoldPriceWithPvmButton.Enabled = IncludePvmCheckBox.Checked;
         }
 
         #region Heplers
@@ -98,7 +148,13 @@ namespace PikNiMi.Forms
         private void SetButtonControl(bool isAllowed)
         {
             ProductDescriptionTextBoxResizeButton.Enabled = isAllowed;
+
             SaveButton.Enabled = isAllowed;
+
+            CalculateButton.Enabled = isAllowed;
+            CalculateBySoldPriceButton.Enabled = isAllowed;
+            CalculateBySoldPriceWithPvmButton.Enabled = isAllowed;
+            
         }
 
         private void SetLanguageText()
@@ -132,7 +188,14 @@ namespace PikNiMi.Forms
 
             ProductDescriptionTextBoxResizeButton.Text = _languageTranslator.SetTextBoxResizeButtonText();
             SaveButton.Text = _languageTranslator.SetSaveButtonText();
+            CalculateButton.Text = _languageTranslator.SetCalculateButtonText();
+            CalculateBySoldPriceButton.Text = _languageTranslator.SetCalculateButtonText();
+            CalculateBySoldPriceWithPvmButton.Text = _languageTranslator.SetCalculateButtonText();
 
+            CalculateByWantProfitInfoLabel.Text = _languageTranslator.SetCalculateByWantProfitText();
+            CalculateBySoldPriceInfoLabel.Text = _languageTranslator.SetCalculateBySoldPriceText();
+            CalculateBySoldPriceWithPvmInfoLabel.Text = _languageTranslator.SetCalculateBySoldPriceWithPvm();
+            IncludePvmCheckBox.Text = _languageTranslator.SetIncludePvmText();
         }
 
         private void PopulateComboBoxInfo()
@@ -237,28 +300,29 @@ namespace PikNiMi.Forms
                 ProductCareTextBox.Text,
                 ProductMadeStuffTextBox.Text,
                 ProductMadeInTextBox.Text,
-                ProductQuantityTextBox.Text,
-                ProductQuantityLeftTextBox.Text,
-                ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text,
-                ProductQuantityPriceAtOriginalCurrencyTextBox.Text,
-                ProductUnitPriceInEuroTextBox.Text,
-                ProductQuantityPriceInEuroTextBox.Text,
-                TripExpensesTextBox.Text,
-                ProductExpensesCostPriceTextBox.Text,
-                ProductSoldPriceTextBox.Text,
-                ProductPvmTextBox.Text,
-                ProductSoldPriceWithPvmTextBox.Text,
-                ProductSoldTextBox.Text,
-                ProductProfitTextBox.Text,
-                DiscountTextBox.Text
+
+                ProductQuantityTextBox.Text,  
+                ProductQuantityLeftTextBox.Text, 
+                ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text, 
+                ProductQuantityPriceAtOriginalCurrencyTextBox.Text, 
+                ProductUnitPriceInEuroTextBox.Text, 
+                ProductQuantityPriceInEuroTextBox.Text, 
+                TripExpensesTextBox.Text, 
+                ProductExpensesCostPriceTextBox.Text, 
+                ProductSoldPriceTextBox.Text, 
+                ProductPvmTextBox.Text, 
+                ProductSoldPriceWithPvmTextBox.Text, 
+                ProductSoldTextBox.Text, 
+                ProductProfitTextBox.Text, 
+                DiscountTextBox.Text 
             };
 
             return search;
         }
 
-        private void ShowSaveNewOperationMessage(bool isCompleted)
+        private void ShowSaveNewOperationMessage(bool isCompleted, bool isSecondCompleted)
         {
-            if (isCompleted)
+            if (isCompleted && isSecondCompleted)
             {
                 _messageBoxService.ShowSaveNewRecordSuccessMessage();
             }
@@ -270,25 +334,45 @@ namespace PikNiMi.Forms
 
         private void SaveOrUpdateRecord()
         {
+            int id = int.Parse(ProductIdTextBox.Text);
             var fullProductInfo = GetInfoFromTextBoxForFullProductInfo();
             var search = GetAllInfoForSearchInDataBase();
+            var additionalProductInfo = GetAdditionalInfo();
             SetButtonControl(false);
 
             switch (_productFormType)
             {
                 case ProductFormTypeEnum.NewProductForm:
                     Task<int> taskAddNew = _repositoryQueryCalls.CreateNewFullProductInfo(fullProductInfo, search);
-                    ShowSaveNewOperationMessage(taskAddNew.IsCompleted);
+                    Task<int> taskAddNewAdditional =
+                        _repositoryQueryCalls.AddNewAdditionalInfoById(id,
+                            additionalProductInfo);
+                    ShowSaveNewOperationMessage(!taskAddNew.IsFaulted, !taskAddNewAdditional.IsFaulted);
                     break;
                 case ProductFormTypeEnum.UpdateProductForm:
                     var taskUpdate = _repositoryQueryCalls.UpdateExistingFullProductInfo(fullProductInfo, search);
-                    ShowSaveNewOperationMessage(taskUpdate.IsCompleted);
+                    var taskUpdateAdditional =
+                        _repositoryQueryCalls.UpdateAdditionalInfoById(id, additionalProductInfo);
+                    ShowSaveNewOperationMessage(!taskUpdate.IsFaulted, !taskUpdateAdditional.IsFaulted);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            SetButtonControl(true);
+            this.Close();
+        }
+
+        private ProductAdditionalInfoModel GetAdditionalInfo()
+        {
+            var additionalInfo = new ProductAdditionalInfoModel()
+            {
+                MoneyCourse = _numberService.TryParseStringToDoubleNumberOrZero(MoneyCourseTextBox.Text),
+                ProfitWant = _numberService.TryParseStringToDoubleNumberOrZero(ProductWantProfitTextBox.Text),
+                IncludePvm = _numberService.ChangeBoolValueToInteger(IncludePvmCheckBox.Checked),
+                CountByWantProfit = _numberService.ChangeBoolValueToInteger(_isCountByWantProfit)
+            };
+
+            return additionalInfo;
         }
 
         private void SetTextToSpecificTextBoxAfterTextBoxResizeFormClosed(TextBoxResizeFormTypeEnum textBoxResizeFormType)
@@ -341,6 +425,17 @@ namespace PikNiMi.Forms
                 ProductSoldTextBox.Text = _productInfo.ProductSold.ToString();
                 ProductProfitTextBox.Text = _numberService.ParseDoubleToString(_productInfo.ProductProfit);
                 DiscountTextBox.Text = _numberService.ParseDoubleToString(_productInfo.Discount);
+
+                var taskAdditionalInfo = _repositoryQueryCalls.GetAdditionalProductInfoById(_productInfo.ProductId);
+                var additionalInfo = taskAdditionalInfo.Result;
+
+                if (additionalInfo != null)
+                {
+                    MoneyCourseTextBox.Text = _numberService.ParseDoubleToString(additionalInfo.MoneyCourse);
+                    ProductWantProfitTextBox.Text = _numberService.ParseDoubleToString(additionalInfo.ProfitWant);
+                    IncludePvmCheckBox.Checked = _numberService.ChangeIntegerValueToBool(additionalInfo.IncludePvm);
+                    _isCountByWantProfit = _numberService.ChangeIntegerValueToBool(additionalInfo.CountByWantProfit);
+                }
             }
         }
 
@@ -360,7 +455,237 @@ namespace PikNiMi.Forms
             return productType;
         }
 
+        private static void SetSpecificTextBoxColorForEmptyText(TextBox textBox, Color color)
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.BackColor = color;
+            }
+        }
+
+        private void SetTextBoxColorByFormOperationForLoad()
+        {
+            switch (_productFormType)
+            {
+                case ProductFormTypeEnum.NewProductForm:
+                    SetSpecificTextBoxColorForEmptyText(ProductQuantityTextBox,Color.Yellow);
+                    SetSpecificTextBoxColorForEmptyText(ProductOriginalUnitPriceAtOriginalCurrencyTextBox, Color.Yellow);
+
+                    SetSpecificTextBoxColorForEmptyText(ProductWantProfitTextBox, Color.ForestGreen);
+                    SetSpecificTextBoxColorForEmptyText(ProductSoldPriceTextBox, Color.ForestGreen);
+                    SetSpecificTextBoxColorForEmptyText(ProductSoldPriceWithPvmTextBox, Color.ForestGreen);
+                    break;
+                case ProductFormTypeEnum.UpdateProductForm:
+                    SetSpecificTextBoxColorForEmptyText(ProductQuantityTextBox, Color.Yellow);
+                    SetSpecificTextBoxColorForEmptyText(ProductOriginalUnitPriceAtOriginalCurrencyTextBox,Color.Yellow);
+
+                    SetSpecificTextBoxColorForEmptyText(ProductWantProfitTextBox, Color.ForestGreen);
+                    SetSpecificTextBoxColorForEmptyText(MoneyCourseTextBox, Color.ForestGreen);
+                    SetSpecificTextBoxColorForEmptyText(ProductSoldPriceTextBox, Color.ForestGreen);
+                    SetSpecificTextBoxColorForEmptyText(ProductSoldPriceWithPvmTextBox, Color.ForestGreen);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void PassedAdditionalValuesForNewProductOperation()
+        {
+            if (_additionalInfoForNewProduct != null)
+            {
+                ProductReceiptDateTextBox.Text = _additionalInfoForNewProduct.Date;
+                MoneyCourseTextBox.Text = _additionalInfoForNewProduct.MoneyCourse;
+            }
+        }
+
+        private void SetColorOfInfoLabelBySpecificTextBox(bool isEntered, int indexOfTextBox)
+        {
+            switch (indexOfTextBox)
+            {
+                case 23:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductReceiptDateInfoLabel, isEntered);
+                    break;
+                case 24:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductDescriptionInfoLabel, isEntered);
+                    break;
+                case 25:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductColorInfoLabel, isEntered);
+                    break;
+                case 26:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductSizeInfoLabel, isEntered);
+                    break;
+                case 27:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductCareInfoLabel, isEntered);
+                    break;
+                case 28:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductMadeStuffInfoLabel, isEntered);
+                    break;
+                case 29:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductMadeInInfoLabel, isEntered);
+                    break;
+                case 30:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductQuantityInfoLabel, isEntered);
+                    break;
+                case 31:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductQuantityLeftInfoLabel, isEntered);
+                    break;
+                case 32:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductOriginalUnitPriceAtOriginalCurrencyInfoLabel, isEntered);
+                    break;
+                case 33:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductQuantityPriceAtOriginalCurrencyInfoLabel, isEntered);
+                    break;
+                case 34:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductUnitPriceInEuroInfoLabel, isEntered);
+                    break;
+                case 35:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductQuantityPriceInEuroInfoLabel, isEntered);
+                    break;
+                case 36:
+                    SetInfoLabelColorByEnterORLeaveTextBox(TripExpensesInfoLabel, isEntered);
+                    break;
+                case 37:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductExpensesCostPriceInfoLabel, isEntered);
+                    break;
+                case 38:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductSoldPriceInfoLabel, isEntered);
+                    break;
+                case 39:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductPvmInfoLabel, isEntered);
+                    break;
+                case 40:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductSoldPriceWithPvmInfoLabel, isEntered);
+                    break;
+                case 41:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductSoldInfoLabel, isEntered);
+                    break;
+                case 42:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductProfitInfoLabel, isEntered);
+                    break;
+                case 63:
+                    SetInfoLabelColorByEnterORLeaveTextBox(ProductWantProfitInfoLabel, isEntered);
+                    break;
+                case 65:
+                    SetInfoLabelColorByEnterORLeaveTextBox(DiscountInfoLabel, isEntered);
+                    break;
+                case 70:
+                    SetInfoLabelColorByEnterORLeaveTextBox(MoneyCourseInfoLabel, isEntered);
+                    break;
+            }
+            
+        }
+
+        private void SetInfoLabelColorByEnterORLeaveTextBox(Label label, bool isEntered)
+        {
+            if (isEntered)
+            {
+                label.ForeColor = Color.Green;
+            }
+            else
+            {
+                label.ForeColor = default;
+            }
+        }
+
+        private void StartMainCalculations()
+        {
+            ProductQuantityPriceAtOriginalCurrencyTextBox.Text = _calculator.CountQuantityPrice(
+                quantity: ProductQuantityTextBox.Text, ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text);
+
+            ProductUnitPriceInEuroTextBox.Text = _calculator.ConvertUnitPriceToEuroCurrency(
+                moneyCourse: MoneyCourseTextBox.Text, ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text);
+
+            ProductQuantityPriceInEuroTextBox.Text =
+                _calculator.CountQuantityPrice(quantity: ProductQuantityTextBox.Text,
+                    ProductUnitPriceInEuroTextBox.Text);
+
+            ProductExpensesCostPriceTextBox.Text =
+                _calculator.CountProductExpenses(productPriceInEuro: ProductUnitPriceInEuroTextBox.Text,
+                    TripExpensesTextBox.Text);
+        }
+
+        private void StartAllCalculationsForWantProfitOption()
+        {
+            StartMainCalculations();
+
+            if (IncludePvmCheckBox.Checked)
+            {
+                ProductSoldPriceTextBox.Text = _calculator.CountSoldPriceWithoutPvm(
+                    productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+                ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
+                ProductSoldPriceWithPvmTextBox.Text = _calculator.CountSoldPriceWithPvm(
+                    productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+            }
+            else
+            {
+                ProductSoldPriceTextBox.Text = _calculator.CountSoldPriceWithoutPvm(
+                    productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+                ProductPvmTextBox.Text = string.Empty;
+                ProductSoldPriceWithPvmTextBox.Text = string.Empty;
+            }
+            
+        }
+
+        private void StartAllCalculationsForSoldPriceOption()
+        {
+            StartMainCalculations();
+
+            if (IncludePvmCheckBox.Checked)
+            {
+                ProductWantProfitTextBox.Text =
+                    _calculator.CalculateWantProfitBySoldPriceWithoutPvm(productSoldPrice: ProductSoldPriceTextBox.Text,
+                        ProductExpensesCostPriceTextBox.Text);
+                ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
+                ProductSoldPriceWithPvmTextBox.Text = _calculator.CountSoldPriceWithPvm(
+                    productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+            }
+            else
+            {
+                ProductWantProfitTextBox.Text =
+                    _calculator.CalculateWantProfitBySoldPriceWithoutPvm(productSoldPrice: ProductSoldPriceTextBox.Text,
+                        ProductExpensesCostPriceTextBox.Text);
+                ProductPvmTextBox.Text = string.Empty;
+                ProductSoldPriceWithPvmTextBox.Text = string.Empty;
+            }
+
+            
+        }
+
+        private void StartAllCalculationsForSoldPriceWithPvmOption()
+        {
+            StartMainCalculations();
+
+            ProductWantProfitTextBox.Text = _calculator.CalculateWantProfitBySoldPriceWithPvm(
+                productSoldPriceWithPvm: ProductSoldPriceWithPvmTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+
+            ProductSoldPriceTextBox.Text =
+                _calculator.CountSoldPriceWithoutPvm(productWantProfit: ProductWantProfitTextBox.Text,
+                    ProductExpensesCostPriceTextBox.Text);
+
+            ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
+        }
+
+        private void GetNextIdForNewProduct()
+        {
+            if (_productFormType == ProductFormTypeEnum.NewProductForm)
+            {
+                var task = _repositoryQueryCalls.GetMaxIdFromFullProductInfo();
+                int nextId;
+
+                try
+                {
+                    nextId = task.Result + 1;
+                }
+                catch
+                {
+                    nextId = 1;
+                }
+
+                ProductIdTextBox.Text = nextId.ToString();
+            }
+        }
+
         #endregion
-        
+       
     }
 }

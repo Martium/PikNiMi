@@ -102,5 +102,132 @@ namespace PikNiMi.Repository.SqlLite
                 return updateProduct;
             }
         }
+
+        public Task<ProductAdditionalInfoModel> GetAdditionalProductInfoById(int productId)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string additionalInfoCommand = SqlLiteQueryToDataBaseCommands.GetAdditionalProductInfoById(productId);
+
+                var additionalInfo = dbConnection.QueryFirstOrDefaultAsync<ProductAdditionalInfoModel>(additionalInfoCommand);
+                return additionalInfo;
+            }
+        }
+
+        public Task<IEnumerable<ProductQuantityModel>> GetAllFullProductinfoIdAndQuantityByDate(string date)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string allIdCommand = SqlLiteQueryToDataBaseCommands.GetAllFullProductInfoIdByDate(date);
+
+                var info = dbConnection.QueryAsync<ProductQuantityModel>(allIdCommand);
+
+                return info;
+            }
+        }
+
+        public Task<int> UpdateAllTripExpensesRowsByDate(string date, double tripExpenses)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string tripExpensesCommand =
+                    SqlLiteQueryToDataBaseCommands.UpdateFullProductInfoTripExpensesByDate(date, tripExpenses);
+
+                var result = dbConnection.ExecuteAsync(tripExpensesCommand);
+
+                return result;
+            }
+        }
+
+        public Task<int> AddNewAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string addNewCommand = SqlLiteQueryToDataBaseCommands.AddNewAdditionalInfoById(id, additionalInfo);
+
+                var result = dbConnection.ExecuteAsync(addNewCommand);
+
+                return result;
+            }
+        }
+
+        public Task<int> UpdateAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string updateNewCommand = SqlLiteQueryToDataBaseCommands.UpdateAdditionalInfoById(id, additionalInfo);
+
+                var result = dbConnection.ExecuteAsync(updateNewCommand);
+
+                return result;
+            }
+        }
+
+        public Task<int> GetMaxIdFromFullProductInfo()
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string getMaxId = SqlLiteQueryToDataBaseCommands.GetMaxIdFromFullProductInfo();
+
+                var result = dbConnection.QuerySingleAsync<int>(getMaxId);
+
+                return result;
+            }
+        }
+
+        public Task<IEnumerable<FullProductInfoMainInfoForCalculationsStartModel>> GetAllInfoForCalculationFullProductInfo(string date)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string sqlCommand = SqlLiteQueryToDataBaseCommands.GetMainInfoForFullProductInfoCalculations(date);
+
+                var result = dbConnection.QueryAsync<FullProductInfoMainInfoForCalculationsStartModel>(sqlCommand);
+
+                return result;
+            }
+        }
+
+        public Task<int> UpdateFullProductInfoByDateQuickCalculation(FullProductInfoCalculationModel calculation)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string sqlCommand =
+                    SqlLiteQueryToDataBaseCommands.UpdateFullProductInfoByDateQuickCalculation(calculation);
+
+                var result = dbConnection.ExecuteAsync(sqlCommand);
+
+                return result;
+            }
+        }
+
+        public Task<int> UpdateProfitWantByDateQuickCalculation(double profitWant, int id)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+
+                string sqlCommand = SqlLiteQueryToDataBaseCommands.UpdateProfitWant(profitWant: profitWant, id);
+
+                var result = dbConnection.ExecuteAsync(sqlCommand);
+
+                return result;
+            }
+        }
     }
 }

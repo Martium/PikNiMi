@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Windows.Forms;
 using PikNiMi.Forms;
-using PikNiMi.Repository.DependencyInjectionRepositoryClass;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository;
 using PikNiMi.Repository.SqlLite;
 
@@ -29,7 +28,7 @@ namespace PikNiMi
             {
                 if (!mutex.WaitOne(0, false))
                 {
-                    // message cant open more than one application
+                    MessageBox.Show(@"Cant Open more than One PikNiMi application");
                 }
 
                 bool isDatabaseIsInitialize = CreateDataBase();
@@ -52,6 +51,7 @@ namespace PikNiMi
                 _repositoryCreate.CreateRepositoryFile();
                 _repositoryCreate.CreateRepositoryTable();
                 _fakeRepository.FillTestingInfoForProduct();
+                _fakeRepository.FillTestingAdditionalInfoForProduct();
 
                 isDatabaseInitialize = true;
             }

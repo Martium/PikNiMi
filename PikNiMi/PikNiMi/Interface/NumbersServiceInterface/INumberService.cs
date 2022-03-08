@@ -6,5 +6,7 @@
         int TryParseStringToNumberOrDefault(string text);
         double TryParseStringToDoubleNumberOrDefault(string text);
         string ParseDoubleToString(double number);
+        bool ChangeIntegerValueToBool(int value);
+        int ChangeBoolValueToInteger(bool value);
     }
 }

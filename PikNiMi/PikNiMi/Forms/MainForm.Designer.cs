@@ -38,6 +38,8 @@ namespace PikNiMi.Forms
             this.CancelSearchButton = new System.Windows.Forms.Button();
             this.SearchButton = new System.Windows.Forms.Button();
             this.ProductTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.MoneyCourseInfoLabel = new System.Windows.Forms.Label();
+            this.MoneyCourseTextBox = new System.Windows.Forms.TextBox();
             this.ProductDataGridView = new System.Windows.Forms.DataGridView();
             this.tableBottomLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.TripExpensesTextBox = new System.Windows.Forms.TextBox();
@@ -66,6 +68,8 @@ namespace PikNiMi.Forms
             this.tableUpperLayoutPanel.Controls.Add(this.CancelSearchButton, 5, 0);
             this.tableUpperLayoutPanel.Controls.Add(this.SearchButton, 4, 0);
             this.tableUpperLayoutPanel.Controls.Add(this.ProductTypeComboBox, 2, 0);
+            this.tableUpperLayoutPanel.Controls.Add(this.MoneyCourseInfoLabel, 2, 1);
+            this.tableUpperLayoutPanel.Controls.Add(this.MoneyCourseTextBox, 3, 1);
             this.tableUpperLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableUpperLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableUpperLayoutPanel.Name = "tableUpperLayoutPanel";
@@ -163,6 +167,26 @@ namespace PikNiMi.Forms
             this.ProductTypeComboBox.TabIndex = 0;
             this.ProductTypeComboBox.TabStop = false;
             this.ProductTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.ProductTypeComboBox_SelectedIndexChanged);
+            // 
+            // MoneyCourseInfoLabel
+            // 
+            this.MoneyCourseInfoLabel.AutoSize = true;
+            this.MoneyCourseInfoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MoneyCourseInfoLabel.Location = new System.Drawing.Point(257, 50);
+            this.MoneyCourseInfoLabel.Name = "MoneyCourseInfoLabel";
+            this.MoneyCourseInfoLabel.Size = new System.Drawing.Size(157, 50);
+            this.MoneyCourseInfoLabel.TabIndex = 6;
+            this.MoneyCourseInfoLabel.Text = "Money Course";
+            // 
+            // MoneyCourseTextBox
+            // 
+            this.MoneyCourseTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MoneyCourseTextBox.Location = new System.Drawing.Point(420, 53);
+            this.MoneyCourseTextBox.Name = "MoneyCourseTextBox";
+            this.MoneyCourseTextBox.Size = new System.Drawing.Size(121, 20);
+            this.MoneyCourseTextBox.TabIndex = 7;
             // 
             // ProductDataGridView
             // 
@@ -273,6 +297,7 @@ namespace PikNiMi.Forms
             this.CountFullOrderDiscountButton.TabStop = false;
             this.CountFullOrderDiscountButton.Text = "Skaičiuoti savikainą";
             this.CountFullOrderDiscountButton.UseVisualStyleBackColor = true;
+            this.CountFullOrderDiscountButton.Click += new System.EventHandler(this.CountFullOrderDiscountButton_Click);
             // 
             // DateTextBox
             // 
@@ -323,6 +348,8 @@ namespace PikNiMi.Forms
         private System.Windows.Forms.Button AddNewProductTypeButton;
         private System.Windows.Forms.Button Historybutton;
         private System.Windows.Forms.TextBox TripExpensesTextBox;
+        private System.Windows.Forms.Label MoneyCourseInfoLabel;
+        private System.Windows.Forms.TextBox MoneyCourseTextBox;
     }
 }
 

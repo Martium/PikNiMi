@@ -13,7 +13,15 @@ namespace PikNiMi.Interface.RepositoryInterface
             string productType);
         Task<int> AddNewFullProductInfo(FullProductInfoModel fullProductInfo, string[] search);
         Task<int> UpdateExistingFullProductInfo(FullProductInfoModel fullProductInfo, string[] search);
-
+        Task<ProductAdditionalInfoModel> GetAdditionalProductInfoById(int productId);
+        Task<IEnumerable<ProductQuantityModel>> GetAllFullProductinfoIdAndQuantityByDate(string date);
+        Task<int> UpdateAllTripExpensesRowsByDate(string date, double tripExpenses);
+        Task<int> AddNewAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo);
+        Task<int> UpdateAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo);
+        Task<int> GetMaxIdFromFullProductInfo();
+        Task<IEnumerable<FullProductInfoMainInfoForCalculationsStartModel>> GetAllInfoForCalculationFullProductInfo(string date);
+        Task<int> UpdateFullProductInfoByDateQuickCalculation(FullProductInfoCalculationModel calculation);
+        Task<int> UpdateProfitWantByDateQuickCalculation(double profitWant, int id);
     }
 
 }

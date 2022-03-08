@@ -84,7 +84,14 @@ namespace PikNiMi.Forms
             this.MoneyCourseTextBox = new System.Windows.Forms.TextBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.ProductIdTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ProductIdInfoLabel = new System.Windows.Forms.Label();
+            this.CalculateButton = new System.Windows.Forms.Button();
+            this.CalculateByWantProfitInfoLabel = new System.Windows.Forms.Label();
+            this.CalculateBySoldPriceButton = new System.Windows.Forms.Button();
+            this.CalculateBySoldPriceWithPvmButton = new System.Windows.Forms.Button();
+            this.CalculateBySoldPriceInfoLabel = new System.Windows.Forms.Label();
+            this.CalculateBySoldPriceWithPvmInfoLabel = new System.Windows.Forms.Label();
+            this.IncludePvmCheckBox = new System.Windows.Forms.CheckBox();
             this.TableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -151,7 +158,14 @@ namespace PikNiMi.Forms
             this.TableLayoutPanel.Controls.Add(this.MoneyCourseTextBox, 5, 1);
             this.TableLayoutPanel.Controls.Add(this.SaveButton, 5, 20);
             this.TableLayoutPanel.Controls.Add(this.ProductIdTextBox, 5, 2);
-            this.TableLayoutPanel.Controls.Add(this.label1, 4, 2);
+            this.TableLayoutPanel.Controls.Add(this.ProductIdInfoLabel, 4, 2);
+            this.TableLayoutPanel.Controls.Add(this.CalculateButton, 5, 19);
+            this.TableLayoutPanel.Controls.Add(this.CalculateByWantProfitInfoLabel, 4, 19);
+            this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceButton, 5, 18);
+            this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceWithPvmButton, 5, 17);
+            this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceInfoLabel, 4, 18);
+            this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceWithPvmInfoLabel, 4, 17);
+            this.TableLayoutPanel.Controls.Add(this.IncludePvmCheckBox, 4, 3);
             this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayoutPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
@@ -409,6 +423,8 @@ namespace PikNiMi.Forms
             this.ProductReceiptDateTextBox.Name = "ProductReceiptDateTextBox";
             this.ProductReceiptDateTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductReceiptDateTextBox.TabIndex = 23;
+            this.ProductReceiptDateTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductReceiptDateTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductDescriptionTextBox
             // 
@@ -417,6 +433,8 @@ namespace PikNiMi.Forms
             this.ProductDescriptionTextBox.Name = "ProductDescriptionTextBox";
             this.ProductDescriptionTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductDescriptionTextBox.TabIndex = 24;
+            this.ProductDescriptionTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductDescriptionTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductColorTextBox
             // 
@@ -425,6 +443,8 @@ namespace PikNiMi.Forms
             this.ProductColorTextBox.Name = "ProductColorTextBox";
             this.ProductColorTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductColorTextBox.TabIndex = 25;
+            this.ProductColorTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductColorTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductSizeTextBox
             // 
@@ -433,6 +453,8 @@ namespace PikNiMi.Forms
             this.ProductSizeTextBox.Name = "ProductSizeTextBox";
             this.ProductSizeTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductSizeTextBox.TabIndex = 26;
+            this.ProductSizeTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductSizeTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductCareTextBox
             // 
@@ -441,6 +463,8 @@ namespace PikNiMi.Forms
             this.ProductCareTextBox.Name = "ProductCareTextBox";
             this.ProductCareTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductCareTextBox.TabIndex = 27;
+            this.ProductCareTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductCareTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductMadeStuffTextBox
             // 
@@ -449,6 +473,8 @@ namespace PikNiMi.Forms
             this.ProductMadeStuffTextBox.Name = "ProductMadeStuffTextBox";
             this.ProductMadeStuffTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductMadeStuffTextBox.TabIndex = 28;
+            this.ProductMadeStuffTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductMadeStuffTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductMadeInTextBox
             // 
@@ -457,6 +483,8 @@ namespace PikNiMi.Forms
             this.ProductMadeInTextBox.Name = "ProductMadeInTextBox";
             this.ProductMadeInTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductMadeInTextBox.TabIndex = 29;
+            this.ProductMadeInTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductMadeInTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductQuantityTextBox
             // 
@@ -465,6 +493,8 @@ namespace PikNiMi.Forms
             this.ProductQuantityTextBox.Name = "ProductQuantityTextBox";
             this.ProductQuantityTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductQuantityTextBox.TabIndex = 30;
+            this.ProductQuantityTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductQuantityTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductQuantityLeftTextBox
             // 
@@ -473,6 +503,8 @@ namespace PikNiMi.Forms
             this.ProductQuantityLeftTextBox.Name = "ProductQuantityLeftTextBox";
             this.ProductQuantityLeftTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductQuantityLeftTextBox.TabIndex = 31;
+            this.ProductQuantityLeftTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductQuantityLeftTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductOriginalUnitPriceAtOriginalCurrencyTextBox
             // 
@@ -481,6 +513,8 @@ namespace PikNiMi.Forms
             this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Name = "ProductOriginalUnitPriceAtOriginalCurrencyTextBox";
             this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox.TabIndex = 32;
+            this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductQuantityPriceAtOriginalCurrencyTextBox
             // 
@@ -489,6 +523,8 @@ namespace PikNiMi.Forms
             this.ProductQuantityPriceAtOriginalCurrencyTextBox.Name = "ProductQuantityPriceAtOriginalCurrencyTextBox";
             this.ProductQuantityPriceAtOriginalCurrencyTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductQuantityPriceAtOriginalCurrencyTextBox.TabIndex = 33;
+            this.ProductQuantityPriceAtOriginalCurrencyTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductQuantityPriceAtOriginalCurrencyTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductUnitPriceInEuroTextBox
             // 
@@ -497,6 +533,8 @@ namespace PikNiMi.Forms
             this.ProductUnitPriceInEuroTextBox.Name = "ProductUnitPriceInEuroTextBox";
             this.ProductUnitPriceInEuroTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductUnitPriceInEuroTextBox.TabIndex = 34;
+            this.ProductUnitPriceInEuroTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductUnitPriceInEuroTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductQuantityPriceInEuroTextBox
             // 
@@ -505,6 +543,8 @@ namespace PikNiMi.Forms
             this.ProductQuantityPriceInEuroTextBox.Name = "ProductQuantityPriceInEuroTextBox";
             this.ProductQuantityPriceInEuroTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductQuantityPriceInEuroTextBox.TabIndex = 35;
+            this.ProductQuantityPriceInEuroTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductQuantityPriceInEuroTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // TripExpensesTextBox
             // 
@@ -513,6 +553,8 @@ namespace PikNiMi.Forms
             this.TripExpensesTextBox.Name = "TripExpensesTextBox";
             this.TripExpensesTextBox.Size = new System.Drawing.Size(137, 20);
             this.TripExpensesTextBox.TabIndex = 36;
+            this.TripExpensesTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.TripExpensesTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductExpensesCostPriceTextBox
             // 
@@ -521,6 +563,8 @@ namespace PikNiMi.Forms
             this.ProductExpensesCostPriceTextBox.Name = "ProductExpensesCostPriceTextBox";
             this.ProductExpensesCostPriceTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductExpensesCostPriceTextBox.TabIndex = 37;
+            this.ProductExpensesCostPriceTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductExpensesCostPriceTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductSoldPriceTextBox
             // 
@@ -529,6 +573,8 @@ namespace PikNiMi.Forms
             this.ProductSoldPriceTextBox.Name = "ProductSoldPriceTextBox";
             this.ProductSoldPriceTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductSoldPriceTextBox.TabIndex = 38;
+            this.ProductSoldPriceTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductSoldPriceTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductPvmTextBox
             // 
@@ -537,6 +583,8 @@ namespace PikNiMi.Forms
             this.ProductPvmTextBox.Name = "ProductPvmTextBox";
             this.ProductPvmTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductPvmTextBox.TabIndex = 39;
+            this.ProductPvmTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductPvmTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductSoldPriceWithPvmTextBox
             // 
@@ -545,6 +593,8 @@ namespace PikNiMi.Forms
             this.ProductSoldPriceWithPvmTextBox.Name = "ProductSoldPriceWithPvmTextBox";
             this.ProductSoldPriceWithPvmTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductSoldPriceWithPvmTextBox.TabIndex = 40;
+            this.ProductSoldPriceWithPvmTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductSoldPriceWithPvmTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductSoldTextBox
             // 
@@ -553,6 +603,8 @@ namespace PikNiMi.Forms
             this.ProductSoldTextBox.Name = "ProductSoldTextBox";
             this.ProductSoldTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductSoldTextBox.TabIndex = 41;
+            this.ProductSoldTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductSoldTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductProfitTextBox
             // 
@@ -561,6 +613,8 @@ namespace PikNiMi.Forms
             this.ProductProfitTextBox.Name = "ProductProfitTextBox";
             this.ProductProfitTextBox.Size = new System.Drawing.Size(137, 20);
             this.ProductProfitTextBox.TabIndex = 42;
+            this.ProductProfitTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductProfitTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // ProductDescriptionTextBoxResizeButton
             // 
@@ -593,6 +647,8 @@ namespace PikNiMi.Forms
             this.ProductWantProfitTextBox.Name = "ProductWantProfitTextBox";
             this.ProductWantProfitTextBox.Size = new System.Drawing.Size(143, 20);
             this.ProductWantProfitTextBox.TabIndex = 63;
+            this.ProductWantProfitTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.ProductWantProfitTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // DiscountInfoLabel
             // 
@@ -611,6 +667,8 @@ namespace PikNiMi.Forms
             this.DiscountTextBox.Name = "DiscountTextBox";
             this.DiscountTextBox.Size = new System.Drawing.Size(137, 20);
             this.DiscountTextBox.TabIndex = 65;
+            this.DiscountTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.DiscountTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // comboBox2
             // 
@@ -662,6 +720,8 @@ namespace PikNiMi.Forms
             this.MoneyCourseTextBox.Name = "MoneyCourseTextBox";
             this.MoneyCourseTextBox.Size = new System.Drawing.Size(143, 20);
             this.MoneyCourseTextBox.TabIndex = 70;
+            this.MoneyCourseTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
+            this.MoneyCourseTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
             // 
             // SaveButton
             // 
@@ -670,6 +730,7 @@ namespace PikNiMi.Forms
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(143, 26);
             this.SaveButton.TabIndex = 71;
+            this.SaveButton.TabStop = false;
             this.SaveButton.Text = "SaveButton";
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
@@ -683,15 +744,90 @@ namespace PikNiMi.Forms
             this.ProductIdTextBox.Size = new System.Drawing.Size(143, 20);
             this.ProductIdTextBox.TabIndex = 72;
             // 
-            // label1
+            // ProductIdInfoLabel
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(575, 58);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 13);
-            this.label1.TabIndex = 73;
-            this.label1.Text = "Id";
+            this.ProductIdInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductIdInfoLabel.AutoSize = true;
+            this.ProductIdInfoLabel.Location = new System.Drawing.Point(575, 58);
+            this.ProductIdInfoLabel.Name = "ProductIdInfoLabel";
+            this.ProductIdInfoLabel.Size = new System.Drawing.Size(137, 13);
+            this.ProductIdInfoLabel.TabIndex = 73;
+            this.ProductIdInfoLabel.Text = "Id";
+            // 
+            // CalculateButton
+            // 
+            this.CalculateButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CalculateButton.Location = new System.Drawing.Point(718, 497);
+            this.CalculateButton.Name = "CalculateButton";
+            this.CalculateButton.Size = new System.Drawing.Size(143, 20);
+            this.CalculateButton.TabIndex = 74;
+            this.CalculateButton.Text = "Calculate";
+            this.CalculateButton.UseVisualStyleBackColor = true;
+            this.CalculateButton.Click += new System.EventHandler(this.CalculateButton_Click);
+            // 
+            // CalculateByWantProfitInfoLabel
+            // 
+            this.CalculateByWantProfitInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CalculateByWantProfitInfoLabel.AutoSize = true;
+            this.CalculateByWantProfitInfoLabel.Location = new System.Drawing.Point(575, 500);
+            this.CalculateByWantProfitInfoLabel.Name = "CalculateByWantProfitInfoLabel";
+            this.CalculateByWantProfitInfoLabel.Size = new System.Drawing.Size(137, 13);
+            this.CalculateByWantProfitInfoLabel.TabIndex = 75;
+            this.CalculateByWantProfitInfoLabel.Text = "By want profit";
+            // 
+            // CalculateBySoldPriceButton
+            // 
+            this.CalculateBySoldPriceButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CalculateBySoldPriceButton.Location = new System.Drawing.Point(718, 471);
+            this.CalculateBySoldPriceButton.Name = "CalculateBySoldPriceButton";
+            this.CalculateBySoldPriceButton.Size = new System.Drawing.Size(143, 20);
+            this.CalculateBySoldPriceButton.TabIndex = 76;
+            this.CalculateBySoldPriceButton.Text = "Calculate";
+            this.CalculateBySoldPriceButton.UseVisualStyleBackColor = true;
+            this.CalculateBySoldPriceButton.Click += new System.EventHandler(this.CalculateBySoldPriceButton_Click);
+            // 
+            // CalculateBySoldPriceWithPvmButton
+            // 
+            this.CalculateBySoldPriceWithPvmButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CalculateBySoldPriceWithPvmButton.Location = new System.Drawing.Point(718, 445);
+            this.CalculateBySoldPriceWithPvmButton.Name = "CalculateBySoldPriceWithPvmButton";
+            this.CalculateBySoldPriceWithPvmButton.Size = new System.Drawing.Size(143, 20);
+            this.CalculateBySoldPriceWithPvmButton.TabIndex = 77;
+            this.CalculateBySoldPriceWithPvmButton.Text = "Calculate";
+            this.CalculateBySoldPriceWithPvmButton.UseVisualStyleBackColor = true;
+            this.CalculateBySoldPriceWithPvmButton.Click += new System.EventHandler(this.CalculateBySoldPriceWithPvmButton_Click);
+            // 
+            // CalculateBySoldPriceInfoLabel
+            // 
+            this.CalculateBySoldPriceInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CalculateBySoldPriceInfoLabel.AutoSize = true;
+            this.CalculateBySoldPriceInfoLabel.Location = new System.Drawing.Point(575, 474);
+            this.CalculateBySoldPriceInfoLabel.Name = "CalculateBySoldPriceInfoLabel";
+            this.CalculateBySoldPriceInfoLabel.Size = new System.Drawing.Size(137, 13);
+            this.CalculateBySoldPriceInfoLabel.TabIndex = 78;
+            this.CalculateBySoldPriceInfoLabel.Text = "By Sold Price";
+            // 
+            // CalculateBySoldPriceWithPvmInfoLabel
+            // 
+            this.CalculateBySoldPriceWithPvmInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CalculateBySoldPriceWithPvmInfoLabel.AutoSize = true;
+            this.CalculateBySoldPriceWithPvmInfoLabel.Location = new System.Drawing.Point(575, 448);
+            this.CalculateBySoldPriceWithPvmInfoLabel.Name = "CalculateBySoldPriceWithPvmInfoLabel";
+            this.CalculateBySoldPriceWithPvmInfoLabel.Size = new System.Drawing.Size(137, 13);
+            this.CalculateBySoldPriceWithPvmInfoLabel.TabIndex = 79;
+            this.CalculateBySoldPriceWithPvmInfoLabel.Text = "By Sold Price + Pvm";
+            // 
+            // IncludePvmCheckBox
+            // 
+            this.IncludePvmCheckBox.AutoSize = true;
+            this.IncludePvmCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.IncludePvmCheckBox.Location = new System.Drawing.Point(575, 81);
+            this.IncludePvmCheckBox.Name = "IncludePvmCheckBox";
+            this.IncludePvmCheckBox.Size = new System.Drawing.Size(137, 20);
+            this.IncludePvmCheckBox.TabIndex = 80;
+            this.IncludePvmCheckBox.Text = "IncludePvm";
+            this.IncludePvmCheckBox.UseVisualStyleBackColor = true;
+            this.IncludePvmCheckBox.CheckedChanged += new System.EventHandler(this.IncludePvmCheckBox_CheckedChanged);
             // 
             // ProductForm
             // 
@@ -766,6 +902,13 @@ namespace PikNiMi.Forms
         private System.Windows.Forms.TextBox MoneyCourseTextBox;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.TextBox ProductIdTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ProductIdInfoLabel;
+        private System.Windows.Forms.Button CalculateButton;
+        private System.Windows.Forms.Label CalculateByWantProfitInfoLabel;
+        private System.Windows.Forms.Button CalculateBySoldPriceButton;
+        private System.Windows.Forms.Button CalculateBySoldPriceWithPvmButton;
+        private System.Windows.Forms.Label CalculateBySoldPriceInfoLabel;
+        private System.Windows.Forms.Label CalculateBySoldPriceWithPvmInfoLabel;
+        private System.Windows.Forms.CheckBox IncludePvmCheckBox;
     }
 }

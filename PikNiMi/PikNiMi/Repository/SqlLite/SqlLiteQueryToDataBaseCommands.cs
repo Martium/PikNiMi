@@ -7,6 +7,8 @@ namespace PikNiMi.Repository.SqlLite
     {
         private const string FullProductInfoTable = "FullProductInfoTable";
         private const string FullProductInfoTableWithShortcut = "FullProductInfoTable FPIT";
+        private const string ProductAdditionalInfoTable = "ProductAdditionalInfo";
+        private const string ProductAdditionalInfoTableWithShortcut = "ProductAdditionalInfo PAI";
 
         private const string ProductId = "FPIT.ProductId";
         private const string ProductType = "FPIT.ProductType";
@@ -18,7 +20,7 @@ namespace PikNiMi.Repository.SqlLite
 
             foreach (var info in search)
             {
-                searchFormat += $"{info} + {Environment.NewLine} ";
+                searchFormat += $"{info}{Environment.NewLine}";
             }
 
             return searchFormat;
@@ -39,7 +41,7 @@ namespace PikNiMi.Repository.SqlLite
         {
             string searchQuery =
                 $@"
-                         SELECT * FROM {FullProductInfoTableWithShortcut}
+                        SELECT * FROM {FullProductInfoTableWithShortcut}
                         WHERE {ProductType} = '{productType}'
                         ORDER BY {ProductId} DESC;
                 ";
@@ -119,6 +121,137 @@ namespace PikNiMi.Repository.SqlLite
                 ";
 
             return updateProductQuery;
+        }
+
+        public static string GetAdditionalProductInfoById(int productId)
+        {
+            string getInfoQuery = 
+                $@"
+                        SELECT * FROM {ProductAdditionalInfoTableWithShortcut}
+                        WHERE PAI.Id = {productId}
+                ";
+
+            return getInfoQuery;
+        }
+
+        public static string GetAllFullProductInfoIdByDate(string date)
+        {
+            string getIdQuery =
+                $@"
+                        SELECT
+                          {ProductId}, FPIT.ProductQuantity, FPIT.Search
+                        FROM {FullProductInfoTableWithShortcut}
+                        WHERE FPIT.ProductReceiptDate = '{date}'
+                        ORDER BY {ProductId} ASC;
+                ";
+
+            return getIdQuery;
+        }
+
+        public static string UpdateFullProductInfoTripExpensesByDate(string date, double tripExpenses)
+        {
+            string query =
+                $@"
+                        UPDATE '{FullProductInfoTable}'
+                        SET TripExpenses = {tripExpenses}
+                        WHERE ProductReceiptDate = '{date}'
+                ";
+
+            return query;
+        }
+
+        public static string AddNewAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            string query =
+                $@"
+                        INSERT INTO '{ProductAdditionalInfoTable}'
+                        VALUES ({id}, {additionalInfo.ProfitWant}, {additionalInfo.MoneyCourse}, {additionalInfo.IncludePvm},
+                                {additionalInfo.CountByWantProfit})
+                ";
+            return query;
+        }
+
+        public static string UpdateAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            string query =
+                $@"
+                        UPDATE '{ProductAdditionalInfoTable}'
+                        SET ProfitWant = {additionalInfo.ProfitWant}, MoneyCourse = {additionalInfo.MoneyCourse},
+                            IncludePvm = {additionalInfo.IncludePvm}, CountByWantProfit = {additionalInfo.CountByWantProfit}
+                        WHERE Id = {id}
+                ";
+
+            return query;
+        }
+
+        public static string GetMaxIdFromFullProductInfo()
+        {
+            string query =
+                $@" 
+                        SELECT      
+                        MAX ({ProductId})
+                        FROM {FullProductInfoTableWithShortcut}
+                ";
+
+            return query;
+        }
+
+        public static string GetMainInfoForFullProductInfoCalculations(string date)
+        {
+            string query = 
+                $@"
+                       SELECT
+                          {ProductId}, FPIT.ProductQuantity, 
+                          FPIT.ProductOriginalUnitPriceAtOriginalCurrency,
+                          FPIT.TripExpenses,
+                          FPIT.ProductExpensesCostPrice, FPIT.ProductSoldPrice,
+                          FPIT.ProductSoldPriceWithPvm, FPIT.ProductSold,
+                          FPIT.Discount, FPIT.Search
+                       FROM {FullProductInfoTableWithShortcut}
+                       WHERE FPIT.ProductReceiptDate = '{date}'
+                       ORDER BY {ProductId} ASC;
+                ";
+
+            return query;
+        }
+
+        public static string UpdateFullProductInfoByDateQuickCalculation(FullProductInfoCalculationModel calculation)
+        {
+            string searchFormat = ImplementSearchData(calculation.Search);
+
+            string query =
+                $@"
+                        UPDATE '{FullProductInfoTable}'
+                        SET ProductQuantity = {calculation.ProductQuantity}, 
+                            ProductOriginalUnitPriceAtOriginalCurrency = {calculation.ProductOriginalUnitPriceAtOriginalCurrency},
+                            ProductQuantityPriceAtOriginalCurrency = {calculation.ProductQuantityPriceAtOriginalCurrency},
+                            ProductUnitPriceInEuro = {calculation.ProductUnitPriceInEuro},
+                            ProductQuantityPriceInEuro = {calculation.ProductQuantityPriceInEuro},
+                            TripExpenses = {calculation.TripExpenses},
+                            ProductExpensesCostPrice = {calculation.ProductExpensesCostPrice},
+                            ProductSoldPrice = {calculation.ProductSoldPrice},
+                            ProductPvm = {calculation.ProductPvm},
+                            ProductSoldPriceWithPvm = {calculation.ProductSoldPriceWithPvm},
+                            ProductSold = {calculation.ProductSold},
+                            ProductProfit = {calculation.ProductProfit},
+                            Discount = {calculation.Discount},
+                            Search = '{searchFormat}'
+                        WHERE ProductId = {calculation.ProductId}
+                ";
+
+            return query;
+        }
+
+        public static string UpdateProfitWant(double profitWant, int id)
+        {
+            string query = 
+                $@"
+                        UPDATE '{ProductAdditionalInfoTable}'
+                        SET ProfitWant = {profitWant}
+                        WHERE Id = {id}
+                ";
+
+            return query;
         }
     }
 }

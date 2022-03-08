@@ -52,5 +52,58 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
             return updatedProduct;
         }
 
+        public Task<ProductAdditionalInfoModel> GetAdditionalProductInfoById(int productId)
+        {
+            var additionalInfo = _repository.GetAdditionalProductInfoById(productId);
+            return additionalInfo;
+        }
+
+        public Task<IEnumerable<ProductQuantityModel>> GetAllFullProductinfoIdByDate(string date)
+        {
+            var idAndQuantityByDate = _repository.GetAllFullProductinfoIdAndQuantityByDate(date);
+            return idAndQuantityByDate;
+        }
+
+        public Task<int> UpdateAllTripExpensesRowsByDate(string date, double tripExpenses)
+        {
+            var rowsUpdate = _repository.UpdateAllTripExpensesRowsByDate(date, tripExpenses);
+            return rowsUpdate;
+        }
+
+        public Task<int> AddNewAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            var task = _repository.AddNewAdditionalInfoById(id, additionalInfo);
+            return task;
+        }
+
+        public Task<int> UpdateAdditionalInfoById(int id, ProductAdditionalInfoModel additionalInfo)
+        {
+            var task = _repository.UpdateAdditionalInfoById(id, additionalInfo);
+            return task;
+        }
+
+        public Task<int> GetMaxIdFromFullProductInfo()
+        {
+            var task = _repository.GetMaxIdFromFullProductInfo();
+            return task;
+        }
+
+        public Task<IEnumerable<FullProductInfoMainInfoForCalculationsStartModel>> GetAllInfoForCalculationFullProductInfo(string date)
+        {
+            var task = _repository.GetAllInfoForCalculationFullProductInfo(date);
+            return task;
+        }
+
+        public Task<int> UpdateFullProductInfoByDateQuickCalculation(FullProductInfoCalculationModel calculation)
+        {
+            var task = _repository.UpdateFullProductInfoByDateQuickCalculation(calculation);
+            return task;
+        }
+
+        public Task<int> UpdateProfitWantByDateQuickCalculation(double profitWant, int id)
+        {
+            var task = _repository.UpdateProfitWantByDateQuickCalculation(profitWant: profitWant, id);
+            return task;
+        }
     }
 }

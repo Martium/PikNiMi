@@ -26,9 +26,11 @@ namespace PikNiMi.Repository.SqlLite
             "0.2",
             "1.25",
             "2",
+            "0.42",
             "2.42",
             "1",
-            "0.95"
+            "0.95",
+            "0"
         };
 
         private readonly string[] _secondAllInfo =
@@ -50,9 +52,11 @@ namespace PikNiMi.Repository.SqlLite
             "0.2",
             "1.25",
             "2",
+            "0.42",
             "2.42",
             "1",
-            "NULL"
+            "0",
+            "0"
         };
 
         private readonly string[] _thirdAllInfo =
@@ -74,9 +78,11 @@ namespace PikNiMi.Repository.SqlLite
             "0.2",
             "1.25",
             "2",
+            "0.42",
             "2.42",
             "1",
-            "0.95"
+            "0.95",
+            "0"
         };
 
         private string ImplementSearchData(string[] allInfo)
@@ -118,6 +124,29 @@ namespace PikNiMi.Repository.SqlLite
                 fillInvoiceTestingInfoTableCommand.ExecuteNonQuery();
             }
            
+        }
+
+        public void FillTestingAdditionalInfoForProduct()
+        {
+            using (var dbConnection = new SQLiteConnection(SqlLiteDataBaseConfiguration.ConnectionString))
+            {
+                dbConnection.Open();
+
+                string testingInfo = 
+                    $@"
+                        BEGIN TRANSACTION;
+                        INSERT INTO 'ProductAdditionalInfo'
+                        VALUES (1, 5, 4, 1, 1);
+                        INSERT INTO 'ProductAdditionalInfo'
+                        VALUES (2, 5, 4, 1, 1);
+                        INSERT INTO 'ProductAdditionalInfo'
+                        VALUES (3, 5, 4, 0, 0);
+                        COMMIT;
+                    ";
+
+                SQLiteCommand fillInvoiceTestingInfoTableCommand = new SQLiteCommand(testingInfo, dbConnection);
+                fillInvoiceTestingInfoTableCommand.ExecuteNonQuery();
+            }
         }
     }
 }

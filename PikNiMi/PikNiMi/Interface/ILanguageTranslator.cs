@@ -18,7 +18,7 @@ namespace PikNiMi.Interface
         string SetHistoryButtonText();
         string SetAddNewProductTypeButtonText();
         string SetDiscountButtonText();
-        string SetCountFullOrderDiscountButtonText();
+        string SetCountFullOrderCalculationButtonText();
         string SetProductReceiptDateInfoLabelText();
         string SetProductDescriptionInfoLabelText();
         string SetProductColorInfoLabelText();
@@ -46,8 +46,15 @@ namespace PikNiMi.Interface
         string SetMoneyCourseText();
         string SetSaveButtonText();
         string SetNotChooseText();
+        string SetCalculateButtonText();
+        string SetCalculateByWantProfitText();
+        string SetCalculateBySoldPriceText();
+        string SetCalculateBySoldPriceWithPvm();
+        string SetIncludePvmText();
 
         string ShowSaveNewRecordSuccessMessage();
         string ShowSaveNewRecordErrorMessage();
+        string ShowRecordNotFoundByDateErrorMessage();
+        string ShowSelectRowErrorMessage();
     }
 }
