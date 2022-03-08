@@ -73,9 +73,9 @@ namespace PikNiMi.Forms.Constants
             return _languageTranslator.SetDiscountButtonText();
         }
 
-        public string SetCountFullOrderDiscountButtonText()
+        public string SetCountFullOrderCalculationButtonText()
         {
-            return _languageTranslator.SetCountFullOrderDiscountButtonText();
+            return _languageTranslator.SetCountFullOrderCalculationButtonText();
         }
 
         public string SetProductReceiptDateInfoLabelText()

@@ -18,7 +18,7 @@ namespace PikNiMi.Interface
         string SetHistoryButtonText();
         string SetAddNewProductTypeButtonText();
         string SetDiscountButtonText();
-        string SetCountFullOrderDiscountButtonText();
+        string SetCountFullOrderCalculationButtonText();
         string SetProductReceiptDateInfoLabelText();
         string SetProductDescriptionInfoLabelText();
         string SetProductColorInfoLabelText();

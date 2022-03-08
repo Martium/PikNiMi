@@ -58,10 +58,10 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
             return additionalInfo;
         }
 
-        public Task<IEnumerable<int>> GetAllFullProductinfoIdByDate(string date)
+        public Task<IEnumerable<ProductQuantityModel>> GetAllFullProductinfoIdByDate(string date)
         {
-            var allId = _repository.GetAllFullProductinfoIdByDate(date);
-            return allId;
+            var idAndQuantityByDate = _repository.GetAllFullProductinfoIdAndQuantityByDate(date);
+            return idAndQuantityByDate;
         }
 
         public Task<int> UpdateAllTripExpensesRowsByDate(string date, double tripExpenses)
@@ -85,6 +85,24 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
         public Task<int> GetMaxIdFromFullProductInfo()
         {
             var task = _repository.GetMaxIdFromFullProductInfo();
+            return task;
+        }
+
+        public Task<IEnumerable<FullProductInfoMainInfoForCalculationsStartModel>> GetAllInfoForCalculationFullProductInfo(string date)
+        {
+            var task = _repository.GetAllInfoForCalculationFullProductInfo(date);
+            return task;
+        }
+
+        public Task<int> UpdateFullProductInfoByDateQuickCalculation(FullProductInfoCalculationModel calculation)
+        {
+            var task = _repository.UpdateFullProductInfoByDateQuickCalculation(calculation);
+            return task;
+        }
+
+        public Task<int> UpdateProfitWantByDateQuickCalculation(double profitWant, int id)
+        {
+            var task = _repository.UpdateProfitWantByDateQuickCalculation(profitWant: profitWant, id);
             return task;
         }
     }

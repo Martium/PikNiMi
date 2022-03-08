@@ -31,6 +31,7 @@ namespace PikNiMi.Forms
         private readonly Calculator _calculator;
 
         private readonly ComboBoxService _comboBoxService;
+        private bool _isCountByWantProfit;
 
         public ProductForm(ProductFormTypeEnum productFormType, FullProductInfoModel productInfo = null, AdditionalInfoForNewProductOperationModel additionalInfoForNewProduct = null)
         {
@@ -85,16 +86,19 @@ namespace PikNiMi.Forms
         private void CalculateBySoldPriceWithPvmButton_Click(object sender, EventArgs e)
         {
             StartAllCalculationsForSoldPriceWithPvmOption();
+            _isCountByWantProfit = false;
         }
 
         private void CalculateBySoldPriceButton_Click(object sender, EventArgs e)
         {
             StartAllCalculationsForSoldPriceOption();
+            _isCountByWantProfit = false;
         }
 
         private void CalculateButton_Click(object sender, EventArgs e)
         {
             StartAllCalculationsForWantProfitOption();
+            _isCountByWantProfit = true;
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -119,7 +123,6 @@ namespace PikNiMi.Forms
 
         private void IncludePvmCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            CalculateBySoldPriceButton.Enabled = !IncludePvmCheckBox.Checked;
             CalculateBySoldPriceWithPvmButton.Enabled = IncludePvmCheckBox.Checked;
         }
 
@@ -297,20 +300,21 @@ namespace PikNiMi.Forms
                 ProductCareTextBox.Text,
                 ProductMadeStuffTextBox.Text,
                 ProductMadeInTextBox.Text,
-                ProductQuantityTextBox.Text,
-                ProductQuantityLeftTextBox.Text,
-                ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text,
-                ProductQuantityPriceAtOriginalCurrencyTextBox.Text,
-                ProductUnitPriceInEuroTextBox.Text,
-                ProductQuantityPriceInEuroTextBox.Text,
-                TripExpensesTextBox.Text,
-                ProductExpensesCostPriceTextBox.Text,
-                ProductSoldPriceTextBox.Text,
-                ProductPvmTextBox.Text,
-                ProductSoldPriceWithPvmTextBox.Text,
-                ProductSoldTextBox.Text,
-                ProductProfitTextBox.Text,
-                DiscountTextBox.Text
+
+                ProductQuantityTextBox.Text,  
+                ProductQuantityLeftTextBox.Text, 
+                ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text, 
+                ProductQuantityPriceAtOriginalCurrencyTextBox.Text, 
+                ProductUnitPriceInEuroTextBox.Text, 
+                ProductQuantityPriceInEuroTextBox.Text, 
+                TripExpensesTextBox.Text, 
+                ProductExpensesCostPriceTextBox.Text, 
+                ProductSoldPriceTextBox.Text, 
+                ProductPvmTextBox.Text, 
+                ProductSoldPriceWithPvmTextBox.Text, 
+                ProductSoldTextBox.Text, 
+                ProductProfitTextBox.Text, 
+                DiscountTextBox.Text 
             };
 
             return search;
@@ -343,13 +347,13 @@ namespace PikNiMi.Forms
                     Task<int> taskAddNewAdditional =
                         _repositoryQueryCalls.AddNewAdditionalInfoById(id,
                             additionalProductInfo);
-                    ShowSaveNewOperationMessage(taskAddNew.IsCompleted, taskAddNewAdditional.IsCompleted);
+                    ShowSaveNewOperationMessage(!taskAddNew.IsFaulted, !taskAddNewAdditional.IsFaulted);
                     break;
                 case ProductFormTypeEnum.UpdateProductForm:
                     var taskUpdate = _repositoryQueryCalls.UpdateExistingFullProductInfo(fullProductInfo, search);
                     var taskUpdateAdditional =
                         _repositoryQueryCalls.UpdateAdditionalInfoById(id, additionalProductInfo);
-                    ShowSaveNewOperationMessage(taskUpdate.IsCompleted, taskUpdateAdditional.IsCompleted);
+                    ShowSaveNewOperationMessage(!taskUpdate.IsFaulted, !taskUpdateAdditional.IsFaulted);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -363,7 +367,9 @@ namespace PikNiMi.Forms
             var additionalInfo = new ProductAdditionalInfoModel()
             {
                 MoneyCourse = _numberService.TryParseStringToDoubleNumberOrZero(MoneyCourseTextBox.Text),
-                ProfitWant = _numberService.TryParseStringToDoubleNumberOrZero(ProductWantProfitTextBox.Text)
+                ProfitWant = _numberService.TryParseStringToDoubleNumberOrZero(ProductWantProfitTextBox.Text),
+                IncludePvm = _numberService.ChangeBoolValueToInteger(IncludePvmCheckBox.Checked),
+                CountByWantProfit = _numberService.ChangeBoolValueToInteger(_isCountByWantProfit)
             };
 
             return additionalInfo;
@@ -428,6 +434,7 @@ namespace PikNiMi.Forms
                     MoneyCourseTextBox.Text = _numberService.ParseDoubleToString(additionalInfo.MoneyCourse);
                     ProductWantProfitTextBox.Text = _numberService.ParseDoubleToString(additionalInfo.ProfitWant);
                     IncludePvmCheckBox.Checked = _numberService.ChangeIntegerValueToBool(additionalInfo.IncludePvm);
+                    _isCountByWantProfit = _numberService.ChangeIntegerValueToBool(additionalInfo.CountByWantProfit);
                 }
             }
         }
@@ -584,11 +591,14 @@ namespace PikNiMi.Forms
         {
             ProductQuantityPriceAtOriginalCurrencyTextBox.Text = _calculator.CountQuantityPrice(
                 quantity: ProductQuantityTextBox.Text, ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text);
+
             ProductUnitPriceInEuroTextBox.Text = _calculator.ConvertUnitPriceToEuroCurrency(
                 moneyCourse: MoneyCourseTextBox.Text, ProductOriginalUnitPriceAtOriginalCurrencyTextBox.Text);
+
             ProductQuantityPriceInEuroTextBox.Text =
                 _calculator.CountQuantityPrice(quantity: ProductQuantityTextBox.Text,
                     ProductUnitPriceInEuroTextBox.Text);
+
             ProductExpensesCostPriceTextBox.Text =
                 _calculator.CountProductExpenses(productPriceInEuro: ProductUnitPriceInEuroTextBox.Text,
                     TripExpensesTextBox.Text);
@@ -598,23 +608,47 @@ namespace PikNiMi.Forms
         {
             StartMainCalculations();
 
-            ProductSoldPriceTextBox.Text = _calculator.CountSoldPriceWithoutPvm(
-                productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
-            ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
-            ProductSoldPriceWithPvmTextBox.Text = _calculator.CountSoldPriceWithPvm(
-                productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+            if (IncludePvmCheckBox.Checked)
+            {
+                ProductSoldPriceTextBox.Text = _calculator.CountSoldPriceWithoutPvm(
+                    productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+                ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
+                ProductSoldPriceWithPvmTextBox.Text = _calculator.CountSoldPriceWithPvm(
+                    productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+            }
+            else
+            {
+                ProductSoldPriceTextBox.Text = _calculator.CountSoldPriceWithoutPvm(
+                    productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+                ProductPvmTextBox.Text = string.Empty;
+                ProductSoldPriceWithPvmTextBox.Text = string.Empty;
+            }
+            
         }
 
         private void StartAllCalculationsForSoldPriceOption()
         {
             StartMainCalculations();
 
-            ProductWantProfitTextBox.Text =
-                _calculator.CalculateWantProfitBySoldPriceWithoutPvm(productSoldPrice: ProductSoldPriceTextBox.Text,
-                    ProductExpensesCostPriceTextBox.Text);
-            ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
-            ProductSoldPriceWithPvmTextBox.Text = _calculator.CountSoldPriceWithPvm(
-                productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+            if (IncludePvmCheckBox.Checked)
+            {
+                ProductWantProfitTextBox.Text =
+                    _calculator.CalculateWantProfitBySoldPriceWithoutPvm(productSoldPrice: ProductSoldPriceTextBox.Text,
+                        ProductExpensesCostPriceTextBox.Text);
+                ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
+                ProductSoldPriceWithPvmTextBox.Text = _calculator.CountSoldPriceWithPvm(
+                    productWantProfit: ProductWantProfitTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+            }
+            else
+            {
+                ProductWantProfitTextBox.Text =
+                    _calculator.CalculateWantProfitBySoldPriceWithoutPvm(productSoldPrice: ProductSoldPriceTextBox.Text,
+                        ProductExpensesCostPriceTextBox.Text);
+                ProductPvmTextBox.Text = string.Empty;
+                ProductSoldPriceWithPvmTextBox.Text = string.Empty;
+            }
+
+            
         }
 
         private void StartAllCalculationsForSoldPriceWithPvmOption()
@@ -623,9 +657,11 @@ namespace PikNiMi.Forms
 
             ProductWantProfitTextBox.Text = _calculator.CalculateWantProfitBySoldPriceWithPvm(
                 productSoldPriceWithPvm: ProductSoldPriceWithPvmTextBox.Text, ProductExpensesCostPriceTextBox.Text);
+
             ProductSoldPriceTextBox.Text =
                 _calculator.CountSoldPriceWithoutPvm(productWantProfit: ProductWantProfitTextBox.Text,
                     ProductExpensesCostPriceTextBox.Text);
+
             ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
         }
 
@@ -650,5 +686,6 @@ namespace PikNiMi.Forms
         }
 
         #endregion
+       
     }
 }

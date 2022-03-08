@@ -20,7 +20,7 @@ namespace PikNiMi.Repository.SqlLite
 
             foreach (var info in search)
             {
-                searchFormat += $"{info} + {Environment.NewLine} ";
+                searchFormat += $"{info}{Environment.NewLine}";
             }
 
             return searchFormat;
@@ -41,7 +41,7 @@ namespace PikNiMi.Repository.SqlLite
         {
             string searchQuery =
                 $@"
-                         SELECT * FROM {FullProductInfoTableWithShortcut}
+                        SELECT * FROM {FullProductInfoTableWithShortcut}
                         WHERE {ProductType} = '{productType}'
                         ORDER BY {ProductId} DESC;
                 ";
@@ -139,7 +139,7 @@ namespace PikNiMi.Repository.SqlLite
             string getIdQuery =
                 $@"
                         SELECT
-                          {ProductId}
+                          {ProductId}, FPIT.ProductQuantity, FPIT.Search
                         FROM {FullProductInfoTableWithShortcut}
                         WHERE FPIT.ProductReceiptDate = '{date}'
                         ORDER BY {ProductId} ASC;
@@ -165,7 +165,8 @@ namespace PikNiMi.Repository.SqlLite
             string query =
                 $@"
                         INSERT INTO '{ProductAdditionalInfoTable}'
-                        VALUES ({id}, {additionalInfo.ProfitWant}, {additionalInfo.MoneyCourse})
+                        VALUES ({id}, {additionalInfo.ProfitWant}, {additionalInfo.MoneyCourse}, {additionalInfo.IncludePvm},
+                                {additionalInfo.CountByWantProfit})
                 ";
             return query;
         }
@@ -175,7 +176,8 @@ namespace PikNiMi.Repository.SqlLite
             string query =
                 $@"
                         UPDATE '{ProductAdditionalInfoTable}'
-                        SET ProfitWant = {additionalInfo.ProfitWant}, MoneyCourse = {additionalInfo.MoneyCourse}
+                        SET ProfitWant = {additionalInfo.ProfitWant}, MoneyCourse = {additionalInfo.MoneyCourse},
+                            IncludePvm = {additionalInfo.IncludePvm}, CountByWantProfit = {additionalInfo.CountByWantProfit}
                         WHERE Id = {id}
                 ";
 
@@ -189,6 +191,64 @@ namespace PikNiMi.Repository.SqlLite
                         SELECT      
                         MAX ({ProductId})
                         FROM {FullProductInfoTableWithShortcut}
+                ";
+
+            return query;
+        }
+
+        public static string GetMainInfoForFullProductInfoCalculations(string date)
+        {
+            string query = 
+                $@"
+                       SELECT
+                          {ProductId}, FPIT.ProductQuantity, 
+                          FPIT.ProductOriginalUnitPriceAtOriginalCurrency,
+                          FPIT.TripExpenses,
+                          FPIT.ProductExpensesCostPrice, FPIT.ProductSoldPrice,
+                          FPIT.ProductSoldPriceWithPvm, FPIT.ProductSold,
+                          FPIT.Discount, FPIT.Search
+                       FROM {FullProductInfoTableWithShortcut}
+                       WHERE FPIT.ProductReceiptDate = '{date}'
+                       ORDER BY {ProductId} ASC;
+                ";
+
+            return query;
+        }
+
+        public static string UpdateFullProductInfoByDateQuickCalculation(FullProductInfoCalculationModel calculation)
+        {
+            string searchFormat = ImplementSearchData(calculation.Search);
+
+            string query =
+                $@"
+                        UPDATE '{FullProductInfoTable}'
+                        SET ProductQuantity = {calculation.ProductQuantity}, 
+                            ProductOriginalUnitPriceAtOriginalCurrency = {calculation.ProductOriginalUnitPriceAtOriginalCurrency},
+                            ProductQuantityPriceAtOriginalCurrency = {calculation.ProductQuantityPriceAtOriginalCurrency},
+                            ProductUnitPriceInEuro = {calculation.ProductUnitPriceInEuro},
+                            ProductQuantityPriceInEuro = {calculation.ProductQuantityPriceInEuro},
+                            TripExpenses = {calculation.TripExpenses},
+                            ProductExpensesCostPrice = {calculation.ProductExpensesCostPrice},
+                            ProductSoldPrice = {calculation.ProductSoldPrice},
+                            ProductPvm = {calculation.ProductPvm},
+                            ProductSoldPriceWithPvm = {calculation.ProductSoldPriceWithPvm},
+                            ProductSold = {calculation.ProductSold},
+                            ProductProfit = {calculation.ProductProfit},
+                            Discount = {calculation.Discount},
+                            Search = '{searchFormat}'
+                        WHERE ProductId = {calculation.ProductId}
+                ";
+
+            return query;
+        }
+
+        public static string UpdateProfitWant(double profitWant, int id)
+        {
+            string query = 
+                $@"
+                        UPDATE '{ProductAdditionalInfoTable}'
+                        SET ProfitWant = {profitWant}
+                        WHERE Id = {id}
                 ";
 
             return query;

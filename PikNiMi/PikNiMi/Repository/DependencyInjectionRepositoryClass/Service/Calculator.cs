@@ -1,4 +1,5 @@
 ﻿using PikNiMi.Interface.NumbersServiceInterface;
+using PikNiMi.Models;
 
 namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Service
 {
@@ -47,7 +48,8 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Service
             return _calculator.CalculateWantProfitBySoldPriceWithoutPvm(productSoldPrice, productExpensesCostPrice);
         }
 
-        public string CalculateWantProfitBySoldPriceWithPvm(string productSoldPriceWithPvm, string productExpensesCostPrice)
+        public string CalculateWantProfitBySoldPriceWithPvm(string productSoldPriceWithPvm,
+            string productExpensesCostPrice)
         {
             return _calculator.CalculateWantProfitBySoldPriceWithPvm(productSoldPriceWithPvm, productExpensesCostPrice);
         }
@@ -55,6 +57,12 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Service
         public double CalculateTripExpensesByDate(int elementsByDate, string fullTripExpenses)
         {
             return _calculator.CalculateTripExpensesByDate(elementsByDate, fullTripExpenses);
+        }
+
+        public FullProductInfoCalculationModel MakeFullCalculationsOfSpecificProduct(
+            FullProductInfoMainInfoForCalculationsStartModel mainInfoForCalculations)
+        {
+            return _calculator.MakeFullCalculationsOfSpecificProduct(mainInfoForCalculations);
         }
     }
 }

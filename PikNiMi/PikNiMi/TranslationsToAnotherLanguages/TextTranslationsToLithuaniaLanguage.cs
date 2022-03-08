@@ -90,9 +90,9 @@ namespace PikNiMi.TranslationsToAnotherLanguages
             return "Nuolaidos";
         }
 
-        public string SetCountFullOrderDiscountButtonText()
+        public string SetCountFullOrderCalculationButtonText()
         {
-            return "Skaičiuoti savikainą";
+            return "Skaičiuoti viską";
         }
 
         public string SetProductReceiptDateInfoLabelText()
@@ -264,7 +264,7 @@ namespace PikNiMi.TranslationsToAnotherLanguages
 
         public string ShowSaveNewRecordErrorMessage()
         {
-            return @"Neišsaugota kreiptis į Administratorių";
+            return @"Neišsaugota kreiptis arba išsaugota nepilna informacija į Administratorių";
         }
 
         public string ShowRecordNotFoundByDateErrorMessage()

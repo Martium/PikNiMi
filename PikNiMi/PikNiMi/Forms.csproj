@@ -109,7 +109,10 @@
     <Compile Include="Interface\ILanguageTranslator.cs" />
     <Compile Include="Interface\NumbersServiceInterface\ICalculator.cs" />
     <Compile Include="Models\AdditionalInfoForNewProductOperationModel.cs" />
+    <Compile Include="Models\FullProductInfoCalculationModel.cs" />
+    <Compile Include="Models\FullProductInfoMainInfoForCalculationsStartModel.cs" />
     <Compile Include="Models\ProductAdditionalInfoModel.cs" />
+    <Compile Include="Models\ProductQuantityModel.cs" />
     <Compile Include="Repository\DependencyInjectionRepositoryClass\Service\Calculator.cs" />
     <Compile Include="Repository\MemoryCache\MemoryCacheControl.cs" />
     <Compile Include="TranslationsToAnotherLanguages\TextTranslationsToLithuaniaLanguage.cs" />

@@ -5,5 +5,6 @@
         public double ProfitWant { get; set; }
         public double MoneyCourse { get; set; }
         public int IncludePvm { get; set; }
+        public int CountByWantProfit { get; set; }
     }
 }

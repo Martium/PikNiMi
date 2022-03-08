@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using PikNiMi.Interface.NumbersServiceInterface;
 
 namespace PikNiMi.Forms.Service
@@ -55,7 +54,18 @@ namespace PikNiMi.Forms.Service
 
         public string ParseDoubleToString(double number)
         {
-            return number.ToString(_cultureInfo);
+            string value;
+
+            if (number == 0)
+            {
+                value = string.Empty;
+            }
+            else
+            {
+                value = number.ToString(_cultureInfo);
+            }
+
+            return value;
         }
 
         public bool ChangeIntegerValueToBool(int value)
@@ -63,6 +73,13 @@ namespace PikNiMi.Forms.Service
             bool isValueOne = value == 1;
 
             return isValueOne;
+        }
+
+        public int ChangeBoolValueToInteger(bool value)
+        {
+            int number = value ? 1 : 0;
+
+            return number;
         }
     }
 }

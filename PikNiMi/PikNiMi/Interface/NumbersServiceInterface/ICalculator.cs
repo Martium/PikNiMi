@@ -1,4 +1,6 @@
-﻿namespace PikNiMi.Interface.NumbersServiceInterface
+﻿using PikNiMi.Models;
+
+namespace PikNiMi.Interface.NumbersServiceInterface
 {
     public interface ICalculator
     {
@@ -11,6 +13,8 @@
         string CalculateWantProfitBySoldPriceWithoutPvm(string productSoldPrice, string productExpensesCostPrice);
         string CalculateWantProfitBySoldPriceWithPvm(string productSoldPriceWithPvm, string productExpensesCostPrice);
         double CalculateTripExpensesByDate(int elementsByDate, string fullTripExpenses);
+        FullProductInfoCalculationModel MakeFullCalculationsOfSpecificProduct(FullProductInfoMainInfoForCalculationsStartModel mainInfoForCalculations);
+
 
     }
 }
