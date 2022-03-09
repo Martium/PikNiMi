@@ -2,6 +2,10 @@
 {
     public enum TextBoxResizeFormTypeEnum
     {
-        ProductDescription
+        ProductDescription,
+        ProductColor,
+        ProductSize,
+        ProductCare,
+        ProductMadeStuff
     }
 }

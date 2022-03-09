@@ -77,6 +77,30 @@ namespace PikNiMi.Forms
             OpenNewForm(new TextBoxResizeForm(_textBoxResizeFormType, ProductDescriptionTextBox.Text, _memoryCacheControl));
         }
 
+        private void ProductColorTextBoxResizeButton_Click(object sender, EventArgs e)
+        {
+            _textBoxResizeFormType = TextBoxResizeFormTypeEnum.ProductColor;
+            OpenNewForm(new TextBoxResizeForm(_textBoxResizeFormType, ProductColorTextBox.Text, _memoryCacheControl));
+        }
+
+        private void ProductSizeTextBoxResizeButtonButton_Click(object sender, EventArgs e)
+        {
+            _textBoxResizeFormType = TextBoxResizeFormTypeEnum.ProductSize;
+            OpenNewForm(new TextBoxResizeForm(_textBoxResizeFormType, ProductSizeTextBox.Text, _memoryCacheControl));
+        }
+
+        private void ProductCareResizeTextBoxButton_Click(object sender, EventArgs e)
+        {
+            _textBoxResizeFormType = TextBoxResizeFormTypeEnum.ProductCare;
+            OpenNewForm(new TextBoxResizeForm(_textBoxResizeFormType, ProductCareTextBox.Text, _memoryCacheControl));
+        }
+
+        private void ProductMadeStuffTextBoxResizeButton_Click(object sender, EventArgs e)
+        {
+            _textBoxResizeFormType = TextBoxResizeFormTypeEnum.ProductMadeStuff;
+            OpenNewForm(new TextBoxResizeForm(_textBoxResizeFormType, ProductMadeStuffTextBox.Text, _memoryCacheControl));
+        }
+
         private void AnotherForm_Closed(object sender, EventArgs e)
         {
             this.Show();
@@ -189,6 +213,10 @@ namespace PikNiMi.Forms
             MoneyCourseInfoLabel.Text = _languageTranslator.SetMoneyCourseText();
 
             ProductDescriptionTextBoxResizeButton.Text = _languageTranslator.SetTextBoxResizeButtonText();
+            ProductCareResizeTextBoxButton.Text = _languageTranslator.SetTextBoxResizeButtonText();
+            ProductSizeTextBoxResizeButtonButton.Text = _languageTranslator.SetTextBoxResizeButtonText();
+            ProductColorTextBoxResizeButton.Text = _languageTranslator.SetTextBoxResizeButtonText();
+            ProductMadeStuffTextBoxResizeButton.Text = _languageTranslator.SetTextBoxResizeButtonText();
             SaveButton.Text = _languageTranslator.SetSaveButtonText();
             CalculateButton.Text = _languageTranslator.SetCalculateButtonText();
             CalculateBySoldPriceButton.Text = _languageTranslator.SetCalculateButtonText();
@@ -379,10 +407,30 @@ namespace PikNiMi.Forms
 
         private void SetTextToSpecificTextBoxAfterTextBoxResizeFormClosed(TextBoxResizeFormTypeEnum textBoxResizeFormType)
         {
+            string textValue = _memoryCacheControl.GetExistingStringDataFromCache("TextBoxResize");
+
+            if (textValue == null)
+            {
+                _memoryCacheControl.DeleteExistingCache("TextBoxResize");
+                return;
+            }
+
             switch (textBoxResizeFormType)
             {
                 case TextBoxResizeFormTypeEnum.ProductDescription:
-                    ProductDescriptionTextBox.Text = _memoryCacheControl.GetExistingStringDataFromCache("TextBoxResize");
+                    ProductDescriptionTextBox.Text = textValue;
+                    break;
+                case TextBoxResizeFormTypeEnum.ProductColor:
+                    ProductColorTextBox.Text = textValue;
+                    break;
+                case TextBoxResizeFormTypeEnum.ProductSize:
+                    ProductSizeTextBox.Text = textValue;
+                    break;
+                case TextBoxResizeFormTypeEnum.ProductCare:
+                    ProductCareTextBox.Text = textValue;
+                    break;
+                case TextBoxResizeFormTypeEnum.ProductMadeStuff:
+                    ProductMadeStuffTextBox.Text = textValue;
                     break;
                 default: 
                     throw new ArgumentOutOfRangeException();
@@ -773,6 +821,6 @@ namespace PikNiMi.Forms
         }
 
         #endregion
-       
+        
     }
 }

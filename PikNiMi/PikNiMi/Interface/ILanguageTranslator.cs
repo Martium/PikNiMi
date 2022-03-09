@@ -57,5 +57,9 @@ namespace PikNiMi.Interface
         string ShowRecordNotFoundByDateErrorMessage();
         string ShowSelectRowErrorMessage();
         string ShowEnteredNotNumberError();
+        string ShowDeleteSuccessful();
+        string ShowDeleteError();
+        string ShowProductTypeExist();
+        string ShowProductTypeNotExistsForDelete();
     }
 }

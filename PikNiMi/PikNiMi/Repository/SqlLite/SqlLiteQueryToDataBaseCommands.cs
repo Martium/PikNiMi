@@ -268,10 +268,22 @@ namespace PikNiMi.Repository.SqlLite
         public static string GetAllExistingProductType()
         {
             string query = 
-                $@"
+                @"
                         SELECT
                           ProductType
                         FROM ProductTypeTable
+                ";
+
+            return query;
+        }
+
+        public static string DeleteProductType(string productType)
+        {
+            string query = 
+                $@"
+                        DELETE 
+                        FROM 'ProductTypeTable'
+                        WHERE ProductType = '{productType}';
                 ";
 
             return query;

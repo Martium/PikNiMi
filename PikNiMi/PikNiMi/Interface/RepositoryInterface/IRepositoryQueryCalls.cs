@@ -24,6 +24,7 @@ namespace PikNiMi.Interface.RepositoryInterface
         Task<int> UpdateProfitWantByDateQuickCalculation(double profitWant, int id);
         Task<int> AddNewProductType(string productType);
         Task<IEnumerable<string>> GetAllProductType();
+        Task<int> DeleteExistingProductType(string productType);
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using PikNiMi.Enums;
 using PikNiMi.Interface;
 
@@ -264,6 +265,27 @@ namespace PikNiMi.Forms.Constants
         {
             return _languageTranslator.ShowEnteredNotNumberError();
         }
+
+        public string ShowDeleteSuccessful()
+        {
+            return _languageTranslator.ShowDeleteSuccessful();
+        }
+
+        public string ShowDeleteError()
+        {
+            return _languageTranslator.ShowDeleteError();
+        }
+
+        public string ShowProductTypeExist()
+        {
+            return _languageTranslator.ShowProductTypeExist();
+        }
+
+        public string ShowProductTypeNotExistsForDelete()
+        {
+            return _languageTranslator.ShowProductTypeNotExistsForDelete();
+        }
+
         #endregion
     }
 }

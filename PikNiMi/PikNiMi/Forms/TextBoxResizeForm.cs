@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Microsoft.Extensions.Caching.Memory;
 using PikNiMi.Enums;
 using PikNiMi.Forms.Constants;
 using PikNiMi.Repository.MemoryCache;
@@ -51,6 +50,18 @@ namespace PikNiMi.Forms
                 case TextBoxResizeFormTypeEnum.ProductDescription:
                     this.Text = _languageTranslator.SetProductDescriptionInfoLabelText();
                     break;
+                case TextBoxResizeFormTypeEnum.ProductColor:
+                    this.Text = _languageTranslator.SetProductColorInfoLabelText();
+                    break;
+                case TextBoxResizeFormTypeEnum.ProductSize:
+                    this.Text = _languageTranslator.SetProductSizeInfoLabelText();
+                    break;
+                case TextBoxResizeFormTypeEnum.ProductCare:
+                    this.Text = _languageTranslator.SetProductCareInfoLabelText();
+                    break;
+                case TextBoxResizeFormTypeEnum.ProductMadeStuff:
+                    this.Text = _languageTranslator.SetProductMadeStuffInfoLabelText();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -64,6 +75,18 @@ namespace PikNiMi.Forms
             {
                 case TextBoxResizeFormTypeEnum.ProductDescription:
                     ResizeRichTextBox.MaxLength = TextBoxLength.ProductDescription;
+                    break;
+                case TextBoxResizeFormTypeEnum.ProductColor:
+                    ResizeRichTextBox.MaxLength = TextBoxLength.ProductColor;
+                    break;
+                case TextBoxResizeFormTypeEnum.ProductSize:
+                    ResizeRichTextBox.MaxLength = TextBoxLength.ProductSize;
+                    break;
+                case TextBoxResizeFormTypeEnum.ProductCare:
+                    ResizeRichTextBox.MaxLength = TextBoxLength.ProductCare;
+                    break;
+                case TextBoxResizeFormTypeEnum.ProductMadeStuff:
+                    ResizeRichTextBox.MaxLength = TextBoxLength.ProductMadeStuff;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

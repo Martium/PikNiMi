@@ -28,15 +28,16 @@ namespace PikNiMi.Forms
         private void ProductTypeForm_Load(object sender, EventArgs e)
         {
             ProductTypeTextBox.MaxLength = TextBoxLength.ProductType;
+            SetLanguageText();
         }
 
         private void AddNewProductTypeButton_Click(object sender, EventArgs e)
         {
-            bool isExists = CheckProductTypeExists();
+            bool isExists = CheckProductTypeExists(ProductTypeTextBox.Text);
 
             if (isExists)
             {
-                // todo message box exists
+                _messageBoxService.ShowProductTypeExist();
             }
             else
             {
@@ -55,9 +56,34 @@ namespace PikNiMi.Forms
             }
         }
 
+        private void DeleteProductTypeButton_Click(object sender, EventArgs e)
+        {
+            bool isExists = CheckProductTypeExists(DeleteProductTypeTextBox.Text);
+
+            if (isExists)
+            {
+                var task = _repositoryQueryCalls.DeleteExistingProductType(DeleteProductTypeTextBox.Text);
+
+                if (task.IsFaulted)
+                {
+                    _messageBoxService.ShowDeleteError();
+                }
+                else
+                {
+                    _messageBoxService.ShowDeleteSuccessful();
+                }
+
+                this.Close();
+            }
+            else
+            {
+                _messageBoxService.ShowProductTypeNotExistsForDelete();
+            }
+        }
+
         #region Helpers
 
-        private bool CheckProductTypeExists()
+        private bool CheckProductTypeExists(string text)
         {
             _productTypeList = _languageTranslator.LoadProductTypeDefaultList();
 
@@ -69,11 +95,18 @@ namespace PikNiMi.Forms
                 _productTypeList.AddRange(existingProductType.ToList());
             }
 
-            bool isExists = _productTypeList.Contains(ProductTypeTextBox.Text);
+            bool isExists = _productTypeList.Contains(text);
 
             return isExists;
         }
 
+        private void SetLanguageText()
+        {
+            AddNewProductTypeButton.Text = _languageTranslator.SetAddNewProductTypeButtonText();
+        }
+
+
         #endregion
+        
     }
 }

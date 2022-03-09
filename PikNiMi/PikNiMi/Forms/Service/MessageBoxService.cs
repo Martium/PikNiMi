@@ -36,5 +36,25 @@ namespace PikNiMi.Forms.Service
         {
             MessageBox.Show(_languageTranslator.ShowEnteredNotNumberError());
         }
+
+        public void ShowDeleteSuccessful()
+        {
+            MessageBox.Show(_languageTranslator.ShowDeleteSuccessful());
+        }
+
+        public void ShowDeleteError()
+        {
+            MessageBox.Show(_languageTranslator.ShowDeleteError());
+        }
+
+        public void ShowProductTypeExist()
+        {
+            MessageBox.Show(_languageTranslator.ShowProductTypeExist());
+        }
+
+        public void ShowProductTypeNotExistsForDelete()
+        {
+            MessageBox.Show(_languageTranslator.ShowProductTypeNotExistsForDelete());
+        }
     }
 }

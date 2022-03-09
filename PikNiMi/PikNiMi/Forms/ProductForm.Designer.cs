@@ -92,6 +92,10 @@ namespace PikNiMi.Forms
             this.CalculateBySoldPriceInfoLabel = new System.Windows.Forms.Label();
             this.CalculateBySoldPriceWithPvmInfoLabel = new System.Windows.Forms.Label();
             this.IncludePvmCheckBox = new System.Windows.Forms.CheckBox();
+            this.ProductColorTextBoxResizeButton = new System.Windows.Forms.Button();
+            this.ProductSizeTextBoxResizeButtonButton = new System.Windows.Forms.Button();
+            this.ProductCareResizeTextBoxButton = new System.Windows.Forms.Button();
+            this.ProductMadeStuffTextBoxResizeButton = new System.Windows.Forms.Button();
             this.TableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,6 +170,10 @@ namespace PikNiMi.Forms
             this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceInfoLabel, 4, 18);
             this.TableLayoutPanel.Controls.Add(this.CalculateBySoldPriceWithPvmInfoLabel, 4, 17);
             this.TableLayoutPanel.Controls.Add(this.IncludePvmCheckBox, 4, 3);
+            this.TableLayoutPanel.Controls.Add(this.ProductColorTextBoxResizeButton, 2, 2);
+            this.TableLayoutPanel.Controls.Add(this.ProductSizeTextBoxResizeButtonButton, 2, 3);
+            this.TableLayoutPanel.Controls.Add(this.ProductCareResizeTextBoxButton, 2, 4);
+            this.TableLayoutPanel.Controls.Add(this.ProductMadeStuffTextBoxResizeButton, 2, 5);
             this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayoutPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
@@ -829,6 +837,58 @@ namespace PikNiMi.Forms
             this.IncludePvmCheckBox.UseVisualStyleBackColor = true;
             this.IncludePvmCheckBox.CheckedChanged += new System.EventHandler(this.IncludePvmCheckBox_CheckedChanged);
             // 
+            // ProductColorTextBoxResizeButton
+            // 
+            this.ProductColorTextBoxResizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductColorTextBoxResizeButton.Location = new System.Drawing.Point(289, 55);
+            this.ProductColorTextBoxResizeButton.Name = "ProductColorTextBoxResizeButton";
+            this.ProductColorTextBoxResizeButton.Size = new System.Drawing.Size(137, 20);
+            this.ProductColorTextBoxResizeButton.TabIndex = 81;
+            this.ProductColorTextBoxResizeButton.Text = "Resize";
+            this.ProductColorTextBoxResizeButton.UseVisualStyleBackColor = true;
+            this.ProductColorTextBoxResizeButton.Click += new System.EventHandler(this.ProductColorTextBoxResizeButton_Click);
+            // 
+            // ProductSizeTextBoxResizeButtonButton
+            // 
+            this.ProductSizeTextBoxResizeButtonButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductSizeTextBoxResizeButtonButton.Location = new System.Drawing.Point(289, 81);
+            this.ProductSizeTextBoxResizeButtonButton.Name = "ProductSizeTextBoxResizeButtonButton";
+            this.ProductSizeTextBoxResizeButtonButton.Size = new System.Drawing.Size(137, 20);
+            this.ProductSizeTextBoxResizeButtonButton.TabIndex = 82;
+            this.ProductSizeTextBoxResizeButtonButton.Text = "Resize";
+            this.ProductSizeTextBoxResizeButtonButton.UseVisualStyleBackColor = true;
+            this.ProductSizeTextBoxResizeButtonButton.Click += new System.EventHandler(this.ProductSizeTextBoxResizeButtonButton_Click);
+            // 
+            // ProductCareResizeTextBoxButton
+            // 
+            this.ProductCareResizeTextBoxButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductCareResizeTextBoxButton.Location = new System.Drawing.Point(289, 107);
+            this.ProductCareResizeTextBoxButton.Name = "ProductCareResizeTextBoxButton";
+            this.ProductCareResizeTextBoxButton.Size = new System.Drawing.Size(137, 20);
+            this.ProductCareResizeTextBoxButton.TabIndex = 83;
+            this.ProductCareResizeTextBoxButton.Text = "Resize";
+            this.ProductCareResizeTextBoxButton.UseVisualStyleBackColor = true;
+            this.ProductCareResizeTextBoxButton.Click += new System.EventHandler(this.ProductCareResizeTextBoxButton_Click);
+            // 
+            // ProductMadeStuffTextBoxResizeButton
+            // 
+            this.ProductMadeStuffTextBoxResizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductMadeStuffTextBoxResizeButton.Location = new System.Drawing.Point(289, 133);
+            this.ProductMadeStuffTextBoxResizeButton.Name = "ProductMadeStuffTextBoxResizeButton";
+            this.ProductMadeStuffTextBoxResizeButton.Size = new System.Drawing.Size(137, 20);
+            this.ProductMadeStuffTextBoxResizeButton.TabIndex = 84;
+            this.ProductMadeStuffTextBoxResizeButton.Text = "Resize";
+            this.ProductMadeStuffTextBoxResizeButton.UseVisualStyleBackColor = true;
+            this.ProductMadeStuffTextBoxResizeButton.Click += new System.EventHandler(this.ProductMadeStuffTextBoxResizeButton_Click);
+            // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -910,5 +970,9 @@ namespace PikNiMi.Forms
         private System.Windows.Forms.Label CalculateBySoldPriceInfoLabel;
         private System.Windows.Forms.Label CalculateBySoldPriceWithPvmInfoLabel;
         private System.Windows.Forms.CheckBox IncludePvmCheckBox;
+        private System.Windows.Forms.Button ProductColorTextBoxResizeButton;
+        private System.Windows.Forms.Button ProductSizeTextBoxResizeButtonButton;
+        private System.Windows.Forms.Button ProductCareResizeTextBoxButton;
+        private System.Windows.Forms.Button ProductMadeStuffTextBoxResizeButton;
     }
 }

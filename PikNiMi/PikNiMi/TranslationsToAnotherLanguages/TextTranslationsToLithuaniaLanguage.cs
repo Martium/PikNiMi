@@ -283,6 +283,26 @@ namespace PikNiMi.TranslationsToAnotherLanguages
                 @"Raudoname(uose) langelyje(uose) tai ką įvedėte nėra skaičius(iai), nebus atlikti teisingi skaičiavimai!";
         }
 
+        public string ShowDeleteSuccessful()
+        {
+            return @"Ištrinta sekmingai";
+        }
+
+        public string ShowDeleteError()
+        {
+            return @"Neištrinta kreiptis į Administratorių";
+        }
+
+        public string ShowProductTypeExist()
+        {
+            return @"Šis Produkto tipas egzistuoja";
+        }
+
+        public string ShowProductTypeNotExistsForDelete()
+        {
+            return @"Tokio tipo nėra kurį norite ištrinti";
+        }
+
         #endregion
     }
 }

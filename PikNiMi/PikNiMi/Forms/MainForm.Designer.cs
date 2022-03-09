@@ -43,11 +43,11 @@ namespace PikNiMi.Forms
             this.ProductDataGridView = new System.Windows.Forms.DataGridView();
             this.tableBottomLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.TripExpensesTextBox = new System.Windows.Forms.TextBox();
+            this.DiscountButton = new System.Windows.Forms.Button();
+            this.AddNewProductTypeButton = new System.Windows.Forms.Button();
+            this.HistoryButton = new System.Windows.Forms.Button();
             this.CountFullOrderDiscountButton = new System.Windows.Forms.Button();
             this.DateTextBox = new System.Windows.Forms.TextBox();
-            this.AddNewProductTypeButton = new System.Windows.Forms.Button();
-            this.Historybutton = new System.Windows.Forms.Button();
-            this.DiscountButton = new System.Windows.Forms.Button();
             this.tableUpperLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).BeginInit();
             this.tableBottomLayoutPanel.SuspendLayout();
@@ -218,7 +218,7 @@ namespace PikNiMi.Forms
             this.tableBottomLayoutPanel.Controls.Add(this.TripExpensesTextBox, 4, 0);
             this.tableBottomLayoutPanel.Controls.Add(this.DiscountButton, 2, 0);
             this.tableBottomLayoutPanel.Controls.Add(this.AddNewProductTypeButton, 1, 0);
-            this.tableBottomLayoutPanel.Controls.Add(this.Historybutton, 0, 0);
+            this.tableBottomLayoutPanel.Controls.Add(this.HistoryButton, 0, 0);
             this.tableBottomLayoutPanel.Controls.Add(this.CountFullOrderDiscountButton, 5, 0);
             this.tableBottomLayoutPanel.Controls.Add(this.DateTextBox, 3, 0);
             this.tableBottomLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -242,6 +242,50 @@ namespace PikNiMi.Forms
             this.TripExpensesTextBox.TabStop = false;
             this.TripExpensesTextBox.GotFocus += new System.EventHandler(this.TripExpensesTextBox_GotFocus);
             this.TripExpensesTextBox.LostFocus += new System.EventHandler(this.TripExpensesTextBox_LostFocus);
+            // 
+            // DiscountButton
+            // 
+            this.DiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DiscountButton.Location = new System.Drawing.Point(269, 3);
+            this.DiscountButton.Name = "DiscountButton";
+            this.DiscountButton.Size = new System.Drawing.Size(127, 68);
+            this.DiscountButton.TabIndex = 8;
+            this.DiscountButton.TabStop = false;
+            this.DiscountButton.Text = "Nuolaidos";
+            this.DiscountButton.UseVisualStyleBackColor = true;
+            this.DiscountButton.Click += new System.EventHandler(this.DiscountButton_Click);
+            // 
+            // AddNewProductTypeButton
+            // 
+            this.AddNewProductTypeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddNewProductTypeButton.AutoSize = true;
+            this.AddNewProductTypeButton.Location = new System.Drawing.Point(136, 3);
+            this.AddNewProductTypeButton.Name = "AddNewProductTypeButton";
+            this.AddNewProductTypeButton.Size = new System.Drawing.Size(127, 68);
+            this.AddNewProductTypeButton.TabIndex = 7;
+            this.AddNewProductTypeButton.TabStop = false;
+            this.AddNewProductTypeButton.Text = "Naujas produkto\r\ntipas";
+            this.AddNewProductTypeButton.UseVisualStyleBackColor = true;
+            this.AddNewProductTypeButton.Click += new System.EventHandler(this.AddNewProductTypeButton_Click);
+            // 
+            // HistoryButton
+            // 
+            this.HistoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.HistoryButton.AutoSize = true;
+            this.HistoryButton.Location = new System.Drawing.Point(3, 3);
+            this.HistoryButton.Name = "HistoryButton";
+            this.HistoryButton.Size = new System.Drawing.Size(127, 68);
+            this.HistoryButton.TabIndex = 6;
+            this.HistoryButton.TabStop = false;
+            this.HistoryButton.Text = "Istorija";
+            this.HistoryButton.UseVisualStyleBackColor = true;
+            this.HistoryButton.Click += new System.EventHandler(this.HistoryButton_Click);
             // 
             // CountFullOrderDiscountButton
             // 
@@ -268,48 +312,6 @@ namespace PikNiMi.Forms
             this.DateTextBox.Size = new System.Drawing.Size(127, 20);
             this.DateTextBox.TabIndex = 6;
             this.DateTextBox.TabStop = false;
-            // 
-            // AddNewProductTypeButton
-            // 
-            this.AddNewProductTypeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddNewProductTypeButton.AutoSize = true;
-            this.AddNewProductTypeButton.Location = new System.Drawing.Point(136, 3);
-            this.AddNewProductTypeButton.Name = "AddNewProductTypeButton";
-            this.AddNewProductTypeButton.Size = new System.Drawing.Size(127, 68);
-            this.AddNewProductTypeButton.TabIndex = 7;
-            this.AddNewProductTypeButton.TabStop = false;
-            this.AddNewProductTypeButton.Text = "Naujas produkto\r\ntipas";
-            this.AddNewProductTypeButton.UseVisualStyleBackColor = true;
-            this.AddNewProductTypeButton.Click += new System.EventHandler(this.AddNewProductTypeButton_Click);
-            // 
-            // Historybutton
-            // 
-            this.Historybutton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Historybutton.AutoSize = true;
-            this.Historybutton.Location = new System.Drawing.Point(3, 3);
-            this.Historybutton.Name = "Historybutton";
-            this.Historybutton.Size = new System.Drawing.Size(127, 68);
-            this.Historybutton.TabIndex = 6;
-            this.Historybutton.TabStop = false;
-            this.Historybutton.Text = "Istorija";
-            this.Historybutton.UseVisualStyleBackColor = true;
-            // 
-            // DiscountButton
-            // 
-            this.DiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DiscountButton.Location = new System.Drawing.Point(269, 3);
-            this.DiscountButton.Name = "DiscountButton";
-            this.DiscountButton.Size = new System.Drawing.Size(127, 68);
-            this.DiscountButton.TabIndex = 8;
-            this.DiscountButton.TabStop = false;
-            this.DiscountButton.Text = "Nuolaidos";
-            this.DiscountButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -348,7 +350,7 @@ namespace PikNiMi.Forms
         private System.Windows.Forms.TextBox TripExpensesTextBox;
         private System.Windows.Forms.Label MoneyCourseInfoLabel;
         private System.Windows.Forms.TextBox MoneyCourseTextBox;
-        private System.Windows.Forms.Button Historybutton;
+        private System.Windows.Forms.Button HistoryButton;
         private System.Windows.Forms.Button AddNewProductTypeButton;
         private System.Windows.Forms.Button DiscountButton;
     }

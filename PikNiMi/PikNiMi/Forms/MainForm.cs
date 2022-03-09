@@ -185,8 +185,8 @@ namespace PikNiMi.Forms
             this.Show();
             SetDefaultTextBoxesTextValue();
             SetAllButtonsControl(false);
-            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView, _languageTranslator);
             _comboBoxService.SetProductTypeCustomValues(ProductTypeComboBox);
+            await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView, _languageTranslator);
             SetAllButtonsControl(true);
         }
 
@@ -247,7 +247,7 @@ namespace PikNiMi.Forms
             SearchButton.Enabled = isAllowed;
             CancelSearchButton.Enabled = isAllowed;
 
-            Historybutton.Enabled = isAllowed;
+            HistoryButton.Enabled = isAllowed;
             AddNewProductTypeButton.Enabled = isAllowed;
             CountFullOrderDiscountButton.Enabled = isAllowed;
         }
@@ -283,8 +283,8 @@ namespace PikNiMi.Forms
             UpdateProductButton.Text = _languageTranslator.SetUpdateProductButtonText();
             SearchButton.Text = _languageTranslator.SetSearchButtonText();
             CancelSearchButton.Text = _languageTranslator.SetCancelSearchButtonText();
-            Historybutton.Text = _languageTranslator.SetHistoryButtonText();
-            AddNewProductTypeButton.Text = _languageTranslator.SetAddNewProductTypeButtonText();
+            HistoryButton.Text = _languageTranslator.SetHistoryButtonText();
+            AddNewProductTypeButton.Text = _languageTranslator.SetProductTypeInfoLabelText();
             CountFullOrderDiscountButton.Text = _languageTranslator.SetCountFullOrderCalculationButtonText();
             MoneyCourseInfoLabel.Text = _languageTranslator.SetMoneyCourseText();
         }
@@ -403,7 +403,17 @@ namespace PikNiMi.Forms
             return calculationList;
         }
 
+
         #endregion
-       
+
+        private void HistoryButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"Paslauga nesuprogamuota :( ");
+        }
+
+        private void DiscountButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"Paslauga nesuprogamuota :( ");
+        }
     }
 }

@@ -117,5 +117,11 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
             var task = _repository.GetAllProductType();
             return task;
         }
+
+        public Task<int> DeleteExistingProductType(string productType)
+        {
+            var task = _repository.DeleteExistingProductType(productType);
+            return task;
+        }
     }
 }

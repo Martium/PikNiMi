@@ -255,5 +255,18 @@ namespace PikNiMi.Repository.SqlLite
                 return result;
             }
         }
+
+        public Task<int> DeleteExistingProductType(string productType)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+                string command = SqlLiteQueryToDataBaseCommands.DeleteProductType(productType);
+
+                var result = dbConnection.ExecuteAsync(command);
+
+                return result;
+            }
+        }
     }
 }
