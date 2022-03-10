@@ -11,11 +11,7 @@ namespace PikNiMi.Repository.SqlLite
         {
             if (File.Exists(SqlLiteDataBaseConfiguration.DatabaseFile))
             {
-#if DEBUG
-
-#else
                 return;
-#endif
             }
 
             if (!Directory.Exists(SqlLiteDataBaseConfiguration.DatabaseFolder))
@@ -28,9 +24,12 @@ namespace PikNiMi.Repository.SqlLite
             }
 
             SQLiteConnection.CreateFile(SqlLiteDataBaseConfiguration.DatabaseFile);
+
+            DropAllTablesCommand();
+            CreateAllTablesCommand();
         }
 
-        public void DropAllTablesCommand()
+        private void DropAllTablesCommand()
         {
             var allTableCommands = SqlLiteCreateTableCommands.GetTablesCommand();
 
@@ -40,7 +39,7 @@ namespace PikNiMi.Repository.SqlLite
             }
         }
 
-        public void CreateAllTablesCommand()
+        private void CreateAllTablesCommand()
         {
             var allTableCommands = SqlLiteCreateTableCommands.GetTablesCommand();
 

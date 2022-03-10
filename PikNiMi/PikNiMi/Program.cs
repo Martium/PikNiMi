@@ -47,11 +47,8 @@ namespace PikNiMi
             bool isDatabaseInitialize;
 
             try
-            {
+            { 
                 _repositoryCreate.CreateRepositoryFile();
-                _repositoryCreate.CreateRepositoryTable();
-                //_fakeRepository.FillTestingInfoForProduct();
-                //_fakeRepository.FillTestingAdditionalInfoForProduct();
 
                 isDatabaseInitialize = true;
             }
