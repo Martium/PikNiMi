@@ -8,6 +8,7 @@ namespace PikNiMi.Interface
         List<string> LoadProductTypeDefaultList();
         string LoadProductTypeDefaultValue();
         string SetFormHeaderText(MainFormTypeEnum mainFormType);
+        string SetProductFormHeaderText(ProductFormTypeEnum productFormType);
         string SetProductTypeComboBoxDefaultText();
         string SetSearchTextBoxPlaceHolder();
         string SetTripExpensesTextBoxPlaceHolder();
@@ -53,6 +54,7 @@ namespace PikNiMi.Interface
         string SetIncludePvmText();
         string SetDeleteText();
         string SetYearText();
+        string SetAdditionalOption();
 
         string ShowSaveNewRecordSuccessMessage();
         string ShowSaveNewRecordErrorMessage();

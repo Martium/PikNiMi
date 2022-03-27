@@ -544,7 +544,6 @@ namespace PikNiMi.Forms.Service
 
             }
 
-            // todo searchUpdate
             calculations.Search = ImplementSearchToSaveToDataBase(mainInfoForCalculations.Search, calculations);
 
             return calculations;

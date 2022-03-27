@@ -209,6 +209,7 @@ namespace PikNiMi.Forms
 
         private void SetLanguageText()
         {
+            this.Text = _languageTranslator.SetProductFormHeaderText(_productFormType);
             ProductReceiptDateInfoLabel.Text = _languageTranslator.SetProductReceiptDateInfoLabelText();
             ProductDescriptionInfoLabel.Text = _languageTranslator.SetProductDescriptionInfoLabelText();
             ProductColorInfoLabel.Text = _languageTranslator.SetProductColorInfoLabelText();

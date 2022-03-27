@@ -43,7 +43,7 @@ namespace PikNiMi.Forms
             this.ProductDataGridView = new System.Windows.Forms.DataGridView();
             this.tableBottomLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.TripExpensesTextBox = new System.Windows.Forms.TextBox();
-            this.DiscountButton = new System.Windows.Forms.Button();
+            this.AdditionalOptionButton = new System.Windows.Forms.Button();
             this.AddNewProductTypeButton = new System.Windows.Forms.Button();
             this.HistoryButton = new System.Windows.Forms.Button();
             this.CountFullOrderDiscountButton = new System.Windows.Forms.Button();
@@ -216,7 +216,7 @@ namespace PikNiMi.Forms
             this.tableBottomLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableBottomLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableBottomLayoutPanel.Controls.Add(this.TripExpensesTextBox, 4, 0);
-            this.tableBottomLayoutPanel.Controls.Add(this.DiscountButton, 2, 0);
+            this.tableBottomLayoutPanel.Controls.Add(this.AdditionalOptionButton, 2, 0);
             this.tableBottomLayoutPanel.Controls.Add(this.AddNewProductTypeButton, 1, 0);
             this.tableBottomLayoutPanel.Controls.Add(this.HistoryButton, 0, 0);
             this.tableBottomLayoutPanel.Controls.Add(this.CountFullOrderDiscountButton, 5, 0);
@@ -243,19 +243,19 @@ namespace PikNiMi.Forms
             this.TripExpensesTextBox.GotFocus += new System.EventHandler(this.TripExpensesTextBox_GotFocus);
             this.TripExpensesTextBox.LostFocus += new System.EventHandler(this.TripExpensesTextBox_LostFocus);
             // 
-            // DiscountButton
+            // AdditionalOptionButton
             // 
-            this.DiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.AdditionalOptionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DiscountButton.Location = new System.Drawing.Point(269, 3);
-            this.DiscountButton.Name = "DiscountButton";
-            this.DiscountButton.Size = new System.Drawing.Size(127, 68);
-            this.DiscountButton.TabIndex = 8;
-            this.DiscountButton.TabStop = false;
-            this.DiscountButton.Text = "Nuolaidos";
-            this.DiscountButton.UseVisualStyleBackColor = true;
-            this.DiscountButton.Click += new System.EventHandler(this.DiscountButton_Click);
+            this.AdditionalOptionButton.Location = new System.Drawing.Point(269, 3);
+            this.AdditionalOptionButton.Name = "AdditionalOptionButton";
+            this.AdditionalOptionButton.Size = new System.Drawing.Size(127, 68);
+            this.AdditionalOptionButton.TabIndex = 8;
+            this.AdditionalOptionButton.TabStop = false;
+            this.AdditionalOptionButton.Text = "Nuolaidos";
+            this.AdditionalOptionButton.UseVisualStyleBackColor = true;
+            this.AdditionalOptionButton.Click += new System.EventHandler(this.AdditionalOptionButton_Click);
             // 
             // AddNewProductTypeButton
             // 
@@ -353,7 +353,7 @@ namespace PikNiMi.Forms
         private System.Windows.Forms.TextBox MoneyCourseTextBox;
         private System.Windows.Forms.Button HistoryButton;
         private System.Windows.Forms.Button AddNewProductTypeButton;
-        private System.Windows.Forms.Button DiscountButton;
+        private System.Windows.Forms.Button AdditionalOptionButton;
     }
 }
 

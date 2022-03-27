@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using PikNiMi.Forms.Constants;
 using PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository;
@@ -38,7 +39,29 @@ namespace PikNiMi.Forms.Service
             return comboBox;
         }
 
+        public ComboBox FillDateComboBox(ComboBox comboBox, IEnumerable<string> allDate)
+        {
+            var list = allDate.ToList();
 
+            comboBox.BindingContext = new BindingContext();
+            comboBox.DataSource = list;
+            comboBox.DisplayMember = list.FirstOrDefault();
+            comboBox.SelectedItem = list.FirstOrDefault();
+
+            return comboBox;
+        }
+
+        public ComboBox FillYearComboBox(ComboBox comboBox, IEnumerable<int> allYear)
+        {
+            var list = allYear.ToList();
+
+            comboBox.BindingContext = new BindingContext();
+            comboBox.DataSource = list;
+            comboBox.DisplayMember = list.FirstOrDefault().ToString();
+            comboBox.SelectedItem = list.FirstOrDefault();
+
+            return comboBox;
+        }
 
         
     }

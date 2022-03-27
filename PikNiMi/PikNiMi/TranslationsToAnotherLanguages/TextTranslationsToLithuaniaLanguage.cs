@@ -40,6 +40,25 @@ namespace PikNiMi.TranslationsToAnotherLanguages
             return text;
         }
 
+        public string SetProductFormHeaderText(ProductFormTypeEnum productFormType)
+        {
+            string text;
+            switch (productFormType)
+            {
+                case ProductFormTypeEnum.NewProductForm:
+                    text = @"Nauja Prekė";
+                    break;
+                case ProductFormTypeEnum.UpdateProductForm:
+                    text = @"Atnaujinti Prekę";
+                    break;
+                default:
+                    text = @"Nenumatyta Forma kreiptis į Administratorių";
+                    break;
+            }
+
+            return text;
+        }
+
         public string SetProductTypeComboBoxDefaultText()
         {
             return "Pasirinkti tipą...";
@@ -263,6 +282,11 @@ namespace PikNiMi.TranslationsToAnotherLanguages
         public string SetYearText()
         {
             return @"Metai";
+        }
+
+        public string SetAdditionalOption()
+        {
+            return $@"Papildomos {Environment.NewLine} Funkcijos ";
         }
 
         #region MessageBoxMessage

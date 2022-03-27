@@ -24,6 +24,11 @@ namespace PikNiMi.Forms.Constants
             return _languageTranslator.SetFormHeaderText(mainFormType);
         }
 
+        public string SetProductFormHeaderText(ProductFormTypeEnum productFormType)
+        {
+            return _languageTranslator.SetProductFormHeaderText(productFormType);
+        }
+
         public string SetProductTypeComboBoxDefaultText()
         {
             return _languageTranslator.SetProductTypeComboBoxDefaultText();
@@ -232,6 +237,11 @@ namespace PikNiMi.Forms.Constants
         public string SetYearText()
         {
             return _languageTranslator.SetYearText();
+        }
+
+        public string SetAdditionalOption()
+        {
+            return _languageTranslator.SetAdditionalOption();
         }
 
         #region MessageBoxService

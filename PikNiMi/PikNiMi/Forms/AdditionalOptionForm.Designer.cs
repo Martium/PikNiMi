@@ -44,6 +44,7 @@ namespace PikNiMi.Forms
             this.YearInfoLabel = new System.Windows.Forms.Label();
             this.DateComboBox = new System.Windows.Forms.ComboBox();
             this.YearComboBox = new System.Windows.Forms.ComboBox();
+            this.IncludePvmCheckBox = new System.Windows.Forms.CheckBox();
             this.TableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +71,7 @@ namespace PikNiMi.Forms
             this.TableLayoutPanel.Controls.Add(this.YearInfoLabel, 2, 1);
             this.TableLayoutPanel.Controls.Add(this.DateComboBox, 3, 0);
             this.TableLayoutPanel.Controls.Add(this.YearComboBox, 3, 1);
+            this.TableLayoutPanel.Controls.Add(this.IncludePvmCheckBox, 2, 2);
             this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.TableLayoutPanel.Name = "TableLayoutPanel";
@@ -183,6 +185,7 @@ namespace PikNiMi.Forms
             this.CountSumByDateButton.TabStop = false;
             this.CountSumByDateButton.Text = "By date";
             this.CountSumByDateButton.UseVisualStyleBackColor = true;
+            this.CountSumByDateButton.Click += new System.EventHandler(this.CountSumByDateButton_Click);
             // 
             // CountSumByYearButton
             // 
@@ -237,6 +240,16 @@ namespace PikNiMi.Forms
             this.YearComboBox.TabIndex = 13;
             this.YearComboBox.TabStop = false;
             // 
+            // IncludePvmCheckBox
+            // 
+            this.IncludePvmCheckBox.AutoSize = true;
+            this.IncludePvmCheckBox.Location = new System.Drawing.Point(307, 55);
+            this.IncludePvmCheckBox.Name = "IncludePvmCheckBox";
+            this.IncludePvmCheckBox.Size = new System.Drawing.Size(80, 17);
+            this.IncludePvmCheckBox.TabIndex = 14;
+            this.IncludePvmCheckBox.Text = "checkBox1";
+            this.IncludePvmCheckBox.UseVisualStyleBackColor = true;
+            // 
             // AdditionalOptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,5 +283,6 @@ namespace PikNiMi.Forms
         private System.Windows.Forms.Label YearInfoLabel;
         private System.Windows.Forms.ComboBox DateComboBox;
         private System.Windows.Forms.ComboBox YearComboBox;
+        private System.Windows.Forms.CheckBox IncludePvmCheckBox;
     }
 }

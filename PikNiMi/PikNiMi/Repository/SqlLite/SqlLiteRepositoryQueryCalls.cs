@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Threading.Tasks;
 using Dapper;
@@ -270,12 +269,12 @@ namespace PikNiMi.Repository.SqlLite
             }
         }
 
-        public Task<IEnumerable<string>> GetAllExistingYears()
+        public Task<IEnumerable<string>> GetAllExistingDates()
         {
             using (var dbConnection = new SQLiteConnection(ConnectionString))
             {
                 dbConnection.Open();
-                string command = SqlLiteQueryToDataBaseCommands.GetAllYears();
+                string command = SqlLiteQueryToDataBaseCommands.GetAllDates();
 
                 var result = dbConnection.QueryAsync<string>(command);
 
@@ -283,9 +282,30 @@ namespace PikNiMi.Repository.SqlLite
             }
         }
 
-        public Task<IEnumerable<string>> GetAllExistingDates()
+        public Task<IEnumerable<MoneyMainInfoModel>> GetAllMoneyMainInfoFromFullProductByDate(string date)
         {
-            throw new NotImplementedException();
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+                string command = SqlLiteQueryToDataBaseCommands.GetAllMoneyMainInfoFromFullProductByDate(date);
+
+                var result = dbConnection.QueryAsync<MoneyMainInfoModel>(command);
+
+                return result;
+            }
+        }
+
+        public Task<IEnumerable<AdditionalInfoIncludePvmModel>> GetAllIncludePvmInfoByMultipleId(int[] id)
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+                string command = SqlLiteQueryToDataBaseCommands.GetAllIncludePvmInfoByMultipleId(id);
+
+                var result = dbConnection.QueryAsync<AdditionalInfoIncludePvmModel>(command);
+
+                return result;
+            }
         }
     }
 }

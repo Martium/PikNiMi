@@ -26,6 +26,20 @@ namespace PikNiMi.Repository.SqlLite
             return searchFormat;
         }
 
+        private static string ImplementIdLine(int[] id)
+        {
+            string idLine = string.Empty;
+
+            foreach (var line in id)
+            {
+                idLine += $"{line}, ";
+            }
+
+            idLine = idLine.Substring(0,idLine.Length - 2);
+
+            return idLine;
+        }
+
         public static string GetAllOfFullProductInfoCommand()
         {
             string getExistingServiceQuery =
@@ -289,11 +303,11 @@ namespace PikNiMi.Repository.SqlLite
             return query;
         }
 
-        public static string GetAllYears()
+        public static string GetAllDates()
         {
             string query = 
                 $@"
-                        SELECT 
+                        SELECT DISTINCT
                           ProductReceiptDate
                         FROM '{FullProductInfoTable}'
                 ";
@@ -301,12 +315,31 @@ namespace PikNiMi.Repository.SqlLite
             return query;
         }
 
-        public static string GetAllDates()
+        public static string GetAllMoneyMainInfoFromFullProductByDate(string date)
         {
             string query = 
                 $@"
-                        SELECT
+                        SELECT 
+                           {ProductId}, FPIT.ProductSoldPrice, FPIT.ProductPvm,
+                           FPIT.ProductSoldPriceWithPvm, FPIT.ProductProfit
+                        FROM {FullProductInfoTableWithShortcut}
+                        WHERE FPIT.ProductReceiptDate = '{date}'
                 ";
+
+            return query;
+        }
+
+        public static string GetAllIncludePvmInfoByMultipleId(int[] id)
+        {
+            string idLine = ImplementIdLine(id);
+            string query =
+                $@"
+                        SELECT
+                            Id, IncludePvm
+                        FROM {ProductAdditionalInfoTableWithShortcut}
+                        WHERE PAI.Id IN ({idLine})
+                ";
+
             return query;
         }
     }

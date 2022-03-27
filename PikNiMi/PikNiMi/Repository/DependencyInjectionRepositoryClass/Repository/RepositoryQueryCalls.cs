@@ -124,15 +124,21 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
             return task;
         }
 
-        public Task<IEnumerable<string>> GetAllExistingYears()
-        {
-            var task = _repository.GetAllExistingYears();
-            return task;
-        }
-
         public Task<IEnumerable<string>> GetAllExistingDates()
         {
             var task = _repository.GetAllExistingDates();
+            return task;
+        }
+
+        public Task<IEnumerable<MoneyMainInfoModel>> GetAllMoneyMainInfoFromFullProductByDate(string date)
+        {
+            var task = _repository.GetAllMoneyMainInfoFromFullProductByDate(date);
+            return task;
+        }
+
+        public Task<IEnumerable<AdditionalInfoIncludePvmModel>> GetAllIncludePvmInfoByMultipleId(int[] id)
+        {
+            var task = _repository.GetAllIncludePvmInfoByMultipleId(id);
             return task;
         }
     }

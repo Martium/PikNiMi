@@ -236,6 +236,12 @@ namespace PikNiMi.Forms
             OpenNewForm(new ProductTypeForm());
         }
 
+        private void AdditionalOptionButton_Click(object sender, EventArgs e)
+        {
+            // OpenNewForm(new AdditionalOptionForm()); // todo lot of logic mistakes
+            MessageBox.Show(@"Paslauga nesuprogamuota :( ");
+        }
+
         #region CustomPrivateMethods
 
         private void SetTextBoxLength()
@@ -275,6 +281,7 @@ namespace PikNiMi.Forms
             HistoryButton.Enabled = isAllowed;
             AddNewProductTypeButton.Enabled = isAllowed;
             CountFullOrderDiscountButton.Enabled = isAllowed;
+            AdditionalOptionButton.Enabled = isAllowed;
         }
 
         private void SetDataGridViewConstantControl()
@@ -312,6 +319,8 @@ namespace PikNiMi.Forms
             AddNewProductTypeButton.Text = _languageTranslator.SetProductTypeInfoLabelText();
             CountFullOrderDiscountButton.Text = _languageTranslator.SetCountFullOrderCalculationButtonText();
             MoneyCourseInfoLabel.Text = _languageTranslator.SetMoneyCourseText();
+
+            AdditionalOptionButton.Text = _languageTranslator.SetAdditionalOption();
         }
 
         private bool IsDateAndMoneyCourseTextBoxFilled()
@@ -435,11 +444,6 @@ namespace PikNiMi.Forms
         {
             MessageBox.Show(@"Paslauga nesuprogamuota :( ");
         }
-
-        private void DiscountButton_Click(object sender, EventArgs e)
-        {
-            OpenNewForm(new AdditionalOptionForm());
-        }
-       
+        
     }
 }
