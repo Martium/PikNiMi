@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using PikNiMi.Enums;
@@ -204,6 +206,29 @@ namespace PikNiMi.Forms
             await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView, _languageTranslator);
             SetAllButtonsControl(true);
             this.Show();
+        }
+
+        private void DateTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(DateTextBox.Text))
+            {
+                SetAllButtonsControl(false);
+                e.Cancel = true;
+                DateTextBox.BackColor = Color.Red;
+            }
+            else if (!DateTime.TryParseExact(DateTextBox.Text, FormTextBoxDefaultTexts.DateFormat, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out _))
+            {
+                SetAllButtonsControl(false);
+                e.Cancel = true;
+                DateTextBox.BackColor = Color.Red;
+            }
+            else
+            {
+                SetAllButtonsControl(true);
+                e.Cancel = false;
+                DateTextBox.BackColor = default;
+            }
         }
 
         private void AddNewProductTypeButton_Click(object sender, EventArgs e)
@@ -415,5 +440,6 @@ namespace PikNiMi.Forms
         {
             OpenNewForm(new AdditionalOptionForm());
         }
+       
     }
 }

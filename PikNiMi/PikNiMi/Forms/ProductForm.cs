@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.Caching.Memory;
@@ -150,6 +151,29 @@ namespace PikNiMi.Forms
         private void IncludePvmCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             CalculateBySoldPriceWithPvmButton.Enabled = IncludePvmCheckBox.Checked;
+        }
+
+        private void ProductReceiptDateTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(ProductReceiptDateTextBox.Text))
+            {
+                SetButtonControl(false);
+                e.Cancel = true;
+                ProductReceiptDateTextBox.BackColor = Color.Red;
+            }
+            else if (!DateTime.TryParseExact(ProductReceiptDateTextBox.Text, FormTextBoxDefaultTexts.DateFormat, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out _))
+            {
+                SetButtonControl(false);
+                e.Cancel = true;
+                ProductReceiptDateTextBox.BackColor = Color.Red;
+            }
+            else
+            {
+                SetButtonControl(true);
+                e.Cancel = false;
+                ProductReceiptDateTextBox.BackColor = default;
+            }
         }
 
         #region Heplers
@@ -839,6 +863,7 @@ namespace PikNiMi.Forms
         }
 
         #endregion
+
         
     }
 }

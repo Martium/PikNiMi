@@ -433,6 +433,7 @@ namespace PikNiMi.Forms
             this.ProductReceiptDateTextBox.TabIndex = 23;
             this.ProductReceiptDateTextBox.Enter += new System.EventHandler(this.TextBoxControl_Enter);
             this.ProductReceiptDateTextBox.Leave += new System.EventHandler(this.TextBoxControl_Leave);
+            this.ProductReceiptDateTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ProductReceiptDateTextBox_Validating);
             // 
             // ProductDescriptionTextBox
             // 

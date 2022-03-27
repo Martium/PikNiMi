@@ -312,6 +312,7 @@ namespace PikNiMi.Forms
             this.DateTextBox.Size = new System.Drawing.Size(127, 20);
             this.DateTextBox.TabIndex = 6;
             this.DateTextBox.TabStop = false;
+            this.DateTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.DateTextBox_Validating);
             // 
             // MainForm
             // 
