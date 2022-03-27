@@ -15,7 +15,5 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
         {
            _repositoryCreate.InitializeDatabaseIfNotExists();
         }
-
-       
     }
 }

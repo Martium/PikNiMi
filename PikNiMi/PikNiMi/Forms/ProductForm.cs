@@ -758,7 +758,8 @@ namespace PikNiMi.Forms
                 ProductPvmTextBox.Text = string.Empty;
                 ProductSoldPriceWithPvmTextBox.Text = string.Empty;
             }
-            
+
+            CountProductProfit();
         }
 
         private void StartAllCalculationsForSoldPriceOption()
@@ -782,8 +783,8 @@ namespace PikNiMi.Forms
                 ProductPvmTextBox.Text = string.Empty;
                 ProductSoldPriceWithPvmTextBox.Text = string.Empty;
             }
-
             
+            CountProductProfit();
         }
 
         private void StartAllCalculationsForSoldPriceWithPvmOption()
@@ -798,6 +799,8 @@ namespace PikNiMi.Forms
                     ProductExpensesCostPriceTextBox.Text);
 
             ProductPvmTextBox.Text = _calculator.CountJustPvm(ProductSoldPriceTextBox.Text);
+
+            CountProductProfit();
         }
 
         private void GetNextIdForNewProduct()
@@ -817,6 +820,21 @@ namespace PikNiMi.Forms
                 }
 
                 ProductIdTextBox.Text = nextId.ToString();
+            }
+        }
+
+        private void CountProductProfit()
+        {
+            int productSold = _numberService.TryParseStringToNumberOrZero(ProductSoldTextBox.Text);
+
+            if (productSold > 0)
+            {
+                ProductProfitTextBox.Text = _calculator.CalculateProfit(wantProfit: ProductWantProfitTextBox.Text,
+                    discount: DiscountTextBox.Text, ProductSoldTextBox.Text);
+            }
+            else
+            {
+                ProductProfitTextBox.Text = string.Empty;
             }
         }
 

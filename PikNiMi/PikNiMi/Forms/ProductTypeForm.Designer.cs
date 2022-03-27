@@ -110,6 +110,7 @@ namespace PikNiMi.Forms
             this.Name = "ProductTypeForm";
             this.Text = "ProductTypeForm";
             this.Load += new System.EventHandler(this.ProductTypeForm_Load);
+            this.Resize += new System.EventHandler(this.ProductTypeForm_Resize);
             this.TableLayoutPanel.ResumeLayout(false);
             this.TableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);

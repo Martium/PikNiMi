@@ -21,6 +21,7 @@ namespace PikNiMi
         [STAThread]
         static void Main()
         {
+            Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
             _repositoryCreate = new RepositoryCreate(new SqlLiteInitializeRepository());
            // _fakeRepository = new FakeRepository();
 

@@ -31,6 +31,11 @@ namespace PikNiMi.Forms
             SetLanguageText();
         }
 
+        private void ProductTypeForm_Resize(object sender, EventArgs e)
+        {
+            TableLayoutPanel.Font = WindowState == FormWindowState.Maximized ? FormFontConstants.MaximizedFontSize : FormFontConstants.DefaultFontSize;
+        }
+
         private void AddNewProductTypeButton_Click(object sender, EventArgs e)
         {
             bool isExists = CheckProductTypeExists(ProductTypeTextBox.Text);
@@ -103,6 +108,7 @@ namespace PikNiMi.Forms
         private void SetLanguageText()
         {
             AddNewProductTypeButton.Text = _languageTranslator.SetAddNewProductTypeButtonText();
+            DeleteProductTypeButton.Text = _languageTranslator.SetDeleteText();
         }
 
 

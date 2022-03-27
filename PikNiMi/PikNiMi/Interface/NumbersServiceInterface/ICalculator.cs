@@ -12,6 +12,7 @@ namespace PikNiMi.Interface.NumbersServiceInterface
         string CountProductExpenses(string productPriceInEuro, string productTripExpenses);
         string CalculateWantProfitBySoldPriceWithoutPvm(string productSoldPrice, string productExpensesCostPrice);
         string CalculateWantProfitBySoldPriceWithPvm(string productSoldPriceWithPvm, string productExpensesCostPrice);
+        string CalculateProfit(string wantProfit, string discount, string productSold);
         double CalculateTripExpensesByDate(int elementsByDate, string fullTripExpenses);
         FullProductInfoCalculationModel MakeFullCalculationsOfSpecificProduct(FullProductInfoMainInfoForCalculationsStartModel mainInfoForCalculations);
 

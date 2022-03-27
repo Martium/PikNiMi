@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Threading.Tasks;
 using Dapper;
@@ -267,6 +268,24 @@ namespace PikNiMi.Repository.SqlLite
 
                 return result;
             }
+        }
+
+        public Task<IEnumerable<string>> GetAllExistingYears()
+        {
+            using (var dbConnection = new SQLiteConnection(ConnectionString))
+            {
+                dbConnection.Open();
+                string command = SqlLiteQueryToDataBaseCommands.GetAllYears();
+
+                var result = dbConnection.QueryAsync<string>(command);
+
+                return result;
+            }
+        }
+
+        public Task<IEnumerable<string>> GetAllExistingDates()
+        {
+            throw new NotImplementedException();
         }
     }
 }

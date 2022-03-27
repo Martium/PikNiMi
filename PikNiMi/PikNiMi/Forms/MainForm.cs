@@ -50,6 +50,7 @@ namespace PikNiMi.Forms
              await _productDataGridViewService.LoadFullProductInfo(ProductDataGridView, _languageTranslator);
             SetAllButtonsControl(true);
             SetDataGridViewConstantControl();
+            DateTextBox.Text = FormTextBoxDefaultTexts.DateToday;
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -223,7 +224,6 @@ namespace PikNiMi.Forms
         private void SetDefaultTextBoxesTextValue()
         {
             SearchTextBox.Text = _languageTranslator.SetSearchTextBoxPlaceHolder();
-            DateTextBox.Text = FormTextBoxDefaultTexts.DateToday;
             TripExpensesTextBox.Text = _languageTranslator.SetTripExpensesTextBoxPlaceHolder();
         }
 
@@ -413,7 +413,7 @@ namespace PikNiMi.Forms
 
         private void DiscountButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(@"Paslauga nesuprogamuota :( ");
+            OpenNewForm(new AdditionalOptionForm());
         }
     }
 }

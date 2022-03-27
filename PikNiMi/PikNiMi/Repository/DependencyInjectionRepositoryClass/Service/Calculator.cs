@@ -59,6 +59,11 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Service
             return _calculator.CalculateTripExpensesByDate(elementsByDate, fullTripExpenses);
         }
 
+        public string CalculateProfit(string wantProfit, string discount, string productSold)
+        {
+            return _calculator.CalculateProfit(wantProfit: wantProfit, discount: discount, productSold);
+        }
+
         public FullProductInfoCalculationModel MakeFullCalculationsOfSpecificProduct(
             FullProductInfoMainInfoForCalculationsStartModel mainInfoForCalculations)
         {

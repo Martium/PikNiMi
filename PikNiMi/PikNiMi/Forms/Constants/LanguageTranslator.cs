@@ -224,6 +224,16 @@ namespace PikNiMi.Forms.Constants
             return _languageTranslator.SetIncludePvmText();
         }
 
+        public string SetDeleteText()
+        {
+            return _languageTranslator.SetDeleteText();
+        }
+
+        public string SetYearText()
+        {
+            return _languageTranslator.SetYearText();
+        }
+
         #region MessageBoxService
 
         public string ShowSaveNewRecordSuccessMessage()

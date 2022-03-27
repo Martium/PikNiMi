@@ -288,5 +288,26 @@ namespace PikNiMi.Repository.SqlLite
 
             return query;
         }
+
+        public static string GetAllYears()
+        {
+            string query = 
+                $@"
+                        SELECT 
+                          ProductReceiptDate
+                        FROM '{FullProductInfoTable}'
+                ";
+
+            return query;
+        }
+
+        public static string GetAllDates()
+        {
+            string query = 
+                $@"
+                        SELECT
+                ";
+            return query;
+        }
     }
 }

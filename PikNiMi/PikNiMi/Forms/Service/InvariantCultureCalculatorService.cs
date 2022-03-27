@@ -304,6 +304,17 @@ namespace PikNiMi.Forms.Service
             return _numberService.ParseDoubleToString(result);
         }
 
+        public string CalculateProfit(string wantProfit, string discount, string productSold)
+        {
+            double wantProfitResult = _numberService.TryParseStringToDoubleNumberOrDefault(wantProfit);
+            double discountResult = _numberService.TryParseStringToDoubleNumberOrDefault(discount);
+            double productSoldResult = _numberService.TryParseStringToDoubleNumberOrDefault(productSold);
+
+            double result = Math.Round((wantProfitResult * productSoldResult - discountResult), 2, MidpointRounding.ToEven);
+
+            return _numberService.ParseDoubleToString(result);
+        }
+
         public double CalculateTripExpensesByDate(int elementsByDate, string fullTripExpenses)
         {
             double tripExpenses = _numberService.TryParseStringToDoubleNumberOrDefault(fullTripExpenses);

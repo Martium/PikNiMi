@@ -255,6 +255,16 @@ namespace PikNiMi.TranslationsToAnotherLanguages
             return @"Taikyti Pvm";
         }
 
+        public string SetDeleteText()
+        {
+            return @"Trinti";
+        }
+
+        public string SetYearText()
+        {
+            return @"Metai";
+        }
+
         #region MessageBoxMessage
 
         public string ShowSaveNewRecordSuccessMessage()
