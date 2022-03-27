@@ -130,7 +130,7 @@ namespace PikNiMi.Repository.DependencyInjectionRepositoryClass.Repository
             return task;
         }
 
-        public Task<IEnumerable<MoneyMainInfoModel>> GetAllMoneyMainInfoFromFullProductByDate(string date)
+        public Task<IEnumerable<ProductProfitInfoModel>> GetAllMoneyMainInfoFromFullProductByDate(string date)
         {
             var task = _repository.GetAllMoneyMainInfoFromFullProductByDate(date);
             return task;

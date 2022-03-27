@@ -282,14 +282,14 @@ namespace PikNiMi.Repository.SqlLite
             }
         }
 
-        public Task<IEnumerable<MoneyMainInfoModel>> GetAllMoneyMainInfoFromFullProductByDate(string date)
+        public Task<IEnumerable<ProductProfitInfoModel>> GetAllMoneyMainInfoFromFullProductByDate(string date)
         {
             using (var dbConnection = new SQLiteConnection(ConnectionString))
             {
                 dbConnection.Open();
                 string command = SqlLiteQueryToDataBaseCommands.GetAllMoneyMainInfoFromFullProductByDate(date);
 
-                var result = dbConnection.QueryAsync<MoneyMainInfoModel>(command);
+                var result = dbConnection.QueryAsync<ProductProfitInfoModel>(command);
 
                 return result;
             }

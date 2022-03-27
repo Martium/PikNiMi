@@ -125,7 +125,7 @@
     <Compile Include="Models\FullProductInfoCalculationModel.cs" />
     <Compile Include="Models\FullProductInfoMainInfoForCalculationsStartModel.cs" />
     <Compile Include="Models\MainMoneyCountingModel.cs" />
-    <Compile Include="Models\MoneyMainInfoModel.cs" />
+    <Compile Include="Models\ProductProfitInfoModel.cs" />
     <Compile Include="Models\ProductAdditionalInfoModel.cs" />
     <Compile Include="Models\ProductQuantityModel.cs" />
     <Compile Include="Repository\DependencyInjectionRepositoryClass\Service\Calculator.cs" />

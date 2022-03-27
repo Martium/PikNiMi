@@ -19,7 +19,6 @@ namespace PikNiMi.Forms
         private readonly ComboBoxService _comboBoxService;
         private readonly RepositoryQueryCalls _repositoryQueryCalls;
         private readonly NumberService _numberService;
-        private readonly Calculator _calculator;
 
         public AdditionalOptionForm()
         {
@@ -27,7 +26,6 @@ namespace PikNiMi.Forms
             _comboBoxService = new ComboBoxService(new LanguageTranslator(new TextTranslationsToLithuaniaLanguage()));
             _repositoryQueryCalls = new RepositoryQueryCalls(new SqlLiteRepositoryQueryCalls());
             _numberService = new NumberService(new InvariantCultureNumberService());
-            _calculator = new Calculator(new InvariantCultureCalculatorService());
 
             InitializeComponent();
         }
@@ -73,14 +71,15 @@ namespace PikNiMi.Forms
 
             if (allDate != null)
             {
-                var enumerableAllDate = allDate as string[] ?? allDate.ToArray();
-                var existingYears = GetAllYearFromIEnumerable(enumerableAllDate);
-                _comboBoxService.FillDateComboBox(DateComboBox, enumerableAllDate);
+                var existingDates = GetAllDatesFromIEnumerable(allDate);
+
+                var existingYears = GetAllYearFromIEnumerable(existingDates);
+                _comboBoxService.FillDateComboBox(DateComboBox, existingDates);
                 _comboBoxService.FillYearComboBox(YearComboBox, existingYears);
             }
         }
 
-        private IEnumerable<int> GetAllYearFromIEnumerable(IEnumerable<string> allDate)
+        private IEnumerable<int> GetAllYearFromIEnumerable(List<string> allDate)
         {
             var allYear = new List<int>();
 
@@ -94,6 +93,18 @@ namespace PikNiMi.Forms
 
             return existingYears;
         }
+
+        private List<string> GetAllDatesFromIEnumerable(IEnumerable<string> allDate)
+        {
+            var dates = new List<string>();
+
+            dates.AddRange(allDate);
+
+            var distinctDates = dates.Distinct().OrderByDescending(d => d);
+
+            return distinctDates.ToList();
+        }
+       
 
         private void CountAllMoneyResultsByDate()
         {
@@ -123,7 +134,7 @@ namespace PikNiMi.Forms
             }
         }
 
-        private void CountAllMoneyResultByDateAndIncludePvmOptionType(List<MoneyMainInfoModel> mainInfo, List<AdditionalInfoIncludePvmModel> includePvmInfo )
+        private void CountAllMoneyResultByDateAndIncludePvmOptionType(List<ProductProfitInfoModel> mainInfo, List<AdditionalInfoIncludePvmModel> includePvmInfo )
         {
             var mainMoneyCountList = new List<MainMoneyCountingModel>();
 
@@ -132,9 +143,9 @@ namespace PikNiMi.Forms
                 var countingModel = new MainMoneyCountingModel()
                 {
                     ProductId = moneyMainInfoModel.ProductId,
-                    ProductSoldPrice = moneyMainInfoModel.ProductSoldPrice,
-                    ProductPvm = moneyMainInfoModel.ProductPvm,
-                    ProductSoldPriceWithPvm = moneyMainInfoModel.ProductSoldPriceWithPvm
+                    ProductSoldPrice = moneyMainInfoModel.ProductSoldPrice, // todo math by soldPrice
+                    ProductSold = moneyMainInfoModel.ProductSold,
+                    ProductProfit = moneyMainInfoModel.ProductProfit
                 };
 
                 countingModel.IncludePvm = includePvmInfo.Find(f => f.Id == countingModel.ProductId).IncludePvm;
@@ -144,17 +155,17 @@ namespace PikNiMi.Forms
             if (IncludePvmCheckBox.Checked)
             {
                 mainMoneyCountList.RemoveAll(r => r.IncludePvm == 0);
+                // todo math to count pvm and soldPriceWithPvm
+               // ProductPvmTextBox.Text = 
+               // ProductSoldPriceWithPvmTextBox.Text = 
             }
             else
             {
                 mainMoneyCountList.RemoveAll(r => r.IncludePvm == 1);
+                ProductPvmTextBox.Text = string.Empty;
+                ProductSoldPriceWithPvmTextBox.Text = string.Empty;
             }
-
-            ProductSoldPriceTextBox.Text =
-                _numberService.ParseDoubleToString(mainMoneyCountList.Sum(s => s.ProductSoldPrice));
-            ProductPvmTextBox.Text = _numberService.ParseDoubleToString(mainMoneyCountList.Sum(s => s.ProductPvm));
-            ProductSoldPriceWithPvmTextBox.Text =
-                _numberService.ParseDoubleToString(mainMoneyCountList.Sum(s => s.ProductSoldPriceWithPvm));
+            
             ProfitTextBox.Text = _numberService.ParseDoubleToString(mainMoneyCountList.Sum(s => s.ProductProfit));
         }
 

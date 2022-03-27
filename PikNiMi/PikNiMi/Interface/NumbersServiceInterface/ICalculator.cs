@@ -16,6 +16,5 @@ namespace PikNiMi.Interface.NumbersServiceInterface
         double CalculateTripExpensesByDate(int elementsByDate, string fullTripExpenses);
         FullProductInfoCalculationModel MakeFullCalculationsOfSpecificProduct(FullProductInfoMainInfoForCalculationsStartModel mainInfoForCalculations);
 
-
     }
 }

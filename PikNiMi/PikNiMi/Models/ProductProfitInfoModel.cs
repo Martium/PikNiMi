@@ -1,11 +1,10 @@
 ﻿namespace PikNiMi.Models
 {
-    public class MoneyMainInfoModel
+    public class ProductProfitInfoModel
     {
         public int ProductId { get; set; }
         public double ProductSoldPrice { get; set; }
-        public double ProductPvm { get; set; }
-        public double ProductSoldPriceWithPvm { get; set; }
+        public int ProductSold { get; set; }
         public double ProductProfit { get; set; }
 
     }

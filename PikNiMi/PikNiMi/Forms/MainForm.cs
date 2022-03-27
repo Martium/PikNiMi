@@ -237,9 +237,9 @@ namespace PikNiMi.Forms
         }
 
         private void AdditionalOptionButton_Click(object sender, EventArgs e)
-        {
-            // OpenNewForm(new AdditionalOptionForm()); // todo lot of logic mistakes
-            MessageBox.Show(@"Paslauga nesuprogamuota :( ");
+        { 
+            OpenNewForm(new AdditionalOptionForm()); // todo lot of logic mistakes
+           // MessageBox.Show(@"Paslauga nesuprogamuota :( ");
         }
 
         #region CustomPrivateMethods

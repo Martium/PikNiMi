@@ -320,8 +320,7 @@ namespace PikNiMi.Repository.SqlLite
             string query = 
                 $@"
                         SELECT 
-                           {ProductId}, FPIT.ProductSoldPrice, FPIT.ProductPvm,
-                           FPIT.ProductSoldPriceWithPvm, FPIT.ProductProfit
+                           {ProductId}, FPIT.ProductSoldPrice, FPIT.ProductProfit, FPIT.ProductSold
                         FROM {FullProductInfoTableWithShortcut}
                         WHERE FPIT.ProductReceiptDate = '{date}'
                 ";

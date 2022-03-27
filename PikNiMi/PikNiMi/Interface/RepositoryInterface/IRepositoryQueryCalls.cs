@@ -26,7 +26,7 @@ namespace PikNiMi.Interface.RepositoryInterface
         Task<IEnumerable<string>> GetAllProductType();
         Task<int> DeleteExistingProductType(string productType);
         Task<IEnumerable<string>> GetAllExistingDates();
-        Task<IEnumerable<MoneyMainInfoModel>> GetAllMoneyMainInfoFromFullProductByDate(string date);
+        Task<IEnumerable<ProductProfitInfoModel>> GetAllMoneyMainInfoFromFullProductByDate(string date);
         Task<IEnumerable<AdditionalInfoIncludePvmModel>> GetAllIncludePvmInfoByMultipleId(int[] id);
 
 
